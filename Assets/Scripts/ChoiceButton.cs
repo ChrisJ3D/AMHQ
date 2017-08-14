@@ -27,11 +27,7 @@ public class ChoiceButton : MonoBehaviour {
 		} else if (command == "scene") {
 			UnityEngine.SceneManagement.SceneManager.LoadScene("Scene" + commandModifier);
 		}
-
-
 	}
-
-	
 
 	// Use this for initialization
 	void Start () {

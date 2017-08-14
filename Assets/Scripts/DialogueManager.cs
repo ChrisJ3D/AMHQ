@@ -136,12 +136,12 @@ public class DialogueManager : MonoBehaviour {
 			yield return 0;
 			yield return new WaitForSeconds(textSpeed);
 		}
-
 		isTyping = false;
 	}
 
 	public void ClearButtons() {
-		foreach (Button b in buttons) {
+		for (int i = 0; i < buttons.Count; i++) {
+			Button b = buttons[i];
 			buttons.Remove(b);
 			Destroy(b.gameObject);
 		}
