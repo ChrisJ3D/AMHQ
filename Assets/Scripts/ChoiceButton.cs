@@ -24,7 +24,7 @@ public class ChoiceButton : MonoBehaviour {
 			box.isChoosing = false;
 			box.lineNum = int.Parse(commandModifier);
 			box.ClearButtons();
-			box.ShowDialogue();
+			box.OnClick();
 		} else if (command == "scene") {
 			UnityEngine.SceneManagement.SceneManager.LoadScene("Scene" + commandModifier);
 		}

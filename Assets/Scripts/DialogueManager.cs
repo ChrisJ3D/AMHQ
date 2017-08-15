@@ -150,7 +150,6 @@ public class DialogueManager : MonoBehaviour {
 	public void ClearButtons() {
 		//	ClearButtons() is to be called when a dialogue choice has been made, and proceeds to
 		//	destroy all choiceButton objects.
-		print("FUNCTION CALL: ClearButtons");
 
 		foreach(Button b in buttons) {
 			Destroy(b.gameObject);
