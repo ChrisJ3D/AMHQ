@@ -1,5 +1,5 @@
 Kyle|Hey what's up|0|R
-Orien|Nothing much man|0|L
+Orien|Nothing much man this is a looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong dialogue|0|L
 Kyle|Oh that's cool|0|R
 Player|Restart:line,0|Continue:line,4
 Kyle|This is a test|0|M

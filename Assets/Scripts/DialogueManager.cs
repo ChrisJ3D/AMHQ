@@ -13,7 +13,7 @@ public class DialogueManager : MonoBehaviour {
 	int pose;
 	string position;
 	string[] options;
-	public bool playerTalking;
+	public bool isChoosing;
 	List<Button> buttons = new List<Button>();
 
 	public Text dialogueBox;
@@ -21,24 +21,29 @@ public class DialogueManager : MonoBehaviour {
 	public GameObject choiceBox;
 
 	bool isTyping;
-	public bool isChoosing;
 
 	void Start () {
 		dialogue = "";
 		characterName = "";
 		pose = 0;
 		position = "L";
-		playerTalking = false;
+		isChoosing = false;
 		isTyping = false;
 		parser = GameObject.Find("ScriptParser").GetComponent<ScriptParser>();
 		lineNum = 0;
 	}
 	
 	public void OnClick () {
-		if(!isTyping || !playerTalking) {
-			ShowDialogue();
-			lineNum++;
-			UpdateUI();
+		//	When the player attempts to further the dialogue, we need to check that we're not
+		//	in the middle of typing text or choosing
+		if(!isChoosing) {
+			if(isTyping) {
+				TypeTextImmediately();
+			} else {
+				ShowDialogue();
+				lineNum++;
+				UpdateUI();
+			}
 		}
 	}
 
@@ -57,21 +62,21 @@ public class DialogueManager : MonoBehaviour {
 
 	void ParseLine() {
 		if (parser.GetName (lineNum) != "Player") {
-			playerTalking = false;
+			isChoosing = false;
 			characterName = parser.GetName(lineNum);
 			dialogue = parser.GetContent(lineNum);
 			pose = parser.GetPose(lineNum);
 			position = parser.GetPosition(lineNum);
 			DisplayImages();
 		} else {
-			playerTalking = true;
+			isChoosing = true;
 			characterName = "";
 			dialogue = "";
 			pose = 0;
 			position = "";
 			options = parser.GetOptions(lineNum);
 			CreateButtons();
-		}		
+		}
 	}
 
 	void DisplayImages() {
@@ -101,7 +106,7 @@ public class DialogueManager : MonoBehaviour {
 
 	public void UpdateUI() {
 		nameBox.text = characterName;
-		StartCoroutine(TypeText());
+		StartCoroutine("TypeText");
 	}
 
 	IEnumerator TypeText() {
@@ -115,6 +120,12 @@ public class DialogueManager : MonoBehaviour {
 			yield return new WaitForSeconds(textSpeed);
 		}
 		isTyping = false;
+	}
+
+	void TypeTextImmediately() {
+		StopCoroutine("TypeText");
+		isTyping = false;
+		dialogueBox.text = dialogue;
 	}
 
 	void CreateButtons() {
