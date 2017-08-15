@@ -23,7 +23,6 @@ public class DialogueManager : MonoBehaviour {
 	bool isTyping;
 	public bool isChoosing;
 
-	// Use this for initialization
 	void Start () {
 		dialogue = "";
 		characterName = "";
@@ -35,12 +34,11 @@ public class DialogueManager : MonoBehaviour {
 		lineNum = 0;
 	}
 	
-	// Update is called once per frame
 	public void OnClick () {
 		if(!isTyping) {
-		ShowDialogue();
-		lineNum++;
-		UpdateUI();
+			ShowDialogue();
+			lineNum++;
+			UpdateUI();
 		}
 	}
 
@@ -120,9 +118,6 @@ public class DialogueManager : MonoBehaviour {
 	}
 
 	public void UpdateUI() {
-		if(!playerTalking) {
-			ClearButtons();
-		}
 		nameBox.text = characterName;
 		StartCoroutine(TypeText());
 	}
@@ -140,10 +135,10 @@ public class DialogueManager : MonoBehaviour {
 	}
 
 	public void ClearButtons() {
-		for (int i = 0; i < buttons.Count; i++) {
-			Button b = buttons[i];
-			buttons.Remove(b);
+		print("FUNCTION CALL: ClearButtons");
+		foreach(Button b in buttons) {
 			Destroy(b.gameObject);
 		}
+		buttons.Clear();
 	}
 }
