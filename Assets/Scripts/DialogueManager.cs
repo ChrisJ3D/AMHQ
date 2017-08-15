@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour {
 
-	DialogueParser parser;
+	ScriptParser parser;
 
 	public string dialogue, characterName;
 	public int lineNum;
@@ -30,12 +30,12 @@ public class DialogueManager : MonoBehaviour {
 		position = "L";
 		playerTalking = false;
 		isTyping = false;
-		parser = GameObject.Find("DialogueParser").GetComponent<DialogueParser>();
+		parser = GameObject.Find("ScriptParser").GetComponent<ScriptParser>();
 		lineNum = 0;
 	}
 	
 	public void OnClick () {
-		if(!isTyping) {
+		if(!isTyping || !playerTalking) {
 			ShowDialogue();
 			lineNum++;
 			UpdateUI();
@@ -99,7 +99,26 @@ public class DialogueManager : MonoBehaviour {
 		//spriteObject.transform.position = new Vector3(spriteObject.transform.position.x, spriteObject.transform.position.y, 0);
 	}
 
+	public void UpdateUI() {
+		nameBox.text = characterName;
+		StartCoroutine(TypeText());
+	}
+
+	IEnumerator TypeText() {
+		//	TypeText() is a purely graphical function to make text appear in a typing fashion
+		dialogueBox.text = "";
+		isTyping = true;
+
+		foreach (char letter in dialogue.ToCharArray()) {
+			dialogueBox.text += letter;
+			yield return 0;
+			yield return new WaitForSeconds(textSpeed);
+		}
+		isTyping = false;
+	}
+
 	void CreateButtons() {
+		//	CreateButtons() creates dialogue options and displays them on screen.
 
 		for (int i = 0; i < options.Length; i++) {
 			GameObject button = (GameObject)Instantiate(choiceBox);
@@ -117,25 +136,11 @@ public class DialogueManager : MonoBehaviour {
 		}
 	}
 
-	public void UpdateUI() {
-		nameBox.text = characterName;
-		StartCoroutine(TypeText());
-	}
-
-	IEnumerator TypeText() {
-		dialogueBox.text = "";
-		isTyping = true;
-
-		foreach (char letter in dialogue.ToCharArray()) {
-			dialogueBox.text += letter;
-			yield return 0;
-			yield return new WaitForSeconds(textSpeed);
-		}
-		isTyping = false;
-	}
-
 	public void ClearButtons() {
+		//	ClearButtons() is to be called when a dialogue choice has been made, and proceeds to
+		//	destroy all choiceButton objects.
 		print("FUNCTION CALL: ClearButtons");
+
 		foreach(Button b in buttons) {
 			Destroy(b.gameObject);
 		}

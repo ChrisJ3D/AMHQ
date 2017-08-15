@@ -6,16 +6,16 @@ using System.Text;
 using System.IO;
 using System.Text.RegularExpressions;
 
-public class DialogueParser : MonoBehaviour {
+public class ScriptParser : MonoBehaviour {
 
-	struct DialogueLine {
+	struct ScriptLine {
 		public string name;
 		public string content;
 		public int pose;
 		public string position;
 		public string[] options;
 
-		public DialogueLine(string Name, string Content, int Pose, string Position) {
+		public ScriptLine(string Name, string Content, int Pose, string Position) {
 			name = Name;
 			content = Content;
 			pose = Pose;
@@ -25,9 +25,8 @@ public class DialogueParser : MonoBehaviour {
 
 	}
 
-	List<DialogueLine> lines;
+	List<ScriptLine> lines;
 
-	// Use this for initialization
 	void Start () {
 		string file = "Assets/Dialogue/";
 		string sceneNum = UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene().name;
@@ -36,7 +35,7 @@ public class DialogueParser : MonoBehaviour {
 		file += sceneNum;
 		file += ".txt";
 
-		lines = new List<DialogueLine>();
+		lines = new List<ScriptLine>();
 
 		LoadDialogue(file);
 	}
@@ -51,14 +50,14 @@ public class DialogueParser : MonoBehaviour {
 				if (line != null) {
 					string[] lineData = line.Split('|');
 					if (lineData[0] == "Player") {
-						DialogueLine lineEntry = new DialogueLine(lineData[0], "", 0, "");
+						ScriptLine lineEntry = new ScriptLine(lineData[0], "", 0, "");
 						lineEntry.options = new string[lineData.Length - 1];
 						for (int i = 1; i < lineData.Length; i++) {
 							lineEntry.options[i-1] = lineData[i];
 						}
 						lines.Add(lineEntry);
 					} else {
-						DialogueLine lineEntry = new DialogueLine(lineData[0], lineData[1], int.Parse(lineData[2]), lineData[3]);
+						ScriptLine lineEntry = new ScriptLine(lineData[0], lineData[1], int.Parse(lineData[2]), lineData[3]);
 						lines.Add(lineEntry);
 					}
 				}
@@ -66,6 +65,22 @@ public class DialogueParser : MonoBehaviour {
 			while (line != null);
 			r.Close();
 		}
+	}
+
+	void ParseVFX() {
+
+	}
+
+	void ParseSFX() {
+
+	}
+
+	void ParseBG() {
+
+	}
+
+	void ParseBGM() {
+
 	}
 
 	public string GetPosition(int lineNumber) {
@@ -101,10 +116,5 @@ public class DialogueParser : MonoBehaviour {
 			return lines[lineNumber].options;
 		}
 		return new string[0];
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 }
