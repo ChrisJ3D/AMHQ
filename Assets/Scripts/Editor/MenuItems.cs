@@ -6,8 +6,8 @@ using UnityEditor;
 public class MenuItems : MonoBehaviour {
 
 	[MenuItem("AMHQ/Level Flow Editor", false, 0)]
-	private static void OpenFlowEditorMenuOption() {
-
+	public static void InitNodeEditor() {
+		NE_Window.InitEditorWindow();
 	}
 
 	[MenuItem("AMHQ/Flag Editor", false, 1)]
@@ -32,16 +32,6 @@ public class MenuItems : MonoBehaviour {
 
 	[MenuItem("AMHQ/Create New Hub", false, 24)]
 	private static void CreateNewHubMenuOption() {
-		
-	}
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
 		
 	}
 }
