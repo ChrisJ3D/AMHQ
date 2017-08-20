@@ -19,14 +19,24 @@ public class NE_NodePropertyView : NE_ViewBase {
 	#endregion
 
 	#region Main Methods
-	public override void UpdateView(Rect editorRect, Rect percentageRect) {
-		base.UpdateView(editorRect, percentageRect);
+	public override void UpdateView(Rect editorRect, Rect percentageRect, Event e, NE_NodeGraph curGraph) {
+		base.UpdateView(editorRect, percentageRect, e, curGraph);
 		
-		GUI.Box(viewRect, viewTitle);
+		GUI.Box(viewRect, viewTitle, viewSkin.GetStyle("view_bg"));
 
 		GUILayout.BeginArea(viewRect);
-		EditorGUILayout.LabelField("This is a label");
 		GUILayout.EndArea();
+
+		ProcessEvents(e);
+	}
+
+	public override void ProcessEvents(Event e) {
+		base.ProcessEvents(e);
+
+		if (viewRect.Contains(e.mousePosition)) {
+			Debug.Log("Mouse is inside " + viewTitle);
+		}
+
 	}
 	#endregion
 

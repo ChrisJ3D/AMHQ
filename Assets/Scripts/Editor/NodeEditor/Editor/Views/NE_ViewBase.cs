@@ -16,6 +16,7 @@ public class NE_ViewBase {
 
 	#region Protected Variables
 	protected GUISkin viewSkin;
+	protected NE_NodeGraph currentGraph; 
 	#endregion
 
 	#region Constructors
@@ -25,18 +26,34 @@ public class NE_ViewBase {
 	#endregion
 
 	#region Main Methods
-	public virtual void UpdateView(Rect editorRect, Rect percentageRect) {
+	public virtual void UpdateView(Rect editorRect, Rect percentageRect, Event e, NE_NodeGraph curGraph) {
+		if (viewSkin == null) {
+			GetEditorSkin();
+			return;
+		}
+
+		this.currentGraph = curGraph;
+
 		viewRect = new Rect(editorRect.x * percentageRect.x,
 							editorRect.y * percentageRect.y,
 							editorRect.width * percentageRect.width,
 							editorRect.height * percentageRect.height);
+
+
 	}
-	public virtual void ProcessEvents() {}
+
+	public void OnEnable () {
+		GetEditorSkin();
+	}
+
+	public virtual void ProcessEvents(Event e) {
+
+	}
 	#endregion
 
 	#region Utility Methods
 	protected void GetEditorSkin() {
-		
+			viewSkin = (GUISkin)Resources.Load("GUISkins/NodeEditorSkin");
 	}
 	#endregion
 
