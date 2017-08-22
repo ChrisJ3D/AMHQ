@@ -31,7 +31,6 @@ public class NE_Window : EditorWindow {
 
 	void OnEnable() {
 		//Debug.Log("Window Enabled");
-
 	}
 
 	void OnDestroy() {
@@ -47,7 +46,6 @@ public class NE_Window : EditorWindow {
 			CreateViews();
 			return;
 		}
-
 
 		//	Get current event
 		Event e = Event.current;

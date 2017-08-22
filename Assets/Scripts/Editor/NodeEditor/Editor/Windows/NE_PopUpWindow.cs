@@ -16,7 +16,7 @@ public class NE_PopUpWindow : EditorWindow {
 	#region Main Methods
 	public static void InitNodePopUp() {
 		currentPopUp = (NE_PopUpWindow)EditorWindow.GetWindow<NE_PopUpWindow>();
-		currentPopUp.title = "Node PopUp";
+		currentPopUp.titleContent = new GUIContent("Node PopUp");
 	}
 
 	void OnGUI () {

@@ -53,7 +53,7 @@ public class NE_ViewBase {
 
 	#region Utility Methods
 	protected void GetEditorSkin() {
-			viewSkin = (GUISkin)Resources.Load("GUISkins/NodeEditorSkin");
+			viewSkin = (GUISkin)Resources.Load("GUISkins/Editor/NodeEditorSkin");
 	}
 	#endregion
 
