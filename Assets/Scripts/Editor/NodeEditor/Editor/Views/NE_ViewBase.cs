@@ -39,6 +39,10 @@ public class NE_ViewBase {
 							editorRect.width * percentageRect.width,
 							editorRect.height * percentageRect.height);
 
+		if(curGraph != null) {
+			curGraph.UpdateGraph();
+		}
+
 
 	}
 
