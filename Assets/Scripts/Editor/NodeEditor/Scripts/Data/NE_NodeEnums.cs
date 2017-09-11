@@ -2,15 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NE_NodeEnums : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+public enum NodeType {
+	Float,
+	Add,
+	Subtract,
+	Multiply,
+	Divide
 }

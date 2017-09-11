@@ -14,6 +14,7 @@ public class NE_NodeWorkView : NE_ViewBase {
 	#endregion
 
 	#region Protected Variables
+	Vector2 mousePosition;
 	#endregion
 	
 	#region Constructor
@@ -28,17 +29,20 @@ public class NE_NodeWorkView : NE_ViewBase {
 		//	in the top label field. I opted to instead show the name
 		//	of the current scene.
 
-		// if (curGraph != null) {
-		// 	viewTitle = curGraph.graphName;
-		// } else {
-		// 	viewTitle = "No graph";
-		// }
+		if (curGraph != null) {
+			viewTitle = curGraph.graphName;
+		} else {
+			viewTitle = "No graph";
+		}
 
-		viewTitle = SceneManager.GetActiveScene().name;
+		// viewTitle = SceneManager.GetActiveScene().name;
 		
 		GUI.Box(viewRect, viewTitle, viewSkin.GetStyle("view_bg"));
 
 		GUILayout.BeginArea(viewRect);
+		if (currentGraph != null) {
+			currentGraph.UpdateGraphGUI(e, viewRect, viewSkin);
+		}
 		GUILayout.EndArea();
 
 		ProcessEvents(e);
@@ -46,6 +50,8 @@ public class NE_NodeWorkView : NE_ViewBase {
 
 	public override void ProcessEvents(Event e) {
 		base.ProcessEvents(e);
+
+
 
 		if (viewRect.Contains(e.mousePosition)) {
 			//Debug.Log("Mouse is inside " + viewTitle);
@@ -68,6 +74,7 @@ public class NE_NodeWorkView : NE_ViewBase {
 			//	Right mouse button
 			if (e.button == 1) {
 				if (e.type == EventType.mouseDown) {
+					mousePosition = e.mousePosition;
 					ProcessContextMenu(e);
 				}
 			}
@@ -79,15 +86,20 @@ public class NE_NodeWorkView : NE_ViewBase {
 	#region Utility Methods
 	void ProcessContextMenu(Event e) {
 		GenericMenu menu = new GenericMenu();
-		menu.AddItem(new GUIContent("Create Graph"), false, ContextCallback, "0");
-		menu.AddItem(new GUIContent("Load graph"), false, ContextCallback, "1");
+		menu.AddItem(new GUIContent("Graph/Create Graph"), false, ContextCallback, "0");
+		menu.AddItem(new GUIContent("Graph/Load graph"), false, ContextCallback, "1");
+		
+		if (currentGraph != null) {
+			menu.AddSeparator("");
+			menu.AddItem(new GUIContent("Graph/Unload graph"), false, ContextCallback, "2");
+		}
 
 		menu.AddItem(new GUIContent("Nodes/Dialogue"), false, ContextCallback, "3");
-		menu.AddItem(new GUIContent("Nodes/Question"), false, ContextCallback, "3");
+		menu.AddItem(new GUIContent("Nodes/Question"), false, ContextCallback, "4");
 		menu.AddSeparator("Nodes/");
-		menu.AddItem(new GUIContent("Nodes/Get Stat"), false, ContextCallback, "3");
-		menu.AddItem(new GUIContent("Nodes/Get Date"), false, ContextCallback, "3");
-		menu.AddItem(new GUIContent("Nodes/Get Affection"), false, ContextCallback, "3");
+		menu.AddItem(new GUIContent("Nodes/Get Stat"), false, ContextCallback, "5");
+		menu.AddItem(new GUIContent("Nodes/Get Date"), false, ContextCallback, "6");
+		menu.AddItem(new GUIContent("Nodes/Get Affection"), false, ContextCallback, "7");
 		menu.AddSeparator("Nodes/");
 		menu.AddItem(new GUIContent("Nodes/Set Stat"), false, ContextCallback, "3");
 		menu.AddItem(new GUIContent("Nodes/Set Date"), false, ContextCallback, "3");
@@ -101,10 +113,10 @@ public class NE_NodeWorkView : NE_ViewBase {
 		menu.AddSeparator("Nodes/");
 		menu.AddItem(new GUIContent("Nodes/Load Scene"), false, ContextCallback, "3");
 
-		if (currentGraph != null) {
-			menu.AddSeparator("");
-			menu.AddItem(new GUIContent("Graph/Unload graph"), false, ContextCallback, "2");
-		}
+		menu.AddItem(new GUIContent("Logic/Float"), false, ContextCallback, "20");
+		menu.AddItem(new GUIContent("Logic/Add"), false, ContextCallback, "21");
+
+
 
 		menu.ShowAsContext();
 		e.Use();
@@ -118,11 +130,11 @@ public class NE_NodeWorkView : NE_ViewBase {
 				break;
 
 			case "1":
-				Debug.Log("Loading graph");
+				NE_NodeUtils.LoadGraph();
 				break;
 
 			case "2":
-				Debug.Log("Unloading graph");
+				NE_NodeUtils.UnloadGraph();
 				break;
 
 			case "3":
@@ -162,6 +174,14 @@ public class NE_NodeWorkView : NE_ViewBase {
 				break;
 
 			case "12":
+				Debug.LogError("Node not implemented");
+				break;
+
+			case "20":
+				NE_NodeUtils.CreateNode(currentGraph, NodeType.Float, mousePosition);
+				break;
+
+			case "21":
 				Debug.LogError("Node not implemented");
 				break;
 			
