@@ -59,15 +59,15 @@ public class NE_NodeWorkView : NE_ViewBase {
 			//	Left mouse button
 			if (e.button == 0) {
 				if (e.type == EventType.mouseDown) {
-					Debug.Log("Left down inside of " + viewTitle);
+
 				}
 
 				if (e.type == EventType.mouseDrag) {
-					Debug.Log("Left drag inside of " + viewTitle);
+
 				}
 
 				if (e.type == EventType.mouseUp) {
-					Debug.Log("Left up inside of " + viewTitle);
+
 				}
 			}
 

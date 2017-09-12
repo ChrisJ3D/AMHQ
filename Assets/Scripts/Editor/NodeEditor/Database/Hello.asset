@@ -16,6 +16,7 @@ MonoBehaviour:
   - {fileID: 114393051815083538}
   - {fileID: 114790456536058392}
   - {fileID: 114112276338447778}
+  selectedNode: {fileID: 0}
 --- !u!114 &114112276338447778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,13 +31,16 @@ MonoBehaviour:
   nodeName: Float
   nodeRect:
     serializedVersion: 2
-    x: 116
-    y: 164
+    x: 127
+    y: 182
     width: 150
     height: 65
   parentGraph: {fileID: 11400000}
   nodeType: 0
+  isSelected: 0
   nodeValue: 0
+  output:
+    isOccupied: 0
 --- !u!114 &114393051815083538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51,13 +55,16 @@ MonoBehaviour:
   nodeName: FloatNode
   nodeRect:
     serializedVersion: 2
-    x: 316
-    y: 97
+    x: 88
+    y: 290
     width: 150
     height: 65
   parentGraph: {fileID: 11400000}
   nodeType: 0
+  isSelected: 0
   nodeValue: 0
+  output:
+    isOccupied: 0
 --- !u!114 &114790456536058392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,10 +79,13 @@ MonoBehaviour:
   nodeName: 
   nodeRect:
     serializedVersion: 2
-    x: 463
-    y: 224
+    x: 117
+    y: 63
     width: 150
     height: 65
   parentGraph: {fileID: 11400000}
   nodeType: 0
+  isSelected: 0
   nodeValue: 0
+  output:
+    isOccupied: 0

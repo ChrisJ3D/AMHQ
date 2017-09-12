@@ -34,7 +34,7 @@ public class NE_NodePropertyView : NE_ViewBase {
 		base.ProcessEvents(e);
 
 		if (viewRect.Contains(e.mousePosition)) {
-			Debug.Log("Mouse is inside " + viewTitle);
+
 		}
 	}
 	#endregion
