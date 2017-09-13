@@ -7,24 +7,23 @@ using UnityEditor;
 #endif
 
 public class NE_NodePropertyView : NE_ViewBase {
-	
-	#region Public Variables
-	#endregion
 
-	#region Protected Variables
-	#endregion
+	public NE_NodePropertyView() : base("Property View") {
 
-	#region Constructor
-	public NE_NodePropertyView() : base("Property View") {}
-	#endregion
+	}
 
-	#region Main Methods
 	public override void UpdateView(Rect editorRect, Rect percentageRect, Event e, NE_NodeGraph curGraph) {
 		base.UpdateView(editorRect, percentageRect, e, curGraph);
 		
 		GUI.Box(viewRect, viewTitle, viewSkin.GetStyle("view_bg"));
 
 		GUILayout.BeginArea(viewRect);
+		GUILayout.Space(60f);
+		if (curGraph.showProperties) {
+			curGraph.selectedNode.DrawNodeProperties();
+		} else {
+			EditorGUILayout.LabelField("No node selected");
+		}
 		GUILayout.EndArea();
 
 		ProcessEvents(e);
@@ -37,8 +36,4 @@ public class NE_NodePropertyView : NE_ViewBase {
 
 		}
 	}
-	#endregion
-
-	#region Utility Methods
-	#endregion
 }

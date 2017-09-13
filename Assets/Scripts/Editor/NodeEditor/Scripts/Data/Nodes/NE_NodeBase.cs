@@ -9,7 +9,6 @@ using UnityEditor;
 [Serializable]
 public class NE_NodeBase : ScriptableObject {
 
-
 	//	PUBLIC VARIABLES
 	public string nodeName;
 	public Rect nodeRect;
@@ -24,7 +23,7 @@ public class NE_NodeBase : ScriptableObject {
 	[Serializable]
 	public class NE_NodeInput {
 		public bool isOccupied = false;
-		public bool allowedMultipleInputs = false;
+		public bool allowsMultipleInputs = false;
 		public NE_NodeBase parentNode;
 	}
 
@@ -46,8 +45,6 @@ public class NE_NodeBase : ScriptableObject {
 	public virtual void UpdateNodeGUI(Event e, Rect viewRect, GUISkin viewSkin) {
 		ProcessEvents(e, viewRect);
 
-		
-
 		if(isSelected){
 			GUI.Box(nodeRect, nodeName, viewSkin.GetStyle("node_selected"));
 		} else {
@@ -55,6 +52,10 @@ public class NE_NodeBase : ScriptableObject {
 		}
 
 		EditorUtility.SetDirty(this);
+	}
+
+	public virtual void DrawNodeProperties() {
+		
 	}
 	#endif
 

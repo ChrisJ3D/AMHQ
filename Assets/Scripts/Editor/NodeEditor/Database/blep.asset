@@ -11,5 +11,92 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 518142f7e0984274d97483dd74dd0c9c, type: 3}
   m_Name: blep
   m_EditorClassIdentifier: 
-  graphName: blep
-  nodes: []
+  graphName: intro_scene
+  nodes:
+  - {fileID: 114997690335208782}
+  - {fileID: 114476737697036726}
+  - {fileID: 114419602655599444}
+  selectedNode: {fileID: 0}
+  wantsConnection: 0
+  connectionNode: {fileID: 0}
+  showProperties: 0
+--- !u!114 &114419602655599444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ea1e708a73d9504e8224c2a2158b570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeName: Float
+  nodeRect:
+    serializedVersion: 2
+    x: 217
+    y: 205
+    width: 150
+    height: 65
+  parentGraph: {fileID: 11400000}
+  nodeType: 0
+  isSelected: 0
+  nodeValue: 10
+  output:
+    isOccupied: 0
+--- !u!114 &114476737697036726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa49d627976dbdb41b58ec39d702a565, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeName: Add
+  nodeRect:
+    serializedVersion: 2
+    x: 508
+    y: 134
+    width: 200
+    height: 65
+  parentGraph: {fileID: 11400000}
+  nodeType: 1
+  isSelected: 0
+  nodeSum: 0
+  output:
+    isOccupied: 0
+  inputA:
+    isOccupied: 1
+    allowsMultipleInputs: 0
+    parentNode: {fileID: 114997690335208782}
+  inputB:
+    isOccupied: 1
+    allowsMultipleInputs: 0
+    parentNode: {fileID: 114419602655599444}
+--- !u!114 &114997690335208782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ea1e708a73d9504e8224c2a2158b570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeName: Float
+  nodeRect:
+    serializedVersion: 2
+    x: 216
+    y: 74
+    width: 150
+    height: 65
+  parentGraph: {fileID: 11400000}
+  nodeType: 0
+  isSelected: 0
+  nodeValue: 30
+  output:
+    isOccupied: 0

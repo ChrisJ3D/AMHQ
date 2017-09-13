@@ -13,11 +13,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   graphName: intro_scene
   nodes:
-  - {fileID: 114393051815083538}
-  - {fileID: 114790456536058392}
-  - {fileID: 114112276338447778}
-  selectedNode: {fileID: 0}
---- !u!114 &114112276338447778
+  - {fileID: 114504827161276976}
+  selectedNode: {fileID: 114504827161276976}
+  wantsConnection: 0
+  connectionNode: {fileID: 0}
+--- !u!114 &114504827161276976
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -25,67 +25,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ea1e708a73d9504e8224c2a2158b570, type: 3}
+  m_Script: {fileID: 11500000, guid: aa49d627976dbdb41b58ec39d702a565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Float
+  nodeName: Add
   nodeRect:
     serializedVersion: 2
-    x: 127
-    y: 182
-    width: 150
+    x: 274
+    y: 149
+    width: 200
     height: 65
   parentGraph: {fileID: 11400000}
-  nodeType: 0
-  isSelected: 0
-  nodeValue: 0
+  nodeType: 1
+  isSelected: 1
+  nodeSum: 0
   output:
     isOccupied: 0
---- !u!114 &114393051815083538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ea1e708a73d9504e8224c2a2158b570, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nodeName: FloatNode
-  nodeRect:
-    serializedVersion: 2
-    x: 88
-    y: 290
-    width: 150
-    height: 65
-  parentGraph: {fileID: 11400000}
-  nodeType: 0
-  isSelected: 0
-  nodeValue: 0
-  output:
+  inputA:
     isOccupied: 0
---- !u!114 &114790456536058392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ea1e708a73d9504e8224c2a2158b570, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nodeName: 
-  nodeRect:
-    serializedVersion: 2
-    x: 117
-    y: 63
-    width: 150
-    height: 65
-  parentGraph: {fileID: 11400000}
-  nodeType: 0
-  isSelected: 0
-  nodeValue: 0
-  output:
+    allowsMultipleInputs: 0
+    parentNode: {fileID: 0}
+  inputB:
     isOccupied: 0
+    allowsMultipleInputs: 0
+    parentNode: {fileID: 0}

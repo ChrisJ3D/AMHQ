@@ -11,13 +11,13 @@ using UnityEditor;
 [Serializable]
 public class NE_NodeGraph : ScriptableObject {
 
-	#region Public Variables
 	public string graphName = "New Graph";
 	public List<NE_NodeBase> nodes;
 	public NE_NodeBase selectedNode;
-	#endregion
 
-	#region Main Methods
+	public bool wantsConnection = false;
+	public NE_NodeBase connectionNode;
+	public bool showProperties = false;
 
 	void OnEnable() {
 		graphName = SceneManager.GetActiveScene().name;
@@ -27,14 +27,9 @@ public class NE_NodeGraph : ScriptableObject {
 		}
 	}
 
-	// <summary>
-	//
-	// </summary>
 	public void InitGraph() {
-		if(nodes.Count > 0) {
-			for(int i = 0; i < nodes.Count; i++) {
-				nodes[i].InitNode();
-			}
+		foreach(NE_NodeBase node in nodes) {
+			node.InitNode();
 		}
 	}
 
@@ -53,14 +48,23 @@ public class NE_NodeGraph : ScriptableObject {
 			}
 		}
 
+		if(wantsConnection) {
+			
+			if(connectionNode) {
+					DrawConnectionToMouse(e.mousePosition);
+				}
+		}
+
+		if (e.type == EventType.Layout) {
+			if(selectedNode) {
+				showProperties = true;
+			}
+		}
 		EditorUtility.SetDirty(this);
 
 	}	
 	#endif
 
-	#endregion
-
-	#region Utility Methods
 	void ProcessEvents(Event e, Rect viewRect) {
 		//Get ready for some nesting...
 
@@ -73,6 +77,7 @@ public class NE_NodeGraph : ScriptableObject {
 
 					bool setNode = false;
 					selectedNode = null;
+					showProperties = false;
 
 					foreach(NE_NodeBase node in nodes) {
 							if(node.nodeRect.Contains(e.mousePosition)) {
@@ -84,6 +89,10 @@ public class NE_NodeGraph : ScriptableObject {
 					
 					if(!setNode) {
 						DeselectAllNodes();
+						}
+
+					if(wantsConnection) {
+						wantsConnection = false;
 					}
 				}
 			}
@@ -91,15 +100,19 @@ public class NE_NodeGraph : ScriptableObject {
 	}
 
 	void DeselectAllNodes() {
-
-		// for(int i = 0; i < nodes.Count; i++) {
-		// 	nodes[i].isSelected = false;
-		// }
-
 		foreach(NE_NodeBase node in nodes) {
 			node.isSelected = false;
 		}
 	}
-	#endregion
 
+	void DrawConnectionToMouse(Vector2 mousePosition) {
+		Vector3 origin = new Vector3(connectionNode.nodeRect.x + connectionNode.nodeRect.width,
+										connectionNode.nodeRect.y + connectionNode.nodeRect.height * 0.5f);
+		Vector3 destination = new Vector3(mousePosition.x, mousePosition.y);
+
+		Handles.BeginGUI();
+		Handles.color = Color.white;
+		Handles.DrawLine(origin, destination);
+		Handles.EndGUI();
+	}
 }

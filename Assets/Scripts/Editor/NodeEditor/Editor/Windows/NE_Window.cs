@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 public class NE_Window : EditorWindow {
-	#region Public Variables
+
 	public static NE_Window currentWindow;
 
 	public NE_NodePropertyView propertyView;
@@ -13,15 +13,7 @@ public class NE_Window : EditorWindow {
 	public NE_NodeGraph nodeGraph = null;
 
 	public float viewPercentage = 0.75f;
-	#endregion
 
-	#region Protected Variables
-	#endregion
-
-	#region Constructor
-	#endregion
-
-	#region Main Methods
 	public static void InitEditorWindow() {
 		currentWindow = (NE_Window)EditorWindow.GetWindow<NE_Window>();
 		currentWindow.titleContent = new GUIContent("Level Flow");
@@ -59,9 +51,7 @@ public class NE_Window : EditorWindow {
 
 		Repaint();
 	}
-	#endregion
 
-	#region Utility Methods
 	static void CreateViews() {
 		if(currentWindow != null) {
 			currentWindow.propertyView = new NE_NodePropertyView();
@@ -79,7 +69,5 @@ public class NE_Window : EditorWindow {
 		if(e.type == EventType.KeyDown && e.keyCode == KeyCode.RightArrow) {
 			viewPercentage += 0.01f;
 		}
-
 	}
-	#endregion
 }

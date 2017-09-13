@@ -10,25 +10,18 @@ using UnityEditor;
 [Serializable]
 public class NE_ViewBase {
 
-	#region Public Variables
 	public string viewTitle;
 	public Rect viewRect;
-	#endregion
 
-	#region Protected Variables
 	protected GUISkin viewSkin;
 	protected NE_NodeGraph currentGraph; 
-	#endregion
 
-	#region Constructors
 	public NE_ViewBase(string title) {
 		viewTitle = title;
 	}
-	#endregion
 
-	#region Main Methods
 	public virtual void UpdateView(Rect editorRect, Rect percentageRect, Event e, NE_NodeGraph curGraph) {
-		if (viewSkin == null) {
+		if (!viewSkin) {
 			GetEditorSkin();
 			return;
 		}
@@ -40,11 +33,9 @@ public class NE_ViewBase {
 							editorRect.width * percentageRect.width,
 							editorRect.height * percentageRect.height);
 
-		if(curGraph != null) {
+		if(curGraph) {
 			curGraph.UpdateGraph();
 		}
-
-
 	}
 
 	public void OnEnable () {
@@ -54,12 +45,8 @@ public class NE_ViewBase {
 	public virtual void ProcessEvents(Event e) {
 
 	}
-	#endregion
 
-	#region Utility Methods
 	protected void GetEditorSkin() {
 			viewSkin = (GUISkin)Resources.Load("GUISkins/Editor/NodeEditorSkin");
 	}
-	#endregion
-
 }

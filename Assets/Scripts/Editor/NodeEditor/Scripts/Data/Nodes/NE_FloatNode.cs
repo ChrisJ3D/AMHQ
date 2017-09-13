@@ -34,11 +34,18 @@ public class NE_FloatNode : NE_NodeBase {
     public override void UpdateNodeGUI(Event e, Rect viewRect, GUISkin viewSkin) {
         base.UpdateNodeGUI(e, viewRect, viewSkin);
 
-        if(GUI.Button(new Rect(nodeRect.x + nodeRect.width, nodeRect.y + (nodeRect.height * 0.5f) - 12f, 
-                                24f, 24f),
-                                 "", viewSkin.GetStyle("node_output"))) {
-                                     Debug.Log("Output selected");
+        if(GUI.Button(new Rect(nodeRect.x + nodeRect.width, nodeRect.y + (nodeRect.height * 0.5f) - 12f, 24f, 24f), "", viewSkin.GetStyle("node_output"))) {
+                                     if (parentGraph != null) {
+                                         parentGraph.wantsConnection = true;
+                                         parentGraph.connectionNode = this;
+                                     }
                                  }
     }
+
+    public override void DrawNodeProperties() {
+        base.DrawNodeProperties();
+
+        nodeValue = EditorGUILayout.FloatField("Float Value: ", nodeValue);
+    }   
     #endif
 }
