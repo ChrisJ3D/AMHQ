@@ -10,6 +10,7 @@ using UnityEditor;
 
 [Serializable]
 public class NE_NodeGraph : ScriptableObject {
+	//	The NodeGraph organizes all nodes and controls their state. Actual GUI presentation is handled by the NodeWorkView class
 
 	public string graphName = "New Graph";
 	public List<NE_NodeBase> nodes;
@@ -43,16 +44,17 @@ public class NE_NodeGraph : ScriptableObject {
 	public void UpdateGraphGUI(Event e, Rect viewRect, GUISkin viewSkin) {
 		if(nodes.Count > 0) {
 			ProcessEvents(e, viewRect);
-			for(int i = 0; i < nodes.Count; i++) {
-				nodes[i].UpdateNodeGUI(e, viewRect, viewSkin);
+
+			foreach(NE_NodeBase node in nodes) {
+				node.UpdateNodeGUI(e, viewRect, viewSkin);
 			}
 		}
 
 		if(wantsConnection) {
 			
 			if(connectionNode) {
-					DrawConnectionToMouse(e.mousePosition);
-				}
+				//connectionNode.DrawLine(connectionNode.inputs, e.mousePosition);
+			}
 		}
 
 		if (e.type == EventType.Layout) {
@@ -84,6 +86,7 @@ public class NE_NodeGraph : ScriptableObject {
 								node.isSelected = true;
 								selectedNode = node;
 								setNode = true;
+								node.Evaluate();
 							}
 						}
 					
@@ -103,16 +106,5 @@ public class NE_NodeGraph : ScriptableObject {
 		foreach(NE_NodeBase node in nodes) {
 			node.isSelected = false;
 		}
-	}
-
-	void DrawConnectionToMouse(Vector2 mousePosition) {
-		Vector3 origin = new Vector3(connectionNode.nodeRect.x + connectionNode.nodeRect.width,
-										connectionNode.nodeRect.y + connectionNode.nodeRect.height * 0.5f);
-		Vector3 destination = new Vector3(mousePosition.x, mousePosition.y);
-
-		Handles.BeginGUI();
-		Handles.color = Color.white;
-		Handles.DrawLine(origin, destination);
-		Handles.EndGUI();
 	}
 }

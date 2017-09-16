@@ -9,6 +9,7 @@ using UnityEditor;
 
 [Serializable]
 public class NE_NodeWorkView : NE_ViewBase {
+	//	The NodeWorkView is tasked with displaying the contents of a NE_NodeGraph, and handling any input events
 
 	Vector2 mousePosition;
 	int hoveredNodeID = 0;
@@ -79,7 +80,6 @@ public class NE_NodeWorkView : NE_ViewBase {
 				}
 			}
 		}
-
 	}
 
 	void ProcessContextMenu(Event e, int contextID) {

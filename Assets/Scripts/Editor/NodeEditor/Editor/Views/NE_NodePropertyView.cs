@@ -14,7 +14,7 @@ public class NE_NodePropertyView : NE_ViewBase {
 
 	public override void UpdateView(Rect editorRect, Rect percentageRect, Event e, NE_NodeGraph curGraph) {
 		base.UpdateView(editorRect, percentageRect, e, curGraph);
-		
+
 		GUI.Box(viewRect, viewTitle, viewSkin.GetStyle("view_bg"));
 
 		GUILayout.BeginArea(viewRect);

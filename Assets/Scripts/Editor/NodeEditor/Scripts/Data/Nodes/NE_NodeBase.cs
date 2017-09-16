@@ -16,30 +16,111 @@ public class NE_NodeBase : ScriptableObject {
 	public NodeType nodeType;
 	public bool isSelected = false;
 
+	public List<NE_NodeInput> inputs;
+	public List<NE_NodeOutput> outputs;
+	public int numberOfInputs = 0;
+	public int numberOfOutputs = 0;
+
+	public System.Object nodeValue;
+
 	//	PRIVATE VARIABLES
 	protected GUISkin nodeSkin;
 
+
 	//	SUBCLASSES
-	[Serializable]
-	public class NE_NodeInput {
-		public bool isOccupied = false;
-		public bool allowsMultipleInputs = false;
-		public NE_NodeBase parentNode;
-	}
 
 	[Serializable]
 	public class NE_NodeOutput {
+		public int index;
 		public bool isOccupied = false;
 	}
 
 	//	MAIN FUNCTIONS
 	public virtual void InitNode() {
+		inputs = new List<NE_NodeInput>();
+		outputs = new List<NE_NodeOutput>();
 
+		//	Create inputs
+		for(int i = 0; i < numberOfInputs; i++) {
+			NE_NodeInput input = new NE_NodeInput();
+			input.index = i;
+			inputs.Add(input);
+		}
+
+		for (int i = 0; i < numberOfOutputs; i++) {
+			NE_NodeOutput output = new NE_NodeOutput();
+			output.index = i;
+			outputs.Add(output);			
+		}
 	}
 
-	public virtual void UpdateNode(Event e, Rect viewRect) {
+	//	EVALUATION
 
+	public virtual void Evaluate() {
+		throw new NotImplementedException("Node is trying to evaluate but has no method to do so");
 	}
+
+	public virtual float EvaluateAsFloat() {
+		Evaluate();
+		return Convert.ToSingle(nodeValue);
+	}
+
+	public virtual int EvaluateAsInt() {
+		Evaluate();
+		return Convert.ToInt32(nodeValue);
+	}
+
+	public virtual bool EvaluateAsBool() {
+		Evaluate();
+		return Convert.ToBoolean(nodeValue);
+	}
+
+	public virtual string EvaluateAsString() {
+		Evaluate();
+		return Convert.ToString(nodeValue);
+	}
+
+	//	GUI STUFF
+
+	protected void DrawConnectors() {
+		GetEditorSkin();
+		
+		foreach(NE_NodeInput input in inputs) {
+
+			if(GUI.Button(new Rect(nodeRect.x - 24f, (nodeRect.y + ((nodeRect.height * 0.1f) * 2) - 8f) * input.index, 24f, 24f), "", nodeSkin.GetStyle("node_input"))) {
+				if (parentGraph != null) {
+					input.parentNode = parentGraph.connectionNode;
+					input.isOccupied = input.parentNode != null ? true : false;
+
+					parentGraph.wantsConnection = false;
+					parentGraph.connectionNode = null;
+				}
+			}
+
+				foreach(NE_NodeOutput output in outputs) {
+			if(GUI.Button(new Rect(nodeRect.x + nodeRect.width, nodeRect.y + (nodeRect.height * 0.5f) - 12f, 24f, 24f), "", nodeSkin.GetStyle("node_output"))) {
+				if (parentGraph != null) {
+					parentGraph.wantsConnection = true;
+					parentGraph.connectionNode = this;
+
+				}
+			}
+		}
+
+		input.DrawConnector();
+		}
+	}
+
+    protected void DrawInputLines() {
+		
+		foreach(NE_NodeInput input in inputs) {
+			if(input.parentNode && input.isOccupied) {
+				//input.DrawConnections();
+			} else {
+				input.isOccupied = false;
+			}
+		}
+    }
 
 	#if UNITY_EDITOR
 	public virtual void UpdateNodeGUI(Event e, Rect viewRect, GUISkin viewSkin) {
@@ -50,7 +131,6 @@ public class NE_NodeBase : ScriptableObject {
 		} else {
 			GUI.Box(nodeRect, nodeName, viewSkin.GetStyle("node_default"));
 		}
-
 		EditorUtility.SetDirty(this);
 	}
 
@@ -70,5 +150,9 @@ public class NE_NodeBase : ScriptableObject {
 				}
 			}
 		}
+	}
+
+	protected void GetEditorSkin() {
+			nodeSkin = (GUISkin)Resources.Load("GUISkins/Editor/NodeEditorSkin");
 	}
 }
