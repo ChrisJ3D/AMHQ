@@ -72,15 +72,15 @@ public static class NE_NodeUtils {
 				break;
 
 				default:
-					break;
+				break;
 			}
 
 			if (currentNode) {
-				currentNode.InitNode();
-				currentNode.nodeRect.x = mousePosition.x;
-				currentNode.nodeRect.y = mousePosition.y;
+				currentNode.position.x = mousePosition.x;
+				currentNode.position.y = mousePosition.y;
 				currentNode.parentGraph = currentGraph;
 				
+				currentNode.InitNode();
 				currentGraph.nodes.Add(currentNode);
 
 				AssetDatabase.AddObjectToAsset(currentNode,currentGraph);
@@ -98,6 +98,7 @@ public static class NE_NodeUtils {
 
 				if (nodeToDelete) {
 					currentGraph.nodes.RemoveAt(index);
+					currentGraph.showProperties = false;
 					GameObject.DestroyImmediate(nodeToDelete, true);
 					AssetDatabase.SaveAssets();
 					AssetDatabase.Refresh();

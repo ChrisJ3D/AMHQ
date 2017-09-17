@@ -11,27 +11,20 @@ public class NE_NodeInput : ScriptableObject {
 	public bool isOccupied = false;
 	public bool allowsMultipleInputs = false;
 	public NE_NodeBase parentNode;
+	public Vector2 size = new Vector2(24f, 24f);
+	public Vector2 position = new Vector2(0.0f, 0.0f);
+	
+	public void GetConnectionPosition() {
+		if (parentNode) {
+			float top = parentNode.nodeRect.y + (size.y * 0.5f);
+			float center = top + (parentNode.nodeRect.height * 0.5f) - size.y;
+			
+			float fraction = (index + 1) / ((float)parentNode.numberOfInputs + 1);
+			float fractionOffset = (fraction - 0.5f) * 2f;
+			
+			position.y = center + (fractionOffset * (parentNode.nodeRect.height /2));
 
-	public Vector3 GetConnectionPosition() {
-		float x = parentNode.nodeRect.x + parentNode.nodeRect.width + 10f;
-		float y = ((parentNode.nodeRect.y + parentNode.nodeRect.height) / (parentNode.numberOfInputs + 1)) * index;
-		
-		return new Vector3(x,y);
+			position.x = parentNode.nodeRect.x - size.x;
+		}
 	}
-
-	public void DrawConnector() {
-		Rect nodeRect = parentNode.nodeRect;
-		NE_NodeGraph parentGraph = parentNode.parentGraph;
-	}
-
-	public void DrawLine(Vector3 origin, Vector3 destination) {
-
-		Vector3 startTangent = origin + Vector3.right * 50;
-		Vector3 endTangent = destination + Vector3.left * 50;
-		
-		Handles.BeginGUI();
-			Handles.color = Color.white;
-			Handles.DrawBezier(origin, destination, startTangent, endTangent, Color.gray, null, 3f);
-		Handles.EndGUI();
-    }
 }

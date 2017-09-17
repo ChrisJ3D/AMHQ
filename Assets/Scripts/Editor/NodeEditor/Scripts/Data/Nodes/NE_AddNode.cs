@@ -2,13 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
 [Serializable]
 public class NE_AddNode : NE_NodeBase {
-
 
     //  CONSTRUCTORS
     public NE_AddNode() {
@@ -20,15 +20,20 @@ public class NE_AddNode : NE_NodeBase {
     public override void InitNode() {
         base.InitNode();
         nodeType = NodeType.Add;
-        nodeRect = new Rect(10f,10f,200,65f);
+        nodeRect = new Rect(position.x,position.y,200,105f);
     }
 
     public override void Evaluate() {
         nodeValue = 0.0f;
-
-        foreach(NE_NodeInput i in inputs) {
-                NE_NodeBase entry = i.parentNode;
-                nodeValue = (float)nodeValue + entry.EvaluateAsFloat();
+        if(inputs != null) {
+            if(inputs.Count > 0) {
+                if(inputs[0].isOccupied) {
+                    foreach(NE_NodeInput i in inputs) {
+                        NE_NodeBase entry = i.parentNode;
+                        nodeValue = (float)nodeValue + entry.EvaluateAsFloat();
+                    }
+                }
+            }
         }
     }
 

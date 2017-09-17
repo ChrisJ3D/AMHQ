@@ -18,40 +18,24 @@ public class NE_NodeBase : ScriptableObject {
 
 	public List<NE_NodeInput> inputs;
 	public List<NE_NodeOutput> outputs;
-	public int numberOfInputs = 0;
-	public int numberOfOutputs = 0;
+	public int numberOfInputs;
+	public int numberOfOutputs;
 
 	public System.Object nodeValue;
 
+	public Vector2 size = new Vector2(24f, 24f);
+	public Vector2 position = new Vector2(0.0f, 0.0f);
+
 	//	PRIVATE VARIABLES
 	protected GUISkin nodeSkin;
-
-
-	//	SUBCLASSES
-
-	[Serializable]
-	public class NE_NodeOutput {
-		public int index;
-		public bool isOccupied = false;
-	}
 
 	//	MAIN FUNCTIONS
 	public virtual void InitNode() {
 		inputs = new List<NE_NodeInput>();
 		outputs = new List<NE_NodeOutput>();
 
-		//	Create inputs
-		for(int i = 0; i < numberOfInputs; i++) {
-			NE_NodeInput input = new NE_NodeInput();
-			input.index = i;
-			inputs.Add(input);
-		}
-
-		for (int i = 0; i < numberOfOutputs; i++) {
-			NE_NodeOutput output = new NE_NodeOutput();
-			output.index = i;
-			outputs.Add(output);			
-		}
+		GetEditorSkin();
+		CreateConnectors();
 	}
 
 	//	EVALUATION
@@ -80,34 +64,54 @@ public class NE_NodeBase : ScriptableObject {
 		return Convert.ToString(nodeValue);
 	}
 
-	//	GUI STUFF
+	protected void CreateConnectors() {
+		inputs.Clear();
+		outputs.Clear();
 
-	protected void DrawConnectors() {
-		GetEditorSkin();
-		
-		foreach(NE_NodeInput input in inputs) {
-
-			if(GUI.Button(new Rect(nodeRect.x - 24f, (nodeRect.y + ((nodeRect.height * 0.1f) * 2) - 8f) * input.index, 24f, 24f), "", nodeSkin.GetStyle("node_input"))) {
-				if (parentGraph != null) {
-					input.parentNode = parentGraph.connectionNode;
-					input.isOccupied = input.parentNode != null ? true : false;
-
-					parentGraph.wantsConnection = false;
-					parentGraph.connectionNode = null;
-				}
-			}
-
-				foreach(NE_NodeOutput output in outputs) {
-			if(GUI.Button(new Rect(nodeRect.x + nodeRect.width, nodeRect.y + (nodeRect.height * 0.5f) - 12f, 24f, 24f), "", nodeSkin.GetStyle("node_output"))) {
-				if (parentGraph != null) {
-					parentGraph.wantsConnection = true;
-					parentGraph.connectionNode = this;
-
-				}
-			}
+		//	Create inputs
+		for(int i = 0; i < numberOfInputs; i++) {
+			NE_NodeInput input =  (NE_NodeInput)ScriptableObject.CreateInstance<NE_NodeInput>();
+			input.index = i;
+			input.parentNode = this;
+			inputs.Add(input);
 		}
 
-		input.DrawConnector();
+		for (int i = 0; i < numberOfOutputs; i++) {
+			NE_NodeOutput output =  (NE_NodeOutput)ScriptableObject.CreateInstance<NE_NodeOutput>();
+			output.index = i;
+			output.parentNode = this;
+			outputs.Add(output);			
+		}
+	}
+
+	//	GUI STUFF
+
+	public void DrawConnectors() {
+		if (inputs != null || outputs != null) {
+
+			foreach(NE_NodeInput input in inputs) {
+
+				input.GetConnectionPosition();
+
+				if(GUI.Button(new Rect(input.position.x, input.position.y, input.size.x, input.size.y), "", nodeSkin.GetStyle("node_input"))) {
+					if (parentGraph != null) {
+						Debug.Log("input " + input.index + " clicked, with a Y position of " + input.position.y);
+
+						parentGraph.wantsConnection = false;
+						parentGraph.connectionNode = null;
+					}
+				}
+			}
+
+			foreach(NE_NodeOutput output in outputs) {
+				if(GUI.Button(new Rect(nodeRect.x + nodeRect.width, nodeRect.y + (nodeRect.height * 0.5f) - 12f, 24f, 24f), "", nodeSkin.GetStyle("node_output"))) {
+					if (parentGraph != null) {
+						parentGraph.wantsConnection = true;
+					}
+				}
+			}
+		} else {
+			InitNode();
 		}
 	}
 
@@ -126,11 +130,18 @@ public class NE_NodeBase : ScriptableObject {
 	public virtual void UpdateNodeGUI(Event e, Rect viewRect, GUISkin viewSkin) {
 		ProcessEvents(e, viewRect);
 
+		if(!nodeSkin) {
+			InitNode();
+		}
+
 		if(isSelected){
 			GUI.Box(nodeRect, nodeName, viewSkin.GetStyle("node_selected"));
 		} else {
 			GUI.Box(nodeRect, nodeName, viewSkin.GetStyle("node_default"));
 		}
+
+		DrawConnectors();
+
 		EditorUtility.SetDirty(this);
 	}
 
@@ -146,7 +157,9 @@ public class NE_NodeBase : ScriptableObject {
 
 				if (nodeRect.Contains(e.mousePosition)) {
 					nodeRect.x += e.delta.x;
+					position.x += e.delta.x;
 					nodeRect.y += e.delta.y;
+					position.y += e.delta.y;
 				}
 			}
 		}

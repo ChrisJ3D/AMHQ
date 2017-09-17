@@ -50,13 +50,6 @@ public class NE_NodeGraph : ScriptableObject {
 			}
 		}
 
-		if(wantsConnection) {
-			
-			if(connectionNode) {
-				//connectionNode.DrawLine(connectionNode.inputs, e.mousePosition);
-			}
-		}
-
 		if (e.type == EventType.Layout) {
 			if(selectedNode) {
 				showProperties = true;

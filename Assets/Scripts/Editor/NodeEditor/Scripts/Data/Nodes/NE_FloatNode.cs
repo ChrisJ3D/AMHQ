@@ -13,13 +13,15 @@ public class NE_FloatNode : NE_NodeBase {
     public NE_FloatNode() {
         numberOfInputs = 0;
         numberOfOutputs = 1;
+
+        nodeValue = 0.0f;
     }
 
     //  MAIN FUNCTIONS
     public override void InitNode() {
         base.InitNode();
         nodeType = NodeType.Float;
-        nodeRect = new Rect(10f,10f,150f,65f);
+        nodeRect = new Rect(position.x,position.y,150f,65f);
     }
 
     public override void Evaluate() {
@@ -28,7 +30,6 @@ public class NE_FloatNode : NE_NodeBase {
 
     public override void DrawNodeProperties() {
         base.DrawNodeProperties();
-
         nodeValue = EditorGUILayout.FloatField("Float Value: ", (float)nodeValue);
     }
 }
