@@ -46,7 +46,6 @@ public class NE_NodeWorkView : NE_ViewBase {
 			if (e.button == 0) {
 
 				if (e.type == EventType.mouseDrag) {
-						Debug.Log("MouseDrag detected");
 						//	TODO: Add code for creating a marquee here
 				}
 			}
@@ -122,15 +121,17 @@ public class NE_NodeWorkView : NE_ViewBase {
 			menu.AddSeparator("Nodes/");
 			menu.AddItem(new GUIContent("Nodes/Load Scene"), false, ContextCallback, "20");
 
-			menu.AddItem(new GUIContent("Logic/Float"), false, ContextCallback, "21");
-			menu.AddItem(new GUIContent("Logic/Add"), false, ContextCallback, "22");
+			menu.AddItem(new GUIContent("Arithmetic/Float"), false, ContextCallback, "21");
+			menu.AddItem(new GUIContent("Arithmetic/Add"), false, ContextCallback, "22");
 		}
 
 		if (contextID == 1) {
+			
 			menu.AddItem(new GUIContent("Copy"), false, ContextCallback, "30");
 			menu.AddItem(new GUIContent("Paste"), false, ContextCallback, "31");
 			menu.AddItem(new GUIContent("Cut"), false, ContextCallback, "32");
-			menu.AddItem(new GUIContent("Delete"), false, ContextCallback, "33");
+			menu.AddItem(new GUIContent("Duplicate"), false, ContextCallback, "33");
+			menu.AddItem(new GUIContent("Delete"), false, ContextCallback, "34");
 		}
 
 		menu.ShowAsContext();
@@ -199,8 +200,12 @@ public class NE_NodeWorkView : NE_ViewBase {
 			case "22":
 				NE_NodeUtils.CreateNode(currentGraph, NodeType.Add, mousePosition);
 				break;
-
+			
 			case "33":
+				NE_NodeUtils.DuplicateNode(hoveredNodeID, currentGraph);
+				break;
+
+			case "34":
 				NE_NodeUtils.DeleteNode(hoveredNodeID, currentGraph);
 				break;
 			

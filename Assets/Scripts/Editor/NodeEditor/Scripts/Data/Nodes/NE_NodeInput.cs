@@ -5,16 +5,9 @@ using UnityEngine;
 using UnityEditor;
 
 [Serializable]
-public class NE_NodeInput : ScriptableObject {
-
-	public int index;
-	public bool isOccupied = false;
-	public bool allowsMultipleInputs = false;
-	public NE_NodeBase parentNode;
-	public Vector2 size = new Vector2(24f, 24f);
-	public Vector2 position = new Vector2(0.0f, 0.0f);
+public class NE_NodeInput : NE_NodeConnectorBase {
 	
-	public void GetConnectionPosition() {
+	public override void GetConnectionPosition() {
 		if (parentNode) {
 			float top = parentNode.nodeRect.y + (size.y * 0.5f);
 			float center = top + (parentNode.nodeRect.height * 0.5f) - size.y;
@@ -26,5 +19,13 @@ public class NE_NodeInput : ScriptableObject {
 
 			position.x = parentNode.nodeRect.x - size.x;
 		}
+	}
+
+	public override Vector3 GetConnectionLinePosition() {
+		Vector3 connectionPosition = new Vector3();
+		connectionPosition.x = position.x + size.x * 0.5f;
+		connectionPosition.y = position.y + size.y * 0.5f;
+
+		return connectionPosition;
 	}
 }

@@ -5,16 +5,27 @@ using UnityEngine;
 using UnityEditor;
 
 [Serializable]
-public class NE_NodeOutput : ScriptableObject {
+public class NE_NodeOutput : NE_NodeConnectorBase {
 
-	public int index;
-	public bool isOccupied = false;
-	public NE_NodeBase parentNode;
+	public override void GetConnectionPosition() {
+		if (parentNode) {
+			float top = parentNode.nodeRect.y + (size.y * 0.5f);
+			float center = top + (parentNode.nodeRect.height * 0.5f) - size.y;
+			
+			float fraction = (index + 1) / ((float)parentNode.numberOfOutputs + 1);
+			float fractionOffset = (fraction - 0.5f) * 2f;
+			
+			position.y = center + (fractionOffset * (parentNode.nodeRect.height /2f));
 
-	public Vector3 GetConnectionPosition() {
-		float x = parentNode.nodeRect.x + parentNode.nodeRect.width + 10f;
-		float y = ((parentNode.nodeRect.y + parentNode.nodeRect.height) / (parentNode.numberOfInputs + 1)) * index;
-		
-		return new Vector3(x,y);
+			position.x = parentNode.nodeRect.x + parentNode.nodeRect.width;
+		}
+	}
+
+	public override Vector3 GetConnectionLinePosition() {
+		Vector3 connectionPosition = new Vector3();
+		connectionPosition.x = position.x + size.x * 0.5f;
+		connectionPosition.y = position.y + size.y * 0.5f;
+
+		return connectionPosition;
 	}
 }

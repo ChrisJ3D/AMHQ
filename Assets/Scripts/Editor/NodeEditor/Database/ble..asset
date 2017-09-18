@@ -9,17 +9,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 518142f7e0984274d97483dd74dd0c9c, type: 3}
-  m_Name: mm
+  m_Name: ble.
   m_EditorClassIdentifier: 
-  graphName: mm
+  graphName: intro_scene
   nodes:
-  - {fileID: 114626838327509126}
-  - {fileID: 114653559645999928}
+  - {fileID: 114355647569921668}
+  - {fileID: 114316566682526384}
+  - {fileID: 114713511627458898}
   selectedNode: {fileID: 0}
-  wantsConnection: 0
+  wantsConnection: 1
   connectionNode: {fileID: 0}
   showProperties: 0
---- !u!114 &114626838327509126
+--- !u!114 &114316566682526384
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -33,8 +34,8 @@ MonoBehaviour:
   nodeName: Float
   nodeRect:
     serializedVersion: 2
-    x: 482
-    y: 286
+    x: 162
+    y: 147
     width: 150
     height: 65
   parentGraph: {fileID: 11400000}
@@ -46,8 +47,8 @@ MonoBehaviour:
   numberOfInputs: 0
   numberOfOutputs: 1
   size: {x: 24, y: 24}
-  position: {x: 482, y: 286}
---- !u!114 &114653559645999928
+  position: {x: 162, y: 147}
+--- !u!114 &114355647569921668
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -61,8 +62,8 @@ MonoBehaviour:
   nodeName: Add
   nodeRect:
     serializedVersion: 2
-    x: 740
-    y: 138
+    x: 482
+    y: 249
     width: 200
     height: 105
   parentGraph: {fileID: 11400000}
@@ -76,4 +77,34 @@ MonoBehaviour:
   numberOfInputs: 2
   numberOfOutputs: 1
   size: {x: 24, y: 24}
-  position: {x: 740, y: 138}
+  position: {x: 482, y: 249}
+--- !u!114 &114713511627458898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa49d627976dbdb41b58ec39d702a565, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeName: Add
+  nodeRect:
+    serializedVersion: 2
+    x: 499
+    y: 446
+    width: 200
+    height: 105
+  parentGraph: {fileID: 11400000}
+  nodeType: 1
+  isSelected: 0
+  inputs:
+  - {fileID: 0}
+  - {fileID: 0}
+  outputs:
+  - {fileID: 0}
+  numberOfInputs: 2
+  numberOfOutputs: 1
+  size: {x: 24, y: 24}
+  position: {x: 499, y: 446}

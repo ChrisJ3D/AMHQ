@@ -12,12 +12,12 @@ public class NE_NodeBase : ScriptableObject {
 	//	PUBLIC VARIABLES
 	public string nodeName;
 	public Rect nodeRect;
-	public NE_NodeGraph parentGraph;
+	public NE_NodeGraph parentGraph = null;
 	public NodeType nodeType;
 	public bool isSelected = false;
 
-	public List<NE_NodeInput> inputs;
-	public List<NE_NodeOutput> outputs;
+	public List<NE_NodeInput> inputs = null;
+	public List<NE_NodeOutput> outputs = null;
 	public int numberOfInputs;
 	public int numberOfOutputs;
 
@@ -31,11 +31,20 @@ public class NE_NodeBase : ScriptableObject {
 
 	//	MAIN FUNCTIONS
 	public virtual void InitNode() {
+		if (inputs == null) {
 		inputs = new List<NE_NodeInput>();
+		}
+
+		if (outputs == null) {
 		outputs = new List<NE_NodeOutput>();
+		}
 
 		GetEditorSkin();
 		CreateConnectors();
+	}
+
+	void OnEnable() {
+		InitNode();
 	}
 
 	//	EVALUATION
@@ -91,6 +100,10 @@ public class NE_NodeBase : ScriptableObject {
 
 			foreach(NE_NodeInput input in inputs) {
 
+				if(!input) {
+					
+				}
+
 				input.GetConnectionPosition();
 
 				if(GUI.Button(new Rect(input.position.x, input.position.y, input.size.x, input.size.y), "", nodeSkin.GetStyle("node_input"))) {
@@ -99,14 +112,19 @@ public class NE_NodeBase : ScriptableObject {
 
 						parentGraph.wantsConnection = false;
 						parentGraph.connectionNode = null;
+						input.wantsConnection = true;
 					}
 				}
 			}
 
 			foreach(NE_NodeOutput output in outputs) {
-				if(GUI.Button(new Rect(nodeRect.x + nodeRect.width, nodeRect.y + (nodeRect.height * 0.5f) - 12f, 24f, 24f), "", nodeSkin.GetStyle("node_output"))) {
+
+				output.GetConnectionPosition();
+
+				if(GUI.Button(new Rect(output.position.x, output.position.y, output.size.x, output.size.y), "", nodeSkin.GetStyle("node_output"))) {
 					if (parentGraph != null) {
 						parentGraph.wantsConnection = true;
+						output.wantsConnection = true;
 					}
 				}
 			}
@@ -115,24 +133,9 @@ public class NE_NodeBase : ScriptableObject {
 		}
 	}
 
-    protected void DrawInputLines() {
-		
-		foreach(NE_NodeInput input in inputs) {
-			if(input.parentNode && input.isOccupied) {
-				//input.DrawConnections();
-			} else {
-				input.isOccupied = false;
-			}
-		}
-    }
-
 	#if UNITY_EDITOR
 	public virtual void UpdateNodeGUI(Event e, Rect viewRect, GUISkin viewSkin) {
 		ProcessEvents(e, viewRect);
-
-		if(!nodeSkin) {
-			InitNode();
-		}
 
 		if(isSelected){
 			GUI.Box(nodeRect, nodeName, viewSkin.GetStyle("node_selected"));
@@ -141,6 +144,31 @@ public class NE_NodeBase : ScriptableObject {
 		}
 
 		DrawConnectors();
+
+		foreach(NE_NodeInput input in inputs) {
+			if(input.parentNode && input.isOccupied) {
+				input.DrawConnections(e);
+			} else {
+				input.isOccupied = false;
+			}
+
+			if (input.wantsConnection) {
+				NE_NodeUtils.DrawLineToMouse(input, e.mousePosition, "Right");
+			}
+		}
+
+		foreach (NE_NodeOutput output in outputs)
+		{
+			if(output.parentNode && output.isOccupied) {
+					output.DrawConnections(e);
+				} else {
+					output.isOccupied = false;
+				}
+			
+			if (output.wantsConnection) {
+				NE_NodeUtils.DrawLineToMouse(output, e.mousePosition, "Left");
+			}
+		}
 
 		EditorUtility.SetDirty(this);
 	}

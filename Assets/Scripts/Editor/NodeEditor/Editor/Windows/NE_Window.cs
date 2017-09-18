@@ -21,18 +21,6 @@ public class NE_Window : EditorWindow {
 		CreateViews();
 	}
 
-	void OnEnable() {
-		//Debug.Log("Window Enabled");
-	}
-
-	void OnDestroy() {
-		//Debug.Log("Window Destroyed");
-	}
-
-	void Update() {
-
-	}
-
 	void OnGUI() {
 		if(propertyView == null || workView == null) {
 			CreateViews();

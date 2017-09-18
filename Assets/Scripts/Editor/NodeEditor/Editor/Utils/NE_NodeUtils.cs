@@ -90,6 +90,37 @@ public static class NE_NodeUtils {
 		}
 	}
 
+	public static void DuplicateNode(int index, NE_NodeGraph currentGraph) {
+		if (currentGraph) {
+			
+			if (currentGraph.nodes.Count >= index) {
+
+				NE_NodeBase currentNode = null;
+
+				NE_NodeBase nodeToDuplicate = currentGraph.nodes[index];
+
+				currentNode = (NE_NodeBase)ScriptableObject.CreateInstance(nodeToDuplicate.GetType().ToString());
+
+				if (currentNode) {
+					currentNode.position = nodeToDuplicate.position;
+					currentNode.nodeRect = nodeToDuplicate.nodeRect;
+					currentNode.nodeType = nodeToDuplicate.nodeType;
+					currentNode.nodeValue = nodeToDuplicate.nodeValue;
+					currentNode.parentGraph = currentGraph;
+					currentNode.nodeName = nodeToDuplicate.nodeName;
+
+					//currentNode.InitNode();
+					
+					currentGraph.nodes.Add(currentNode);
+
+					AssetDatabase.AddObjectToAsset(currentNode,currentGraph);
+					AssetDatabase.SaveAssets();
+					AssetDatabase.Refresh();
+				}
+			}
+		}
+	}
+
 	public static void DeleteNode(int index, NE_NodeGraph currentGraph) {
 		if (currentGraph) {
 			
@@ -105,5 +136,50 @@ public static class NE_NodeUtils {
 				}
 			}
 		}
+	}
+
+	public static void DrawLineToMouse(NE_NodeConnectorBase connector, Vector2 mousePosition, string orientation) {
+		Vector3 origin = connector.GetConnectionLinePosition();
+		Vector3 destination = new Vector3(mousePosition.x, mousePosition.y);
+
+		DrawLine(origin, destination, orientation);
+	}
+
+	public static void DrawLine(Vector3 origin, Vector3 destination, string orientation) {
+		
+		Vector3 startTangent = new Vector3();
+		Vector3 endTangent = new Vector3();
+
+		switch(orientation) {
+			case "Right":
+				startTangent = origin + Vector3.left * 50;
+				endTangent = destination + Vector3.right * 50;
+				break;
+
+			case "Left":
+				startTangent = origin + Vector3.right * 50;
+				endTangent = destination + Vector3.left * 50;
+				break;
+
+			case "Up":
+				startTangent = origin + Vector3.up * 50;
+				endTangent = destination + Vector3.down * 50;
+				break;
+
+			case "Down":
+				startTangent = origin + Vector3.down * 50;
+				endTangent = destination + Vector3.up * 50;
+				break;
+
+			default:
+				startTangent = origin + Vector3.right * 50;
+				endTangent = destination + Vector3.left * 50;
+				break;
+		}
+		
+		Handles.BeginGUI();
+			Handles.color = Color.white;
+			Handles.DrawBezier(origin, destination, startTangent, endTangent, Color.gray, null, 3f);
+		Handles.EndGUI();
 	}
 }

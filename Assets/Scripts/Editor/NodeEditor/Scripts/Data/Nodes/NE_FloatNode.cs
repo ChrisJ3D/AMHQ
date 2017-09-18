@@ -25,7 +25,7 @@ public class NE_FloatNode : NE_NodeBase {
     }
 
     public override void Evaluate() {
-        nodeValue = nodeValue;
+        
     }
 
     public override void DrawNodeProperties() {

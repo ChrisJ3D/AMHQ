@@ -75,20 +75,26 @@ public class NE_NodeGraph : ScriptableObject {
 					showProperties = false;
 
 					foreach(NE_NodeBase node in nodes) {
+						if (node) {
 							if(node.nodeRect.Contains(e.mousePosition)) {
 								node.isSelected = true;
 								selectedNode = node;
 								setNode = true;
 								node.Evaluate();
+							} else {
+								foreach (NE_NodeConnectorBase connector in node.inputs) {
+									connector.wantsConnection = false;
+								}
+
+								foreach (NE_NodeConnectorBase connector in node.outputs) {
+									connector.wantsConnection = false;
+								}
 							}
 						}
+					}
 					
 					if(!setNode) {
 						DeselectAllNodes();
-						}
-
-					if(wantsConnection) {
-						wantsConnection = false;
 					}
 				}
 			}
