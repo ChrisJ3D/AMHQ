@@ -7,7 +7,7 @@ using UnityEditor;
 #endif
 
 [Serializable]
-public class NE_NodeBase : ScriptableObject {
+public class NE_NodeBase : ScriptableObject, ISerializationCallbackReceiver {
 
 	//	PUBLIC VARIABLES
 	public string nodeName;
@@ -22,12 +22,44 @@ public class NE_NodeBase : ScriptableObject {
 	public List<NE_NodeConnectorBase> connectors;
 	public List<NE_NodeInput> inputs;
 	public List<NE_NodeOutput> outputs;
+	public List<NE_NodeBase> connectedNodes;
+
 	public int numberOfInputs;
 	public int numberOfOutputs;
 
 	public System.Object nodeValue;
+	public int chainIndex;
 
 	public GUISkin nodeSkin;
+
+	protected List<NE_NodeBase> serializedNodes;
+
+	//	Serialization
+	[Serializable]
+	public struct SerializableNodeBase {
+		public Type valueType;
+		public int nodeValueAsInteger;
+		public float nodeValueAsFloat;
+		public bool nodeValueAsBoolean;
+		public string nodeValueAsString;
+	}
+
+	public void OnBeforeSerialize() {
+		//	serializedNodes.Clear();
+		//	Serialize(this);
+	}
+
+	public void Serialize(NE_NodeBase node) {
+		SerializableNodeBase serializedNode = new SerializableNodeBase();
+
+		serializedNode.valueType = nodeValue.GetType();
+		serializedNode.nodeValueAsInteger = node.EvaluateAsInt();
+		serializedNode.nodeValueAsFloat = node.EvaluateAsFloat();
+		serializedNode.nodeValueAsBoolean = node.EvaluateAsBool();
+		serializedNode.nodeValueAsString = node.EvaluateAsString();
+	}
+
+	public void OnAfterDeserialize() {}
 
 	//	MAIN FUNCTIONS
 	public virtual void InitNode() {
@@ -35,6 +67,7 @@ public class NE_NodeBase : ScriptableObject {
 			inputs = new List<NE_NodeInput>();
 			outputs = new List<NE_NodeOutput>();
 			connectors = new List<NE_NodeConnectorBase>();
+			connectedNodes = new List<NE_NodeBase>();
 		}
 
 		GetEditorSkin();
@@ -48,7 +81,6 @@ public class NE_NodeBase : ScriptableObject {
 	}
 
 	void OnDisable() {
-		Debug.Log("Saving assets!!");
 		AssetDatabase.SaveAssets();
 	}
 
@@ -66,8 +98,7 @@ public class NE_NodeBase : ScriptableObject {
 	public virtual float EvaluateAsFloat() {
 		Evaluate();
 		Debug.Log("Evaluating to " + Convert.ToSingle(nodeValue));
-		return Convert.ToSingle(nodeValue);
-		
+		return Convert.ToSingle(nodeValue);	
 	}
 
 	public virtual int EvaluateAsInt() {
@@ -106,6 +137,16 @@ public class NE_NodeBase : ScriptableObject {
 			outputs.Add(output);	
 			connectors.Add(output);
 		}
+	}
+
+	public bool CheckIfAlreadyConnected(NE_NodeBase targetNode) {
+		foreach (NE_NodeBase node in connectedNodes) {
+			if (node.Equals(targetNode)) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	//	GUI STUFF

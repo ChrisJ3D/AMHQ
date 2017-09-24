@@ -24,17 +24,22 @@ public class NE_SubtractNode : NE_NodeBase {
     }
 
     public override void Evaluate() {
-        Debug.Log("Evaluating");
         nodeValue = 0.0f;
 
         if(inputs != null) {
             if(inputs.Count > 0) {
-                foreach(NE_NodeInput i in inputs) {
-                    if (i.isOccupied) {
-                        float inputValue = i.inputConnector.parentNode.EvaluateAsFloat();
-                        nodeValue = (float)nodeValue - inputValue;
-                    }
+                float a = 0.0f;
+                float b = 0.0f;
+
+                if (inputs[0].inputConnector) {
+                    a = inputs[0].inputConnector.parentNode.EvaluateAsFloat();
                 }
+
+                if (inputs[1].inputConnector) {
+                    b = inputs[1].inputConnector.parentNode.EvaluateAsFloat();
+                }
+
+                nodeValue = a - b;
             }
         }
     }

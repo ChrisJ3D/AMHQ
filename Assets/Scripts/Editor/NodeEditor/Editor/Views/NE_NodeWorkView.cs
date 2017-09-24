@@ -159,7 +159,6 @@ public class NE_NodeWorkView : NE_ViewBase {
 	void ContextCallback(object obj) {
 		switch(obj.ToString()) {
 			case "0":
-				Debug.Log("NODE VIEW: Creating new graph!");
 				NE_PopUpWindow.InitNodePopUp();
 				break;
 

@@ -6,7 +6,6 @@ using UnityEditor;
 public static class NE_NodeUtils {
 	
 	public static void CreateNewGraph(string name) {
-		Debug.Log("NODEUTILS: Creating new graph called " + name);
 		NE_NodeGraph currentGraph = (NE_NodeGraph)ScriptableObject.CreateInstance<NE_NodeGraph>();
 
 		if (currentGraph) {
@@ -108,6 +107,7 @@ public static class NE_NodeUtils {
 				currentNode.position.x = mousePosition.x;
 				currentNode.position.y = mousePosition.y;
 				currentNode.parentGraph = currentGraph;
+				currentNode.nodeValue = null;
 				
 				currentNode.InitNode();
 				currentGraph.nodes.Add(currentNode);
@@ -160,6 +160,7 @@ public static class NE_NodeUtils {
 
 					foreach (NE_NodeConnectorBase connection in nodeToDelete.connectors) {
 						connection.inputConnector = null;
+						GameObject.DestroyImmediate(connection, true);
 					}
 
 					GameObject.DestroyImmediate(nodeToDelete, true);

@@ -24,7 +24,6 @@ public class NE_DivideNode : NE_NodeBase {
     }
 
     public override void Evaluate() {
-        Debug.Log("Evaluating");
         nodeValue = 0.0f;
 
         if(inputs != null) {

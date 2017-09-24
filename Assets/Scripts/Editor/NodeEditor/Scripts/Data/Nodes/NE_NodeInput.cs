@@ -12,12 +12,17 @@ public class NE_NodeInput : NE_NodeConnectorBase {
 	}
 
 	public override void OnClicked() {
-
-			if (parentNode.parentGraph.connectionMatch) {
+		if (parentNode.parentGraph.connectionMatch) {
+			if (!parentNode.CheckIfAlreadyConnected(parentNode.parentGraph.connectionNode)) {
 				inputConnector = parentNode.parentGraph.connectionMatch;
+				parentNode.parentGraph.connectionMatch.isOccupied = true;
 				isOccupied = true;
+				parentNode.connectedNodes.Add(parentNode.parentGraph.connectionNode);
+				parentNode.parentGraph.connectionNode = null;
 				parentNode.parentGraph.connectionMatch = null;
+				
 			}
+		}
 	}
 
 	public override void GetConnectionPosition() {
@@ -33,13 +38,5 @@ public class NE_NodeInput : NE_NodeConnectorBase {
 			position.x = parentNode.nodeRect.x - size.x;
 			connectorSkin = parentNode.nodeSkin.GetStyle("node_input");
 		}
-	}
-
-	public override Vector3 GetConnectionLinePosition() {
-		Vector3 connectionPosition = new Vector3();
-		connectionPosition.x = position.x + size.x * 0.5f;
-		connectionPosition.y = position.y + size.y * 0.5f;
-
-		return connectionPosition;
 	}
 }

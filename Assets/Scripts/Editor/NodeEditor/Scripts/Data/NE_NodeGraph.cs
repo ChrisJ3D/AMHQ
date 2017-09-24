@@ -31,7 +31,9 @@ public class NE_NodeGraph : ScriptableObject {
 
 	public void InitGraph() {
 		foreach(NE_NodeBase node in nodes) {
+			node.parentGraph = this;
 			node.InitNode();
+
 		}
 	}
 

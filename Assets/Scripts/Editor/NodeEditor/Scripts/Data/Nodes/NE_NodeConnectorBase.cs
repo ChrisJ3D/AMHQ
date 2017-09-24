@@ -23,9 +23,7 @@ public class NE_NodeConnectorBase : ScriptableObject {
 		GetConnectionPosition();
 	}
 	
-	public virtual void GetConnectionPosition() {
-
-	}
+	public virtual void GetConnectionPosition() {}
 
 	public virtual void DrawGUI() {
 		connectorRect.position = position;
@@ -36,16 +34,7 @@ public class NE_NodeConnectorBase : ScriptableObject {
 		}
 	}
 
-	public virtual void OnClicked() {
-
-		if (parentNode.parentGraph) {
-			parentNode.parentGraph.wantsConnection = true;
-			parentNode.parentGraph.connectionNode = parentNode;
-			parentNode.parentGraph.connectionMatch = this;
-		}
-
-		Debug.Log("input " + index + " clicked, wantsConnection is " + wantsConnection, this);
-	}
+	public virtual void OnClicked() {}
 
 	void ProcessEvents(Event e) {
 		// if(isSelected) {
@@ -70,6 +59,9 @@ public class NE_NodeConnectorBase : ScriptableObject {
 
 	public virtual Vector3 GetConnectionLinePosition() {
 		Vector3 connectionPosition = new Vector3();
+		connectionPosition.x = position.x + size.x * 0.5f;
+		connectionPosition.y = position.y + size.y * 0.5f;
+
 		return connectionPosition;
 	}
 }

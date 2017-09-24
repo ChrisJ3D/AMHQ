@@ -12,8 +12,11 @@ public class NE_NodeOutput : NE_NodeConnectorBase {
 	}
 
 	public override void OnClicked() {
-		base.OnClicked();
-		//inputConnector = parentNode.parentGraph.connectionMatch;
+		if (parentNode.parentGraph) {
+			parentNode.parentGraph.wantsConnection = true;
+			parentNode.parentGraph.connectionNode = parentNode;
+			parentNode.parentGraph.connectionMatch = this;
+		}
 	}
 
 	public override void GetConnectionPosition() {
@@ -29,14 +32,5 @@ public class NE_NodeOutput : NE_NodeConnectorBase {
 			position.x = parentNode.nodeRect.x + parentNode.nodeRect.width;
 			connectorSkin = parentNode.nodeSkin.GetStyle("node_output");
 		}
-	}
-
-
-	public override Vector3 GetConnectionLinePosition() {
-		Vector3 connectionPosition = new Vector3();
-		connectionPosition.x = position.x + size.x * 0.5f;
-		connectionPosition.y = position.y + size.y * 0.5f;
-
-		return connectionPosition;
 	}
 }
