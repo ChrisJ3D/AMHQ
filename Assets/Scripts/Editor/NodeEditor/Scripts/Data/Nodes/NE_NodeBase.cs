@@ -15,36 +15,31 @@ public class NE_NodeBase : ScriptableObject {
 	public Vector2 position = new Vector2(0.0f, 0.0f);
 	public Vector2 size = new Vector2(24f, 24f);
 
-	public NE_NodeGraph parentGraph = null;
+	public NE_NodeGraph parentGraph;
 	public NodeType nodeType;
 	public bool isSelected = false;
 
-	public List<NE_NodeConnectorBase> connectors = null;
-	public List<NE_NodeInput> inputs = null;
-	public List<NE_NodeOutput> outputs = null;
+	public List<NE_NodeConnectorBase> connectors;
+	public List<NE_NodeInput> inputs;
+	public List<NE_NodeOutput> outputs;
 	public int numberOfInputs;
 	public int numberOfOutputs;
 
-	public System.Object nodeValue = null;
+	public System.Object nodeValue;
 
 	public GUISkin nodeSkin;
 
 	//	MAIN FUNCTIONS
 	public virtual void InitNode() {
-		if (inputs == null) {
-		inputs = new List<NE_NodeInput>();
-		}
-
-		if (outputs == null) {
-		outputs = new List<NE_NodeOutput>();
-		}
-
 		if (connectors == null) {
+			inputs = new List<NE_NodeInput>();
+			outputs = new List<NE_NodeOutput>();
 			connectors = new List<NE_NodeConnectorBase>();
-			
 		}
 
 		GetEditorSkin();
+
+		//	This line is problematic, since it resets the lists everytime. This should be moved up once I've got serialization figured out.
 		CreateConnectors();
 	}
 
@@ -59,6 +54,7 @@ public class NE_NodeBase : ScriptableObject {
 
 	public virtual void OnClicked() {
 		Evaluate();
+		NE_NodeUtils.SaveGraph();
 	}
 
 	//	EVALUATION
@@ -96,7 +92,7 @@ public class NE_NodeBase : ScriptableObject {
 
 		//	Create inputs
 		for(int i = 0; i < numberOfInputs; i++) {
-			NE_NodeInput input =  (NE_NodeInput)ScriptableObject.CreateInstance<NE_NodeInput>();
+			NE_NodeInput input =  (NE_NodeInput)ScriptableObject.CreateInstance(typeof(NE_NodeInput));
 			input.index = i;
 			input.parentNode = this;
 			inputs.Add(input);
@@ -104,21 +100,18 @@ public class NE_NodeBase : ScriptableObject {
 		}
 
 		for (int i = 0; i < numberOfOutputs; i++) {
-			NE_NodeOutput output =  (NE_NodeOutput)ScriptableObject.CreateInstance<NE_NodeOutput>();
+			NE_NodeOutput output =  (NE_NodeOutput)ScriptableObject.CreateInstance(typeof(NE_NodeOutput));
 			output.index = i;
 			output.parentNode = this;
 			outputs.Add(output);	
 			connectors.Add(output);
 		}
-
-		NE_NodeUtils.SaveGraph();
 	}
 
 	//	GUI STUFF
 
 	public void DrawConnectors() {
 		if (connectors != null) {
-
 			foreach (NE_NodeConnectorBase connector in connectors) {
 				connector.GetConnectionPosition();
 				connector.DrawGUI();
@@ -140,12 +133,14 @@ public class NE_NodeBase : ScriptableObject {
 
 		DrawConnectors();
 
-		foreach (NE_NodeConnectorBase connector in connectors) {
+		if (connectors != null) {
+			foreach (NE_NodeConnectorBase connector in connectors) {
 
-			connector.DrawConnections();
+				connector.DrawConnections();
 
-			if (connector.wantsConnection) {
-				NE_NodeUtils.DrawLineToMouse(connector, e.mousePosition, "Right");
+				if (connector.wantsConnection) {
+					NE_NodeUtils.DrawLineToMouse(connector, e.mousePosition, "Right");
+				}
 			}
 		}
 

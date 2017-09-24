@@ -133,7 +133,14 @@ public class NE_NodeWorkView : NE_ViewBase {
 			menu.AddItem(new GUIContent("Nodes/Load Scene"), false, ContextCallback, "20");
 
 			menu.AddItem(new GUIContent("Arithmetic/Float"), false, ContextCallback, "21");
-			menu.AddItem(new GUIContent("Arithmetic/Add"), false, ContextCallback, "22");
+			menu.AddItem(new GUIContent("Arithmetic/Integer"), false, ContextCallback, "22");
+			menu.AddItem(new GUIContent("Arithmetic/Boolean"), false, ContextCallback, "23");
+
+			menu.AddSeparator("Arithmetic/");
+			menu.AddItem(new GUIContent("Arithmetic/Add"), false, ContextCallback, "24");
+			menu.AddItem(new GUIContent("Arithmetic/Subtract"), false, ContextCallback, "25");
+			menu.AddItem(new GUIContent("Arithmetic/Multiply"), false, ContextCallback, "26");
+			menu.AddItem(new GUIContent("Arithmetic/Divide"), false, ContextCallback, "27");
 		}
 
 		if (contextID == 1) {
@@ -209,7 +216,27 @@ public class NE_NodeWorkView : NE_ViewBase {
 				break;
 
 			case "22":
+				NE_NodeUtils.CreateNode(currentGraph, NodeType.Integer, mousePosition);
+				break;
+
+			case "23":
+				NE_NodeUtils.CreateNode(currentGraph, NodeType.Boolean, mousePosition);
+				break;
+
+			case "24":
 				NE_NodeUtils.CreateNode(currentGraph, NodeType.Add, mousePosition);
+				break;
+
+			case "25":
+				NE_NodeUtils.CreateNode(currentGraph, NodeType.Subtract, mousePosition);
+				break;
+
+			case "26":
+				NE_NodeUtils.CreateNode(currentGraph, NodeType.Multiply, mousePosition);
+				break;
+
+			case "27":
+				NE_NodeUtils.CreateNode(currentGraph, NodeType.Divide, mousePosition);
 				break;
 			
 			case "33":

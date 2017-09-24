@@ -66,13 +66,38 @@ public static class NE_NodeUtils {
 			
 			switch(nodeType) {
 				case NodeType.Float:
-				currentNode = (NE_FloatNode)ScriptableObject.CreateInstance<NE_FloatNode>();
+				currentNode = (NE_FloatNode)ScriptableObject.CreateInstance(typeof(NE_FloatNode));
 				currentNode.nodeName = "Float";
 				break;
 
+				case NodeType.Integer:
+				currentNode = (NE_IntegerNode)ScriptableObject.CreateInstance(typeof(NE_IntegerNode));
+				currentNode.nodeName = "Integer";
+				break;
+
+				case NodeType.Boolean:
+				currentNode = (NE_BooleanNode)ScriptableObject.CreateInstance(typeof(NE_BooleanNode));
+				currentNode.nodeName = "Boolean";
+				break;
+
 				case NodeType.Add:
-				currentNode = (NE_AddNode)ScriptableObject.CreateInstance<NE_AddNode>();
+				currentNode = (NE_AddNode)ScriptableObject.CreateInstance(typeof(NE_AddNode));
 				currentNode.nodeName = "Add";
+				break;
+
+				case NodeType.Subtract:
+				currentNode = (NE_SubtractNode)ScriptableObject.CreateInstance(typeof(NE_SubtractNode));
+				currentNode.nodeName = "Subtract";
+				break;
+
+				case NodeType.Multiply:
+				currentNode = (NE_MultiplyNode)ScriptableObject.CreateInstance(typeof(NE_MultiplyNode));
+				currentNode.nodeName = "Multiply";
+				break;
+
+				case NodeType.Divide:
+				currentNode = (NE_DivideNode)ScriptableObject.CreateInstance(typeof(NE_DivideNode));
+				currentNode.nodeName = "Divide";
 				break;
 
 				default:

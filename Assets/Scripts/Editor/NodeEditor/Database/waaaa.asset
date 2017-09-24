@@ -11,12 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 518142f7e0984274d97483dd74dd0c9c, type: 3}
   m_Name: waaaa
   m_EditorClassIdentifier: 
-  graphName: intro_scene
+  graphName: 
   nodes:
   - {fileID: 114460774846656724}
   - {fileID: 114792677664265528}
   - {fileID: 114375478969174522}
-  - {fileID: 114391039588693858}
+  - {fileID: 114588823871226314}
   selectedNode: {fileID: 0}
   wantsConnection: 0
   connectionNode: {fileID: 0}
@@ -40,37 +40,8 @@ MonoBehaviour:
     y: 159
     width: 150
     height: 65
-  parentGraph: {fileID: 11400000}
-  nodeType: 0
-  isSelected: 0
-  connectors:
-  - {fileID: 0}
-  inputs: []
-  outputs:
-  - {fileID: 0}
-  numberOfInputs: 0
-  numberOfOutputs: 1
-  size: {x: 24, y: 24}
   position: {x: 237, y: 159}
-  nodeSkin: {fileID: 11400000, guid: 7e8d04e916b84814e90665abf928375d, type: 2}
---- !u!114 &114391039588693858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ea1e708a73d9504e8224c2a2158b570, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nodeName: Float
-  nodeRect:
-    serializedVersion: 2
-    x: 319
-    y: 477
-    width: 150
-    height: 65
+  size: {x: 24, y: 24}
   parentGraph: {fileID: 11400000}
   nodeType: 0
   isSelected: 0
@@ -81,8 +52,6 @@ MonoBehaviour:
   - {fileID: 0}
   numberOfInputs: 0
   numberOfOutputs: 1
-  size: {x: 24, y: 24}
-  position: {x: 319, y: 477}
   nodeSkin: {fileID: 11400000, guid: 7e8d04e916b84814e90665abf928375d, type: 2}
 --- !u!114 &114460774846656724
 MonoBehaviour:
@@ -98,12 +67,14 @@ MonoBehaviour:
   nodeName: Add
   nodeRect:
     serializedVersion: 2
-    x: 610
-    y: 239
+    x: 503
+    y: 147
     width: 200
     height: 105
+  position: {x: 503, y: 147}
+  size: {x: 24, y: 24}
   parentGraph: {fileID: 11400000}
-  nodeType: 1
+  nodeType: 3
   isSelected: 0
   connectors:
   - {fileID: 0}
@@ -116,8 +87,41 @@ MonoBehaviour:
   - {fileID: 0}
   numberOfInputs: 2
   numberOfOutputs: 1
+  nodeSkin: {fileID: 11400000, guid: 7e8d04e916b84814e90665abf928375d, type: 2}
+--- !u!114 &114588823871226314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83584a056024200419ad5363e7e53808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeName: Divide
+  nodeRect:
+    serializedVersion: 2
+    x: 777
+    y: 75
+    width: 200
+    height: 105
+  position: {x: 777, y: 75}
   size: {x: 24, y: 24}
-  position: {x: 610, y: 239}
+  parentGraph: {fileID: 11400000}
+  nodeType: 6
+  isSelected: 0
+  connectors:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  inputs:
+  - {fileID: 0}
+  - {fileID: 0}
+  outputs:
+  - {fileID: 0}
+  numberOfInputs: 2
+  numberOfOutputs: 1
   nodeSkin: {fileID: 11400000, guid: 7e8d04e916b84814e90665abf928375d, type: 2}
 --- !u!114 &114792677664265528
 MonoBehaviour:
@@ -133,10 +137,12 @@ MonoBehaviour:
   nodeName: Float
   nodeRect:
     serializedVersion: 2
-    x: 256
-    y: 286
+    x: 238
+    y: 79
     width: 150
     height: 65
+  position: {x: 238, y: 79}
+  size: {x: 24, y: 24}
   parentGraph: {fileID: 11400000}
   nodeType: 0
   isSelected: 0
@@ -147,6 +153,4 @@ MonoBehaviour:
   - {fileID: 0}
   numberOfInputs: 0
   numberOfOutputs: 1
-  size: {x: 24, y: 24}
-  position: {x: 256, y: 286}
   nodeSkin: {fileID: 11400000, guid: 7e8d04e916b84814e90665abf928375d, type: 2}

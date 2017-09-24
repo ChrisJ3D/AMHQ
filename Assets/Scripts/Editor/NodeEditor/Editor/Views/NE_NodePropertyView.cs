@@ -19,13 +19,13 @@ public class NE_NodePropertyView : NE_ViewBase {
 
 		GUILayout.BeginArea(viewRect);
 		GUILayout.Space(60f);
-		if(curGraph) {
-			if (curGraph.showProperties) {
-				curGraph.selectedNode.DrawNodeProperties();
-			} else {
-				EditorGUILayout.LabelField("No node selected");
+			if(curGraph) {
+				if (curGraph.showProperties) {
+					curGraph.selectedNode.DrawNodeProperties();
+				} else {
+					EditorGUILayout.LabelField("No node selected");
+				}
 			}
-		}
 		GUILayout.EndArea();
 
 		ProcessEvents(e);

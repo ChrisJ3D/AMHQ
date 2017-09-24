@@ -4,6 +4,8 @@ using UnityEngine;
 
 public enum NodeType {
 	Float,
+	Integer,
+	Boolean,
 	Add,
 	Subtract,
 	Multiply,

@@ -7,10 +7,10 @@ using UnityEditor;
 #endif
 
 [Serializable]
-public class NE_FloatNode : NE_NodeBase {
+public class NE_BooleanNode : NE_NodeBase {
 
     //  CONSTRUCTORS
-    public NE_FloatNode() {
+    public NE_BooleanNode() {
         numberOfInputs = 0;
         numberOfOutputs = 1;
     }
@@ -18,20 +18,20 @@ public class NE_FloatNode : NE_NodeBase {
     //  MAIN FUNCTIONS
     public override void InitNode() {
         base.InitNode();
-        nodeType = NodeType.Float;
+        nodeType = NodeType.Boolean;
         nodeRect = new Rect(position.x,position.y,150f,65f);
     }
 
     public override void Evaluate() {
         if (nodeValue == null) {
-            nodeValue = 0.0f;
+            nodeValue = false;
         }
     }
 
     public override void DrawNodeProperties() {
         base.DrawNodeProperties();
         if (nodeValue != null) {
-            nodeValue = EditorGUILayout.FloatField("Float Value: ", (float)nodeValue);
+            nodeValue = EditorGUILayout.Toggle("Boolean Value: ", (bool)nodeValue);
         }
     }
 }
