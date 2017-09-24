@@ -7,6 +7,19 @@ using UnityEditor;
 [Serializable]
 public class NE_NodeInput : NE_NodeConnectorBase {
 	
+	public override void OnEnable() {
+		base.OnEnable();
+	}
+
+	public override void OnClicked() {
+
+			if (parentNode.parentGraph.connectionMatch) {
+				inputConnector = parentNode.parentGraph.connectionMatch;
+				isOccupied = true;
+				parentNode.parentGraph.connectionMatch = null;
+			}
+	}
+
 	public override void GetConnectionPosition() {
 		if (parentNode) {
 			float top = parentNode.nodeRect.y + (size.y * 0.5f);
@@ -18,6 +31,7 @@ public class NE_NodeInput : NE_NodeConnectorBase {
 			position.y = center + (fractionOffset * (parentNode.nodeRect.height /2));
 
 			position.x = parentNode.nodeRect.x - size.x;
+			connectorSkin = parentNode.nodeSkin.GetStyle("node_input");
 		}
 	}
 

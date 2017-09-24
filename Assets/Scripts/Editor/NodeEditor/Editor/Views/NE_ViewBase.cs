@@ -38,8 +38,12 @@ public class NE_ViewBase {
 		}
 	}
 
-	public void OnEnable () {
+	void OnEnable () {
 		GetEditorSkin();
+	}
+
+	void OnDisable() {
+		AssetDatabase.SaveAssets();
 	}
 
 	public virtual void ProcessEvents(Event e) {

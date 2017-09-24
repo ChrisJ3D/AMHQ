@@ -53,6 +53,7 @@ public class NE_NodeWorkView : NE_ViewBase {
 			//	Right mouse button
 			if (e.button == 1) {
 				bool isOverNode = false;
+				bool isOverConnector = false;
 				if (e.type == EventType.mouseDown) {
 					mousePosition = e.mousePosition;
 
@@ -63,8 +64,16 @@ public class NE_NodeWorkView : NE_ViewBase {
 							foreach(NE_NodeBase node in currentGraph.nodes) {
 								
 								if(node.nodeRect.Contains(mousePosition)) {
+									node.OnClicked();
 									isOverNode = true;
 									hoveredNodeID = currentGraph.nodes.IndexOf(node);
+								} else {
+									foreach (NE_NodeConnectorBase input in node.inputs) {
+										if (input.connectorRect.Contains(mousePosition)) {
+											isOverConnector = true;
+											input.OnClicked();
+										}
+									}
 								}
 							}
 						}
@@ -72,6 +81,8 @@ public class NE_NodeWorkView : NE_ViewBase {
 
 					if (isOverNode) {
 						ProcessContextMenu(e, 1);
+					} else if (isOverConnector) {
+						
 					} else {
 						ProcessContextMenu(e, 0);
 					}

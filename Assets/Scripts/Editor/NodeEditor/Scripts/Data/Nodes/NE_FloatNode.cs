@@ -13,8 +13,6 @@ public class NE_FloatNode : NE_NodeBase {
     public NE_FloatNode() {
         numberOfInputs = 0;
         numberOfOutputs = 1;
-
-        nodeValue = 0.0f;
     }
 
     //  MAIN FUNCTIONS
@@ -22,6 +20,10 @@ public class NE_FloatNode : NE_NodeBase {
         base.InitNode();
         nodeType = NodeType.Float;
         nodeRect = new Rect(position.x,position.y,150f,65f);
+
+        if (nodeValue == null) {
+            nodeValue = 0.0f;
+        }
     }
 
     public override void Evaluate() {

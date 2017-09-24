@@ -14,8 +14,7 @@ public static class NE_NodeUtils {
 			currentGraph.InitGraph();
 
 			AssetDatabase.CreateAsset(currentGraph, "Assets/Scripts/Editor/NodeEditor/Database/" + name + ".asset");
-			AssetDatabase.SaveAssets();
-			AssetDatabase.Refresh();
+			SaveGraph();
 
 			NE_Window currentWindow = (NE_Window)EditorWindow.GetWindow<NE_Window>();
 			if (currentWindow) {
@@ -25,6 +24,11 @@ public static class NE_NodeUtils {
 		} else {
 			EditorUtility.DisplayDialog("Error", "Unable to create graph", "OK");
 		}
+	}
+
+	public static void SaveGraph() {
+		AssetDatabase.SaveAssets();
+		AssetDatabase.Refresh();
 	}
 
 	public static void LoadGraph() {
@@ -84,8 +88,7 @@ public static class NE_NodeUtils {
 				currentGraph.nodes.Add(currentNode);
 
 				AssetDatabase.AddObjectToAsset(currentNode,currentGraph);
-				AssetDatabase.SaveAssets();
-				AssetDatabase.Refresh();
+				SaveGraph();
 			}
 		}
 	}
@@ -114,8 +117,7 @@ public static class NE_NodeUtils {
 					currentGraph.nodes.Add(currentNode);
 
 					AssetDatabase.AddObjectToAsset(currentNode,currentGraph);
-					AssetDatabase.SaveAssets();
-					AssetDatabase.Refresh();
+					SaveGraph();
 				}
 			}
 		}
@@ -130,9 +132,13 @@ public static class NE_NodeUtils {
 				if (nodeToDelete) {
 					currentGraph.nodes.RemoveAt(index);
 					currentGraph.showProperties = false;
+
+					foreach (NE_NodeConnectorBase connection in nodeToDelete.connectors) {
+						connection.inputConnector = null;
+					}
+
 					GameObject.DestroyImmediate(nodeToDelete, true);
-					AssetDatabase.SaveAssets();
-					AssetDatabase.Refresh();
+					SaveGraph();
 				}
 			}
 		}

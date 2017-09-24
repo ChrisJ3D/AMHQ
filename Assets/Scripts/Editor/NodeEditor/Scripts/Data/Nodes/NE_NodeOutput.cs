@@ -7,6 +7,15 @@ using UnityEditor;
 [Serializable]
 public class NE_NodeOutput : NE_NodeConnectorBase {
 
+	public override void OnEnable() {
+		base.OnEnable();
+	}
+
+	public override void OnClicked() {
+		base.OnClicked();
+		//inputConnector = parentNode.parentGraph.connectionMatch;
+	}
+
 	public override void GetConnectionPosition() {
 		if (parentNode) {
 			float top = parentNode.nodeRect.y + (size.y * 0.5f);
@@ -18,8 +27,10 @@ public class NE_NodeOutput : NE_NodeConnectorBase {
 			position.y = center + (fractionOffset * (parentNode.nodeRect.height /2f));
 
 			position.x = parentNode.nodeRect.x + parentNode.nodeRect.width;
+			connectorSkin = parentNode.nodeSkin.GetStyle("node_output");
 		}
 	}
+
 
 	public override Vector3 GetConnectionLinePosition() {
 		Vector3 connectionPosition = new Vector3();

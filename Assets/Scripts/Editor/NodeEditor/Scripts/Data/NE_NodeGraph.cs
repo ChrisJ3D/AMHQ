@@ -17,7 +17,8 @@ public class NE_NodeGraph : ScriptableObject {
 	public NE_NodeBase selectedNode;
 
 	public bool wantsConnection = false;
-	public NE_NodeBase connectionNode;
+	public NE_NodeBase connectionNode = null;
+	public NE_NodeConnectorBase connectionMatch = null;
 	public bool showProperties = false;
 
 	void OnEnable() {
@@ -46,13 +47,19 @@ public class NE_NodeGraph : ScriptableObject {
 			ProcessEvents(e, viewRect);
 
 			foreach(NE_NodeBase node in nodes) {
-				node.UpdateNodeGUI(e, viewRect, viewSkin);
+				node.UpdateNodeGUI(e, viewSkin);
 			}
 		}
 
 		if (e.type == EventType.Layout) {
 			if(selectedNode) {
 				showProperties = true;
+			}
+		}
+
+		if (wantsConnection) {
+			if (connectionNode) {
+				NE_NodeUtils.DrawLineToMouse(connectionMatch, e.mousePosition, "right");
 			}
 		}
 		EditorUtility.SetDirty(this);
@@ -81,20 +88,14 @@ public class NE_NodeGraph : ScriptableObject {
 								selectedNode = node;
 								setNode = true;
 								node.Evaluate();
-							} else {
-								foreach (NE_NodeConnectorBase connector in node.inputs) {
-									connector.wantsConnection = false;
-								}
-
-								foreach (NE_NodeConnectorBase connector in node.outputs) {
-									connector.wantsConnection = false;
-								}
 							}
 						}
 					}
-					
+
 					if(!setNode) {
 						DeselectAllNodes();
+						wantsConnection = false;
+						connectionNode = null;
 					}
 				}
 			}
@@ -102,8 +103,18 @@ public class NE_NodeGraph : ScriptableObject {
 	}
 
 	void DeselectAllNodes() {
+
 		foreach(NE_NodeBase node in nodes) {
 			node.isSelected = false;
+			foreach(NE_NodeConnectorBase connector in node.connectors) {
+				if(connector.wantsConnection) {
+					if(connector.inputConnector) {
+						connector.inputConnector.inputConnector = null;
+					}
+					//connector.inputConnector = null;
+				}
+				connector.wantsConnection = false;
+			}
 		}
 	}
 }

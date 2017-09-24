@@ -24,13 +24,15 @@ public class NE_AddNode : NE_NodeBase {
     }
 
     public override void Evaluate() {
+        Debug.Log("Evaluating");
         nodeValue = 0.0f;
+
         if(inputs != null) {
             if(inputs.Count > 0) {
-                if(inputs[0].isOccupied) {
-                    foreach(NE_NodeInput i in inputs) {
-                        NE_NodeBase entry = i.parentNode;
-                        nodeValue = (float)nodeValue + entry.EvaluateAsFloat();
+                foreach(NE_NodeInput i in inputs) {
+                    if (i.isOccupied) {
+                        float inputValue = i.inputConnector.parentNode.EvaluateAsFloat();
+                        nodeValue = (float)nodeValue + inputValue;
                     }
                 }
             }
@@ -39,7 +41,8 @@ public class NE_AddNode : NE_NodeBase {
 
     public override void DrawNodeProperties() {
         base.DrawNodeProperties();
-
-        EditorGUILayout.FloatField("Sum: ", this.EvaluateAsFloat());
+        if (nodeValue != null) {
+            EditorGUILayout.FloatField("Sum: ", (float)nodeValue);
+        }
     }
 }

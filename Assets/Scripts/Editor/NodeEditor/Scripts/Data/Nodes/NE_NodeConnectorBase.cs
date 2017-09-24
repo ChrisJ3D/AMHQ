@@ -13,9 +13,11 @@ public class NE_NodeConnectorBase : ScriptableObject {
 	public NE_NodeBase parentNode = null;
 	public Vector2 size = new Vector2(24f, 24f);
 	public Vector2 position = new Vector2(0.0f, 0.0f);
+	public Rect connectorRect;
+	public GUIStyle connectorSkin = null;
 
-	public NE_NodeOutput match = null;
 	public bool wantsConnection = false;
+	public NE_NodeConnectorBase inputConnector = null;
 
 	public virtual void OnEnable() {
 		GetConnectionPosition();
@@ -25,9 +27,45 @@ public class NE_NodeConnectorBase : ScriptableObject {
 
 	}
 
-	public virtual void DrawConnections(Event e) {
-		if(match) {
-			NE_NodeUtils.DrawLine(match.GetConnectionLinePosition(), this.GetConnectionLinePosition(), "");
+	public virtual void DrawGUI() {
+		connectorRect = new Rect(position, size);
+
+		if (GUI.Button(connectorRect, "", connectorSkin)) {
+			OnClicked();
+		}
+
+		EditorUtility.SetDirty(this);
+	}
+
+	public virtual void OnClicked() {
+
+		if (parentNode.parentGraph) {
+			parentNode.parentGraph.wantsConnection = true;
+			parentNode.parentGraph.connectionNode = parentNode;
+			parentNode.parentGraph.connectionMatch = this;
+		}
+
+		Debug.Log("input " + index + " clicked, wantsConnection is " + wantsConnection, this);
+	}
+
+	void ProcessEvents(Event e) {
+		// if(isSelected) {
+
+		// 	if(e.type == EventType.mouseDrag) {
+
+		// 		if (nodeRect.Contains(e.mousePosition)) {
+		// 			nodeRect.x += e.delta.x;
+		// 			position.x += e.delta.x;
+		// 			nodeRect.y += e.delta.y;
+		// 			position.y += e.delta.y;
+		// 		}
+		// 	}
+		// }
+	}
+
+	public virtual void DrawConnections() {
+		if(inputConnector) {
+			NE_NodeUtils.DrawLine(inputConnector.GetConnectionLinePosition(), this.GetConnectionLinePosition(), "");
 		}
 	}
 
