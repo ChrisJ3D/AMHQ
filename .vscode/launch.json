@@ -30,7 +30,6 @@
 			"name": "Android Player",
 			"type": "unity",
 			"request": "launch"
-
 		}
 	]
 }

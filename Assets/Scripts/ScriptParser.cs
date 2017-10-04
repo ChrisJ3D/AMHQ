@@ -22,7 +22,6 @@ public class ScriptParser : MonoBehaviour {
 			position = Position;
 			options = new string[0];
 		}
-
 	}
 
 	List<ScriptLine> lines;
@@ -65,6 +64,10 @@ public class ScriptParser : MonoBehaviour {
 			while (line != null);
 			r.Close();
 		}
+	}
+
+	void ParseDialogue() {
+
 	}
 
 	void ParseVFX() {
