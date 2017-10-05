@@ -44,6 +44,8 @@ namespace NodeEditorFramework
 		public static GUIStyle toolbarDropdown;
 		public static GUIStyle toolbarButton;
 
+		public static Font font;
+
 		public static bool Init ()
 		{
 			// Textures
@@ -54,6 +56,7 @@ namespace NodeEditorFramework
 			GUIBoxSelection = ResourceManager.LoadTexture("Textures/BoxSelection.png");
 			GUIToolbar = ResourceManager.LoadTexture("Textures/NE_Toolbar.png");
 			GUIToolbarButton = ResourceManager.LoadTexture("Textures/NE_ToolbarButton.png");
+			font = ResourceManager.LoadResource<Font>("Assets/Plugins/AMHQNodes/Fonts/meiryo.ttc");
 
 			if (!Background || !AALineTex || !GUIBox || !GUIButton || !GUIToolbar || !GUIToolbarButton)
 				return false;
@@ -64,7 +67,9 @@ namespace NodeEditorFramework
 
 			foreach (GUIStyle style in GUI.skin)
 			{
-				style.fontSize = 11;
+				style.fontSize = 12;
+				style.font = font;
+				style.padding = new RectOffset(5,5,2,2);
 				//style.normal.textColor = style.active.textColor = style.focused.textColor = style.hover.textColor = NE_TextColor;
 			}
 

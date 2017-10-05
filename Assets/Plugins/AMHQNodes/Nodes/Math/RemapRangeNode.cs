@@ -27,7 +27,7 @@ namespace NodeEditorFramework.Standard
 		[ValueConnectionKnob("New Max", Direction.In, "Number")]
 		public ValueConnectionKnob newMaxKnob;
 
-		[ValueConnectionKnob("Output", Direction.Out, "Number")]
+		[ValueConnectionKnob("", Direction.Out, "Number")]
 		public ValueConnectionKnob outputKnob;
 
 		private Number input = new Number();

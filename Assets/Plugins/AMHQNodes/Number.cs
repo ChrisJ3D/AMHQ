@@ -36,11 +36,11 @@ public class Number {
 		}
 
 	public Number () {
-		this._value = new float[4];
-		this._value[0] = 0f;
-		this._value[1] = 0f;
-		this._value[2] = 0f;
-		this._value[3] = 0f;
+		_value = new float[4];
+		_value[0] = 0f;
+		_value[1] = 0f;
+		_value[2] = 0f;
+		_value[3] = 0f;
 
 	}
 

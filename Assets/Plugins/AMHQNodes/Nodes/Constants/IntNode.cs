@@ -13,10 +13,7 @@ namespace NodeEditorFramework.Standard
 		public override string GetID { get { return ID; } }
 
 		public override string Title { get { return "Integer"; } }
-		public override Vector2 DefaultSize { get { return new Vector2 (200, 50); } }
-
-		[ValueConnectionKnob("Input", Direction.In, "Number")]
-		public ValueConnectionKnob inputKnob;
+		public override Vector2 DefaultSize { get { return new Vector2 (120, 50); } }
 
 		[ValueConnectionKnob("Output", Direction.Out, "Number")]
 		public ValueConnectionKnob outputKnob;
@@ -25,20 +22,21 @@ namespace NodeEditorFramework.Standard
 
 		public override void NodeGUI () 
 		{
-			GUILayout.Space(5f);
 			GUILayout.BeginHorizontal();
+			GUILayout.Space(10);
 			GUILayout.BeginVertical();
+	
+			GUILayout.Space(5);
 
-			if (inputKnob.connected()) {
-				inputKnob.DisplayLayout();
-			} else {
-				value = RTEditorGUI.IntField (value);
-			}
+			value = RTEditorGUI.IntField (value);
 
 			GUILayout.EndVertical();
+
+			GUILayout.Space(10);
+
 			GUILayout.BeginVertical();
-			
-			outputKnob.DisplayLayout(new GUIContent(value));
+
+			outputKnob.DisplayLayout(new GUIContent(""));
 
 			GUILayout.EndVertical();
 			GUILayout.EndHorizontal();
@@ -49,10 +47,6 @@ namespace NodeEditorFramework.Standard
 
 		public override bool Calculate () 
 		{
-			if (inputKnob.connected()) {
-				value = inputKnob.GetValue<Number>().ToInt32();
-			}
-
 			outputKnob.SetValue<Number> (value);
 			return true;
 		}

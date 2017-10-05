@@ -13,16 +13,33 @@ namespace NodeEditorFramework.Standard
 		public override string GetID { get { return ID; } }
 
 		public override string Title { get { return "Display Node"; } }
-		public override Vector2 DefaultSize { get { return new Vector2 (150, 50); } }
+		public override Vector2 DefaultSize { get { return new Vector2 (130, 120); } }
 
-		private float value = 0;
+		private Number value = new Number();
 
 		[ValueConnectionKnob("Value", Direction.In, "Number")]
 		public ValueConnectionKnob inputKnob;
 		
 		public override void NodeGUI () 
 		{
-			inputKnob.DisplayLayout (new GUIContent ("Value : " + value.ToString (), "The input value to display"));
+			GUILayout.Space(5);
+			GUILayout.BeginHorizontal();
+			GUILayout.BeginVertical();
+			inputKnob.DisplayLayout (new GUIContent(""));
+			GUILayout.EndVertical();
+
+			GUILayout.Space(-30);
+
+			GUILayout.BeginVertical();
+			GUILayout.Label("X: " + value.x.ToString());
+			GUILayout.Label("Y: " + value.y.ToString());
+			GUILayout.Label("Z: " + value.z.ToString());
+			GUILayout.Label("W: " + value.w.ToString());
+			GUILayout.EndVertical();
+			GUILayout.EndHorizontal();
+
+			if (GUI.changed)
+				NodeEditor.curNodeCanvas.OnNodeChange(this);
 		}
 		
 		public override bool Calculate () 

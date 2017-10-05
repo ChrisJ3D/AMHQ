@@ -17,9 +17,6 @@ namespace NodeEditorFramework.Standard
 
 		public Number value = new Number();
 		private string label = "";
-		
-		[ValueConnectionKnob("Input", Direction.In, "Number")]
-		public ValueConnectionKnob inputKnob;
 
 		[ValueConnectionKnob("Output", Direction.Out, "Number")]
 		public ValueConnectionKnob outputKnob;
@@ -29,6 +26,7 @@ namespace NodeEditorFramework.Standard
 			GUILayout.Space(5f);
 
 			GUILayout.BeginHorizontal ();
+			GUILayout.Space(12);
 			GUILayout.BeginVertical ();
 
 			value = RTEditorGUI.Toggle (value, label);

@@ -13,11 +13,9 @@ namespace NodeEditorFramework.Standard
 		public override string GetID { get { return ID; } }
 
 		public override string Title { get { return "Float"; } }
-		public override Vector2 DefaultSize { get { return new Vector2 (200, 70); } }
+		public override Vector2 DefaultSize { get { return new Vector2 (150, 50); } }
 
-		[ValueConnectionKnob("Input", Direction.In, "Number")]
-		public ValueConnectionKnob inputKnob;
-		[ValueConnectionKnob("Output", Direction.Out, "Number")]
+		[ValueConnectionKnob("Float", Direction.Out, "Number")]
 		public ValueConnectionKnob outputKnob;		
 
 		public Number value = new Number();
@@ -25,22 +23,20 @@ namespace NodeEditorFramework.Standard
 		public override void NodeGUI () 
 		{
 			GUILayout.BeginHorizontal();
+			GUILayout.Space(10);
 			GUILayout.BeginVertical();
 	
-			GUILayout.Space(5f);
+			GUILayout.Space(5);
 
-			if (inputKnob.connected()) {
-				inputKnob.DisplayLayout();
-				GUILayout.Label(inputKnob.GetValue<Number>().ToStringShort());
+			value = RTEditorGUI.FloatField (value);
 
-			} else {
-				value = RTEditorGUI.FloatField (value);
-			}
-			
 			GUILayout.EndVertical();
+
+			GUILayout.Space(10);
+
 			GUILayout.BeginVertical();
 
-			outputKnob.DisplayLayout(new GUIContent(value.ToStringShort()));
+			outputKnob.DisplayLayout(new GUIContent(""));
 
 			GUILayout.EndVertical();
 			GUILayout.EndHorizontal();
@@ -50,11 +46,7 @@ namespace NodeEditorFramework.Standard
 		}
 
 		public override bool Calculate () 
-		{
-			if (inputKnob.connected()) {
-				value = inputKnob.GetValue<Number>();
-			}
-			
+		{	
 			outputKnob.SetValue<Number> (value);
 			return true;
 		}

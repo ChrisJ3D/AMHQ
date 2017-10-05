@@ -12,32 +12,35 @@ namespace NodeEditorFramework.Standard
 		public const string ID = "VectorNode";
 		public override string GetID { get { return ID; } }
 		public override string Title { get { return "Vector"; } }
-		public override Vector2 DefaultSize { get { return new Vector2 (200, 100); } }
+		public override Vector2 DefaultSize { get { return new Vector2 (200, 105); } }
 
 		public Number value = new Number();
-
-		[ValueConnectionKnob("X", Direction.In, "Number")]
-		public ValueConnectionKnob xKnob;
-
-		[ValueConnectionKnob("Y", Direction.In, "Number")]
-		public ValueConnectionKnob yKnob;
-
-		[ValueConnectionKnob("Z", Direction.In, "Number")]
-		public ValueConnectionKnob zKnob;
-
-		[ValueConnectionKnob("W", Direction.In, "Number")]
-		public ValueConnectionKnob wKnob;
 
 		[ValueConnectionKnob("Vector", Direction.Out, "Number")]
 		public ValueConnectionKnob outputKnob;
 
 		public override void NodeGUI () 
 		{
-			// base.NodeGUI();
+			GUILayout.Space(5);
+
+			GUILayout.BeginHorizontal();
+			GUILayout.Space(10);
+			GUILayout.BeginVertical();
+
 			value.x = RTEditorGUI.FloatField (value.x);
 			value.y = RTEditorGUI.FloatField (value.y);
 			value.z = RTEditorGUI.FloatField (value.z);
 			value.w = RTEditorGUI.FloatField (value.w);
+
+			GUILayout.EndVertical();
+			GUILayout.Space(40);
+
+			GUILayout.BeginVertical();
+
+			outputKnob.DisplayLayout(new GUIContent(""));
+			
+			GUILayout.EndVertical();
+			GUILayout.EndHorizontal();
 
 			if (GUI.changed)
 				NodeEditor.curNodeCanvas.OnNodeChange(this);
@@ -45,21 +48,6 @@ namespace NodeEditorFramework.Standard
 
 		public override bool Calculate () 
 		{
-			// if (xKnob.connected()) {
-			// 	value.x = xKnob.GetValue<Number>().x;
-			// }
-
-			// if (yKnob.connected()) {
-			// 	value.y = yKnob.GetValue<Number>().y;
-			// }
-
-			// if (zKnob.connected()) {
-			// 	value.z = zKnob.GetValue<Number>().z;
-			// }
-
-			// if (wKnob.connected()) {
-			// 	value.w = wKnob.GetValue<Number>().w;
-			// }
 
 			outputKnob.SetValue<Number> (value);
 			return true;
