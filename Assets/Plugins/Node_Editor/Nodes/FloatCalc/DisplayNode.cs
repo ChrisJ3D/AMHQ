@@ -17,7 +17,7 @@ namespace NodeEditorFramework.Standard
 
 		private float value = 0;
 
-		[ValueConnectionKnob("Value", Direction.In, "Float")]
+		[ValueConnectionKnob("Value", Direction.In, "Number")]
 		public ValueConnectionKnob inputKnob;
 		
 		public override void NodeGUI () 
@@ -27,7 +27,7 @@ namespace NodeEditorFramework.Standard
 		
 		public override bool Calculate () 
 		{
-			value = inputKnob.GetValue<float> ();
+			value = inputKnob.GetValue<Number> ();
 			return true;
 		}
 	}

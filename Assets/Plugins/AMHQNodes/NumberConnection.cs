@@ -6,7 +6,8 @@ using NodeEditorFramework;
 using NodeEditorFramework.Utilities;
 
 namespace NodeEditorFramework {
-
+	
+	[System.Serializable]
 	public class NumberConnectionType : ValueConnectionType
 	{	
 	public override string Identifier { get { return "Number"; } }

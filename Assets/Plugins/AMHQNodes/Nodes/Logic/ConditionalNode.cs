@@ -56,6 +56,9 @@ namespace NodeEditorFramework.Standard
 			GUILayout.EndVertical ();
 			GUILayout.EndHorizontal ();
 
+			if (GUI.changed)
+				NodeEditor.curNodeCanvas.OnNodeChange(this);
+
 	#if UNITY_EDITOR
 			method = (ConditionType)UnityEditor.EditorGUILayout.EnumPopup (new GUIContent ("Method", "The type of calculation performed on Input 1 and Input 2"), method);
 	#else

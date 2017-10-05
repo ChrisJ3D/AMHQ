@@ -13,7 +13,7 @@ namespace NodeEditorFramework.Standard
 		public override string GetID { get { return ID; } }
 
 		public override string Title { get { return "Float"; } }
-		public override Vector2 DefaultSize { get { return new Vector2 (200, 50); } }
+		public override Vector2 DefaultSize { get { return new Vector2 (200, 70); } }
 
 		[ValueConnectionKnob("Input", Direction.In, "Number")]
 		public ValueConnectionKnob inputKnob;
@@ -26,11 +26,13 @@ namespace NodeEditorFramework.Standard
 		{
 			GUILayout.BeginHorizontal();
 			GUILayout.BeginVertical();
-
+	
 			GUILayout.Space(5f);
 
 			if (inputKnob.connected()) {
 				inputKnob.DisplayLayout();
+				GUILayout.Label(inputKnob.GetValue<Number>().ToStringShort());
+
 			} else {
 				value = RTEditorGUI.FloatField (value);
 			}
@@ -38,10 +40,13 @@ namespace NodeEditorFramework.Standard
 			GUILayout.EndVertical();
 			GUILayout.BeginVertical();
 
-			outputKnob.DisplayLayout(new GUIContent(value));
+			outputKnob.DisplayLayout(new GUIContent(value.ToStringShort()));
 
 			GUILayout.EndVertical();
 			GUILayout.EndHorizontal();
+
+			if (GUI.changed)
+				NodeEditor.curNodeCanvas.OnNodeChange(this);
 		}
 
 		public override bool Calculate () 

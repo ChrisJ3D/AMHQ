@@ -38,6 +38,9 @@ namespace NodeEditorFramework.Standard
 			value.y = RTEditorGUI.FloatField (value.y);
 			value.z = RTEditorGUI.FloatField (value.z);
 			value.w = RTEditorGUI.FloatField (value.w);
+
+			if (GUI.changed)
+				NodeEditor.curNodeCanvas.OnNodeChange(this);
 		}
 
 		public override bool Calculate () 

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-	[Header("Attributes")]
-	public Attribute stress;
-	public Attribute organisation;
-	public Attribute charisma;
-	public Attribute knowledge;
-	public Attribute innovation;
-	public Attribute eloquence;
+	[Header("CharacterAttributes")]
+	public CharacterAttribute stress;
+	public CharacterAttribute organisation;
+	public CharacterAttribute charisma;
+	public CharacterAttribute knowledge;
+	public CharacterAttribute innovation;
+	public CharacterAttribute eloquence;
 
 	public Player() {
 

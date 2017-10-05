@@ -52,7 +52,10 @@ namespace NodeEditorFramework.Standard
 			outputKnob.DisplayLayout ();
 			
 			GUILayout.EndVertical ();
-			GUILayout.EndHorizontal ();			
+			GUILayout.EndHorizontal ();	
+
+			if (GUI.changed)
+				NodeEditor.curNodeCanvas.OnNodeChange(this);		
 		}
 		
 		public override bool Calculate () 

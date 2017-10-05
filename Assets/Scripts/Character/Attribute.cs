@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenuAttribute(menuName = "amhq/Attribute")]
+[CreateAssetMenuAttribute(menuName = "amhq/CharacterAttribute")]
 [System.Serializable]
-public class Attribute : ScriptableObject {
+public class CharacterAttribute : ScriptableObject {
 
-	public enum AttributeType {
+	public enum CharacterAttributeType {
 		STRESS,
 		ORGANISATION,
 		CHARISMA,
@@ -16,18 +16,18 @@ public class Attribute : ScriptableObject {
 	};
 
 	public int value;
-	public AttributeType type;
+	public CharacterAttributeType type;
 
 	[SerializeField, HideInInspector]
 	int _myprivatevar;
 
-	public Attribute(AttributeType Type) {
+	public CharacterAttribute(CharacterAttributeType Type) {
 		this.type = Type;
 		this.value = 0;
 		Vector3 blah = new Vector3(1,1,1);
 	}
 
-	public Attribute(AttributeType Type, int Value) {
+	public CharacterAttribute(CharacterAttributeType Type, int Value) {
 		this.type = Type;
 		this.value = Value;
 	}
