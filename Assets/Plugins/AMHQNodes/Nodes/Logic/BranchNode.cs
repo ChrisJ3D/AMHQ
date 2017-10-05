@@ -7,13 +7,14 @@ using NodeEditorFramework.Utilities;
 
 namespace NodeEditorFramework.Standard
 {
-	[Node (false, "AMHQ/Logic/Branch")]
+	[Node (false, "Logic/Branch")]
 	public class BranchNode : Node 
 	{
 		public const string ID = "BranchNode";
 		public override string GetID { get { return ID; } }
 		public override string Title { get { return "Branch"; } }
-		public override Vector2 DefaultSize { get { return new Vector2 (150, 70); } }
+		public override Vector2 DefaultSize { get { return new Vector2 (120, 60); } }
+		public override string description { get { return "The Branch node reroutes the level flow based on the incoming condition. The condition should be in a boolean format (true/false)."; } }
 
 		[ConnectionKnob("In", Direction.In, "Flow", NodeSide.Left, 10)]
 		public ConnectionKnob flowIn;

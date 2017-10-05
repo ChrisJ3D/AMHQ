@@ -37,7 +37,7 @@ namespace NodeEditorFramework
 
 		// Style
 		public Color backgroundColor = Color.white;
-
+		public virtual string description { get { return "No description written for this node yet, shame on you chris!!"; } }
 
 		#region Properties and Settings
 

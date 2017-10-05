@@ -22,7 +22,7 @@ namespace NodeEditorFramework
 			foreach (string node in nodes)
 			{ // Only add nodes to the context menu that are compatible
 				if (NodeCanvasManager.CheckCanvasCompability (node, inputInfo.editorState.canvas.GetType ()) && inputInfo.editorState.canvas.CanAddNode (node))
-					canvasContextMenu.AddItem (new GUIContent ("Add " + NodeTypes.getNodeData(node).adress), false, CreateNodeCallback, new NodeEditorInputInfo (node, state));
+					canvasContextMenu.AddItem (new GUIContent (NodeTypes.getNodeData(node).adress), false, CreateNodeCallback, new NodeEditorInputInfo (node, state));
 			}
 		}
 
