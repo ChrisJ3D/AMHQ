@@ -14,6 +14,7 @@ namespace NodeEditorFramework.Standard
 
 		public override string Title { get { return "Float"; } }
 		public override Vector2 DefaultSize { get { return new Vector2 (130, 60); } }
+		public override string description { get { return "The Float node outputs a floating-point number (meaning you can have decimals). Floating-point numbers have higher precision than integers, but require more memory."; } }
 
 		[ValueConnectionKnob("Float", Direction.Out, "Number")]
 		public ValueConnectionKnob outputKnob;		

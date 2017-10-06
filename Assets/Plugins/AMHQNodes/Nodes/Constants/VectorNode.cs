@@ -12,7 +12,8 @@ namespace NodeEditorFramework.Standard
 		public const string ID = "VectorNode";
 		public override string GetID { get { return ID; } }
 		public override string Title { get { return "Vector"; } }
-		public override Vector2 DefaultSize { get { return new Vector2 (130, 135); } }
+		public override Vector2 DefaultSize { get { return new Vector2 (130, 140); } }
+		
 
 		public Number value = new Number();
 

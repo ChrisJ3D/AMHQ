@@ -5,13 +5,13 @@ using NodeEditorFramework.Utilities;
 
 namespace NodeEditorFramework.Standard
 {
-	[Node (false, "Math/Normalize")]
-	public class NormalizeNode : Node 
+	[Node (false, "Math/Sign")]
+	public class SignNode : Node 
 	{
-		public const string ID = "NormalizeNode";
+		public const string ID = "SignNode";
 		public override string GetID { get { return ID; } }
 
-		public override string Title { get { return "Normalize"; } }
+		public override string Title { get { return "Sign"; } }
 		public override Vector2 DefaultSize { get { return new Vector2 (150, 50); } }
 
 		[ValueConnectionKnob("Vector", Direction.In, "Number")]
@@ -45,8 +45,6 @@ namespace NodeEditorFramework.Standard
 		
 		public override bool Calculate () 
 		{
-			normalizedVector = 0f;
-			
 			if (inputKnob.connected()) {
 				float length = 0.0f;
 				Number v = inputKnob.GetValue<Number>();

@@ -14,6 +14,7 @@ namespace NodeEditorFramework.Standard
 
 		public override string Title { get { return "Integer"; } }
 		public override Vector2 DefaultSize { get { return new Vector2 (130, 60); } }
+		public override string description { get { return "The integer node outputs a whole number. It can be positive or negative, but if you need decimals you should use the Float node."; } }
 
 		[ValueConnectionKnob("Output", Direction.Out, "Number")]
 		public ValueConnectionKnob outputKnob;

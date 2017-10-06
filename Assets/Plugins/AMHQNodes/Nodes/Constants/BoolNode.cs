@@ -14,6 +14,7 @@ namespace NodeEditorFramework.Standard
 
 		public override string Title { get { return "Boolean"; } }
 		public override Vector2 DefaultSize { get { return new Vector2 (80, 50); } }
+		public override string description { get { return "The boolean node outputs a value that is either true or false. Behind the scenes this is simply an integer with the value 1 or 0. Any positive number, i.e. larger than 0 will evaluate as True, while any negative number will evaluate to False."; } }
 
 		public Number value = new Number();
 
