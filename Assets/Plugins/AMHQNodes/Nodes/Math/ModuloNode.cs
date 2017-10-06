@@ -10,7 +10,7 @@ namespace NodeEditorFramework.Standard
 		public const string ID = "moduloNode";
 		public override string GetID { get { return ID; } }
 		public override string Title { get { return "Modulo"; } }
-		public override Vector2 DefaultSize { get { return new Vector2 (150, 70); } }
+		public override Vector2 DefaultSize { get { return new Vector2 (150, 80); } }
 
 		[ValueConnectionKnob("Dividend", Direction.In, "Number")]
 		public ValueConnectionKnob dividendKnob;
@@ -30,18 +30,9 @@ namespace NodeEditorFramework.Standard
 			GUILayout.BeginHorizontal ();
 			GUILayout.BeginVertical ();
 
-			if (dividendKnob.connected())
-				dividendKnob.DisplayLayout ();
-			else
-				dividend = RTEditorGUI.FloatField (GUIContent.none, dividend);
-
+			dividendKnob.DisplayLayout ();
 			GUILayout.Space(5f);
-			
-			// --
-			if (modDivisorKnob.connected())
-				modDivisorKnob.DisplayLayout ();
-			else
-				modDivisor = RTEditorGUI.FloatField (GUIContent.none, modDivisor);
+			modDivisorKnob.DisplayLayout ();
 
 			GUILayout.EndVertical ();
 			GUILayout.BeginVertical ();
@@ -57,6 +48,9 @@ namespace NodeEditorFramework.Standard
 		
 		public override bool Calculate () 
 		{
+			dividend = 0f;
+			modDivisor = 1f;
+
 			if (dividendKnob.connected())
 				dividend = dividendKnob.GetValue<Number> ();
 
@@ -65,7 +59,7 @@ namespace NodeEditorFramework.Standard
 
 			remainderKnob.SetValue<Number> (dividend % modDivisor);
 
-			label = remainderKnob.GetValue<Number> ().ToString();
+			label = remainderKnob.GetValue<Number> ().ToStringShort();
 
 			return true;
 		}

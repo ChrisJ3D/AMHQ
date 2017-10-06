@@ -27,6 +27,7 @@ namespace NodeEditorFramework
 
 		public static GUISkin nodeSkin;
 		public static GUISkin defaultSkin;
+		public static GUISkin AMHQSkin;
 
 		public static GUIStyle nodeLabel;
 		public static GUIStyle nodeLabelBold;
@@ -57,12 +58,14 @@ namespace NodeEditorFramework
 			GUIToolbar = ResourceManager.LoadTexture("Textures/NE_Toolbar.png");
 			GUIToolbarButton = ResourceManager.LoadTexture("Textures/NE_ToolbarButton.png");
 			font = ResourceManager.LoadResource<Font>("Assets/Plugins/AMHQNodes/Fonts/meiryo.ttc");
+			AMHQSkin = ResourceManager.LoadResource<GUISkin>("Assets/Plugins/AMHQNodes/AMHQNodesSkin.guiskin");
 
 			if (!Background || !AALineTex || !GUIBox || !GUIButton || !GUIToolbar || !GUIToolbarButton)
 				return false;
 
 			// Skin & Styles
-			nodeSkin = Object.Instantiate (GUI.skin);
+			// nodeSkin = Object.Instantiate (GUI.skin);
+			nodeSkin = AMHQSkin;
 			GUI.skin = nodeSkin;
 
 			foreach (GUIStyle style in GUI.skin)
@@ -73,7 +76,7 @@ namespace NodeEditorFramework
 				//style.normal.textColor = style.active.textColor = style.focused.textColor = style.hover.textColor = NE_TextColor;
 			}
 
-			// Label
+			// // Label
 			nodeSkin.label.normal.textColor = NE_TextColor;
 			nodeLabel = nodeSkin.label;
 			nodeLabelBold = new GUIStyle (nodeLabel) { fontStyle = FontStyle.Bold };
@@ -83,6 +86,15 @@ namespace NodeEditorFramework
 			nodeLabelBoldCentered = new GUIStyle (nodeLabelBold) { alignment = TextAnchor.MiddleCenter };
 			nodeLabelLeft = new GUIStyle (nodeLabel) { alignment = TextAnchor.MiddleLeft };
 			nodeLabelRight = new GUIStyle (nodeLabel) { alignment = TextAnchor.MiddleRight };
+
+			//TextField
+			nodeSkin.textField.fontSize = 16;
+			nodeSkin.textField.fontStyle = FontStyle.Bold;
+			nodeSkin.textField.padding = new RectOffset(5,5,4,4);
+			// nodeSkin.textField.normal.background = new Color(0f,0f,0f);
+
+			//	Toggle
+			nodeSkin.toggle.fontSize = 16;
 
 			// Box
 			nodeSkin.box.normal.background = GUIBox;

@@ -11,7 +11,7 @@ namespace NodeEditorFramework.Standard
 		public override string GetID { get { return ID; } }
 
 		public override string Title { get { return "Remap Range"; } }
-		public override Vector2 DefaultSize { get { return new Vector2 (165, 120); } }
+		public override Vector2 DefaultSize { get { return new Vector2 (150, 140); } }
 		public override string description { get { return "The Remap Range node takes an input value and remaps it to a range of your choosing. For example, if you want to remap a number in currently in the range of 0-64 to be 0-1 instead, you input 0 and 64 in the \"Old Min\" and \"Old Max\" knobs, and 0 and 1 in the \"New min\" and \"New Max\" knobs."; } }
 
 		[ValueConnectionKnob("Input", Direction.In, "Number")]
@@ -40,7 +40,19 @@ namespace NodeEditorFramework.Standard
 		
 		public override void NodeGUI () 
 		{
-			base.NodeGUI();
+			GUILayout.BeginHorizontal ();
+			GUILayout.BeginVertical ();
+
+			foreach (ConnectionKnob input in inputKnobs)
+				input.DisplayLayout ();
+
+			GUILayout.EndVertical ();
+			GUILayout.BeginVertical ();
+
+			outputKnob.DisplayLayout (new GUIContent(label));
+
+			GUILayout.EndVertical ();
+			GUILayout.EndHorizontal ();
 			
 			if (GUI.changed)
 				NodeEditor.curNodeCanvas.OnNodeChange(this);
@@ -49,6 +61,12 @@ namespace NodeEditorFramework.Standard
 		public override bool Calculate () 
 		{
 			Number result = new Number();
+			
+			input = 0f;
+			oldMin = 0f;
+			oldMax = 1f;
+			newMin = 0f;
+			newMax = 1f;
 
 			if (inputKnob.connected())
 				input = inputKnob.GetValue<Number> ();
@@ -64,6 +82,8 @@ namespace NodeEditorFramework.Standard
 			result = newMin + (input - oldMin) * (newMax - newMin) / (oldMax - oldMin);
 
 			outputKnob.SetValue<Number> (result);
+
+			label = outputKnob.GetValue<Number>().ToStringShort();
 
 			return true;
 		}

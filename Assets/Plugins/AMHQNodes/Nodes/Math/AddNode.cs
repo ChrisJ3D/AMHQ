@@ -12,19 +12,20 @@ namespace NodeEditorFramework.Standard
 		public override string GetID { get { return ID; } }
 
 		public override string Title { get { return "Add"; } }
-		public override Vector2 DefaultSize { get { return new Vector2 (150, 70); } }
+		public override Vector2 DefaultSize { get { return new Vector2 (150, 80); } }
 		public override string description { get { return "Addition (often signified by the plus symbol \"+\") is one of the four basic operations of arithmetic, with the others being subtraction, multiplication and division. The addition of two whole numbers is the total amount of those quantities combined."; } }
 
 
-		[ValueConnectionKnob("Summand 1", Direction.In, "Number")]
+		[ValueConnectionKnob("Summand", Direction.In, "Number")]
 		public ValueConnectionKnob aKnob;
-		[ValueConnectionKnob("Summand 2", Direction.In, "Number")]
+		[ValueConnectionKnob("Summand", Direction.In, "Number")]
 		public ValueConnectionKnob bKnob;
 		[ValueConnectionKnob("Sum", Direction.Out, "Number")]
 		public ValueConnectionKnob outputKnob;
 
 		public Number summand1 = new Number();
 		public Number summand2 = new Number();
+		private string label = "";
 		
 		public override void NodeGUI () 
 		{
@@ -33,23 +34,16 @@ namespace NodeEditorFramework.Standard
 			GUILayout.BeginHorizontal ();
 			GUILayout.BeginVertical ();
 
-			if (aKnob.connected())
-				aKnob.DisplayLayout();
-			else
-				summand1 = RTEditorGUI.FloatField (GUIContent.none, summand1);
+			aKnob.DisplayLayout();
 
 			GUILayout.Space(5f);
 			
-			// --
-			if (bKnob.connected())
-				bKnob.DisplayLayout();
-			else
-				summand2 = RTEditorGUI.FloatField (GUIContent.none, summand2);
+			bKnob.DisplayLayout();
 
 			GUILayout.EndVertical ();
 			GUILayout.BeginVertical ();
 			
-			outputKnob.DisplayLayout ();
+			outputKnob.DisplayLayout (new GUIContent(label));
 			
 			GUILayout.EndVertical ();
 			GUILayout.EndHorizontal ();	
@@ -60,6 +54,9 @@ namespace NodeEditorFramework.Standard
 		
 		public override bool Calculate () 
 		{
+			summand1 = 0f;
+			summand2 = 0f;
+
 			if (aKnob.connected()) {
 				summand1 = aKnob.GetValue<Number>();
 			}
@@ -69,6 +66,8 @@ namespace NodeEditorFramework.Standard
 			} 
 			
 			outputKnob.SetValue<Number> (summand1 + summand2);
+
+			label = outputKnob.GetValue<Number>().ToStringShort();
 
 			return true;
 		}

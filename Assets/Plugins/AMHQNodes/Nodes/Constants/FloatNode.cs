@@ -13,7 +13,7 @@ namespace NodeEditorFramework.Standard
 		public override string GetID { get { return ID; } }
 
 		public override string Title { get { return "Float"; } }
-		public override Vector2 DefaultSize { get { return new Vector2 (150, 50); } }
+		public override Vector2 DefaultSize { get { return new Vector2 (130, 60); } }
 
 		[ValueConnectionKnob("Float", Direction.Out, "Number")]
 		public ValueConnectionKnob outputKnob;		
@@ -31,8 +31,6 @@ namespace NodeEditorFramework.Standard
 			value = RTEditorGUI.FloatField (value);
 
 			GUILayout.EndVertical();
-
-			GUILayout.Space(10);
 
 			GUILayout.BeginVertical();
 

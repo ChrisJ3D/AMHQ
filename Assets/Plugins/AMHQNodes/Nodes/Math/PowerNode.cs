@@ -11,7 +11,7 @@ namespace NodeEditorFramework.Standard
 		public const string ID = "powerNode";
 		public override string GetID { get { return ID; } }
 		public override string Title { get { return "Power"; } }
-		public override Vector2 DefaultSize { get { return new Vector2 (150, 70); } }
+		public override Vector2 DefaultSize { get { return new Vector2 (150, 80); } }
 
 		[ValueConnectionKnob("Base", Direction.In, "Number")]
 		public ValueConnectionKnob aKnob;
@@ -31,18 +31,11 @@ namespace NodeEditorFramework.Standard
 			GUILayout.BeginHorizontal ();
 			GUILayout.BeginVertical ();
 
-			if (aKnob.connected())
-				aKnob.DisplayLayout ();
-			else
-				Base = RTEditorGUI.FloatField (GUIContent.none, Base);
+			aKnob.DisplayLayout ();
 
 			GUILayout.Space(5f);
 			
-			// --
-			if (bKnob.connected())
-				bKnob.DisplayLayout ();
-			else
-				exponent = RTEditorGUI.FloatField (GUIContent.none, exponent);
+			bKnob.DisplayLayout ();
 
 			GUILayout.EndVertical ();
 			GUILayout.BeginVertical ();
@@ -58,6 +51,8 @@ namespace NodeEditorFramework.Standard
 		
 		public override bool Calculate () 
 		{
+			Base = 0f;
+			exponent = 1f;
 
 			if (aKnob.connected())
 				Base = aKnob.GetValue<Number> ();
@@ -67,7 +62,7 @@ namespace NodeEditorFramework.Standard
 
 			outputKnob.SetValue<Number> (Math.Pow(Base, exponent));
 
-			label = outputKnob.GetValue<Number> ().ToString();
+			label = outputKnob.GetValue<Number> ().ToStringShort();
 
 			return true;
 		}

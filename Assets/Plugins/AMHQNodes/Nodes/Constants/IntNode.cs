@@ -13,7 +13,7 @@ namespace NodeEditorFramework.Standard
 		public override string GetID { get { return ID; } }
 
 		public override string Title { get { return "Integer"; } }
-		public override Vector2 DefaultSize { get { return new Vector2 (120, 50); } }
+		public override Vector2 DefaultSize { get { return new Vector2 (130, 60); } }
 
 		[ValueConnectionKnob("Output", Direction.Out, "Number")]
 		public ValueConnectionKnob outputKnob;

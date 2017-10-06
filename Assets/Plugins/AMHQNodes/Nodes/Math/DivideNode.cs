@@ -10,12 +10,12 @@ namespace NodeEditorFramework.Standard
 		public const string ID = "DivideNode";
 		public override string GetID { get { return ID; } }
 		public override string Title { get { return "Divide"; } }
-		public override Vector2 DefaultSize { get { return new Vector2 (150, 70); } }
+		public override Vector2 DefaultSize { get { return new Vector2 (150, 80); } }
 		public override string description { get { return "Division is one of the four basic operations of arithmetic, the others being addition, subtraction, and multiplication. The division of two natural numbers is the process of calculating the number of times one number is contained within one another."; } }
 
-		[ValueConnectionKnob("Summand 1", Direction.In, "Number")]
+		[ValueConnectionKnob("Numerator", Direction.In, "Number")]
 		public ValueConnectionKnob aKnob;
-		[ValueConnectionKnob("Summand 2", Direction.In, "Number")]
+		[ValueConnectionKnob("Denominator", Direction.In, "Number")]
 		public ValueConnectionKnob bKnob;
 		[ValueConnectionKnob("Quotient", Direction.Out, "Number")]
 		public ValueConnectionKnob outputKnob;
@@ -33,41 +33,29 @@ namespace NodeEditorFramework.Standard
 			GUILayout.BeginHorizontal ();
 			GUILayout.BeginVertical ();
 
-			// Inputs [0].DisplayLayout ();
-			// Inputs [1].DisplayLayout();
-
-			if (aKnob.connected()) {
-				GUILayout.Label (aKnob.name);
-				aKnob.DisplayLayout();
-			}
-			else
-				numerator = RTEditorGUI.FloatField (GUIContent.none, numerator);
+			aKnob.DisplayLayout();
 
 			GUILayout.Space(5f);
 			
-			// --
-			if (bKnob.connected()) {
-				GUILayout.Label (bKnob.name);
-				bKnob.DisplayLayout();
-			}
-			else
-				denominator = RTEditorGUI.FloatField (GUIContent.none, denominator);
+			bKnob.DisplayLayout();
 
 			GUILayout.EndVertical ();
 			GUILayout.BeginVertical ();
 			
-			outputKnob.DisplayLayout ();
+			outputKnob.DisplayLayout (new GUIContent(label));
 			
 			GUILayout.EndVertical ();
 			GUILayout.EndHorizontal ();
 
 			if (GUI.changed)
 				NodeEditor.curNodeCanvas.OnNodeChange(this);
-			
 		}
 		
 		public override bool Calculate () 
 		{
+			numerator = 0f;
+			denominator = 1f;
+
 			if (aKnob.connected())
 				numerator = aKnob.GetValue<Number> ();
 			if (bKnob.connected())
@@ -75,7 +63,7 @@ namespace NodeEditorFramework.Standard
 
 			outputKnob.SetValue<Number> (numerator / denominator);
 
-			label = outputKnob.GetValue(typeof(Number)).ToString();
+			label = outputKnob.GetValue<Number>().ToStringShort();
 
 			return true;
 		}

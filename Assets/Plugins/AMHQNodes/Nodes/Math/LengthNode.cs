@@ -46,13 +46,15 @@ namespace NodeEditorFramework.Standard
 		
 		public override bool Calculate () 
 		{
+			length = 0f;
+
 			if (inputKnob.connected()) {
 				Number v = inputKnob.GetValue<Number>();
 				length =  Mathf.Sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z) + (v.w * v.w));
 				outputKnob.SetValue<Number> (length);
 			}
 
-			label = length.ToString();
+			label = length.ToStringShort();
 				
 			return true;
 		}

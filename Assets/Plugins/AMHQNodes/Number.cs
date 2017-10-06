@@ -5,7 +5,7 @@ using UnityEngine;
 public class Number {
 
 	[SerializeField]
-	private float[] _value = new float[4];
+	protected float[] _value = new float[4];
 
 	public float value {
 		get { return _value [0]; }

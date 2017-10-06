@@ -11,7 +11,7 @@ namespace NodeEditorFramework.Standard
 		public override string GetID { get { return ID; } }
 
 		public override string Title { get { return "Multiply"; } }
-		public override Vector2 DefaultSize { get { return new Vector2 (150, 70); } }
+		public override Vector2 DefaultSize { get { return new Vector2 (150, 80); } }
 		public override string description { get { return "Multiplication (often denoted by the cross symbol \"×\", by a point \"⋅\", by juxtaposition, or, on computers, by an asterisk \"∗\") is one of the four elementary mathematical operations of arithmetic; with the others being addition, subtraction and division. The multiplication of whole numbers may be thought as a repeated addition; that is, the multiplication of two numbers is equivalent to adding as many copies of one of them, the multiplicand, as the value of the other one, the multiplier. Normally, the multiplier is written first and multiplicand second, (though this can vary by language.)"; } }
 
 		[ValueConnectionKnob("Factor 1", Direction.In, "Number")]
@@ -32,30 +32,16 @@ namespace NodeEditorFramework.Standard
 			GUILayout.BeginHorizontal ();
 			GUILayout.BeginVertical ();
 
-			// Inputs [0].DisplayLayout ();
-			// Inputs [1].DisplayLayout();
-
-			if (aKnob.connected()) {
-				GUILayout.Label (aKnob.name);
-				aKnob.DisplayLayout();
-			}
-			else
-				factor1 = RTEditorGUI.FloatField (GUIContent.none, factor1);
+			aKnob.DisplayLayout();
 
 			GUILayout.Space(5f);
 			
-			// --
-			if (bKnob.connected()) {
-				GUILayout.Label (bKnob.name);
-				bKnob.DisplayLayout();
-			}
-			else
-				factor2 = RTEditorGUI.FloatField (GUIContent.none, factor2);
+			bKnob.DisplayLayout();
 
 			GUILayout.EndVertical ();
 			GUILayout.BeginVertical ();
 			
-			outputKnob.DisplayLayout ();
+			outputKnob.DisplayLayout (new GUIContent(label));
 			
 			GUILayout.EndVertical ();
 			GUILayout.EndHorizontal ();
@@ -67,12 +53,17 @@ namespace NodeEditorFramework.Standard
 		
 		public override bool Calculate () 
 		{
+			factor1 = 1f;
+			factor2 = 1f;
+
 			if (aKnob.connected())
 				factor1 = aKnob.GetValue<Number> ();
 			if (bKnob.connected())
 				factor2 = bKnob.GetValue<Number> ();
 
 			outputKnob.SetValue<Number> (factor1 * factor2);
+
+			label = outputKnob.GetValue<Number>().ToStringShort();
 
 			return true;
 		}

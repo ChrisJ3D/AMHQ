@@ -12,7 +12,7 @@ namespace NodeEditorFramework.Standard
 		public const string ID = "VectorNode";
 		public override string GetID { get { return ID; } }
 		public override string Title { get { return "Vector"; } }
-		public override Vector2 DefaultSize { get { return new Vector2 (200, 105); } }
+		public override Vector2 DefaultSize { get { return new Vector2 (130, 135); } }
 
 		public Number value = new Number();
 
@@ -33,7 +33,7 @@ namespace NodeEditorFramework.Standard
 			value.w = RTEditorGUI.FloatField (value.w);
 
 			GUILayout.EndVertical();
-			GUILayout.Space(40);
+			GUILayout.Space(10);
 
 			GUILayout.BeginVertical();
 

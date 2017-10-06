@@ -11,7 +11,7 @@ namespace NodeEditorFramework.Standard
 		public override string GetID { get { return ID; } }
 
 		public override string Title { get { return "Remap"; } }
-		public override Vector2 DefaultSize { get { return new Vector2 (165, 80); } }
+		public override Vector2 DefaultSize { get { return new Vector2 (150, 90); } }
 		public override string description { get { return "The Remap Range node takes an input value, along with a range, and remaps it to a range of 0..1. If you want to set your own custom output range, use the \"Remap Range\" node."; } }
 
 		[ValueConnectionKnob("Input", Direction.In, "Number")]
@@ -33,8 +33,20 @@ namespace NodeEditorFramework.Standard
 		
 		public override void NodeGUI () 
 		{
-			base.NodeGUI();
-			
+			GUILayout.BeginHorizontal ();
+			GUILayout.BeginVertical ();
+
+			foreach (ConnectionKnob input in inputKnobs)
+				input.DisplayLayout ();
+
+			GUILayout.EndVertical ();
+			GUILayout.BeginVertical ();
+
+			outputKnob.DisplayLayout (new GUIContent(label));
+
+			GUILayout.EndVertical ();
+			GUILayout.EndHorizontal ();
+
 			if (GUI.changed)
 				NodeEditor.curNodeCanvas.OnNodeChange(this);
 		}
@@ -42,6 +54,10 @@ namespace NodeEditorFramework.Standard
 		public override bool Calculate () 
 		{
 			Number result = new Number();
+
+			input = 0f;
+			oldMin = 0f;
+			oldMax = 1f;
 
 			if (inputKnob.connected())
 				input = inputKnob.GetValue<Number> ();
@@ -53,6 +69,8 @@ namespace NodeEditorFramework.Standard
 			result = (input - oldMin) / (oldMax - oldMin);
 
 			outputKnob.SetValue<Number> (result);
+
+			label = outputKnob.GetValue<Number> ().ToStringShort();
 
 			return true;
 		}

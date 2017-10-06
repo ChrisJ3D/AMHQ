@@ -29,10 +29,7 @@ namespace NodeEditorFramework.Standard
 			GUILayout.BeginHorizontal ();
 			GUILayout.BeginVertical ();
 
-			if (aKnob.connected())
-				aKnob.DisplayLayout();
-			else
-				radicand = RTEditorGUI.FloatField (GUIContent.none, radicand);
+			aKnob.DisplayLayout();
 
 			GUILayout.EndVertical ();
 			GUILayout.BeginVertical ();
@@ -54,7 +51,7 @@ namespace NodeEditorFramework.Standard
 
 			outputKnob.SetValue<Number> (Math.Sqrt(radicand));
 
-			label = outputKnob.GetValue<Number> ();
+			label = outputKnob.GetValue<Number> ().ToStringShort();
 
 			return true;
 		}
