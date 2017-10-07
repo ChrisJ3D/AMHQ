@@ -12,14 +12,14 @@ namespace NodeEditorFramework.Standard
 		public override string GetID { get { return ID; } }
 
 		public override string Title { get { return "Sign"; } }
-		public override Vector2 DefaultSize { get { return new Vector2 (150, 50); } }
+		public override Vector2 DefaultSize { get { return new Vector2 (120, 50); } }
 
-		[ValueConnectionKnob("Vector", Direction.In, "Number")]
+		[ValueConnectionKnob("Input", Direction.In, "Number")]
 		public ValueConnectionKnob inputKnob;
-		[ValueConnectionKnob("Normalized", Direction.Out, "Number")]
+		[ValueConnectionKnob("Sign", Direction.Out, "Number")]
 		public ValueConnectionKnob outputKnob;
 
-		public Number normalizedVector = new Number();
+		public Number input = new Number();
 		protected string label = "";
 		
 		public override void NodeGUI () 
@@ -45,14 +45,17 @@ namespace NodeEditorFramework.Standard
 		
 		public override bool Calculate () 
 		{
+			input = 0f;
+
 			if (inputKnob.connected()) {
-				float length = 0.0f;
-				Number v = inputKnob.GetValue<Number>();
-				length =  Mathf.Sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z) + (v.w * v.w));
-				outputKnob.SetValue<Number> (v / length);
+				input = inputKnob.GetValue<Number>();
 			}
 
-			label = outputKnob.GetValue<Number> ().ToString();
+			input = Mathf.Sign(input);
+
+			outputKnob.SetValue<Number> (input);
+
+			label = outputKnob.GetValue<Number> ().ToStringShort();
 
 			return true;
 		}

@@ -4,7 +4,7 @@ using NodeEditorFramework.Utilities;
 
 namespace NodeEditorFramework.Standard
 {
-	[Node (false, "Math/Remap Range")]
+	[Node (false, "Math/RemapRange")]
 	public class RemapRangeNode : Node 
 	{
 		public const string ID = "RemapRangeNode";

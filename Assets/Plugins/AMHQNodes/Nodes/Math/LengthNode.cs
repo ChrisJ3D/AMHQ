@@ -13,6 +13,8 @@ namespace NodeEditorFramework.Standard
 
 		public override string Title { get { return "Length"; } }
 		public override Vector2 DefaultSize { get { return new Vector2 (150, 50); } }
+		public override string description { get { return "The Length node takes a given vector and outputs its length (also called magnitude)."; } }
+
 
 		[ValueConnectionKnob("Vector", Direction.In, "Number")]
 		public ValueConnectionKnob inputKnob;
@@ -51,8 +53,9 @@ namespace NodeEditorFramework.Standard
 			if (inputKnob.connected()) {
 				Number v = inputKnob.GetValue<Number>();
 				length =  Mathf.Sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z) + (v.w * v.w));
-				outputKnob.SetValue<Number> (length);
 			}
+
+			outputKnob.SetValue<Number> (length);
 
 			label = length.ToStringShort();
 				
