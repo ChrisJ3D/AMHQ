@@ -7,19 +7,19 @@ using NodeEditorFramework.Utilities;
 
 namespace NodeEditorFramework.Standard
 {
-	[Node (false, "Character/Character Picker")]
-	public class CharacterPickerNode : Node 
+	[Node (false, "Character/Attribute Picker")]
+	public class AttributePickerNode : Node 
 	{
-		public const string ID = "CharacterPickerNode";
+		public const string ID = "AttributePickerNode";
 		public override string GetID { get { return ID; } }
 
-		public override string Title { get { return "Character Picker"; } }
+		public override string Title { get { return "Attribute Picker"; } }
 		public override Vector2 DefaultSize { get { return new Vector2 (120, 50); } }
 
 		[ValueConnectionKnob("Output", Direction.Out, "Number")]
 		public ValueConnectionKnob outputKnob;
 
-		public ChosenCharacter character;
+		public CharacterAttribute attribute;
 		public Number output = new Number();
 
 		protected string label = "";
@@ -29,7 +29,7 @@ namespace NodeEditorFramework.Standard
 			GUILayout.BeginHorizontal();
 			GUILayout.BeginVertical();
 
-			character = (ChosenCharacter)RTEditorGUI.EnumPopup (character);
+			attribute = (CharacterAttribute)RTEditorGUI.EnumPopup (attribute);
 
 			GUILayout.EndVertical();
 			GUILayout.BeginVertical();
@@ -44,17 +44,18 @@ namespace NodeEditorFramework.Standard
 		
 		public override bool Calculate () 
 		{
-			output = (int)character;
+			output = (int)attribute;
 			outputKnob.SetValue<Number>(output);
 			return true;
 		}
 
-		public enum ChosenCharacter {
-			Player = 0,
-			Bob = 1,
-			Jake = 2,
-			Bonky = 3,
-			Jef = 4
+		public enum CharacterAttribute {
+			Stress = 0,
+			Charisma = 1,
+			Innovation = 2,
+			Organisation = 3,
+			Knowledge = 4,
+			Eloquence = 5
 		};
 	}
 }

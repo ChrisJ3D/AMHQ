@@ -7,14 +7,14 @@ using NodeEditorFramework.Utilities;
 
 namespace NodeEditorFramework.Standard
 {
-	[Node (false, "Character/Attributes")]
+	[Node (false, "Character/Get Attribute Value")]
 	public class AttributesNode : Node 
 	{
 		public const string ID = "AttributesNode";
 		public override string GetID { get { return ID; } }
 
-		public override string Title { get { return "Attributes"; } }
-		public override Vector2 DefaultSize { get { return new Vector2 (120, 230); } }
+		public override string Title { get { return "Get Attribute Value"; } }
+		public override Vector2 DefaultSize { get { return new Vector2 (140, 210); } }
 
 		[ValueConnectionKnob("Stress", Direction.Out, "Number")]
 		public ValueConnectionKnob stressKnob;

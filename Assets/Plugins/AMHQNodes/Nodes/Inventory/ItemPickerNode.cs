@@ -7,19 +7,19 @@ using NodeEditorFramework.Utilities;
 
 namespace NodeEditorFramework.Standard
 {
-	[Node (false, "Character/Character Picker")]
-	public class CharacterPickerNode : Node 
+	[Node (false, "Inventory/Item Picker")]
+	public class ItemPickerNode : Node 
 	{
-		public const string ID = "CharacterPickerNode";
+		public const string ID = "ItemPickerNode";
 		public override string GetID { get { return ID; } }
 
-		public override string Title { get { return "Character Picker"; } }
+		public override string Title { get { return "Item Picker"; } }
 		public override Vector2 DefaultSize { get { return new Vector2 (120, 50); } }
 
 		[ValueConnectionKnob("Output", Direction.Out, "Number")]
 		public ValueConnectionKnob outputKnob;
 
-		public ChosenCharacter character;
+		public Item chosenItem;
 		public Number output = new Number();
 
 		protected string label = "";
@@ -29,7 +29,7 @@ namespace NodeEditorFramework.Standard
 			GUILayout.BeginHorizontal();
 			GUILayout.BeginVertical();
 
-			character = (ChosenCharacter)RTEditorGUI.EnumPopup (character);
+			chosenItem = (Item)RTEditorGUI.EnumPopup (chosenItem);
 
 			GUILayout.EndVertical();
 			GUILayout.BeginVertical();
@@ -44,17 +44,17 @@ namespace NodeEditorFramework.Standard
 		
 		public override bool Calculate () 
 		{
-			output = (int)character;
+			output = (int)chosenItem;
 			outputKnob.SetValue<Number>(output);
 			return true;
 		}
 
-		public enum ChosenCharacter {
-			Player = 0,
-			Bob = 1,
-			Jake = 2,
-			Bonky = 3,
-			Jef = 4
+		public enum Item {
+			Box = 0,
+			Log = 1,
+			Insurance = 2,
+			Gun = 3,
+			Paint = 4
 		};
 	}
 }
