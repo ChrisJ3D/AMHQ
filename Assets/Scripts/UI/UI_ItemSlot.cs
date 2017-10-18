@@ -7,11 +7,11 @@ public class UI_ItemSlot : MonoBehaviour {
 
 
 	public GameObject[] itemSlot;
-	Inventory inventory;
+	InventoryManager inventory;
 
 	// Use this for initialization
 	void Start () {
-		inventory = FindObjectOfType<Player>().GetComponent<Inventory>();
+		inventory = FindObjectOfType<Player>().GetComponent<InventoryManager>();
 	}
 	
 	public void RefreshItemSlot() {

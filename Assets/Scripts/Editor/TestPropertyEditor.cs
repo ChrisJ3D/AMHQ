@@ -6,7 +6,7 @@ using UnityEditor;
 [CustomEditor(typeof(TestManager))]
 public class TestPropertyEditor : Editor {
 
-	TestManager targetManager;
+	public TestManager targetManager;
 
 	// Use this for initialization
 	void Start () {

@@ -8,11 +8,15 @@ public class GameManager : MonoBehaviour {
 	public GameObject TimeManager;
 	public GameObject UIManager;
 	public GameObject NodeManager;
-	public GameObject InventoryManager;
+	public InventoryManager _inventoryManager;
+
+	void DontDestroyOnLoad() {
+
+	}
 
 	// Use this for initialization
 	void Start () {
-		
+		_inventoryManager = (InventoryManager)GetComponent("InventoryManager");
 	}
 	
 	// Update is called once per frame

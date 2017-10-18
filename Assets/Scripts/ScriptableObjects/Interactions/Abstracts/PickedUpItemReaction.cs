@@ -1,10 +1,10 @@
 ﻿public class PickedUpItemReaction : DelayedReaction {
 
 	public Item item;
-	private Inventory inventory;
+	private InventoryManager inventory;
 
 	protected override void SpecificInit() {
-		inventory = FindObjectOfType<Inventory>();
+		inventory = FindObjectOfType<InventoryManager>();
 	}
 
 	protected override void ImmediateReaction() {

@@ -22,9 +22,9 @@ public class Character : MonoBehaviour {
 		Affectionate
 		};
 
-	float AffectionValue = 0;
+	// float AffectionValue = 0;
 
-	bool inRelationship = false;
+	// bool inRelationship = false;
 
 	// Use this for initialization
 	void Start () {

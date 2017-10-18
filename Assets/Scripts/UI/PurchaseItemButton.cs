@@ -5,7 +5,7 @@ using UnityEngine;
 public class PurchaseItemButton : MonoBehaviour {
 
 	public Item item;
-	Inventory playerInventory;
+	InventoryManager playerInventory;
 	
 	public void OnClick() {
 		
@@ -21,6 +21,6 @@ public class PurchaseItemButton : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
-		playerInventory = FindObjectOfType<Player>().GetComponent<Inventory>();
+		playerInventory = FindObjectOfType<Player>().GetComponent<InventoryManager>();
 	}
 }

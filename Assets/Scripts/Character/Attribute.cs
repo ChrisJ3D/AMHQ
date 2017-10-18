@@ -24,7 +24,6 @@ public class CharacterAttribute : ScriptableObject {
 	public CharacterAttribute(CharacterAttributeType Type) {
 		this.type = Type;
 		this.value = 0;
-		Vector3 blah = new Vector3(1,1,1);
 	}
 
 	public CharacterAttribute(CharacterAttributeType Type, int Value) {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Inventory : MonoBehaviour {
+public class InventoryManager : MonoBehaviour {
 
 	public const int numItemSlots = 6;
 	public Image[] itemImages = new Image[numItemSlots];

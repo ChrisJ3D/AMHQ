@@ -54,9 +54,9 @@ public class DialogueManager : MonoBehaviour {
 
 	void ResetImages() {
 		if (characterName != "") {
-			GameObject character = GameObject.Find(characterName);
-			//Image currentSprite = character.GetComponent<Image>();
-			//currentSprite.sprite = null;
+			// GameObject character = GameObject.Find(characterName);
+			// Image currentSprite = character.GetComponent<Image>();
+			// currentSprite.sprite = null;
 		}
 	}
 

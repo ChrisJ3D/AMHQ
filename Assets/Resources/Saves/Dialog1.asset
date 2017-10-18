@@ -478,6 +478,18 @@ MonoBehaviour:
   aKnob: {fileID: 114345853357844878}
   bKnob: {fileID: 114118086578365336}
   outputKnob: {fileID: 114323814423943160}
+  summand1:
+    _value:
+    - 0
+    - 0
+    - 0
+    - 0
+  summand2:
+    _value:
+    - 0
+    - 0
+    - 0
+    - 0
 --- !u!114 &114118086578365336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -487,7 +499,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
-  m_Name: Summand 2
+  m_Name: Summand
   m_EditorClassIdentifier: 
   body: {fileID: 114113437313955338}
   direction: 1
@@ -1006,6 +1018,18 @@ MonoBehaviour:
   aKnob: {fileID: 114613579336857034}
   bKnob: {fileID: 114592905924553742}
   outputKnob: {fileID: 114157172871724730}
+  minuend:
+    _value:
+    - 0
+    - 0
+    - 0
+    - 0
+  subtrahend:
+    _value:
+    - 0
+    - 0
+    - 0
+    - 0
 --- !u!114 &114280740932649390
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1237,7 +1261,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
-  m_Name: Summand 2
+  m_Name: Denominator
   m_EditorClassIdentifier: 
   body: {fileID: 114448203643485492}
   direction: 1
@@ -1276,7 +1300,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
-  m_Name: Summand 1
+  m_Name: Summand
   m_EditorClassIdentifier: 
   body: {fileID: 114113437313955338}
   direction: 1
@@ -1598,6 +1622,18 @@ MonoBehaviour:
   aKnob: {fileID: 114703097004381038}
   bKnob: {fileID: 114341096108083016}
   outputKnob: {fileID: 114590288388510342}
+  numerator:
+    _value:
+    - 0
+    - 0
+    - 0
+    - 0
+  denominator:
+    _value:
+    - 0
+    - 0
+    - 0
+    - 0
 --- !u!114 &114450874436558288
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2380,6 +2416,18 @@ MonoBehaviour:
   aKnob: {fileID: 114833691598783664}
   bKnob: {fileID: 114139433726108060}
   outputKnob: {fileID: 114735083245594190}
+  factor1:
+    _value:
+    - 0
+    - 0
+    - 0
+    - 0
+  factor2:
+    _value:
+    - 0
+    - 0
+    - 0
+    - 0
 --- !u!114 &114671018703581288
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2510,7 +2558,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
-  m_Name: Summand 1
+  m_Name: Numerator
   m_EditorClassIdentifier: 
   body: {fileID: 114448203643485492}
   direction: 1
@@ -2890,8 +2938,13 @@ MonoBehaviour:
   position: {x: -1359.6, y: -16.400024}
   dynamicConnectionPorts: []
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-  inputKnob: {fileID: 114917009052087346}
   outputKnob: {fileID: 114849483959260550}
+  value:
+    _value:
+    - 0
+    - 0
+    - 0
+    - 0
 --- !u!114 &114818796711069614
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3011,7 +3064,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
-  m_Name: Output
+  m_Name: Float
   m_EditorClassIdentifier: 
   body: {fileID: 114815136707610420}
   direction: 2
@@ -3229,6 +3282,12 @@ MonoBehaviour:
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   inputKnob: {fileID: 114110653259799756}
   outputKnob: {fileID: 114671018703581288}
+  normalizedVector:
+    _value:
+    - 0
+    - 0
+    - 0
+    - 0
 --- !u!114 &114970742986359664
 MonoBehaviour:
   m_ObjectHideFlags: 1

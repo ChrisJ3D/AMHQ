@@ -200,7 +200,7 @@ Transform:
   m_Children:
   - {fileID: 2048626280}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &822368265
 GameObject:
@@ -400,28 +400,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1035634516
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 22456786, guid: 13a9a5aec367643459a50a428939c44f, type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 22456786, guid: 13a9a5aec367643459a50a428939c44f, type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 406
-      objectReference: {fileID: 0}
-    - target: {fileID: 22456786, guid: 13a9a5aec367643459a50a428939c44f, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 352
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 13a9a5aec367643459a50a428939c44f, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1275792529
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,6 +569,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2048626280}
   - component: {fileID: 2048626281}
+  - component: {fileID: 2048626282}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -626,4 +605,30 @@ MonoBehaviour:
   TimeManager: {fileID: 0}
   UIManager: {fileID: 0}
   NodeManager: {fileID: 0}
-  InventoryManager: {fileID: 0}
+  _inventoryManager: {fileID: 0}
+--- !u!114 &2048626282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2048626279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 083cd1bd0eea8e94ab824d72643671cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemImages:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  items:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Funds: 1000

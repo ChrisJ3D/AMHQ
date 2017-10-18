@@ -4,4 +4,7 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Plugins/DialogueSystem/_Scene/BaseScene.unity
+    guid: 4de1de2fd8c2f6f4f93b9974b0176396
