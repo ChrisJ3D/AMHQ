@@ -19,17 +19,18 @@ namespace NodeEditorFramework.Standard
 		[ValueConnectionKnob("Output", Direction.Out, "Number")]
 		public ValueConnectionKnob outputKnob;
 
-		public ChosenCharacter character;
+		public int characterIndex;
 		public Number output = new Number();
 
 		protected string label = "";
+		List<string> characterAssets = new List<string>();
 		
 		public override void NodeGUI () 
 		{
 			GUILayout.BeginHorizontal();
 			GUILayout.BeginVertical();
 
-			character = (ChosenCharacter)RTEditorGUI.EnumPopup (character);
+			characterIndex = RTEditorGUI.Popup (characterIndex, characterAssets.ToArray());
 
 			GUILayout.EndVertical();
 			GUILayout.BeginVertical();
@@ -44,17 +45,12 @@ namespace NodeEditorFramework.Standard
 		
 		public override bool Calculate () 
 		{
-			output = (int)character;
+			var currentCanvas = (AMHQCanvas)NodeEditor.curNodeCanvas;
+			characterAssets = currentCanvas.GetCharactersInAssetFolder();
+
+			output = (int)characterIndex;
 			outputKnob.SetValue<Number>(output);
 			return true;
 		}
-
-		public enum ChosenCharacter {
-			Player = 0,
-			Bob = 1,
-			Jake = 2,
-			Bonky = 3,
-			Jef = 4
-		};
 	}
 }

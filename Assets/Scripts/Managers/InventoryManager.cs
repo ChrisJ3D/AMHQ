@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
+using System.IO;
 
 public class InventoryManager : MonoBehaviour {
 
@@ -12,6 +14,8 @@ public class InventoryManager : MonoBehaviour {
 	public float Funds = 1000.0f;
 
 	UI_ItemSlot inventory_ui;
+
+
 
 	void Start() {
 		inventory_ui = FindObjectOfType<UI_ItemSlot>();
@@ -61,6 +65,4 @@ public class InventoryManager : MonoBehaviour {
 	public bool HasItemByType(string Type) {
 		return false;
 	}
-
-
 }

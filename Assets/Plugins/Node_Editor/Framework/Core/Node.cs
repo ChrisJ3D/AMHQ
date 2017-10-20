@@ -24,7 +24,7 @@ namespace NodeEditorFramework
 		[NonSerialized] public List<ConnectionPort> outputPorts = new List<ConnectionPort> ();
 		[NonSerialized] public List<ConnectionKnob> connectionKnobs = new List<ConnectionKnob> ();
 		[NonSerialized] public List<ConnectionKnob> inputKnobs = new List<ConnectionKnob> ();
-		[NonSerialized] public List<ConnectionKnob> outputKnobs = new List<ConnectionKnob> ();
+		[NonSerialized] public List<ConnectionKnob> outputKnobs = new List<ConnectionKnob> (); 
 
 		// Calculation graph
 		[HideInInspector] [NonSerialized]

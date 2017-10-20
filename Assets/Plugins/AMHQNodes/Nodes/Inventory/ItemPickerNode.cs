@@ -2,8 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using NodeEditorFramework;
 using NodeEditorFramework.Utilities;
+using System.IO;
 
 namespace NodeEditorFramework.Standard
 {
@@ -19,17 +21,18 @@ namespace NodeEditorFramework.Standard
 		[ValueConnectionKnob("Output", Direction.Out, "Number")]
 		public ValueConnectionKnob outputKnob;
 
-		public Item chosenItem;
+		public int chosenItemIndex;
 		public Number output = new Number();
 
 		protected string label = "";
+		List<string> itemAssets = new List<string>();
 		
 		public override void NodeGUI () 
 		{
 			GUILayout.BeginHorizontal();
 			GUILayout.BeginVertical();
 
-			chosenItem = (Item)RTEditorGUI.EnumPopup (chosenItem);
+			chosenItemIndex = RTEditorGUI.Popup (chosenItemIndex, itemAssets.ToArray());
 
 			GUILayout.EndVertical();
 			GUILayout.BeginVertical();
@@ -44,17 +47,12 @@ namespace NodeEditorFramework.Standard
 		
 		public override bool Calculate () 
 		{
-			output = (int)chosenItem;
+			var currentCanvas = (AMHQCanvas)NodeEditor.curNodeCanvas;
+			itemAssets = currentCanvas.GetItemsInAssetFolder();
+
+			output = chosenItemIndex;
 			outputKnob.SetValue<Number>(output);
 			return true;
 		}
-
-		public enum Item {
-			Box = 0,
-			Log = 1,
-			Insurance = 2,
-			Gun = 3,
-			Paint = 4
-		};
 	}
 }
