@@ -2,6 +2,8 @@
 using System.Collections;
 using NodeEditorFramework;
 using NodeEditorFramework.Utilities;
+using System.Collections.Generic;
+using UnityEditor;
 
 namespace NodeEditorFramework.Standard
 {
@@ -13,10 +15,11 @@ namespace NodeEditorFramework.Standard
 		public override string GetID { get { return ID; } }
 
 		public override string Title { get { return "Get Flag"; } }
-		public override Vector2 DefaultSize { get { return new Vector2 (160, 80); } }
+		public override Vector2 DefaultSize { get { return new Vector2 (120, 50); } }
 		public override string description { get { return "This node takes a given item (hopefully from the Item Picker node) and checks if it's in the player's inventory. It will return a boolean value."; } }
 
-		public Flag chosenFlag;
+		public int chosenFlagIndex;
+		List<string> flagAssets = new List<string>();
 
 		[ValueConnectionKnob("Output", Direction.Out, "Number")]
 		public ValueConnectionKnob outputKnob;
@@ -26,8 +29,9 @@ namespace NodeEditorFramework.Standard
 			GUILayout.BeginHorizontal();
 			GUILayout.Space(5);
 			GUILayout.BeginVertical();
+			GUILayout.Space(5);
 
-			chosenFlag = (Flag)RTEditorGUI.EnumPopup (chosenFlag);
+			chosenFlagIndex = RTEditorGUI.Popup (chosenFlagIndex, flagAssets.ToArray());
 
 			GUILayout.EndVertical();
 			
@@ -44,14 +48,13 @@ namespace NodeEditorFramework.Standard
 
 		public override bool Calculate () 
 		{
+			if(NodeEditor.curNodeCanvas) {
+				var currentCanvas = (AMHQCanvas)NodeEditor.curNodeCanvas;
+				flagAssets = currentCanvas.GetFlagsInAssetsFolder();
+			}
+
+			outputKnob.SetValue<Number>(chosenFlagIndex);
 			return true;
 		}
 	}
-
-	public enum Flag {
-			MarriedValen = 0,
-			FreedTingle = 1,
-			KilledTheAnimals = 2,
-			SavedTheFrames = 3,
-		};
 }

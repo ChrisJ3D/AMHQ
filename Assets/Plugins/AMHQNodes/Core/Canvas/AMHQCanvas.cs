@@ -113,4 +113,24 @@ public class AMHQCanvas : CalculationCanvasType
 		return characterAssets;
 
 	}
+
+	public List<string> GetFlagsInAssetsFolder() {
+
+		List<string> characterAssets = new List<string>();
+
+		string itemFolderPath = "/Prefabs/Flags";
+		string dataPath = Application.dataPath;
+	
+		string[] itemPaths = Directory.GetFiles(dataPath + itemFolderPath, searchOption: SearchOption.AllDirectories,
+		searchPattern: "*.prefab");
+			
+		for(int i = 0; i < itemPaths.Length; i++) {
+				string assetName = itemPaths[i].Substring(dataPath.Length+itemFolderPath.Length+1);
+				assetName = assetName.Substring(0,assetName.Length-7);
+				characterAssets.Add(assetName);
+			}
+
+		return characterAssets;
+
+	}
 }

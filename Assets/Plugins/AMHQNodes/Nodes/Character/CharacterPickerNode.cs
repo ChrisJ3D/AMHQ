@@ -28,13 +28,16 @@ namespace NodeEditorFramework.Standard
 		public override void NodeGUI () 
 		{
 			GUILayout.BeginHorizontal();
+			GUILayout.Space(5);
 			GUILayout.BeginVertical();
+			GUILayout.Space(5);
 
 			characterIndex = RTEditorGUI.Popup (characterIndex, characterAssets.ToArray());
 
 			GUILayout.EndVertical();
 			GUILayout.BeginVertical();
-			outputKnob.DisplayLayout();
+			
+			outputKnob.DisplayLayout(new GUIContent(""));
 
 			GUILayout.EndVertical();
 			GUILayout.EndHorizontal();
@@ -45,8 +48,10 @@ namespace NodeEditorFramework.Standard
 		
 		public override bool Calculate () 
 		{
-			var currentCanvas = (AMHQCanvas)NodeEditor.curNodeCanvas;
-			characterAssets = currentCanvas.GetCharactersInAssetFolder();
+			if(NodeEditor.curNodeCanvas) {
+				var currentCanvas = (AMHQCanvas)NodeEditor.curNodeCanvas;
+				characterAssets = currentCanvas.GetCharactersInAssetFolder();
+			}
 
 			output = (int)characterIndex;
 			outputKnob.SetValue<Number>(output);
