@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using NodeEditorFramework;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : Singleton<GameManager> {
 
 	public GameObject CharacterManager;
-	public GameObject TimeManager;
+	private TimeManager _timeManager;
 	public GameObject UIManager;
-	public GameObject NodeManager;
-	public InventoryManager _inventoryManager;
-
-	void DontDestroyOnLoad() {
-
-	}
+	public GameManager NodeManager;
+	private InventoryManager _inventoryManager;
 
 	// Use this for initialization
 	void Start () {

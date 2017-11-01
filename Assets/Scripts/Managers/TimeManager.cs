@@ -57,4 +57,8 @@ public class TimeManager : MonoBehaviour {
 
 		return currentSeason;
 	}
+
+	public DayOfWeek GetWeekday() {
+		return time.DayOfWeek;
+	}
 }
