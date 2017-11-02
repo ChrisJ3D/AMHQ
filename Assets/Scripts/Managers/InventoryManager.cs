@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEditor;
 using System.IO;
 
-public class InventoryManager : MonoBehaviour {
+public class InventoryManager : Singleton<InventoryManager> {
 
 	public const int numItemSlots = 6;
 	public Image[] itemImages = new Image[numItemSlots];

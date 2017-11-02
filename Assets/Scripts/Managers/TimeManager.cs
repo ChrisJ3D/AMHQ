@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class TimeManager : MonoBehaviour {
+public class TimeManager : Singleton<TimeManager> {
 
 	int season;
 	public int actionsPerDay = 3;

@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 859078002}
   - component: {fileID: 859078005}
   - component: {fileID: 859078004}
+  - component: {fileID: 859078006}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -138,10 +139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterManager: {fileID: 0}
-  TimeManager: {fileID: 0}
   UIManager: {fileID: 0}
   NodeManager: {fileID: 0}
-  InventoryManager: {fileID: 0}
 --- !u!4 &859078003
 Transform:
   m_ObjectHideFlags: 0
@@ -193,6 +192,17 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   Funds: 1000
+--- !u!114 &859078006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 859078001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4b2526d38c4ebd469110377c377035a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1984467627
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+	public void PlayVFX (string ID) {
+
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	public void PlaySound (string ID) {
+
+	}
+
+	public void SetBackgroundImage (string ID) {
+
+	}	
+
+	public void SetBackgroundMusic (string ID) {
+
 	}
 }

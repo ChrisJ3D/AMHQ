@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: LastSession
   m_EditorClassIdentifier: 
   editorStates:
-  - {fileID: 114489546063129484}
+  - {fileID: 114133986966956198}
   saveName: New AMHQ Scene
   savePath: 
   livesInScene: 0
@@ -20,7 +20,7 @@ MonoBehaviour:
   groups: []
   Name: AMHQ
   itemsFolderEntries: []
---- !u!114 &114489546063129484
+--- !u!114 &114133986966956198
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

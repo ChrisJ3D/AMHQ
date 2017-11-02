@@ -12,6 +12,9 @@ public class Character : MonoBehaviour {
 
 	[Header("Initial Stats")]
 	public AffectionLevel StartingAffection;
+
+	public float currentAffection;
+	public int index;
 	
 	public enum AffectionLevel {
 		Hostile, 
@@ -21,10 +24,6 @@ public class Character : MonoBehaviour {
 		Interested,
 		Affectionate
 		};
-
-	// float AffectionValue = 0;
-
-	// bool inRelationship = false;
 
 	// Use this for initialization
 	void Start () {
