@@ -6,8 +6,8 @@ using UnityEngine.Serialization;
 /// <summary>
 /// basic dialog node class, all other dialog nodes are derived from this
 /// </summary>
-[Node(true, "Dialog/Base Dialog Node", new Type[]{typeof(DialogNodeCanvas)})]
-public abstract class BaseDialogNode : Node
+[Node(true, "Base/Conversation", new Type[]{typeof(AMHQCanvas)})]
+public abstract class BaseConversationNode : Node
 {
 	public override bool AllowRecursion { get { return true; } }
 	public abstract Type GetObjectType { get; }
@@ -24,11 +24,11 @@ public abstract class BaseDialogNode : Node
 
 	public AudioClip SoundDialog;
 
-	public abstract BaseDialogNode Input(int inputValue);
+	public abstract BaseConversationNode Input(int inputValue);
 	public abstract bool IsBackAvailable();
 	public abstract bool IsNextAvailable();
 
-	public virtual BaseDialogNode PassAhead(int inputValue)
+	public virtual BaseConversationNode PassAhead(int inputValue)
 	{
 		return this;
 	}
@@ -43,25 +43,24 @@ public abstract class BaseDialogNode : Node
 	}
 
 	///return the dialog node pointed to by the first connection in the specified port
-	protected BaseDialogNode getTargetNode(ConnectionPort port) {
+	protected BaseConversationNode getTargetNode(ConnectionPort port) {
 		if (IsAvailable (port))
-			return port.connections [0].body as BaseDialogNode;
+			return port.connections [0].body as BaseConversationNode;
 		return null;
 	}
 
 }
 
+public class DialogueBackType : ConnectionKnobStyle //: IConnectionTypeDeclaration
+{
+	public override string Identifier { get { return "DialogueBack"; } }
+	public override Color Color { get { return Color.yellow; } }
+}
 
-// public class DialogBackType : ConnectionKnobStyle //: IConnectionTypeDeclaration
-// {
-// 	public override string Identifier { get { return "DialogBack"; } }
-// 	public override Color Color { get { return Color.yellow; } }
-// }
-
-// public class DialogForwardType : ValueConnectionType // : IConnectionTypeDeclaration
-// {
-// 	public override string Identifier { get { return "DialogForward"; } }
-// 	public override Type Type { get { return typeof(float); } }
-// 	public override Color Color { get { return Color.cyan; } }
-// }
+public class DialogueForwardType : ValueConnectionType // : IConnectionTypeDeclaration
+{
+	public override string Identifier { get { return "DialogueForward"; } }
+	public override Type Type { get { return typeof(float); } }
+	public override Color Color { get { return Color.cyan; } }
+}
 

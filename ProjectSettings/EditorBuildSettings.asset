@@ -8,3 +8,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Plugins/DialogueSystem/_Scene/BaseScene.unity
     guid: 4de1de2fd8c2f6f4f93b9974b0176396
+  - enabled: 1
+    path: Assets/Scenes/Events/01_IntroEvent.unity
+    guid: db86be58204627044944eae8cabfaf3b
+  - enabled: 1
+    path: Assets/Scenes/Hubs/scene_main_hub.unity
+    guid: 0fd879d18328fbc4fbd8bce61cef60cf
+  - enabled: 1
+    path: Assets/Scenes/Test/UI.unity
+    guid: f97aebe4371346d40be2a2dad7652d93
+  - enabled: 1
+    path: Assets/Scenes/_preload.unity
+    guid: 89ba950d7640dd643ab38874c624cdc6
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: ff23bd9732ac59b42ace585fe893cd24

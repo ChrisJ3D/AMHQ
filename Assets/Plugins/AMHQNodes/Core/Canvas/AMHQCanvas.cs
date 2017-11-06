@@ -6,24 +6,21 @@ using UnityEngine;
 using System.IO;
 
 [NodeCanvasType("AMHQ Canvas")]
-public class AMHQCanvas : CalculationCanvasType
+public class AMHQCanvas : NodeCanvas
 {
 
 	public override string canvasName { get { return "AMHQ Scene"; } }
 	public string Name = "AMHQ";
 
-	private Dictionary<int, BaseDialogNode> _lstActiveDialogs = new Dictionary<int, BaseDialogNode>();
+	private Dictionary<int, BaseConversationNode> _lstActiveDialogs = new Dictionary<int, BaseConversationNode>();
 
-	public List<string> itemsFolderEntries;
-
-	public DialogStartNode getDialogStartNode(int dialogID) {
-		return (DialogStartNode)this.nodes.FirstOrDefault (x => x is DialogStartNode
-			                                               && ((DialogStartNode)x).DialogID == dialogID);
+	public SceneLoadedNode GetStartNode(int nodeIndex) {
+		return (SceneLoadedNode)this.nodes.FirstOrDefault (x => x is SceneLoadedNode && ((SceneLoadedNode)x).nodeIndex == nodeIndex);
 	}
 
-	public bool HasDialogWithId(int dialogIdToLoad)
+	public bool HasDialogWithId(int nodeIndexToLoad)
 	{
-		DialogStartNode node = getDialogStartNode(dialogIdToLoad);
+		SceneLoadedNode node = GetStartNode(nodeIndexToLoad);
 		return node != default(Node) && node != default(DialogStartNode);
 	}
 
@@ -36,48 +33,48 @@ public class AMHQCanvas : CalculationCanvasType
 		}
 	}
 		
-	public void ActivateDialog(int dialogIdToLoad, bool goBackToBeginning)
+	public void ActivateDialog(int nodeIndexToLoad, bool goBackToBeginning)
 	{
-		BaseDialogNode node;
-		if (!_lstActiveDialogs.TryGetValue(dialogIdToLoad, out node))
+		BaseConversationNode node;
+		if (!_lstActiveDialogs.TryGetValue(nodeIndexToLoad, out node))
 		{
-			node = getDialogStartNode (dialogIdToLoad);
-			_lstActiveDialogs.Add(dialogIdToLoad, node);
+			node = GetStartNode (nodeIndexToLoad);
+			_lstActiveDialogs.Add(nodeIndexToLoad, node);
 		}
 		else
 		{
-			if (goBackToBeginning && !(node is DialogStartNode))
+			if (goBackToBeginning && !(node is SceneLoadedNode))
 			{
-				_lstActiveDialogs [dialogIdToLoad] = getDialogStartNode (dialogIdToLoad);
+				_lstActiveDialogs [nodeIndexToLoad] = GetStartNode (nodeIndexToLoad);
 			}
 		}
 	}
 
-	public BaseDialogNode GetDialog(int dialogIdToLoad)
+	public BaseConversationNode GetDialog(int nodeIndexToLoad)
 	{
-		BaseDialogNode node;
-		if (!_lstActiveDialogs.TryGetValue(dialogIdToLoad, out node))
+		BaseConversationNode node;
+		if (!_lstActiveDialogs.TryGetValue(nodeIndexToLoad, out node))
 		{
-			ActivateDialog(dialogIdToLoad, false);
+			ActivateDialog(nodeIndexToLoad, false);
 		}
-		return _lstActiveDialogs[dialogIdToLoad];
+		return _lstActiveDialogs[nodeIndexToLoad];
 	}
 
-	public void InputToDialog(int dialogIdToLoad, int inputValue)
+	public void InputToDialog(int nodeIndexToLoad, int inputValue)
 	{
-		BaseDialogNode node;
-		if (_lstActiveDialogs.TryGetValue(dialogIdToLoad, out node))
+		BaseConversationNode node;
+		if (_lstActiveDialogs.TryGetValue(nodeIndexToLoad, out node))
 		{
 			node = node.Input(inputValue);
 			if(node != null)
 				node = node.PassAhead(inputValue);
-			_lstActiveDialogs[dialogIdToLoad] = node;
+			_lstActiveDialogs[nodeIndexToLoad] = node;
 		}
 	}
 
 	public List<string> GetItemsInAssetFolder() {
 
-		itemsFolderEntries = new List<string>();
+		List<string> itemsFolderEntries = new List<string>();
 
 		string itemFolderPath = "/Prefabs/Items";
 		string dataPath = Application.dataPath;
