@@ -44,8 +44,11 @@ namespace NodeEditorFramework.Standard
 			GUILayout.EndVertical();
 			GUILayout.EndHorizontal();
 
-			if (GUI.changed)
+			if (GUI.changed) {
 				NodeEditor.curNodeCanvas.OnNodeChange(this);
+			}
+
+			Calculate();
 		}
 		
 		public override bool Calculate () 

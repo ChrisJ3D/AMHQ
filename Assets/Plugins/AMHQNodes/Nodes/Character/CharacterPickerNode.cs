@@ -44,6 +44,8 @@ namespace NodeEditorFramework.Standard
 
 			if (GUI.changed)
 				NodeEditor.curNodeCanvas.OnNodeChange(this);
+
+			Calculate();
 		}
 		
 		public override bool Calculate () 

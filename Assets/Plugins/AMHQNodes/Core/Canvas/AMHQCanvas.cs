@@ -108,12 +108,11 @@ public class AMHQCanvas : NodeCanvas
 			}
 
 		return characterAssets;
-
 	}
 
 	public List<string> GetFlagsInAssetsFolder() {
 
-		List<string> characterAssets = new List<string>();
+		List<string> flagAssets = new List<string>();
 
 		string itemFolderPath = "/Prefabs/Flags";
 		string dataPath = Application.dataPath;
@@ -124,10 +123,9 @@ public class AMHQCanvas : NodeCanvas
 		for(int i = 0; i < itemPaths.Length; i++) {
 				string assetName = itemPaths[i].Substring(dataPath.Length+itemFolderPath.Length+1);
 				assetName = assetName.Substring(0,assetName.Length-7);
-				characterAssets.Add(assetName);
+				flagAssets.Add(assetName);
 			}
 
-		return characterAssets;
-
+		return flagAssets;
 	}
 }
