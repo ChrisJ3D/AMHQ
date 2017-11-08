@@ -7,6 +7,15 @@ public class CharacterManager : Singleton<CharacterManager> {
 
 	public List<Character> characterList;
 
+	public override void Awake() {
+		base.Awake();
+		
+		if (characterList == null) {
+			GetCharacterAssets();
+			GenerateCharacterObjects();
+		}
+	}
+
 	protected List<string> GetCharacterAssets() {
 		List<string> characterAssets = new List<string>();
 
@@ -28,8 +37,14 @@ public class CharacterManager : Singleton<CharacterManager> {
 	void GenerateCharacterObjects() {
 		List<string> characterAssets = GetCharacterAssets();
 
-		foreach (string character in characterAssets) {
-	
+		for (int i = 0; i < characterAssets.Count; i++) {
+			GameObject currentCharacterObject = GameObject.Find(characterAssets[i]);
+
+			Character currentCharacterComponent = (Character)currentCharacterObject.GetComponent("Character");
+
+			currentCharacterComponent.index = i;
+
+			characterList.Add(currentCharacterComponent);
 		}
 	}
 

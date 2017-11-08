@@ -108,6 +108,26 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &7355662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
+  m_Name: To Next
+  m_EditorClassIdentifier: 
+  body: {fileID: 526984057}
+  direction: 2
+  maxConnectionCount: 1
+  styleID: DialogueForward
+  _connections:
+  - {fileID: 1896033707}
+  side: 2
+  sidePosition: 30
+  sideOffset: 0
 --- !u!1 &25749256
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6460f5ec1959e1c4e8db87bd5aa24770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterManager: {fileID: 0}
+  CharacterManager: {fileID: 2123019527}
   UIManager: {fileID: 0}
   NodeManager: {fileID: 0}
 --- !u!1 &62005938
@@ -193,30 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeCanvas: {fileID: 0}
   dialoguePrefab: {fileID: 0}
---- !u!114 &88969265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12a282a711455e147999adf40e6006fb, type: 3}
-  m_Name: LastSession
-  m_EditorClassIdentifier: 
-  editorStates:
-  - {fileID: 1590244367}
-  saveName: flow
-  savePath: SCENE/flow
-  livesInScene: 1
-  nodes:
-  - {fileID: 170297840}
-  - {fileID: 555698199}
-  - {fileID: 1669785532}
-  - {fileID: 1203505290}
-  groups: []
-  Name: AMHQ
---- !u!114 &112350090
+--- !u!114 &166018040
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -225,17 +222,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
-  m_Name: Output
+  m_Name: Character
   m_EditorClassIdentifier: 
-  body: {fileID: 555698199}
-  direction: 2
-  maxConnectionCount: 1
+  body: {fileID: 1730957296}
+  direction: 1
+  maxConnectionCount: 0
   styleID: Number
-  _connections: []
-  side: 2
-  sidePosition: 33.5
+  _connections:
+  - {fileID: 1183754779}
+  side: 4
+  sidePosition: 30
   sideOffset: 0
---- !u!114 &170297840
+--- !u!114 &188869966
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -243,18 +241,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95f62d03b75a753469391452fa0724dd, type: 3}
-  m_Name: Scene Loaded
+  m_Script: {fileID: 11500000, guid: f3d338988a4691f43b8c0764bd85cf70, type: 3}
+  m_Name: From Next
   m_EditorClassIdentifier: 
-  position: {x: -231.2, y: -121.99999}
-  dynamicConnectionPorts: []
-  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-  CharacterName: Character name
-  CharacterPotrait: {fileID: 0}
-  DialogLine: Insert dialog text here
-  SoundDialog: {fileID: 0}
-  toNextOUT: {fileID: 1963930350}
-  nodeIndex: 0
+  body: {fileID: 480095724}
+  direction: 1
+  maxConnectionCount: 0
+  styleID: DialogueBack
+  _connections: []
+  side: 2
+  sidePosition: 50
+  sideOffset: 0
 --- !u!1 &194939025
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +307,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   Funds: 1000
---- !u!114 &260105917
+--- !u!114 &263630333
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -318,18 +315,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
-  m_Name: Output
+  m_Script: {fileID: 11500000, guid: 12a282a711455e147999adf40e6006fb, type: 3}
+  m_Name: LastSession
   m_EditorClassIdentifier: 
-  body: {fileID: 1669785532}
-  direction: 2
-  maxConnectionCount: 1
-  styleID: Number
-  _connections:
-  - {fileID: 1217857643}
-  side: 2
-  sidePosition: 33.5
-  sideOffset: 0
+  editorStates:
+  - {fileID: 1317438857}
+  saveName: flow
+  savePath: SCENE/flow
+  livesInScene: 1
+  nodes:
+  - {fileID: 526984057}
+  - {fileID: 1995895028}
+  - {fileID: 1088568214}
+  - {fileID: 1730957296}
+  groups: []
+  Name: AMHQ
 --- !u!1 &353505044
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,7 +431,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 419271766}
---- !u!114 &555698199
+--- !u!114 &480095724
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -439,20 +439,61 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd5c2240ae4dba34d960207100a30951, type: 3}
-  m_Name: Item Picker
+  m_Script: {fileID: 11500000, guid: 6a0defd08fa5f644f8e620f3335323ea, type: 3}
+  m_Name: Dialogue
   m_EditorClassIdentifier: 
-  position: {x: -236.69998, y: -36.699997}
+  position: {x: 76, y: -122}
   dynamicConnectionPorts: []
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-  outputKnob: {fileID: 112350090}
-  chosenItemIndex: 0
-  output:
-    _value:
-    - 0
-    - 0
-    - 0
-    - 0
+  CharacterName: Character Name
+  CharacterPotrait: {fileID: 0}
+  DialogLine: Insert dialogue text here
+  SoundDialog: {fileID: 0}
+  fromPreviousIN: {fileID: 1203375466}
+  toPreviousOut: {fileID: 1228487559}
+  toNextOUT: {fileID: 2051195655}
+  fromNextIN: {fileID: 188869966}
+  characterKnob: {fileID: 728958839}
+  characterPosition: 0
+--- !u!114 &510719476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
+  m_Name: Output
+  m_EditorClassIdentifier: 
+  body: {fileID: 1995895028}
+  direction: 2
+  maxConnectionCount: 1
+  styleID: Number
+  _connections: []
+  side: 2
+  sidePosition: 33.5
+  sideOffset: 0
+--- !u!114 &526984057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f62d03b75a753469391452fa0724dd, type: 3}
+  m_Name: Scene Loaded
+  m_EditorClassIdentifier: 
+  position: {x: -231.2, y: -121.99999}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  CharacterName: Character name
+  CharacterPotrait: {fileID: 0}
+  DialogLine: Insert dialog text here
+  SoundDialog: {fileID: 0}
+  toNextOUT: {fileID: 7355662}
+  nodeIndex: 0
 --- !u!1001 &645001619
 Prefab:
   m_ObjectHideFlags: 0
@@ -574,18 +615,18 @@ MonoBehaviour:
   m_Name: LastSession
   m_EditorClassIdentifier: 
   editorStates:
-  - {fileID: 1590244367}
+  - {fileID: 1317438857}
   saveName: flow
   savePath: SCENE/flow
   livesInScene: 1
   nodes:
-  - {fileID: 170297840}
-  - {fileID: 555698199}
-  - {fileID: 1669785532}
-  - {fileID: 1203505290}
+  - {fileID: 526984057}
+  - {fileID: 1995895028}
+  - {fileID: 1088568214}
+  - {fileID: 1730957296}
   groups: []
   Name: AMHQ
---- !u!114 &836657315
+--- !u!114 &728958839
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -593,17 +634,62 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3d338988a4691f43b8c0764bd85cf70, type: 3}
-  m_Name: To Previous
+  m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
+  m_Name: Character
   m_EditorClassIdentifier: 
-  body: {fileID: 1203505290}
-  direction: 2
-  maxConnectionCount: 1
-  styleID: DialogueBack
-  _connections: []
+  body: {fileID: 480095724}
+  direction: 1
+  maxConnectionCount: 0
+  styleID: Number
+  _connections:
+  - {fileID: 2099147384}
   side: 4
-  sidePosition: 50
+  sidePosition: 30
   sideOffset: 0
+--- !u!114 &790825680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee1ae074944572429ecf26044b6e433, type: 3}
+  m_Name: Character Picker
+  m_EditorClassIdentifier: 
+  position: {x: -151, y: -44}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  outputKnob: {fileID: 2099147384}
+  characterIndex: 0
+  output:
+    _value:
+    - 0
+    - 0
+    - 0
+    - 0
+--- !u!114 &793180592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd5c2240ae4dba34d960207100a30951, type: 3}
+  m_Name: Item Picker
+  m_EditorClassIdentifier: 
+  position: {x: -289.69998, y: -40.699997}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  outputKnob: {fileID: 939552879}
+  chosenItemIndex: 0
+  output:
+    _value:
+    - 0
+    - 0
+    - 0
+    - 0
 --- !u!1 &838712382
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,7 +915,7 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &971230507
+--- !u!114 &939552879
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -838,18 +924,63 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
-  m_Name: From Previous
+  m_Name: Output
   m_EditorClassIdentifier: 
-  body: {fileID: 1203505290}
-  direction: 1
-  maxConnectionCount: 0
-  styleID: DialogueForward
-  _connections:
-  - {fileID: 1963930350}
-  side: 4
-  sidePosition: 30
+  body: {fileID: 793180592}
+  direction: 2
+  maxConnectionCount: 1
+  styleID: Number
+  _connections: []
+  side: 2
+  sidePosition: 33.5
   sideOffset: 0
---- !u!114 &1098579127
+--- !u!114 &1088568214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee1ae074944572429ecf26044b6e433, type: 3}
+  m_Name: Character Picker
+  m_EditorClassIdentifier: 
+  position: {x: -151, y: -44}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  outputKnob: {fileID: 1183754779}
+  characterIndex: 0
+  output:
+    _value:
+    - 0
+    - 0
+    - 0
+    - 0
+--- !u!1 &1113754426 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1059863730865426, guid: 624252eb431cbea4ba1a30dcfb9546d5,
+    type: 2}
+  m_PrefabInternal: {fileID: 645001619}
+--- !u!114 &1114540431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3d338988a4691f43b8c0764bd85cf70, type: 3}
+  m_Name: To Previous
+  m_EditorClassIdentifier: 
+  body: {fileID: 1730957296}
+  direction: 2
+  maxConnectionCount: 1
+  styleID: DialogueBack
+  _connections: []
+  side: 4
+  sidePosition: 50
+  sideOffset: 0
+--- !u!114 &1125495630
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -860,13 +991,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: To Next
   m_EditorClassIdentifier: 
-  body: {fileID: 1203505290}
+  body: {fileID: 1457597410}
   direction: 2
   maxConnectionCount: 1
   styleID: DialogueForward
-  _connections: []
+  _connections:
+  - {fileID: 1203375466}
   side: 2
   sidePosition: 30
+  sideOffset: 0
+--- !u!114 &1183754779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
+  m_Name: Output
+  m_EditorClassIdentifier: 
+  body: {fileID: 1088568214}
+  direction: 2
+  maxConnectionCount: 1
+  styleID: Number
+  _connections:
+  - {fileID: 166018040}
+  side: 2
+  sidePosition: 33.5
   sideOffset: 0
 --- !u!1001 &1186066363
 Prefab:
@@ -973,30 +1125,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224443799297006842, guid: 95eb5f967632c27448de173a7206ebf1,
     type: 2}
   m_PrefabInternal: {fileID: 1186066363}
---- !u!114 &1203505290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a0defd08fa5f644f8e620f3335323ea, type: 3}
-  m_Name: Dialogue
-  m_EditorClassIdentifier: 
-  position: {x: 110.000015, y: -121.99999}
-  dynamicConnectionPorts: []
-  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-  CharacterName: Character Name
-  CharacterPotrait: {fileID: 0}
-  DialogLine: Insert dialogue text here
-  SoundDialog: {fileID: 0}
-  fromPreviousIN: {fileID: 971230507}
-  toPreviousOut: {fileID: 836657315}
-  toNextOUT: {fileID: 1098579127}
-  fromNextIN: {fileID: 1713721505}
-  characterKnob: {fileID: 1217857643}
---- !u!114 &1217857643
+--- !u!114 &1203375466
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1005,14 +1134,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
-  m_Name: Character
+  m_Name: From Previous
   m_EditorClassIdentifier: 
-  body: {fileID: 1203505290}
+  body: {fileID: 480095724}
   direction: 1
   maxConnectionCount: 0
-  styleID: Number
+  styleID: DialogueForward
   _connections:
-  - {fileID: 260105917}
+  - {fileID: 1125495630}
   side: 4
   sidePosition: 30
   sideOffset: 0
@@ -1025,6 +1154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1226863468}
   - component: {fileID: 1226863467}
+  - component: {fileID: 1226863469}
   m_Layer: 0
   m_Name: NodeEditor_SceneSaveHolder
   m_TagString: Untagged
@@ -1058,6 +1188,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1226863469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1226863466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f1cd8579a6c9ec4b85d9d62cd5ba58b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveName: flow
+  savedNodeCanvas: {fileID: 1952467260}
+--- !u!114 &1228487559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3d338988a4691f43b8c0764bd85cf70, type: 3}
+  m_Name: To Previous
+  m_EditorClassIdentifier: 
+  body: {fileID: 480095724}
+  direction: 2
+  maxConnectionCount: 1
+  styleID: DialogueBack
+  _connections: []
+  side: 4
+  sidePosition: 50
+  sideOffset: 0
 --- !u!1 &1311606755
 GameObject:
   m_ObjectHideFlags: 0
@@ -1120,6 +1282,22 @@ Transform:
   m_Father: {fileID: 2064578592}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1317438857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ab6487237ff124ea4c2aa5de9ce3fb, type: 3}
+  m_Name: MainEditorState
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 263630333}
+  parentEditor: {fileID: 0}
+  selectedNode: {fileID: 0}
+  panOffset: {x: -129.40002, y: 10.799999}
+  zoom: 0.6
 --- !u!1 &1334811465
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,9 +1431,34 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114035736819876832, guid: d8d00eb534332a94282026aea2f31e5c,
+        type: 2}
+      propertyPath: character1
+      value: 
+      objectReference: {fileID: 1113754426}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d8d00eb534332a94282026aea2f31e5c, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1457597410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f62d03b75a753469391452fa0724dd, type: 3}
+  m_Name: Scene Loaded
+  m_EditorClassIdentifier: 
+  position: {x: -231.2, y: -121.99999}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  CharacterName: Character name
+  CharacterPotrait: {fileID: 0}
+  DialogLine: Insert dialog text here
+  SoundDialog: {fileID: 0}
+  toNextOUT: {fileID: 1125495630}
+  nodeIndex: 0
 --- !u!1001 &1498483339
 Prefab:
   m_ObjectHideFlags: 0
@@ -1307,7 +1510,7 @@ Transform:
   m_PrefabParentObject: {fileID: 4058961543747136, guid: cdf9b21ee98f3b441bb193879e16aaae,
     type: 2}
   m_PrefabInternal: {fileID: 1498483339}
---- !u!114 &1590244367
+--- !u!114 &1629736548
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1318,53 +1521,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6ab6487237ff124ea4c2aa5de9ce3fb, type: 3}
   m_Name: MainEditorState
   m_EditorClassIdentifier: 
-  canvas: {fileID: 88969265}
+  canvas: {fileID: 1952467260}
   parentEditor: {fileID: 0}
   selectedNode: {fileID: 0}
   panOffset: {x: -194.80002, y: -8.800003}
   zoom: 1
---- !u!114 &1669785532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fee1ae074944572429ecf26044b6e433, type: 3}
-  m_Name: Character Picker
-  m_EditorClassIdentifier: 
-  position: {x: -149, y: 68}
-  dynamicConnectionPorts: []
-  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-  outputKnob: {fileID: 260105917}
-  characterIndex: 0
-  output:
-    _value:
-    - 0
-    - 0
-    - 0
-    - 0
---- !u!114 &1713721505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3d338988a4691f43b8c0764bd85cf70, type: 3}
-  m_Name: From Next
-  m_EditorClassIdentifier: 
-  body: {fileID: 1203505290}
-  direction: 1
-  maxConnectionCount: 0
-  styleID: DialogueBack
-  _connections: []
-  side: 2
-  sidePosition: 50
-  sideOffset: 0
---- !u!114 &1963930350
+--- !u!114 &1651786946
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1375,20 +1537,146 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: To Next
   m_EditorClassIdentifier: 
-  body: {fileID: 170297840}
+  body: {fileID: 1730957296}
   direction: 2
   maxConnectionCount: 1
   styleID: DialogueForward
-  _connections:
-  - {fileID: 971230507}
+  _connections: []
   side: 2
   sidePosition: 30
   sideOffset: 0
+--- !u!114 &1730957296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0defd08fa5f644f8e620f3335323ea, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  position: {x: 76, y: -122}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  CharacterName: Character Name
+  CharacterPotrait: {fileID: 0}
+  DialogLine: Insert dialogue text here
+  SoundDialog: {fileID: 0}
+  fromPreviousIN: {fileID: 1896033707}
+  toPreviousOut: {fileID: 1114540431}
+  toNextOUT: {fileID: 1651786946}
+  fromNextIN: {fileID: 1738720265}
+  characterKnob: {fileID: 166018040}
+  characterPosition: 0
+--- !u!114 &1738720265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3d338988a4691f43b8c0764bd85cf70, type: 3}
+  m_Name: From Next
+  m_EditorClassIdentifier: 
+  body: {fileID: 1730957296}
+  direction: 1
+  maxConnectionCount: 0
+  styleID: DialogueBack
+  _connections: []
+  side: 2
+  sidePosition: 50
+  sideOffset: 0
+--- !u!114 &1896033707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
+  m_Name: From Previous
+  m_EditorClassIdentifier: 
+  body: {fileID: 1730957296}
+  direction: 1
+  maxConnectionCount: 0
+  styleID: DialogueForward
+  _connections:
+  - {fileID: 7355662}
+  side: 4
+  sidePosition: 30
+  sideOffset: 0
+--- !u!114 &1952467260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12a282a711455e147999adf40e6006fb, type: 3}
+  m_Name: LastSession
+  m_EditorClassIdentifier: 
+  editorStates:
+  - {fileID: 1629736548}
+  saveName: flow
+  savePath: SCENE/flow
+  livesInScene: 1
+  nodes:
+  - {fileID: 1457597410}
+  - {fileID: 793180592}
+  - {fileID: 790825680}
+  - {fileID: 480095724}
+  groups: []
+  Name: AMHQ
 --- !u!224 &1977751893 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224983615479292628, guid: d8d00eb534332a94282026aea2f31e5c,
     type: 2}
   m_PrefabInternal: {fileID: 1339347719}
+--- !u!114 &1995895028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd5c2240ae4dba34d960207100a30951, type: 3}
+  m_Name: Item Picker
+  m_EditorClassIdentifier: 
+  position: {x: -289.69998, y: -40.699997}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  outputKnob: {fileID: 510719476}
+  chosenItemIndex: 0
+  output:
+    _value:
+    - 0
+    - 0
+    - 0
+    - 0
+--- !u!114 &2051195655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
+  m_Name: To Next
+  m_EditorClassIdentifier: 
+  body: {fileID: 480095724}
+  direction: 2
+  maxConnectionCount: 1
+  styleID: DialogueForward
+  _connections: []
+  side: 2
+  sidePosition: 30
+  sideOffset: 0
 --- !u!1 &2064578591
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,6 +1707,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2099147384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
+  m_Name: Output
+  m_EditorClassIdentifier: 
+  body: {fileID: 790825680}
+  direction: 2
+  maxConnectionCount: 1
+  styleID: Number
+  _connections:
+  - {fileID: 728958839}
+  side: 2
+  sidePosition: 33.5
+  sideOffset: 0
 --- !u!1 &2123019527
 GameObject:
   m_ObjectHideFlags: 0

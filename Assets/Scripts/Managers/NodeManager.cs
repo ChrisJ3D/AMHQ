@@ -50,4 +50,34 @@ public class NodeManager : Singleton<NodeManager> {
 			return null;
 		}
 	}
+
+	public void okButton(int nodeID) {
+		FetchNodeData(nodeID, (int)EnumDialogInputValue.Next);
+		_dialogueBoxes[nodeID].SetData(GetNodeByID(nodeID));
+	}
+
+	public void backButton(int nodeID) {
+
+	}
+
+	private void FetchNodeData(int nodeID, int inputValue) {
+		AMHQCanvas nodeCanvas;
+
+		if (_nodeTracker.TryGetValue(nodeID, out nodeCanvas)) {
+			nodeCanvas.InputToDialog(nodeID, inputValue);
+		}
+		else {
+			Debug.LogError("NodeManager: Cannot find node with ID " + nodeID);
+		}
+	}
+
+	public void RemoveDialogueBox(int nodeID) {
+		_dialogueBoxes.Remove(nodeID);
+	}
 }
+
+public enum EnumDialogInputValue
+	{
+		Next = -2,
+		Back = -1,
+	}

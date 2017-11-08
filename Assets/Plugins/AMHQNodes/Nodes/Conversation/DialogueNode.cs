@@ -2,6 +2,8 @@
 using NodeEditorFramework;
 using UnityEditor;
 using UnityEngine;
+using NodeEditorFramework.Utilities;
+
 /// <summary>
 /// This node has one entry and one exit, it is just to display something, then move on
 /// </summary>
@@ -31,6 +33,7 @@ public class DialogueNode : BaseConversationNode
 	[ValueConnectionKnob("Character", Direction.In, "Number", NodeSide.Left, 30)]
 		public ValueConnectionKnob characterKnob;
 
+	public CharacterPosition characterPosition = 0;
 	private Vector2 scroll;
 
 	protected override void OnCreate ()
@@ -52,6 +55,13 @@ public class DialogueNode : BaseConversationNode
 		GUILayout.EndHorizontal();
 
 		characterKnob.DisplayLayout();
+
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("Screen Position");
+		GUILayout.Space(30);
+		characterPosition = (CharacterPosition)RTEditorGUI.EnumPopup (new GUIContent(""),characterPosition);
+
+		GUILayout.EndHorizontal();
 	}
 
 	public override BaseConversationNode Input(int inputValue)
@@ -79,4 +89,17 @@ public class DialogueNode : BaseConversationNode
 	{
 		return IsAvailable (toNextOUT);
 	}
+
+	public int GetSpeaker() {
+		if(!characterKnob.IsValueNull)
+			return characterKnob.GetValue<int>();
+		else 
+			return 0;
+	}
+
+	public enum CharacterPosition {
+		Left = 0,
+		Middle = 1,
+		Right = 2
+	};
 }
