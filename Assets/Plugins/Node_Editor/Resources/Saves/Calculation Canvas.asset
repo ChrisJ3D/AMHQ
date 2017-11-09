@@ -13,8 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   editorStates:
   - {fileID: 114823056558934306}
-  saveName: Calculation Canvas New
-  savePath: Assets/Plugins/Node_Editor/Resources/Saves/Calculation Canvas New.asset
+  saveName: Calculation Canvas
+  savePath: Assets/Plugins/Node_Editor/Resources/Saves/Calculation Canvas.asset
   livesInScene: 0
   nodes:
   - {fileID: 114969634015446444}
@@ -206,7 +206,7 @@ MonoBehaviour:
   body: {fileID: 114114215092059524}
   direction: 1
   maxConnectionCount: 0
-  styleID: Float
+  styleID: Number
   _connections:
   - {fileID: 114084676537818940}
   side: 4
@@ -262,7 +262,7 @@ MonoBehaviour:
   body: {fileID: 114179892776421984}
   direction: 1
   maxConnectionCount: 0
-  styleID: Float
+  styleID: Number
   _connections:
   - {fileID: 114031747568681056}
   side: 4

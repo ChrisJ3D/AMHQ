@@ -21,14 +21,14 @@ public class AMHQCanvas : NodeCanvas
 	public bool HasDialogWithId(int nodeIndexToLoad)
 	{
 		SceneLoadedNode node = GetStartNode(nodeIndexToLoad);
-		return node != default(Node) && node != default(DialogStartNode);
+		return node != default(Node) && node != default(SceneLoadedNode);
 	}
 
 	public IEnumerable<int> GetAllDialogId()
 	{
 		foreach (Node node in this.nodes) {
-			if (node is DialogStartNode) {
-				yield return ((DialogStartNode)node).DialogID;
+			if (node is SceneLoadedNode) {
+				yield return ((SceneLoadedNode)node).nodeIndex;
 			}
 		}
 	}

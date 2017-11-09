@@ -13,8 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   editorStates:
   - {fileID: 114324048460756210}
-  saveName: Graph Canvas New
-  savePath: Assets/Plugins/Node_Editor/Resources/Saves/Graph Canvas New.asset
+  saveName: Graph Canvas
+  savePath: Assets/Plugins/Node_Editor/Resources/Saves/Graph Canvas.asset
   livesInScene: 0
   nodes:
   - {fileID: 114126862484380980}
@@ -1393,7 +1393,7 @@ MonoBehaviour:
   body: {fileID: 114706005002301890}
   direction: 1
   maxConnectionCount: 0
-  styleID: Float
+  styleID: Number
   _connections:
   - {fileID: 114679887740563256}
   side: 4

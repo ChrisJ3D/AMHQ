@@ -144,6 +144,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e477cadd15d362a498da9407c29d2943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _backButton: {fileID: 1218594688329656}
+  _okButton: {fileID: 1133737925645944}
+  _optionsHolder: {fileID: 0}
+  characterManager: {fileID: 0}
 --- !u!114 &114453527965744188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -182,7 +186,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114734813410419058}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114035736819876832}
+        m_MethodName: backButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114459163837753030
@@ -331,7 +346,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: This needs to be replaced!!
 --- !u!114 &114768039689422994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -370,7 +385,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114521221729796742}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114035736819876832}
+        m_MethodName: okButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114960504841446830

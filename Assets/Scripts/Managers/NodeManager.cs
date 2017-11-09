@@ -1,16 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NodeEditorFramework;
 
 public class NodeManager : Singleton<NodeManager> {
 
 	private Dictionary<int, AMHQCanvas> _nodeTracker;
-	public AMHQCanvas nodeCanvas;
+	
+	[SerializeField]
+	private GameObject UI_DialogueBoxPrefab;
+	private Dictionary<int, UI_DialogueBox> _dialogueBoxes;
 
 	[SerializeField]
-	private GameObject dialoguePrefab;
-
-	private Dictionary<int, UI_DialogueBox> _dialogueBoxes;
+	private RectTransform _canvasObject;
+	
+	public AMHQCanvas nodeCanvas;
 
 	public override void Awake() {
 		base.Awake();
@@ -19,14 +23,19 @@ public class NodeManager : Singleton<NodeManager> {
 		_dialogueBoxes = new Dictionary<int, UI_DialogueBox>();
 		_nodeTracker = new Dictionary<int, AMHQCanvas>();
 		_nodeTracker.Clear();
+	}
 
+	public void Start() {
 		//	Traverse the node canvas and add all nodes to our dictionary.
+		//	First we check if there's a canvas stored in our scene
+
+		nodeCanvas = GetCanvasFromScene();
 		if (nodeCanvas) {
 			foreach (int id in nodeCanvas.GetAllDialogId()) {
 				_nodeTracker.Add(id, nodeCanvas);
 			}
-		}
-		else {
+		} else {
+			//	If there was no canvas stored in the scene, we look in Resources/Saves
 			foreach (AMHQCanvas canvas in Resources.LoadAll<AMHQCanvas>("Saves/")) {
 				foreach (int id in canvas.GetAllDialogId()) {
 					_nodeTracker.Add(id, canvas);
@@ -36,6 +45,22 @@ public class NodeManager : Singleton<NodeManager> {
 	}
 
 	public void ShowDialogueByID(int nodeID, bool goBackToBeginning) {
+		if (_dialogueBoxes.ContainsKey(nodeID)) {
+			return;
+		}
+
+		AMHQCanvas nodeCanvas;
+		if (_nodeTracker.TryGetValue(nodeID, out nodeCanvas)) {
+			nodeCanvas.ActivateDialog(nodeID, goBackToBeginning);
+		} else {
+			Debug.LogError("NodeManager: Could not find node with ID " + nodeID);
+		}
+
+		UI_DialogueBox dialogueBox = GameObject.Instantiate(UI_DialogueBoxPrefab).GetComponent<UI_DialogueBox>();
+		dialogueBox.Construct(nodeID, this);
+		dialogueBox.transform.SetParent(_canvasObject, false);
+		dialogueBox.SetData(GetNodeByID(nodeID));
+		_dialogueBoxes.Add(nodeID, dialogueBox);
 		
 	}
 
@@ -43,9 +68,7 @@ public class NodeManager : Singleton<NodeManager> {
 		AMHQCanvas canvas;
 		if(_nodeTracker.TryGetValue(nodeID, out canvas)) {
 			return nodeCanvas.GetDialog(nodeID);
-		}
-
-		else {
+		} else {
 			Debug.LogError("NODEMANAGER: Unable to find node with requested ID: " + nodeID);
 			return null;
 		}
@@ -57,22 +80,31 @@ public class NodeManager : Singleton<NodeManager> {
 	}
 
 	public void backButton(int nodeID) {
-
+		FetchNodeData(nodeID, (int)EnumDialogInputValue.Back);
+		_dialogueBoxes[nodeID].SetData(GetNodeByID(nodeID));
 	}
 
+	//	Formerly known as "GiveInputToDialog"
 	private void FetchNodeData(int nodeID, int inputValue) {
 		AMHQCanvas nodeCanvas;
 
 		if (_nodeTracker.TryGetValue(nodeID, out nodeCanvas)) {
 			nodeCanvas.InputToDialog(nodeID, inputValue);
-		}
-		else {
+		} else {
 			Debug.LogError("NodeManager: Cannot find node with ID " + nodeID);
 		}
 	}
 
 	public void RemoveDialogueBox(int nodeID) {
 		_dialogueBoxes.Remove(nodeID);
+	}
+
+	public AMHQCanvas GetCanvasFromScene() {
+		AMHQCanvas canvas;
+
+		canvas = (AMHQCanvas)GameObject.Find("NodeEditor_SceneSaveHolder").GetComponent<NodeCanvasSceneSave>().savedNodeCanvas;
+
+		return canvas;
 	}
 }
 

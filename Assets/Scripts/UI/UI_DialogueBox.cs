@@ -10,8 +10,11 @@ public class UI_DialogueBox : MonoBehaviour {
 	private int _nodeID;
 	private NodeManager _nodeManager;
 
+	[SerializeField]
 	private GameObject _backButton;
+	[SerializeField]
 	private GameObject _okButton;
+	[SerializeField]
 	private OptionsHandler _optionsHolder;
 
 	private Image _speakerSprite;
@@ -19,12 +22,14 @@ public class UI_DialogueBox : MonoBehaviour {
 
 	public CharacterManager characterManager;
 
-
 	public void Construct(int nodeID, NodeManager nodeManager) {
 		_nodeID = nodeID;
 		_nodeManager = nodeManager;
 		_backButton.SetActive(false);
-		_okButton.GetComponentInChildren<GUIText>().text = "OKAY";
+		//_okButton.GetComponentInChildren<GUIText>().text = "OKAY";
+
+		characterManager = GameObject.Find("System").GetComponent<CharacterManager>();
+		
 	}
 
 	//	Signals from the button gameobject
@@ -42,36 +47,41 @@ public class UI_DialogueBox : MonoBehaviour {
 
 		if(node == null) {
 			DialogueComplete();
-		}
-		else if (node is SceneLoadedNode) {
+		} else if (node is SceneLoadedNode) {
 			SetAsStartNode((SceneLoadedNode) node);
-		}
-		else if (node is DialogueNode) {
+		} else if (node is DialogueNode) {
 			SetAsDialogueNode((DialogueNode) node);
 		}
-
 	}
 
 	private void SetAsStartNode(SceneLoadedNode node) {
 		_backButton.SetActive(node.IsBackAvailable());
-		_okButton.SetActive(true);
-		
+		_okButton.SetActive(true);		
 	}
 
+
+	//	This is the golden function that grabs all the data from the node and inserts it into the UI
 	private void SetAsDialogueNode(DialogueNode node) {
 
-		_speakerName = characterManager.characterList[node.GetSpeaker()].firstName;
+
+		// _speakerName = characterManager.characterList[node.GetSpeaker()].firstName;
+
+		_speakerName = "Orien";
+
+		GameObject character = null;
 
 		if (_speakerName != "") {
-			GameObject.Find(_speakerName).SetActive(true); 
+			character = GameObject.Find(_speakerName); 
 			}
 
+		character.GetComponent<Image>().enabled = true;
+		this.GetComponentInChildren<Text>().text = node.DialogLine;
 	}
 
 
 
 	private void ResetMessageBox() {
-		_optionsHolder.ClearList();
+		//	_optionsHolder.ClearList();
 	}
 
 	private void DialogueComplete() {

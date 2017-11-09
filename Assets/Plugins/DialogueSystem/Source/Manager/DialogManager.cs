@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using NodeEditorFramework;
 
 public class DialogManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class DialogManager : MonoBehaviour
 		_dialogIdTracker = new Dictionary<int, DialogNodeCanvas>();
 		_dialogIdTracker.Clear();
 
+		//	First we check if we have a canvas... in the scene??
 		if (dialogCanvas)
 		{
 			foreach (int id in dialogCanvas.GetAllDialogId())
@@ -104,6 +106,14 @@ public class DialogManager : MonoBehaviour
 	{
 		GiveInputToDialog(dialogId, optionSelected);
 		_messageBoxes[dialogId].SetData(GetNodeForId(dialogId));
+	}
+
+	public AMHQCanvas GetCanvasFromScene() {
+		AMHQCanvas canvas;
+
+		canvas = (AMHQCanvas)GameObject.Find("NodeEditor.SceneSaveHolder").GetComponent<NodeCanvasSceneSave>().savedNodeCanvas;
+
+		return canvas;
 	}
 }
 

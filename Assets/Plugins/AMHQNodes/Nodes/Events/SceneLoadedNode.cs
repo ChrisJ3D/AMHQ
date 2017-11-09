@@ -24,7 +24,7 @@ namespace NodeEditorFramework.Standard
 		public ValueConnectionKnob toNextOUT;
 
 		private Vector2 scroll;
-		public int nodeIndex;
+		public int nodeIndex = 1;
 
 		protected override void OnCreate ()
 		{

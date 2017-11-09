@@ -9,17 +9,20 @@ public class GameManager : Singleton<GameManager> {
 	public GameObject CharacterManager;
 	private TimeManager _timeManager;
 	public GameObject UIManager;
-	public GameManager NodeManager;
+	public NodeManager _nodeManager;
 	private InventoryManager _inventoryManager;
+
+	public override void Awake() {
+		base.Awake();
+
+		_inventoryManager = (InventoryManager)GetComponent("InventoryManager");
+		_nodeManager = (NodeManager)GetComponent("NodeManager");
+	}
 
 	// Use this for initialization
 	void Start () {
-		_inventoryManager = (InventoryManager)GetComponent("InventoryManager");
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+		//	Start reading from node graph
+		_nodeManager.ShowDialogueByID(1, true);
 	}
 
 	public void LoadScene(string sceneName) {

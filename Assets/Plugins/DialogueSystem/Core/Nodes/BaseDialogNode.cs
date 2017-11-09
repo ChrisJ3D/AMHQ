@@ -52,16 +52,16 @@ public abstract class BaseDialogNode : Node
 }
 
 
-// public class DialogBackType : ConnectionKnobStyle //: IConnectionTypeDeclaration
-// {
-// 	public override string Identifier { get { return "DialogBack"; } }
-// 	public override Color Color { get { return Color.yellow; } }
-// }
+public class DialogBackType : ConnectionKnobStyle //: IConnectionTypeDeclaration
+{
+	public override string Identifier { get { return "DialogBack"; } }
+	public override Color Color { get { return Color.yellow; } }
+}
 
-// public class DialogForwardType : ValueConnectionType // : IConnectionTypeDeclaration
-// {
-// 	public override string Identifier { get { return "DialogForward"; } }
-// 	public override Type Type { get { return typeof(float); } }
-// 	public override Color Color { get { return Color.cyan; } }
-// }
+public class DialogForwardType : ValueConnectionType // : IConnectionTypeDeclaration
+{
+	public override string Identifier { get { return "DialogForward"; } }
+	public override Type Type { get { return typeof(float); } }
+	public override Color Color { get { return Color.cyan; } }
+}
 

@@ -23,12 +23,6 @@ MonoBehaviour:
   - {fileID: 114912990524770188}
   groups: []
   Name: AMHQ
-  itemsFolderEntries:
-  - AmberBracelet
-  - Keps
-  - LuxuryChocolate
-  - MovieTickets
-  - SpringDress
 --- !u!114 &114167992813835556
 MonoBehaviour:
   m_ObjectHideFlags: 1
