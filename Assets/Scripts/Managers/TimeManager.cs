@@ -5,6 +5,8 @@ using System;
 
 public class TimeManager : Singleton<TimeManager> {
 
+	public GameManager gameManager;
+
 	int season;
 	public int actionsPerDay = 3;
 	int remainingActions;

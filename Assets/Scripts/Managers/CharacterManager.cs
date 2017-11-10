@@ -5,6 +5,8 @@ using System.IO;
 
 public class CharacterManager : Singleton<CharacterManager> {
 
+	public GameManager gameManager;
+
 	public List<Character> characterList;
 
 	void Start() {

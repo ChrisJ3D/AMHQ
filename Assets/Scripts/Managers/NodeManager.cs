@@ -5,6 +5,8 @@ using NodeEditorFramework;
 
 public class NodeManager : Singleton<NodeManager> {
 
+	public GameManager gameManager;
+
 	private Dictionary<int, AMHQCanvas> _nodeTracker;
 	
 	[SerializeField]
