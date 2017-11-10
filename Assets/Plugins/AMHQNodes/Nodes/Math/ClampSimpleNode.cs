@@ -15,7 +15,6 @@ namespace NodeEditorFramework.Standard
 		public override Vector2 DefaultSize { get { return new Vector2 (150, 50); } }
 		public override string description { get { return "The Clamp node limits an input to never go above or below 0 and 1. If you want to assign your own min/max values, use the \"Clamp\" node."; } }
 
-
 		[ValueConnectionKnob("Input", Direction.In, "Number")]
 		public ValueConnectionKnob inputKnob;
 
@@ -55,7 +54,7 @@ namespace NodeEditorFramework.Standard
 				input = inputKnob.GetValue<Number>();
 			}
 
-			input = Mathf.Clamp(input, 0.0f, 1.0f);
+			input = Mathf.Clamp01(input);
 
 			outputKnob.SetValue<Number>(input);
 
