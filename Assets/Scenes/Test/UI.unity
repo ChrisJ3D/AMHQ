@@ -176,6 +176,48 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 19340309}
+--- !u!1001 &113252618
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4149891911046302, guid: 6c90020080ac9404080de44acc95054c, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 533.3758
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149891911046302, guid: 6c90020080ac9404080de44acc95054c, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 273.8585
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149891911046302, guid: 6c90020080ac9404080de44acc95054c, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149891911046302, guid: 6c90020080ac9404080de44acc95054c, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149891911046302, guid: 6c90020080ac9404080de44acc95054c, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149891911046302, guid: 6c90020080ac9404080de44acc95054c, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149891911046302, guid: 6c90020080ac9404080de44acc95054c, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149891911046302, guid: 6c90020080ac9404080de44acc95054c, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 6c90020080ac9404080de44acc95054c, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &402325030
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,6 +484,12 @@ MonoBehaviour:
   isTimedScreen: 1
   screenTime: 2
   targetTimedScreen: {fileID: 2023769312}
+--- !u!114 &754904680 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114067811245317696, guid: 6c90020080ac9404080de44acc95054c,
+    type: 2}
+  m_PrefabInternal: {fileID: 113252618}
+  m_Script: {fileID: 11500000, guid: 6460f5ec1959e1c4e8db87bd5aa24770, type: 3}
 --- !u!1 &850073468
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,49 +622,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 850073468}
---- !u!1 &974493948
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 974493950}
-  - component: {fileID: 974493949}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &974493949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 974493948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6460f5ec1959e1c4e8db87bd5aa24770, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CharacterManager: {fileID: 0}
-  UIManager: {fileID: 0}
-  NodeManager: {fileID: 0}
---- !u!4 &974493950
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 974493948}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 533.3758, y: 273.8585, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1095282354
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,7 +1180,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 974493949}
+      - m_Target: {fileID: 754904680}
         m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:

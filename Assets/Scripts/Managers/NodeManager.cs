@@ -100,9 +100,12 @@ public class NodeManager : Singleton<NodeManager> {
 	}
 
 	public AMHQCanvas GetCanvasFromScene() {
-		AMHQCanvas canvas;
+		AMHQCanvas canvas = null;
 
-		canvas = (AMHQCanvas)GameObject.Find("NodeEditor_SceneSaveHolder").GetComponent<NodeCanvasSceneSave>().savedNodeCanvas;
+		GameObject canvasObject = GameObject.Find("NodeEditor_SceneSaveHolder");
+		if (canvasObject) {
+			canvas = (AMHQCanvas)canvasObject.GetComponent<NodeCanvasSceneSave>().savedNodeCanvas;
+		}
 
 		return canvas;
 	}
