@@ -7,6 +7,8 @@ using System.IO;
 
 public class InventoryManager : Singleton<InventoryManager> {
 
+	public GameManager gameManager;
+
 	public const int numItemSlots = 6;
 	public Image[] itemImages = new Image[numItemSlots];
 	public Item[] items = new Item[numItemSlots];

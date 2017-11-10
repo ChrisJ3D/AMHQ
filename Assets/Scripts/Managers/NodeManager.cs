@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using NodeEditorFramework;
+using UnityEngine.SceneManagement;
 
 public class NodeManager : Singleton<NodeManager> {
 
+	public GameManager gameManager;
 	private Dictionary<int, AMHQCanvas> _nodeTracker;
 	
 	[SerializeField]
 	private GameObject UI_DialogueBoxPrefab;
-	private Dictionary<int, UI_DialogueBox> _dialogueBoxes;
+	public Dictionary<int, UI_DialogueBox> _dialogueBoxes;
 
 	[SerializeField]
 	private RectTransform _canvasObject;
@@ -35,11 +37,20 @@ public class NodeManager : Singleton<NodeManager> {
 				_nodeTracker.Add(id, nodeCanvas);
 			}
 		} else {
+			_nodeTracker.Clear();
 			//	If there was no canvas stored in the scene, we look in Resources/Saves
+
+			//	TODO: Right now it loads all canvases it can find, make it just look for the canvas with the same name as the currently opened scene
 			foreach (AMHQCanvas canvas in Resources.LoadAll<AMHQCanvas>("Saves/")) {
 				foreach (int id in canvas.GetAllDialogId()) {
 					_nodeTracker.Add(id, canvas);
-				}
+					}
+
+				// if (canvas.Name == SceneManager.GetActiveScene().name) {
+				// foreach (int id in canvas.GetAllDialogId()) {
+				// 	_nodeTracker.Add(id, canvas);
+				// 	}
+				// }
 			}
 		}
 	}
@@ -56,15 +67,10 @@ public class NodeManager : Singleton<NodeManager> {
 			Debug.LogError("NodeManager: Could not find node with ID " + nodeID);
 		}
 
-		UI_DialogueBox dialogueBox = GameObject.Instantiate(UI_DialogueBoxPrefab).GetComponent<UI_DialogueBox>();
-		dialogueBox.Construct(nodeID, this);
-		dialogueBox.transform.SetParent(_canvasObject, false);
-		dialogueBox.SetData(GetNodeByID(nodeID));
-		_dialogueBoxes.Add(nodeID, dialogueBox);
-		
+		gameManager._UIManager.InstantiateDialogueBox(nodeID, _canvasObject, this);		
 	}
 
-	private BaseConversationNode GetNodeByID(int nodeID) {
+	public BaseConversationNode GetNodeByID(int nodeID) {
 		AMHQCanvas canvas;
 		if(_nodeTracker.TryGetValue(nodeID, out canvas)) {
 			return nodeCanvas.GetDialog(nodeID);
@@ -102,9 +108,13 @@ public class NodeManager : Singleton<NodeManager> {
 	public AMHQCanvas GetCanvasFromScene() {
 		AMHQCanvas canvas = null;
 
-		GameObject canvasObject = GameObject.Find("NodeEditor_SceneSaveHolder");
-		if (canvasObject) {
-			canvas = (AMHQCanvas)canvasObject.GetComponent<NodeCanvasSceneSave>().savedNodeCanvas;
+		GameObject gameObject = GameObject.Find("NodeEditor_SceneSaveHolder");
+		if (gameObject) {
+			NodeCanvasSceneSave saveComponent = (NodeCanvasSceneSave)gameObject.GetComponent<NodeCanvasSceneSave>();
+
+			if (saveComponent) {
+				canvas = (AMHQCanvas)saveComponent.savedNodeCanvas;
+			}
 		}
 
 		return canvas;

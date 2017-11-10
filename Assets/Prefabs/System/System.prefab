@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114389325794560180}
   - component: {fileID: 114140197012090060}
   - component: {fileID: 114082398875645414}
+  - component: {fileID: 114247131384056240}
   m_Layer: 0
   m_Name: System
   m_TagString: Untagged
@@ -38,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1978374735342152}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 533.3758, y: 273.8585, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -55,6 +56,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 083cd1bd0eea8e94ab824d72643671cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   itemImages:
   - {fileID: 0}
   - {fileID: 0}
@@ -81,9 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6460f5ec1959e1c4e8db87bd5aa24770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterManager: {fileID: 0}
-  UIManager: {fileID: 0}
-  _nodeManager: {fileID: 0}
+  _UIManager: {fileID: 0}
 --- !u!114 &114082398875645414
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b852c51bfdafe9343bca63832d36dde3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   characterList: []
 --- !u!114 &114140197012090060
 MonoBehaviour:
@@ -107,10 +108,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e76bdfa4e028894e95058bdcb827b85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   UI_DialogueBoxPrefab: {fileID: 1316641530803934, guid: d8d00eb534332a94282026aea2f31e5c,
     type: 2}
   _canvasObject: {fileID: 0}
   nodeCanvas: {fileID: 0}
+--- !u!114 &114247131384056240
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1978374735342152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4b2526d38c4ebd469110377c377035a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  UI_DialogueBoxPrefab: {fileID: 1316641530803934, guid: d8d00eb534332a94282026aea2f31e5c,
+    type: 2}
+  _canvasObject: {fileID: 0}
 --- !u!114 &114389325794560180
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -122,3 +139,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef601711ca872d409b4ec9ec96e2dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}

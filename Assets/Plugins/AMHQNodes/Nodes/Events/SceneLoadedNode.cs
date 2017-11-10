@@ -32,6 +32,7 @@ namespace NodeEditorFramework.Standard
 			CharacterName = "Character name";
 			DialogLine = "Insert dialog text here";
 			CharacterPotrait = null;
+			nodeIndex = 1;
 		}
 
 		public override void NodeGUI()

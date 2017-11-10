@@ -20,16 +20,13 @@ public class UI_DialogueBox : MonoBehaviour {
 	private Image _speakerSprite;
 	private string _speakerName;
 
-	public CharacterManager characterManager;
+	public UIManager uiManager;
 
 	public void Construct(int nodeID, NodeManager nodeManager) {
 		_nodeID = nodeID;
 		_nodeManager = nodeManager;
 		_backButton.SetActive(false);
 		//_okButton.GetComponentInChildren<GUIText>().text = "OKAY";
-
-		characterManager = GameObject.Find("System").GetComponent<CharacterManager>();
-		
 	}
 
 	//	Signals from the button gameobject
@@ -59,7 +56,6 @@ public class UI_DialogueBox : MonoBehaviour {
 		_okButton.SetActive(true);		
 	}
 
-
 	//	This is the golden function that grabs all the data from the node and inserts it into the UI
 	private void SetAsDialogueNode(DialogueNode node) {
 
@@ -77,8 +73,6 @@ public class UI_DialogueBox : MonoBehaviour {
 		character.GetComponent<Image>().enabled = true;
 		this.GetComponentInChildren<Text>().text = node.DialogLine;
 	}
-
-
 
 	private void ResetMessageBox() {
 		//	_optionsHolder.ClearList();

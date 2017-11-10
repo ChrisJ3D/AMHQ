@@ -25,7 +25,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour {
 			_instance = this as T;
 			DontDestroyOnLoad(gameObject);
 		} else {
-			Destroy(gameObject);
+//Destroy(gameObject);
 			Debug.LogWarning("Singleton reinitialized, is there more than one placed in the scene?");
 		}
 	}

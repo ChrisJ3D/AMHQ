@@ -6,17 +6,27 @@ using NodeEditorFramework;
 
 public class GameManager : Singleton<GameManager> {
 
-	public GameObject CharacterManager;
+	private CharacterManager _characterManager;
 	private TimeManager _timeManager;
-	public GameObject UIManager;
-	public NodeManager _nodeManager;
+	public UIManager _UIManager;
+	private NodeManager _nodeManager;
 	private InventoryManager _inventoryManager;
+	private PlayerManager _playerManager;
 
 	public override void Awake() {
 		base.Awake();
 
 		_inventoryManager = (InventoryManager)GetComponent("InventoryManager");
 		_nodeManager = (NodeManager)GetComponent("NodeManager");
+		_characterManager = (CharacterManager)GetComponent("CharacterManager");
+		_playerManager = (PlayerManager)GetComponent("PlayerManager");
+		_UIManager = (UIManager)GetComponent("UIManager");
+
+		_inventoryManager.gameManager = this;
+		_nodeManager.gameManager = this;
+		_characterManager.gameManager = this;
+		_playerManager.gameManager = this;
+		_UIManager.gameManager = this;
 	}
 
 	// Use this for initialization
@@ -28,6 +38,5 @@ public class GameManager : Singleton<GameManager> {
 	public void LoadScene(string sceneName) {
 		var currentScene = SceneManager.GetActiveScene();
 		SceneManager.LoadScene(sceneName);
-
 	}
 }
