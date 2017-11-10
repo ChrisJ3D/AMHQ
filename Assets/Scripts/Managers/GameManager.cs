@@ -6,28 +6,46 @@ using NodeEditorFramework;
 
 public class GameManager : Singleton<GameManager> {
 
-	public GameObject CharacterManager;
-	private TimeManager _timeManager;
-	public GameObject UIManager;
-	public NodeManager _nodeManager;
-	private InventoryManager _inventoryManager;
+	public CharacterManager characterManager;
+	private TimeManager timeManager;
+	public UIManager uiManager;
+	public NodeManager nodeManager;
+	private InventoryManager inventoryManager;
+	public PlayerManager playerManager;
 
 	public override void Awake() {
 		base.Awake();
 
-		_inventoryManager = (InventoryManager)GetComponent("InventoryManager");
-		_nodeManager = (NodeManager)GetComponent("NodeManager");
+		inventoryManager = (InventoryManager)GetComponent("InventoryManager");
+		nodeManager = (NodeManager)GetComponent("NodeManager");
+		characterManager = (CharacterManager)GetComponent("CharacterManager");
+		uiManager = (UIManager)GetComponent("UIManager");
+		
 	}
 
 	// Use this for initialization
 	void Start () {
 		//	Start reading from node graph
-		_nodeManager.ShowDialogueByID(1, true);
+		nodeManager.ShowDialogueByID(1, true);
 	}
 
 	public void LoadScene(string sceneName) {
 		var currentScene = SceneManager.GetActiveScene();
 		SceneManager.LoadScene(sceneName);
 
+	}
+
+	public void PassNodeToUI() {
+		
+	}
+
+	//	NodeManager functions
+
+	public BaseConversationNode GetNodeByID (int nodeID) {
+		return nodeManager.GetNodeByID(nodeID);
+	}
+
+	public void FetchNodeData(int nodeID, int inputValue) {
+		nodeManager.FetchNodeData(nodeID, inputValue);
 	}
 }

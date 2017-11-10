@@ -7,9 +7,7 @@ public class CharacterManager : Singleton<CharacterManager> {
 
 	public List<Character> characterList;
 
-	public override void Awake() {
-		base.Awake();
-		
+	void Start() {
 		if (characterList == null) {
 			GetCharacterAssets();
 			GenerateCharacterObjects();
@@ -60,7 +58,7 @@ public class CharacterManager : Singleton<CharacterManager> {
 		currentCharacter.currentAffection = value; 
 	}
 
-	protected Character FindCharacterByIndex(int index) {
+	public Character FindCharacterByIndex(int index) {
 		
 		Character currentCharacter = null;
 
@@ -77,7 +75,7 @@ public class CharacterManager : Singleton<CharacterManager> {
 		return null;
 	}
 
-	protected Character FindCharacterByName(string name) {
+	public Character FindCharacterByName(string name) {
 		foreach (Character character in characterList) {
 			if (character.firstName == name || character.lastName == name) {
 				return character;

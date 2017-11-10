@@ -44,10 +44,6 @@ public class NodeManager : Singleton<NodeManager> {
 		}
 	}
 
-	public void Start() {
-
-	}
-
 	public void ShowDialogueByID(int nodeID, bool goBackToBeginning) {
 		if (_dialogueBoxes.ContainsKey(nodeID)) {
 			return;
@@ -68,7 +64,7 @@ public class NodeManager : Singleton<NodeManager> {
 		
 	}
 
-	private BaseConversationNode GetNodeByID(int nodeID) {
+	public BaseConversationNode GetNodeByID(int nodeID) {
 		AMHQCanvas canvas;
 		if(_nodeTracker.TryGetValue(nodeID, out canvas)) {
 			return nodeCanvas.GetDialog(nodeID);
@@ -76,6 +72,10 @@ public class NodeManager : Singleton<NodeManager> {
 			Debug.LogError("NODEMANAGER: Unable to find node with requested ID: " + nodeID);
 			return null;
 		}
+	}
+
+	private BaseConversationNode GetNodeByTag(string tag) {
+		return null;
 	}
 
 	public void okButton(int nodeID) {
@@ -89,7 +89,7 @@ public class NodeManager : Singleton<NodeManager> {
 	}
 
 	//	Formerly known as "GiveInputToDialog"
-	private void FetchNodeData(int nodeID, int inputValue) {
+	public void FetchNodeData(int nodeID, int inputValue) {
 		AMHQCanvas nodeCanvas;
 
 		if (_nodeTracker.TryGetValue(nodeID, out nodeCanvas)) {
