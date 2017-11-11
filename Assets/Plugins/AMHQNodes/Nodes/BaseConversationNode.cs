@@ -24,6 +24,8 @@ public abstract class BaseConversationNode : Node
 
 	public AudioClip SoundDialog;
 
+	public int speakerIndex {get; set;}
+
 	public abstract BaseConversationNode Input(int inputValue);
 	public abstract bool IsBackAvailable();
 	public abstract bool IsNextAvailable();
@@ -49,6 +51,7 @@ public abstract class BaseConversationNode : Node
 		return null;
 	}
 
+	public virtual void Compile() {}
 }
 
 public class DialogueBackType : ConnectionKnobStyle //: IConnectionTypeDeclaration

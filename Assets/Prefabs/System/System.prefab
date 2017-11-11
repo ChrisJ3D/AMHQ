@@ -153,5 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b2526d38c4ebd469110377c377035a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UI_DialogueBoxPrefab: {fileID: 1316641530803934, guid: d8d00eb534332a94282026aea2f31e5c,
+    type: 2}
   _canvasObject: {fileID: 0}
   gameManager: {fileID: 0}

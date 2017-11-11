@@ -10,10 +10,24 @@ public class CharacterManager : Singleton<CharacterManager> {
 	public List<Character> characterList;
 
 	void Start() {
+		GenerateCharacterObjects();
+
 		if (characterList == null) {
-			GetCharacterAssets();
 			GenerateCharacterObjects();
 		}
+	}
+
+	public void ShowCharacter(int index, int pose) {
+		characterList[index].Show(pose);
+	}
+
+	public void ShowCharacter(int index) {
+		Debug.Log("CharacterManager: Showing character at index " + index);
+		characterList[index].Show();
+	}
+
+	public void HideCharacter(int index) {
+		characterList[index].Hide();
 	}
 
 	protected List<string> GetCharacterAssets() {
@@ -24,6 +38,7 @@ public class CharacterManager : Singleton<CharacterManager> {
 	
 		string[] itemPaths = Directory.GetFiles(dataPath + itemFolderPath, searchOption: SearchOption.AllDirectories,
 		searchPattern: "*.prefab");
+
 			
 		for(int i = 0; i < itemPaths.Length; i++) {
 				string assetName = itemPaths[i].Substring(dataPath.Length+itemFolderPath.Length+1);

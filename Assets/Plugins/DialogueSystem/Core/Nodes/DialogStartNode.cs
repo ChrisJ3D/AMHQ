@@ -37,7 +37,7 @@ public class DialogStartNode : BaseDialogNode
 	{
 		EditorGUILayout.BeginVertical("Box");
 		GUILayout.BeginHorizontal();
-		CharacterPotrait = (Sprite)EditorGUILayout.ObjectField(CharacterPotrait, typeof(Sprite), false, GUILayout.Width(65f), GUILayout.Height(65f));
+		// CharacterPotrait = (Sprite)EditorGUILayout.ObjectField(CharacterPotrait, typeof(Sprite), false, GUILayout.Width(65f), GUILayout.Height(65f));
 		CharacterName = EditorGUILayout.TextField("", CharacterName);
 		GUILayout.EndHorizontal();
 

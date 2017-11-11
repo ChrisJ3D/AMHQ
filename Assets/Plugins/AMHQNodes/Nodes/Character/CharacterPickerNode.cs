@@ -19,7 +19,10 @@ namespace NodeEditorFramework.Standard
 		[ValueConnectionKnob("Output", Direction.Out, "Number")]
 		public ValueConnectionKnob outputKnob;
 
+		[SerializeField]
 		public int characterIndex;
+		
+		[SerializeField]
 		public Number output = new Number();
 
 		protected string label = "";

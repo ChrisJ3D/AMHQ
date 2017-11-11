@@ -15,8 +15,9 @@ public class Character : MonoBehaviour {
 	public float currentAffection;
 
 	[Header("Sprites")]
-	public Sprite[] characterPoses = null; 
+	public Sprite[] characterSprites = null; 
 	public Sprite[] portraits = null;
+	public int activeSprite = 0;
 
 	[HideInInspector]
 	public int index;
@@ -24,6 +25,8 @@ public class Character : MonoBehaviour {
 	public int characterIndex;
 	[HideInInspector]
 	public CharacterManager characterManager;
+
+	private Image _imageComponent;
 	
 	public enum AffectionLevel {
 		Hostile, 
@@ -34,17 +37,21 @@ public class Character : MonoBehaviour {
 		Affectionate
 		};
 
-	// Use this for initialization
-	void Start () {
-		
+	void Awake() {
+		_imageComponent = this.GetComponent<Image>();
 	}
 
-	void OnAwake() {
-		characterManager = FindObjectOfType<CharacterManager>();
+	public void Show () {
+		Show(activeSprite);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	public void Show(int pose) {
+		activeSprite = pose;
+		_imageComponent.sprite =  characterSprites[activeSprite];
+		_imageComponent.enabled = true;
+	}
+
+	public void Hide() {
+		this.GetComponent<Image>().enabled = false;
 	}
 }

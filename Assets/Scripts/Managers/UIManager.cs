@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UIManager : Singleton<UIManager> {
 
-	private GameObject UI_DialogueBoxPrefab;
+	public GameObject UI_DialogueBoxPrefab;
 	private Dictionary<int, UI_DialogueBox> _dialogueBoxes;
 
 	[SerializeField]
@@ -17,7 +17,7 @@ public class UIManager : Singleton<UIManager> {
 		dialogueBox.Construct(nodeID, gameManager.nodeManager);
 		dialogueBox.transform.SetParent(_canvasObject, false);
 		dialogueBox.SetData(gameManager.GetNodeByID(nodeID));
-		dialogueBox.speaker = gameManager.characterManager.FindCharacterByIndex(node.GetSpeaker());
+		dialogueBox.speaker = gameManager.characterManager.FindCharacterByIndex(node.speakerIndex);
 		_dialogueBoxes.Add(nodeID, dialogueBox);
 	}
 

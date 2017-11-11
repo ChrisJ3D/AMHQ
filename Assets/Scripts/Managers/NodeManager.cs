@@ -15,8 +15,7 @@ public class NodeManager : Singleton<NodeManager> {
 
 	[SerializeField]
 	private RectTransform _canvasObject;
-	
-	public AMHQCanvas nodeCanvas;
+
 
 	public override void Awake() {
 		base.Awake();
@@ -29,17 +28,17 @@ public class NodeManager : Singleton<NodeManager> {
 		//	Traverse the node canvas and add all nodes to our dictionary.
 		//	First we check if there's a canvas stored in our scene
 
-		nodeCanvas = GetCanvasFromScene();
+		AMHQCanvas nodeCanvas = GetCanvasFromScene();
 		if (nodeCanvas) {
 			foreach (int id in nodeCanvas.GetAllDialogId()) {
-				Debug.Log("Adding nodeID " + id);
+				Debug.Log("Adding node with ID "+id);
 				_nodeTracker.Add(id, nodeCanvas);
 			}
 		} else {
 			//	If there was no canvas stored in the scene, we look in Resources/Saves
 			foreach (AMHQCanvas canvas in Resources.LoadAll<AMHQCanvas>("Saves/")) {
 				foreach (int id in canvas.GetAllDialogId()) {
-					Debug.Log("Adding nodeID " + id);
+					Debug.Log("Adding node with ID "+id);
 					_nodeTracker.Add(id, canvas);
 				}
 			}
@@ -62,14 +61,21 @@ public class NodeManager : Singleton<NodeManager> {
 		dialogueBox.Construct(nodeID, this);
 		dialogueBox.transform.SetParent(_canvasObject, false);
 		dialogueBox.SetData(GetNodeByID(nodeID));
+
+		dialogueBox.uiManager = gameManager.uiManager;
+		dialogueBox.dialogueLine = GetNodeByID(nodeID).DialogLine;
+		
+		
 		_dialogueBoxes.Add(nodeID, dialogueBox);
 		
 	}
 
 	public BaseConversationNode GetNodeByID(int nodeID) {
+
 		AMHQCanvas canvas;
+
 		if(_nodeTracker.TryGetValue(nodeID, out canvas)) {
-			return nodeCanvas.GetDialog(nodeID);
+			return canvas.GetDialog(nodeID);
 		} else {
 			Debug.LogError("NODEMANAGER: Unable to find node with requested ID: " + nodeID);
 			return null;
@@ -106,6 +112,7 @@ public class NodeManager : Singleton<NodeManager> {
 	}
 
 	public AMHQCanvas GetCanvasFromScene() {
+		Debug.Log("Trying to find canvas in scene");
 		AMHQCanvas canvas = null;
 
 		GameObject gameObject = GameObject.Find("NodeEditor_SceneSaveHolder");
@@ -115,6 +122,8 @@ public class NodeManager : Singleton<NodeManager> {
 			if (saveComponent) {
 			canvas = (AMHQCanvas)saveComponent.savedNodeCanvas;
 			}
+		} else {
+			Debug.Log("No canvas in scene found, returning null");
 		}
 
 		return canvas;

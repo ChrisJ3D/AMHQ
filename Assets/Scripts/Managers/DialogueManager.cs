@@ -85,7 +85,7 @@ public class DialogueManager : Singleton<DialogueManager> {
 
 			SetSpritePositions(character);
 			SpriteRenderer currentSprite = character.GetComponent<SpriteRenderer>();
-			currentSprite.sprite = character.GetComponent<Character>().characterPoses[pose];
+			// currentSprite.sprite = character.GetComponent<Character>().characterPoses[pose];
 		}
 	}
 

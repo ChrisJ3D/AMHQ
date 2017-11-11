@@ -107,14 +107,6 @@ public class DialogManager : MonoBehaviour
 		GiveInputToDialog(dialogId, optionSelected);
 		_messageBoxes[dialogId].SetData(GetNodeForId(dialogId));
 	}
-
-	public AMHQCanvas GetCanvasFromScene() {
-		AMHQCanvas canvas;
-
-		canvas = (AMHQCanvas)GameObject.Find("NodeEditor.SceneSaveHolder").GetComponent<NodeCanvasSceneSave>().savedNodeCanvas;
-
-		return canvas;
-	}
 }
 
 public enum EDialogInputValue

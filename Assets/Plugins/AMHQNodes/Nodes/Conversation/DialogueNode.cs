@@ -41,6 +41,7 @@ public class DialogueNode : BaseConversationNode
 		CharacterName = "Character Name";
 		DialogLine = "Insert dialogue text here";
 		CharacterPotrait = null;
+
 	}
 
 	public override void NodeGUI()
@@ -55,6 +56,7 @@ public class DialogueNode : BaseConversationNode
 		GUILayout.EndHorizontal();
 
 		characterKnob.DisplayLayout();
+		GUILayout.Label(""+ speakerIndex);
 
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Screen Position");
@@ -62,6 +64,7 @@ public class DialogueNode : BaseConversationNode
 		characterPosition = (CharacterPosition)RTEditorGUI.EnumPopup (new GUIContent(""),characterPosition);
 
 		GUILayout.EndHorizontal();
+		GetSpeaker();
 	}
 
 	public override BaseConversationNode Input(int inputValue)
@@ -80,6 +83,13 @@ public class DialogueNode : BaseConversationNode
 		return null;
 	}
 
+	public override void Compile() {
+		
+		speakerIndex = characterKnob.GetValue<Number>();
+		Debug.Log("Compiling with speakerIndex at " + speakerIndex);
+		Debug.Log("KnobValue is " + characterKnob.GetValue<Number>());
+	}
+
 	public override bool IsBackAvailable()
 	{
 		return IsAvailable (toPreviousOut);
@@ -90,11 +100,8 @@ public class DialogueNode : BaseConversationNode
 		return IsAvailable (toNextOUT);
 	}
 
-	public int GetSpeaker() {
-		if(!characterKnob.IsValueNull)
-			return characterKnob.GetValue<int>();
-		else 
-			return 0;
+	public void GetSpeaker() {
+		speakerIndex = characterKnob.GetValue<Number>();
 	}
 
 	public enum CharacterPosition {

@@ -24,7 +24,7 @@ namespace NodeEditorFramework.Standard
 		public ValueConnectionKnob toNextOUT;
 
 		private Vector2 scroll;
-		public int nodeIndex = 1;
+		public int nodeIndex = 0;
 
 		protected override void OnCreate ()
 		{
@@ -32,8 +32,6 @@ namespace NodeEditorFramework.Standard
 			CharacterName = "Character name";
 			DialogLine = "Insert dialog text here";
 			CharacterPotrait = null;
-
-			nodeIndex = 1;
 		}
 
 		public override void NodeGUI()

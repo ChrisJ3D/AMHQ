@@ -18,6 +18,8 @@ public class UI_DialogueBox : MonoBehaviour {
 	private GameObject _okButton;
 	[SerializeField]
 	private OptionsHandler _optionsHolder;
+	[SerializeField]
+	private GameObject _dialogueLineBox;
 
 	public Character speaker;
 
@@ -33,9 +35,6 @@ public class UI_DialogueBox : MonoBehaviour {
 		_nodeID = nodeID;
 		_nodeManager = nodeManager;
 		_backButton.SetActive(false);
-		//_okButton.GetComponentInChildren<GUIText>().text = "OKAY";
-
-		characterManager = GameObject.Find("System").GetComponent<CharacterManager>();
 	}
 
 	public void Construct2(int nodeID) {
@@ -72,23 +71,20 @@ public class UI_DialogueBox : MonoBehaviour {
 	//	This is the golden function that grabs all the data from the node and inserts it into the UI
 	private void SetAsDialogueNode(DialogueNode node) {
 
-		// _speakerName = characterManager.characterList[node.GetSpeaker()].firstName;
+		Character speaker = uiManager.gameManager.characterManager.characterList[node.speakerIndex];
 
-		string _speakerName = "Orien";
+		uiManager.gameManager.characterManager.ShowCharacter(node.speakerIndex);
 
-		GameObject character = null;
-
-		if (_speakerName != "") {
-			character = GameObject.Find(_speakerName); 
-			}
-
-		character.GetComponent<Image>().enabled = true;
-		this.GetComponentInChildren<Text>().text = node.DialogLine;
+		string _speakerName = speaker.firstName;
+		
+		this.GetComponentsInChildren<Text>()[0].text = speaker.firstName;
+		this._dialogueLineBox.GetComponent<Text>().text = dialogueLine;
 	}
 
 	private void SetAsDialogueNode2(Character speaker) {
 
 		speaker.GetComponent<Image>().enabled = true;
+		
 		this.GetComponentsInChildren<Text>()[0].text = speaker.firstName;
 		this.GetComponentsInChildren<Text>()[1].text = dialogueLine;
 	}

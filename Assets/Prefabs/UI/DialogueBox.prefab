@@ -144,10 +144,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e477cadd15d362a498da9407c29d2943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterManager: {fileID: 0}
+  uiManager: {fileID: 0}
   _backButton: {fileID: 1218594688329656}
   _okButton: {fileID: 1133737925645944}
   _optionsHolder: {fileID: 0}
-  characterManager: {fileID: 0}
+  _dialogueLineBox: {fileID: 1536523715297240}
+  speaker: {fileID: 0}
+  dialogueLine: 
+  isPreviousAvailable: 0
+  isForwardAvailable: 0
+  previousNodeIndex: 0
+  forwardNodeIndex: 0
 --- !u!114 &114453527965744188
 MonoBehaviour:
   m_ObjectHideFlags: 1
