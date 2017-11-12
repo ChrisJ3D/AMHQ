@@ -14,27 +14,14 @@ public class NodeManager : Singleton<NodeManager> {
 	[SerializeField]
 	private RectTransform _canvasObject;
 
-	public AMHQCanvas nodeCanvas;
-
+	public AMHQCanvas nodeCanvas = null;
 
 	public override void Awake() {
 		base.Awake();
-
-		//	Traverse the node canvas and add all nodes to our dictionary.
-		//	First we check if there's a canvas stored in our scene
-
-		AMHQCanvas canvas = GetCanvasFromScene();
-		if (canvas) {
-			nodeCanvas = canvas;
-		} else {
-			//	If there was no canvas stored in the scene, we look in Resources/Saves
-			foreach (AMHQCanvas savedCanvas in Resources.LoadAll<AMHQCanvas>("Saves/")) {
-				nodeCanvas = savedCanvas;
-			}
-		}
+		GetCanvasFromScene();
 	}
 
-	public void ShowDialogueByID() {
+	public void StartDialogue() {
 		nodeCanvas.GetSceneLoadedNode();
 
 		_dialogueBox = GameObject.Instantiate(UI_DialogueBoxPrefab).GetComponent<UI_DialogueBox>();
@@ -44,16 +31,11 @@ public class NodeManager : Singleton<NodeManager> {
 		_dialogueBox.SetData(nodeCanvas.startNode);
 	}
 
-	private BaseConversationNode GetNodeByTag(string tag) {
-		return null;
-	}
-
 	public void okButton() {
 		nodeCanvas.TraverseNodes((int)EnumDialogInputValue.Next);
 		if (_dialogueBox) {
 			_dialogueBox.SetData(nodeCanvas.currentNode);
-		} else {Debug.Log("dialogueBox not set");}
-
+		}
 	}
 
 	public void backButton() {
@@ -61,20 +43,27 @@ public class NodeManager : Singleton<NodeManager> {
 		_dialogueBox.SetData(nodeCanvas.currentNode);
 	}
 
-	public AMHQCanvas GetCanvasFromScene() {
-		AMHQCanvas canvas = null;
+	public void GetCanvasFromScene() {
+		nodeCanvas = null;
 
 		GameObject gameObject = GameObject.Find("NodeEditor_SceneSaveHolder");
 		if (gameObject) {
 			NodeCanvasSceneSave saveComponent = gameObject.GetComponent<NodeCanvasSceneSave>();
 
 			if (saveComponent) {
-			canvas = (AMHQCanvas)saveComponent.savedNodeCanvas;
+			nodeCanvas = (AMHQCanvas)saveComponent.savedNodeCanvas;
+			} else {
+				Debug.Log("SceneSaveHolder was missing component, loading from file");
+				GetCanvasFromFile();
 			}
 		} else {
-			Debug.Log("No canvas in scene found, returning null");
+			Debug.Log("No canvas in scene found, loading from file");
+			GetCanvasFromFile();
 		}
-		return canvas;
+	}
+
+	public void GetCanvasFromFile() {
+		nodeCanvas = Resources.Load("Saves/" + gameManager.currentScene + "/LevelGraph", typeof(AMHQCanvas)) as AMHQCanvas;
 	}
 }
 

@@ -24,7 +24,8 @@ public abstract class BaseConversationNode : Node
 
 	public AudioClip SoundDialog;
 
-	public int speakerIndex {get; set;}
+	[SerializeField]
+	public int speakerIndex;
 
 	public abstract BaseConversationNode GetDownsteamNode(int inputValue);
 	public abstract bool IsBackAvailable();

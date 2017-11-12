@@ -13,6 +13,8 @@ public class GameManager : Singleton<GameManager> {
 	private TimeManager timeManager;
 	public UIManager uiManager;
 
+	public string currentScene;
+
 	public override void Awake() {
 		base.Awake();
 
@@ -29,12 +31,14 @@ public class GameManager : Singleton<GameManager> {
 		playerManager.gameManager = this;
 		timeManager.gameManager = this;
 		uiManager.gameManager = this;
+
+		currentScene = SceneManager.GetActiveScene().name;
 	}
 
 	// Use this for initialization
 	void Start () {
 		//	Start reading from node graph
-		nodeManager.ShowDialogueByID();
+		nodeManager.StartDialogue();
 	}
 
 	public void LoadScene(string sceneName) {

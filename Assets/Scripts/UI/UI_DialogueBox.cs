@@ -35,10 +35,6 @@ public class UI_DialogueBox : MonoBehaviour {
 		_backButton.SetActive(false);
 	}
 
-	public void Construct2(int nodeID) {
-
-	}
-
 	//	Signals from the button gameobject
 	public void okButton() {
 		_nodeManager.okButton();
@@ -50,7 +46,7 @@ public class UI_DialogueBox : MonoBehaviour {
 
 	//	Check the type of node being processed and call functions accordingly
 	public void SetData(BaseConversationNode node) {
-		ResetMessageBox();
+		ClearContents();
 
 		if(node == null) {
 			DialogueComplete();
@@ -89,10 +85,6 @@ public class UI_DialogueBox : MonoBehaviour {
 		this.GetComponentsInChildren<Text>()[0].text = "";
 		this._dialogueLineBox.GetComponent<Text>().text = "";
 
-	}
-
-	private void ResetMessageBox() {
-		//	_optionsHolder.ClearList();
 	}
 
 	private void DialogueComplete() {

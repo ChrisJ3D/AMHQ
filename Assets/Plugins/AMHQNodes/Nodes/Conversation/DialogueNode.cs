@@ -41,7 +41,6 @@ public class DialogueNode : BaseConversationNode
 		CharacterName = "Character Name";
 		DialogLine = "Insert dialogue text here";
 		CharacterPotrait = null;
-
 	}
 
 	public override void NodeGUI()
@@ -84,13 +83,6 @@ public class DialogueNode : BaseConversationNode
 		return null;
 	}
 
-	public override void Compile() {
-		
-		speakerIndex = characterKnob.GetValue<Number>();
-		Debug.Log("Compiling with speakerIndex at " + speakerIndex);
-		Debug.Log("KnobValue is " + characterKnob.GetValue<Number>());
-	}
-
 	public override bool IsBackAvailable()
 	{
 		return IsAvailable (toPreviousOut);
@@ -101,8 +93,9 @@ public class DialogueNode : BaseConversationNode
 		return IsAvailable (toNextOUT);
 	}
 
-	public void GetSpeaker() {
+	public int GetSpeaker() {
 		speakerIndex = characterKnob.GetValue<Number>();
+		return (int)speakerIndex;
 	}
 
 	public enum CharacterPosition {

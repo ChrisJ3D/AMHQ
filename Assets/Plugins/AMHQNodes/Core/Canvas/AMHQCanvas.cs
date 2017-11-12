@@ -12,59 +12,11 @@ public class AMHQCanvas : NodeCanvas
 	public override string canvasName { get { return "AMHQ Scene"; } }
 	public string Name = "AMHQ";
 
-	private Dictionary<int, BaseConversationNode> _lstActiveDialogs = new Dictionary<int, BaseConversationNode>();
-
 	public SceneLoadedNode startNode = null;
 	public BaseConversationNode currentNode = null;
 
 	public SceneLoadedNode GetStartNode(int nodeIndex) {
 		return (SceneLoadedNode)this.nodes.FirstOrDefault (x => x is SceneLoadedNode && ((SceneLoadedNode)x).nodeIndex == nodeIndex);
-	}
-
-	public bool HasDialogWithId(int nodeIndexToLoad)
-	{
-		GetSceneLoadedNode();
-		return startNode != default(Node) && startNode != default(SceneLoadedNode);
-	}
-
-	public IEnumerable<int> GetAllDialogId()
-	{
-		foreach (Node node in this.nodes) {
-			if (node is SceneLoadedNode) {
-				yield return ((SceneLoadedNode)node).nodeIndex;
-			}
-		}
-	}
-
-	public BaseConversationNode GetDialog(int nodeIndexToLoad)
-	{
-		GetSceneLoadedNode();
-		return startNode;
-
-		// BaseConversationNode node;
-		// if (!_lstActiveDialogs.TryGetValue(nodeIndexToLoad, out node))
-		// {
-		// 	ActivateDialog(nodeIndexToLoad, false);
-		// }
-		// return _lstActiveDialogs[nodeIndexToLoad];
-	}
-
-	public void InputToDialog(int nodeIndexToLoad, int inputValue)
-	{
-		if (startNode) {
-			TraverseNodes(inputValue);
-		} else {
-			Debug.Log("startNode is null");
-		}
-
-		// BaseConversationNode node;
-		// if (_lstActiveDialogs.TryGetValue(nodeIndexToLoad, out node))
-		// {
-		// 	node = node.GetDownsteamNode(inputValue);
-		// 	if(node != null)
-		// 		node = node.PassAhead(inputValue);
-		// 	_lstActiveDialogs[nodeIndexToLoad] = node;
-		// }
 	}
 
 	public void GetSceneLoadedNode() {
