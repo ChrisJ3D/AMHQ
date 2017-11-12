@@ -14,14 +14,17 @@ public class AMHQCanvas : NodeCanvas
 
 	private Dictionary<int, BaseConversationNode> _lstActiveDialogs = new Dictionary<int, BaseConversationNode>();
 
+	public SceneLoadedNode startNode = null;
+	public BaseConversationNode currentNode = null;
+
 	public SceneLoadedNode GetStartNode(int nodeIndex) {
 		return (SceneLoadedNode)this.nodes.FirstOrDefault (x => x is SceneLoadedNode && ((SceneLoadedNode)x).nodeIndex == nodeIndex);
 	}
 
 	public bool HasDialogWithId(int nodeIndexToLoad)
 	{
-		SceneLoadedNode node = GetStartNode(nodeIndexToLoad);
-		return node != default(Node) && node != default(SceneLoadedNode);
+		GetSceneLoadedNode();
+		return startNode != default(Node) && startNode != default(SceneLoadedNode);
 	}
 
 	public IEnumerable<int> GetAllDialogId()
@@ -32,43 +35,54 @@ public class AMHQCanvas : NodeCanvas
 			}
 		}
 	}
-		
-	public void ActivateDialog(int nodeIndexToLoad, bool goBackToBeginning)
-	{
-		BaseConversationNode node;
-		if (!_lstActiveDialogs.TryGetValue(nodeIndexToLoad, out node))
-		{
-			node = GetStartNode (nodeIndexToLoad);
-			_lstActiveDialogs.Add(nodeIndexToLoad, node);
-		}
-		else
-		{
-			if (goBackToBeginning && !(node is SceneLoadedNode))
-			{
-				_lstActiveDialogs [nodeIndexToLoad] = GetStartNode (nodeIndexToLoad);
-			}
-		}
-	}
 
 	public BaseConversationNode GetDialog(int nodeIndexToLoad)
 	{
-		BaseConversationNode node;
-		if (!_lstActiveDialogs.TryGetValue(nodeIndexToLoad, out node))
-		{
-			ActivateDialog(nodeIndexToLoad, false);
-		}
-		return _lstActiveDialogs[nodeIndexToLoad];
+		GetSceneLoadedNode();
+		return startNode;
+
+		// BaseConversationNode node;
+		// if (!_lstActiveDialogs.TryGetValue(nodeIndexToLoad, out node))
+		// {
+		// 	ActivateDialog(nodeIndexToLoad, false);
+		// }
+		// return _lstActiveDialogs[nodeIndexToLoad];
 	}
 
 	public void InputToDialog(int nodeIndexToLoad, int inputValue)
 	{
-		BaseConversationNode node;
-		if (_lstActiveDialogs.TryGetValue(nodeIndexToLoad, out node))
-		{
-			node = node.Input(inputValue);
-			if(node != null)
-				node = node.PassAhead(inputValue);
-			_lstActiveDialogs[nodeIndexToLoad] = node;
+		if (startNode) {
+			TraverseNodes(inputValue);
+		} else {
+			Debug.Log("startNode is null");
+		}
+
+		// BaseConversationNode node;
+		// if (_lstActiveDialogs.TryGetValue(nodeIndexToLoad, out node))
+		// {
+		// 	node = node.GetDownsteamNode(inputValue);
+		// 	if(node != null)
+		// 		node = node.PassAhead(inputValue);
+		// 	_lstActiveDialogs[nodeIndexToLoad] = node;
+		// }
+	}
+
+	public void GetSceneLoadedNode() {
+		startNode = (SceneLoadedNode)this.nodes.FirstOrDefault (x => x is SceneLoadedNode);
+	}
+
+	public void TraverseNodes(int steps) {
+		BaseConversationNode targetNode;
+
+		if (currentNode == null) {
+			currentNode = startNode;
+		}
+		
+		if (startNode != null) {
+			targetNode = (BaseConversationNode)currentNode.GetDownsteamNode(steps);
+			if (targetNode != null) {
+				currentNode = targetNode.PassAhead(steps);
+			}
 		}
 	}
 

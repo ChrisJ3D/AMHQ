@@ -7,7 +7,6 @@ using System;
 
 public class UI_DialogueBox : MonoBehaviour {
 
-	private int _nodeID;
 	private NodeManager _nodeManager;
 	public CharacterManager characterManager;
 	public UIManager uiManager;
@@ -31,8 +30,7 @@ public class UI_DialogueBox : MonoBehaviour {
 	public int previousNodeIndex;
 	public int forwardNodeIndex;
 
-	public void Construct(int nodeID, NodeManager nodeManager) {
-		_nodeID = nodeID;
+	public void Construct(NodeManager nodeManager) {
 		_nodeManager = nodeManager;
 		_backButton.SetActive(false);
 	}
@@ -43,11 +41,11 @@ public class UI_DialogueBox : MonoBehaviour {
 
 	//	Signals from the button gameobject
 	public void okButton() {
-		_nodeManager.okButton(_nodeID);
+		_nodeManager.okButton();
 	}
 
 	public void backButton() {
-		_nodeManager.backButton(_nodeID);
+		_nodeManager.backButton();
 	}
 
 	//	Check the type of node being processed and call functions accordingly
@@ -64,18 +62,16 @@ public class UI_DialogueBox : MonoBehaviour {
 	}
 
 	private void SetAsStartNode(SceneLoadedNode node) {
-		_backButton.SetActive(node.IsBackAvailable());
-		_okButton.SetActive(true);		
+		_nodeManager.okButton();
 	}
 
 	//	This is the golden function that grabs all the data from the node and inserts it into the UI
 	private void SetAsDialogueNode(DialogueNode node) {
+		dialogueLine = node.DialogLine;
 
 		Character speaker = uiManager.gameManager.characterManager.characterList[node.speakerIndex];
 
 		uiManager.gameManager.characterManager.ShowCharacter(node.speakerIndex);
-
-		string _speakerName = speaker.firstName;
 		
 		this.GetComponentsInChildren<Text>()[0].text = speaker.firstName;
 		this._dialogueLineBox.GetComponent<Text>().text = dialogueLine;
@@ -86,7 +82,13 @@ public class UI_DialogueBox : MonoBehaviour {
 		speaker.GetComponent<Image>().enabled = true;
 		
 		this.GetComponentsInChildren<Text>()[0].text = speaker.firstName;
-		this.GetComponentsInChildren<Text>()[1].text = dialogueLine;
+		this._dialogueLineBox.GetComponent<Text>().text = dialogueLine;
+	}
+
+	private void ClearContents() {
+		this.GetComponentsInChildren<Text>()[0].text = "";
+		this._dialogueLineBox.GetComponent<Text>().text = "";
+
 	}
 
 	private void ResetMessageBox() {
@@ -94,7 +96,6 @@ public class UI_DialogueBox : MonoBehaviour {
 	}
 
 	private void DialogueComplete() {
-		_nodeManager.RemoveDialogueBox(_nodeID);
 		DestroyObject(gameObject);
 	}
 }

@@ -34,11 +34,10 @@ public class GameManager : Singleton<GameManager> {
 	// Use this for initialization
 	void Start () {
 		//	Start reading from node graph
-		nodeManager.ShowDialogueByID(0, true);
+		nodeManager.ShowDialogueByID();
 	}
 
 	public void LoadScene(string sceneName) {
-		var currentScene = SceneManager.GetActiveScene();
 		SceneManager.LoadScene(sceneName);
 	}
 
@@ -47,12 +46,4 @@ public class GameManager : Singleton<GameManager> {
 	}
 
 	//	NodeManager functions
-
-	public BaseConversationNode GetNodeByID (int nodeID) {
-		return nodeManager.GetNodeByID(nodeID);
-	}
-
-	public void FetchNodeData(int nodeID, int inputValue) {
-		nodeManager.FetchNodeData(nodeID, inputValue);
-	}
 }

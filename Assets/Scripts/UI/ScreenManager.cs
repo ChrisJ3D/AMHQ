@@ -8,8 +8,6 @@ public class ScreenManager : MonoBehaviour {
 	public GameObject loadGameScreen;
 	public GameObject newGameScreen;
 
-	private int currentScreenID = 0;
-
 	public void SwitchScreens(int targetID) {
 
 		switch(targetID) {

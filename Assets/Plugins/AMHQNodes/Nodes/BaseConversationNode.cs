@@ -26,7 +26,7 @@ public abstract class BaseConversationNode : Node
 
 	public int speakerIndex {get; set;}
 
-	public abstract BaseConversationNode Input(int inputValue);
+	public abstract BaseConversationNode GetDownsteamNode(int inputValue);
 	public abstract bool IsBackAvailable();
 	public abstract bool IsNextAvailable();
 

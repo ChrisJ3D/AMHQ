@@ -30,7 +30,7 @@ namespace NodeEditorFramework.Standard
 		{
 			base.OnCreate ();
 			CharacterName = "Character name";
-			DialogLine = "Insert dialog text here";
+			DialogLine = "This is the SceneLoadedNode, this line should hopefully not be rendered.";
 			CharacterPotrait = null;
 		}
 
@@ -39,7 +39,7 @@ namespace NodeEditorFramework.Standard
 			GUILayout.Space(5);
 		}
 
-		public override BaseConversationNode Input(int inputValue)
+		public override BaseConversationNode GetDownsteamNode(int inputValue)
 		{
 			switch (inputValue)
 			{

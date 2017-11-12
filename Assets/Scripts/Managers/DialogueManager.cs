@@ -10,7 +10,7 @@ public class DialogueManager : Singleton<DialogueManager> {
 	public string dialogue, characterName;
 	public int lineNum;
 	public float textSpeed = 0.01f;
-	int pose;
+	// int pose;
 	string position;
 	string[] options;
 	public bool isChoosing;
@@ -25,7 +25,7 @@ public class DialogueManager : Singleton<DialogueManager> {
 	void Start () {
 		dialogue = "";
 		characterName = "";
-		pose = 0;
+		// pose = 0;
 		position = "L";
 		isChoosing = false;
 		isTyping = false;
@@ -65,14 +65,14 @@ public class DialogueManager : Singleton<DialogueManager> {
 			isChoosing = false;
 			characterName = parser.GetName(lineNum);
 			dialogue = parser.GetContent(lineNum);
-			pose = parser.GetPose(lineNum);
+			// pose = parser.GetPose(lineNum);
 			position = parser.GetPosition(lineNum);
 			DisplayImages();
 		} else {
 			isChoosing = true;
 			characterName = "";
 			dialogue = "";
-			pose = 0;
+			// pose = 0;
 			position = "";
 			options = parser.GetOptions(lineNum);
 			CreateButtons();
@@ -84,7 +84,7 @@ public class DialogueManager : Singleton<DialogueManager> {
 			GameObject character = GameObject.Find(characterName);
 
 			SetSpritePositions(character);
-			SpriteRenderer currentSprite = character.GetComponent<SpriteRenderer>();
+			// SpriteRenderer currentSprite = character.GetComponent<SpriteRenderer>();
 			// currentSprite.sprite = character.GetComponent<Character>().characterPoses[pose];
 		}
 	}
