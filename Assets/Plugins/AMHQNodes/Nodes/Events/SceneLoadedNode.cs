@@ -39,7 +39,7 @@ namespace NodeEditorFramework.Standard
 			GUILayout.Space(5);
 		}
 
-		public override BaseConversationNode GetDownsteamNode(int inputValue)
+		public override BaseConversationNode GetDownstreamNode(int inputValue)
 		{
 			switch (inputValue)
 			{

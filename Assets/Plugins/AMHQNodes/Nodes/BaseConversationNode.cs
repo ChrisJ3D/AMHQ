@@ -27,12 +27,13 @@ public abstract class BaseConversationNode : Node
 	[SerializeField]
 	public int speakerIndex;
 
-	public abstract BaseConversationNode GetDownsteamNode(int inputValue);
+	public abstract BaseConversationNode GetDownstreamNode(int inputValue);
 	public abstract bool IsBackAvailable();
 	public abstract bool IsNextAvailable();
 
 	public virtual BaseConversationNode PassAhead(int inputValue)
 	{
+		//	This method is required for nodes with multiple output paths
 		return this;
 	}
 

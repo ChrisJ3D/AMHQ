@@ -20,16 +20,6 @@ public class UI_DialogueBox : MonoBehaviour {
 	[SerializeField]
 	private GameObject _dialogueLineBox;
 
-	public Character speaker;
-
-	public string dialogueLine;
-
-	public bool isPreviousAvailable;
-	public bool isForwardAvailable;
-
-	public int previousNodeIndex;
-	public int forwardNodeIndex;
-
 	public void Construct(NodeManager nodeManager) {
 		_nodeManager = nodeManager;
 		_backButton.SetActive(false);
@@ -63,28 +53,17 @@ public class UI_DialogueBox : MonoBehaviour {
 
 	//	This is the golden function that grabs all the data from the node and inserts it into the UI
 	private void SetAsDialogueNode(DialogueNode node) {
-		dialogueLine = node.DialogLine;
-
 		Character speaker = uiManager.gameManager.characterManager.characterList[node.speakerIndex];
 
 		uiManager.gameManager.characterManager.ShowCharacter(node.speakerIndex);
 		
 		this.GetComponentsInChildren<Text>()[0].text = speaker.firstName;
-		this._dialogueLineBox.GetComponent<Text>().text = dialogueLine;
-	}
-
-	private void SetAsDialogueNode2(Character speaker) {
-
-		speaker.GetComponent<Image>().enabled = true;
-		
-		this.GetComponentsInChildren<Text>()[0].text = speaker.firstName;
-		this._dialogueLineBox.GetComponent<Text>().text = dialogueLine;
+		this._dialogueLineBox.GetComponent<Text>().text = node.DialogLine;
 	}
 
 	private void ClearContents() {
 		this.GetComponentsInChildren<Text>()[0].text = "";
 		this._dialogueLineBox.GetComponent<Text>().text = "";
-
 	}
 
 	private void DialogueComplete() {

@@ -67,7 +67,7 @@ public class DialogueNode : BaseConversationNode
 	}
 
 	//	This method helps figuring out the which the next and previous nodes are. The inputValue acts as a "number of steps" to see how far ahead/back to look.
-	public override BaseConversationNode GetDownsteamNode(int inputValue)
+	public override BaseConversationNode GetDownstreamNode(int inputValue)
 	{
 		switch (inputValue)
 		{

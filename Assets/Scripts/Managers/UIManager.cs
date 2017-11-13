@@ -17,12 +17,6 @@ public class UIManager : Singleton<UIManager> {
 	}
 
 	public void PopulateDialogueBox(int nodeID, DialogueNode node) {
-	UI_DialogueBox dialogueBox = GameObject.Instantiate(UI_DialogueBoxPrefab).GetComponent<UI_DialogueBox>();
-		dialogueBox.Construct(gameManager.nodeManager);
-		dialogueBox.transform.SetParent(_canvasObject, false);
-//		dialogueBox.SetData(gameManager.GetNodeByID(nodeID));
-		dialogueBox.speaker = gameManager.characterManager.FindCharacterByIndex(node.speakerIndex);
-		_dialogueBoxes.Add(nodeID, dialogueBox);
-	}
 
+	}
 }

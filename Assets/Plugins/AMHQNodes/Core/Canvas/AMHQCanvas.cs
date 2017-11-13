@@ -31,7 +31,7 @@ public class AMHQCanvas : NodeCanvas
 		}
 		
 		if (startNode != null) {
-			targetNode = (BaseConversationNode)currentNode.GetDownsteamNode(steps);
+			targetNode = (BaseConversationNode)currentNode.GetDownstreamNode(steps);
 			if (targetNode != null) {
 				currentNode = targetNode.PassAhead(steps);
 			}
