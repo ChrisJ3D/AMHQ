@@ -9,12 +9,11 @@ public class CharacterManager : Singleton<CharacterManager> {
 
 	public List<Character> characterList;
 
-	void Start() {
-		GenerateCharacterObjects();
+	private int characterCurrentlyShown = -1;
 
-		if (characterList == null) {
-			GenerateCharacterObjects();
-		}
+	public override void Initialize(MonoBehaviour parent) {
+		gameManager = parent as GameManager;
+		GenerateCharacterObjects();
 	}
 
 	public void ShowCharacter(int index, int pose) {
@@ -22,7 +21,15 @@ public class CharacterManager : Singleton<CharacterManager> {
 	}
 
 	public void ShowCharacter(int index) {
-		Debug.Log("CharacterManager: Showing character at index " + index);
+		if (characterCurrentlyShown == -1) {
+			characterCurrentlyShown = index;
+		}
+
+		if (characterCurrentlyShown != index) {
+			HideCharacter(characterCurrentlyShown);
+		}
+		
+		characterCurrentlyShown = index;
 		characterList[index].Show();
 	}
 

@@ -18,6 +18,8 @@ public class GameManager : Singleton<GameManager> {
 	public override void Awake() {
 		base.Awake();
 
+		currentScene = SceneManager.GetActiveScene().name;
+
 		characterManager = (CharacterManager)GetComponent("CharacterManager");
 		inventoryManager = (InventoryManager)GetComponent("InventoryManager");
 		nodeManager = (NodeManager)GetComponent("NodeManager");
@@ -25,14 +27,12 @@ public class GameManager : Singleton<GameManager> {
 		timeManager = (TimeManager)GetComponent("TimeManager");
 		uiManager = (UIManager)GetComponent("UIManager");
 
-		characterManager.gameManager = this;
-		inventoryManager.gameManager = this;
-		nodeManager.gameManager = this;
-		playerManager.gameManager = this;
-		timeManager.gameManager = this;
-		uiManager.gameManager = this;
-
-		currentScene = SceneManager.GetActiveScene().name;
+		characterManager.Initialize(this);
+		inventoryManager.Initialize(this);
+		nodeManager.Initialize(this);
+		playerManager.Initialize(this);
+		timeManager.Initialize(this);
+		uiManager.Initialize(this);
 	}
 
 	// Use this for initialization

@@ -16,8 +16,8 @@ public class NodeManager : Singleton<NodeManager> {
 
 	public AMHQCanvas nodeCanvas = null;
 
-	public override void Awake() {
-		base.Awake();
+	public override void Initialize(MonoBehaviour parent) {
+		gameManager = parent as GameManager;
 		GetCanvasFromScene();
 	}
 
@@ -63,6 +63,9 @@ public class NodeManager : Singleton<NodeManager> {
 	}
 
 	public void GetCanvasFromFile() {
+		if(!gameManager) {
+			Debug.Log("GameManager not set!!");
+		}
 		nodeCanvas = Resources.Load("Saves/" + gameManager.currentScene + "/LevelGraph", typeof(AMHQCanvas)) as AMHQCanvas;
 	}
 }

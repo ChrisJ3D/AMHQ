@@ -29,4 +29,6 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour {
 			Debug.LogWarning("Singleton reinitialized, is there more than one placed in the scene?");
 		}
 	}
+
+	public virtual void Initialize(MonoBehaviour parent) {}
 }

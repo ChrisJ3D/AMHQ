@@ -12,6 +12,10 @@ public class UIManager : Singleton<UIManager> {
 
 	public GameManager gameManager;
 
+	public override void Initialize(MonoBehaviour parent) {
+		gameManager = parent as GameManager;
+	}
+
 	public void PopulateDialogueBox(int nodeID, DialogueNode node) {
 	UI_DialogueBox dialogueBox = GameObject.Instantiate(UI_DialogueBoxPrefab).GetComponent<UI_DialogueBox>();
 		dialogueBox.Construct(gameManager.nodeManager);
