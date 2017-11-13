@@ -16,7 +16,7 @@ public class UI_DialogueBox : MonoBehaviour {
 	[SerializeField]
 	private GameObject _okButton;
 	[SerializeField]
-	private OptionsHandler _optionsHolder;
+	private UI_QuestionHolder _optionsHolder;
 	[SerializeField]
 	private GameObject _dialogueLineBox;
 
@@ -32,6 +32,10 @@ public class UI_DialogueBox : MonoBehaviour {
 
 	public void backButton() {
 		_nodeManager.backButton();
+	}
+
+	private void OptionSelected(int option) {
+		_nodeManager.OptionSelected(option);
 	}
 
 	//	Check the type of node being processed and call functions accordingly
@@ -60,6 +64,23 @@ public class UI_DialogueBox : MonoBehaviour {
 		this.GetComponentsInChildren<Text>()[0].text = speaker.firstName;
 		this._dialogueLineBox.GetComponent<Text>().text = node.DialogLine;
 	}
+	
+	private void SetAsQuestionNode(QuestionNode node) {
+		_backButton.SetActive(node.IsBackAvailable());
+		_okButton.SetActive(false);
+		characterManager.HideCharacter();
+
+		this._dialogueLineBox.GetComponent<Text>().text = node.DialogLine;
+
+		_optionsHolder.CreateOptions(node.GetAllOptions(), OptionSelected);
+		GrowMessageBox(node.GetAllOptions().Count);
+	}
+
+	private void GrowMessageBox(int count) {
+		Vector2 size = GetComponent<RectTransform>().sizeDelta;
+		size.y += (count * _optionsHolder.CellHeight());
+		GetComponent<RectTransform>().sizeDelta = size;
+	}
 
 	private void ClearContents() {
 		this.GetComponentsInChildren<Text>()[0].text = "";
@@ -69,4 +90,5 @@ public class UI_DialogueBox : MonoBehaviour {
 	private void DialogueComplete() {
 		DestroyObject(gameObject);
 	}
+	
 }

@@ -891,16 +891,6 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114740554614921228, guid: d8d00eb534332a94282026aea2f31e5c,
-        type: 2}
-      propertyPath: m_Text
-      value: This text needs to be replaced
-      objectReference: {fileID: 0}
-    - target: {fileID: 114987528759461868, guid: d8d00eb534332a94282026aea2f31e5c,
-        type: 2}
-      propertyPath: m_Text
-      value: Name
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d8d00eb534332a94282026aea2f31e5c, type: 2}
   m_IsPrefabParent: 0

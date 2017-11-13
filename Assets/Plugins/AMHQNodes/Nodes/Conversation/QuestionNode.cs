@@ -8,14 +8,14 @@ using UnityEngine;
 /// <summary>
 /// One entry and multiple exits, one for each possible answer
 /// </summary>
-[Node(false, "Converation/Question", new Type[]{typeof(AMHQCanvas)})]
+[Node(false, "Conversation/Question", new Type[]{typeof(AMHQCanvas)})]
 public class QuestionNode : BaseConversationNode
 {
-	public override string Title { get { return "Dialog with Options Node"; } }
+	public override string Title { get { return "Question"; } }
 	public override Vector2 MinSize { get { return new Vector2(400, 60); } }
 	public override bool AutoLayout { get { return true; } }
 
-	private const string Id = "multiOptionDialogNode";
+	private const string Id = "questionNode";
 	public override string GetID { get { return Id; } }
 	public override Type GetObjectType { get { return typeof(QuestionNode); } }
 
@@ -29,8 +29,8 @@ public class QuestionNode : BaseConversationNode
 	[ConnectionKnob("From Next",Direction.In, "DialogBack", NodeSide.Right, 50)]
 	public ConnectionKnob fromNextIN;
 
-	private const int StartValue = 276;
-	private const int SizeValue = 24;
+	[ValueConnectionKnob("Character", Direction.In, "Number", NodeSide.Left, 30)]
+		public ValueConnectionKnob characterKnob;
 
 	[SerializeField]
 	List<DataHolderForOption> _options;
@@ -54,13 +54,6 @@ public class QuestionNode : BaseConversationNode
 
 	public override void NodeGUI()
 	{
-		EditorGUILayout.BeginVertical("Box");
-		GUILayout.BeginHorizontal();
-		CharacterPotrait = (Sprite)EditorGUILayout.ObjectField(CharacterPotrait, typeof(Sprite), false, GUILayout.Width(65f), GUILayout.Height(65f));
-		CharacterName = EditorGUILayout.TextField("", CharacterName);
-		GUILayout.EndHorizontal();
-		GUILayout.EndVertical();
-
 		GUILayout.Space(5);
 
 		EditorStyles.textField.wordWrap = true;
@@ -72,17 +65,7 @@ public class QuestionNode : BaseConversationNode
 		EditorGUILayout.EndScrollView();
 		GUILayout.EndHorizontal();
 
-		GUILayout.Space(5);
-
-		GUILayout.BeginHorizontal();
-		EditorGUIUtility.labelWidth = 90;
-		SoundDialog = EditorGUILayout.ObjectField("Dialog Audio:", SoundDialog, typeof(AudioClip), false) as AudioClip;
-		if (GUILayout.Button("►", GUILayout.Width(20)))
-		{
-			if (SoundDialog)
-				AudioUtils.PlayClip(SoundDialog);
-		}
-		GUILayout.EndHorizontal();
+		characterKnob.DisplayLayout();
 
 		GUILayout.Space(5);
 

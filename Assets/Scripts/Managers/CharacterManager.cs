@@ -37,6 +37,12 @@ public class CharacterManager : Singleton<CharacterManager> {
 		characterList[index].Hide();
 	}
 
+	public void HideCharacter() {
+		foreach (Character character in characterList) {
+			character.Hide();
+		}
+	}
+
 	protected List<string> GetCharacterAssets() {
 		List<string> characterAssets = new List<string>();
 

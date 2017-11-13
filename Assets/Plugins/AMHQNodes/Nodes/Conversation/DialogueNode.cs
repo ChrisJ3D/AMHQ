@@ -55,7 +55,6 @@ public class DialogueNode : BaseConversationNode
 		GUILayout.EndHorizontal();
 
 		characterKnob.DisplayLayout();
-		GUILayout.Label(""+ speakerIndex);
 
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Screen Position");

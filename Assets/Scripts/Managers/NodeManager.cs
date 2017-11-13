@@ -43,6 +43,11 @@ public class NodeManager : Singleton<NodeManager> {
 		_dialogueBox.SetData(nodeCanvas.currentNode);
 	}
 
+	public void OptionSelected(int option) {
+		nodeCanvas.TraverseNodes(option);
+		_dialogueBox.SetData(nodeCanvas.currentNode);
+	}
+
 	public void GetCanvasFromScene() {
 		nodeCanvas = null;
 
