@@ -14,7 +14,7 @@ public class NodeManager : Singleton<NodeManager> {
 	[SerializeField]
 	private RectTransform _canvasObject;
 
-	public AMHQCanvas nodeCanvas = null;
+	private AMHQCanvas nodeCanvas = null;
 
 	public override void Initialize(MonoBehaviour parent) {
 		gameManager = parent as GameManager;
@@ -31,14 +31,12 @@ public class NodeManager : Singleton<NodeManager> {
 		_dialogueBox.SetData(nodeCanvas.startNode);
 	}
 
-	public void okButton() {
+	public void StepForward() {
 		nodeCanvas.TraverseNodes((int)EnumDialogInputValue.Next);
-		if (_dialogueBox) {
-			_dialogueBox.SetData(nodeCanvas.currentNode);
-		}
+		_dialogueBox.SetData(nodeCanvas.currentNode);
 	}
 
-	public void backButton() {
+	public void StepBackward() {
 		nodeCanvas.TraverseNodes((int)EnumDialogInputValue.Back);
 		_dialogueBox.SetData(nodeCanvas.currentNode);
 	}
@@ -70,6 +68,7 @@ public class NodeManager : Singleton<NodeManager> {
 	public void GetCanvasFromFile() {
 		if(!gameManager) {
 			Debug.LogWarning("GameManager not set!!");
+			return;
 		}
 		nodeCanvas = Resources.Load("Saves/" + gameManager.currentScene + "/LevelGraph", typeof(AMHQCanvas)) as AMHQCanvas;
 	}

@@ -8,33 +8,33 @@ using System.IO;
 [NodeCanvasType("AMHQ Canvas")]
 public class AMHQCanvas : NodeCanvas
 {
+	public override string canvasName { get { return "AMHQ Node Canvas"; } }
+	public BaseConversationNode currentNode {get { return _currentNode; } }
+	public SceneLoadedNode startNode {get { return _startNode; } }
 
-	public override string canvasName { get { return "AMHQ Scene"; } }
-	public string Name = "AMHQ";
-
-	public SceneLoadedNode startNode = null;
-	public BaseConversationNode currentNode = null;
-
-	public SceneLoadedNode GetStartNode(int nodeIndex) {
-		return (SceneLoadedNode)this.nodes.FirstOrDefault (x => x is SceneLoadedNode && ((SceneLoadedNode)x).nodeIndex == nodeIndex);
-	}
+	private SceneLoadedNode _startNode = null;
+	private BaseConversationNode _currentNode = null;
 
 	public void GetSceneLoadedNode() {
-		startNode = (SceneLoadedNode)this.nodes.FirstOrDefault (x => x is SceneLoadedNode);
+		_startNode = (SceneLoadedNode)this.nodes.FirstOrDefault (x => x is SceneLoadedNode);
+		if (_startNode == null) {
+			Debug.LogWarning("No SceneLoaded node found!!");
+		}
 	}
 
 	public void TraverseNodes(int steps) {
 		BaseConversationNode targetNode;
 
-		if (currentNode == null) {
-			currentNode = startNode;
+		if (_currentNode == null) {
+			_currentNode = _startNode;
 		}
-		
-		if (startNode != null) {
-			targetNode = (BaseConversationNode)currentNode.GetDownstreamNode(steps);
-			if (targetNode != null) {
-				currentNode = targetNode.PassAhead(steps);
-			}
+
+		targetNode = (BaseConversationNode)_currentNode.GetDownstreamNode(steps);
+		if (targetNode) {
+			_currentNode = targetNode.PassAhead(steps);
+		} else {
+			_currentNode = null;
+			Debug.LogError("targetNode returned null, traversal might have gone too far");
 		}
 	}
 

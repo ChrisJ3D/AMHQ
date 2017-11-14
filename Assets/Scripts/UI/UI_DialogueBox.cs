@@ -30,11 +30,11 @@ public class UI_DialogueBox : MonoBehaviour {
 
 	//	Signals from the button gameobject
 	public void okButton() {
-		_nodeManager.okButton();
+		_nodeManager.StepForward();
 	}
 
 	public void backButton() {
-		_nodeManager.backButton();
+		_nodeManager.StepBackward();
 	}
 
 	private void OptionSelected(int option) {
@@ -48,16 +48,12 @@ public class UI_DialogueBox : MonoBehaviour {
 		if(node == null) {
 			DialogueComplete();
 		} else if (node is SceneLoadedNode) {
-			SetAsStartNode((SceneLoadedNode) node);
+			okButton();
 		} else if (node is DialogueNode) {
 			SetAsDialogueNode((DialogueNode) node);
 		} else if (node is QuestionNode) {
 			SetAsQuestionNode((QuestionNode) node);
 		}
-	}
-
-	private void SetAsStartNode(SceneLoadedNode node) {
-		_nodeManager.okButton();
 	}
 
 	//	This is the golden function that grabs all the data from the node and inserts it into the UI
@@ -68,6 +64,7 @@ public class UI_DialogueBox : MonoBehaviour {
 		
 		this.GetComponentsInChildren<Text>()[0].text = speaker.firstName;
 		this._dialogueLineBox.GetComponent<Text>().text = node.DialogLine;
+		_okButton.SetActive(true);
 	}
 	
 	private void SetAsQuestionNode(QuestionNode node) {
