@@ -39,9 +39,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f16a1a7037fe3142b6b9d95fc95010c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _optionPrefab: {fileID: 1294377143213606, guid: 9cccad4ac626a3a4fb65ba1645799644,
+  _questionButtonPrefab: {fileID: 1294377143213606, guid: 9cccad4ac626a3a4fb65ba1645799644,
     type: 2}
-  _buttonHandlers: []
 --- !u!114 &114836636300832068
 MonoBehaviour:
   m_ObjectHideFlags: 1

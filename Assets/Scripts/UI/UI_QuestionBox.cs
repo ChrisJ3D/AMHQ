@@ -6,42 +6,37 @@ using UnityEngine.UI;
 public class UI_QuestionBox : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _optionPrefab;
+    private GameObject _questionButtonPrefab;
 
-    private List<UI_QuestionButton> _buttonHandlers = new List<UI_QuestionButton>();
+    private List<UI_QuestionButton> _questionButtonList = new List<UI_QuestionButton>();
     private Action<int> _callback;
 
-    public void CreateOptions(List<string> allOptions, Action<int> callBack)
+    public void CreateOptions(List<string> options, Action<int> callBack)
     {
         _callback = callBack;
-        for(int x = 0; x < allOptions.Count; x++)
-        {
-            UI_QuestionButton buttonHandler = Instantiate(_optionPrefab).GetComponent<UI_QuestionButton>();
-            buttonHandler.transform.SetParent(transform, false);
-            buttonHandler.SetText(allOptions[x]);
-            buttonHandler.SetValueAndButtonCallBack(x, ButtonCallBack);
-            _buttonHandlers.Add(buttonHandler);
+        for(int i = 0; i < options.Count; i++)  {
+            UI_QuestionButton option = Instantiate(_questionButtonPrefab).GetComponent<UI_QuestionButton>();
+            option.transform.SetParent(transform, false);
+            option.SetText(options[i]);
+            option.SetValueAndButtonCallBack(i, ButtonCallBack);
+            _questionButtonList.Add(option);
         }
     }
 
-    void ButtonCallBack(int value)
-    {
+    public float CellHeight() {
+        return GetComponent<GridLayoutGroup>().cellSize.y;
+    }
+
+    private void ButtonCallBack(int value) {
         _callback(value);
         ClearList();
     }
 
-    public float CellHeight()
-    {
-        return GetComponent<GridLayoutGroup>().cellSize.y;
-    }
-
-    public void ClearList()
-    {
-        foreach(UI_QuestionButton handler in _buttonHandlers)
-        {
-            Destroy(handler.gameObject);
+    private void ClearList() {
+        foreach(UI_QuestionButton button in _questionButtonList) {
+            Destroy(button.gameObject);
         }
-        _buttonHandlers.Clear();
+        _questionButtonList.Clear();
         Destroy(gameObject);
     }
 }

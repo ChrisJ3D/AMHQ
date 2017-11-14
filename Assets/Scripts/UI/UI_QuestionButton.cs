@@ -1,23 +1,16 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class UI_QuestionButton : MonoBehaviour
 {
-    [SerializeField]
-    private Text _optionText;
-
-    [SerializeField]
-    private Button _button;
-
     public void SetText(string option)
     {
-        _optionText.text = option;
+        GetComponentInChildren<Text>().text = option;
     }
 
     public void SetValueAndButtonCallBack(int value, Action<int> buttonCallBack)
     {
-        _button.onClick.AddListener(delegate { buttonCallBack(value); });
+        GetComponent<Button>().onClick.AddListener(delegate { buttonCallBack(value); });
     }
 }

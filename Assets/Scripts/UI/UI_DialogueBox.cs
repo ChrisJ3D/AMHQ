@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using NodeEditorFramework.Standard;
-using System;
 
 public class UI_DialogueBox : MonoBehaviour {
 
@@ -48,9 +46,5 @@ public class UI_DialogueBox : MonoBehaviour {
 	public void ClearContents() {
 		this.GetComponentsInChildren<Text>()[0].text = "";
 		_dialogueLineBox.GetComponent<Text>().text = "";
-	}
-
-	public void DialogueComplete() {
-		DestroyObject(gameObject);
 	}
 }

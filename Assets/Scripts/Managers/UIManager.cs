@@ -14,20 +14,16 @@ public class UIManager : Singleton<UIManager> {
 
 	private UI_DialogueBox _dialogueBox;
 	private UI_QuestionBox _questionBox;
-	private NodeManager _nodeManager;
-	private CharacterManager _characterManager;
 
 	public override void Initialize(MonoBehaviour parent) {
 		gameManager = parent as GameManager;
-		_nodeManager = gameManager.nodeManager;
-		_characterManager = gameManager.characterManager;
 	}
 
 	public void SetDialogueBoxType(BaseConversationNode node) {
 		_dialogueBox.ClearContents();
 
 		if(node == null) {
-			_dialogueBox.DialogueComplete();
+			DialogueComplete();
 		} else if (node is SceneLoadedNode) {
 			okButton();
 		} else if (node is DialogueNode) {
@@ -37,22 +33,22 @@ public class UIManager : Singleton<UIManager> {
 		}
 	}
 
-	public void InitializeDialogueBox() {
+	public void InitializeDialogueBox(BaseConversationNode node) {
 		_dialogueBox = GameObject.Instantiate(UI_DialogueBoxPrefab).GetComponent<UI_DialogueBox>();
 		_dialogueBox.Construct(this);
 		_dialogueBox.transform.SetParent(_canvasObject, false);
 
-		SetDialogueBoxType(gameManager.nodeManager.startNode);
+		SetDialogueBoxType(node);
 	}
 
 	public void UpdateDialogueBox(DialogueNode node) {
 		if (_dialogueBox == null) {
-			InitializeDialogueBox();
+			InitializeDialogueBox(node);
 			return;
 		}
 
-		_characterManager.ShowCharacter(node.speakerIndex);
-		string speakerName = _characterManager.characterList[node.speakerIndex].firstName;
+		gameManager.ShowCharacter(node.speakerIndex);
+		string speakerName = gameManager.GetCharacter(node.speakerIndex).firstName;
 		string dialogueLine = node.DialogLine;
 		_dialogueBox.SetAsDialogueNode(dialogueLine, speakerName, node.IsBackAvailable(), node.IsNextAvailable());
 	}
@@ -66,7 +62,7 @@ public class UIManager : Singleton<UIManager> {
 
 		_dialogueBox.SetAsQuestionNode(node.DialogLine, node.IsBackAvailable());
 
-		_characterManager.HideCharacter();
+		gameManager.HideCharacters();
 	}
 
 	private void GrowQuestionBox(int count) {
@@ -76,17 +72,21 @@ public class UIManager : Singleton<UIManager> {
 	}
 
 	public void okButton() {
-		_nodeManager.StepForward();
-		SetDialogueBoxType(_nodeManager.currentNode);
+		gameManager.StepForward();
+		SetDialogueBoxType(gameManager.GetCurrentNode());
 	}
 
 	public void backButton() {
-		_nodeManager.StepBackward();
-		SetDialogueBoxType(_nodeManager.currentNode);
+		gameManager.StepBackward();
+		SetDialogueBoxType(gameManager.GetCurrentNode());
 	}
 
 	public void optionSelected(int option) {
-		_nodeManager.OptionSelected(option);
-		SetDialogueBoxType(_nodeManager.currentNode);
+		gameManager.SelectOption(option);
+		SetDialogueBoxType(gameManager.GetCurrentNode());
+	}
+
+	public void DialogueComplete() {
+		DestroyObject(_dialogueBox);
 	}
 }

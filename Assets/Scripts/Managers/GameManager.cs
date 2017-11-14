@@ -35,19 +35,44 @@ public class GameManager : Singleton<GameManager> {
 		uiManager.Initialize(this);
 	}
 
-	// Use this for initialization
 	void Start () {
 		//	Start reading from node graph
-		uiManager.InitializeDialogueBox();
+		uiManager.InitializeDialogueBox(nodeManager.startNode);
 	}
 
 	public void LoadScene(string sceneName) {
 		SceneManager.LoadScene(sceneName);
 	}
 
-	public void PassNodeToUI() {
-		
+//	CharacterManager functions
+
+	public Character GetCharacter(int index) {
+		return characterManager.characterList[index];
 	}
 
-	//	NodeManager functions
+	public void ShowCharacter(int index) {
+		characterManager.ShowCharacter(index);
+	}
+
+	public void HideCharacters() {
+		characterManager.HideCharacter();
+	}
+
+//	NodeManager functions
+
+	public BaseConversationNode GetCurrentNode() {
+		return nodeManager.currentNode;
+	}
+
+	public void StepForward() {
+		nodeManager.StepForward();
+	}
+
+	public void StepBackward() {
+		nodeManager.StepBackward();
+	}
+
+	public void SelectOption(int option) {
+		nodeManager.OptionSelected(option);
+	}
 }
