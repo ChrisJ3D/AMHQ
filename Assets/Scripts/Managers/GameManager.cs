@@ -38,7 +38,7 @@ public class GameManager : Singleton<GameManager> {
 	// Use this for initialization
 	void Start () {
 		//	Start reading from node graph
-		nodeManager.StartDialogue();
+		uiManager.InitializeDialogueBox();
 	}
 
 	public void LoadScene(string sceneName) {

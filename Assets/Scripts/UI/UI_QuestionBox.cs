@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_QuestionHolder : MonoBehaviour
+public class UI_QuestionBox : MonoBehaviour
 {
     [SerializeField]
     private GameObject _optionPrefab;

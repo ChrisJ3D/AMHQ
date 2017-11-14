@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 114651078998322506}
   - component: {fileID: 114035736819876832}
   m_Layer: 0
-  m_Name: DialogueBox
+  m_Name: UI_DialogueBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -144,12 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e477cadd15d362a498da9407c29d2943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterManager: {fileID: 0}
-  uiManager: {fileID: 0}
   _backButton: {fileID: 1218594688329656}
   _okButton: {fileID: 1133737925645944}
-  _optionsHolder: {fileID: 114304098089603306, guid: 5df6c7e07a6256143bb6c37c903ac227,
-    type: 2}
   _dialogueLineBox: {fileID: 1536523715297240}
 --- !u!114 &114453527965744188
 MonoBehaviour:

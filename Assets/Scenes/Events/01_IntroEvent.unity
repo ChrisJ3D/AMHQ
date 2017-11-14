@@ -175,6 +175,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114760832401948446, guid: 6c90020080ac9404080de44acc95054c,
+        type: 2}
+      propertyPath: _canvasObject
+      value: 
+      objectReference: {fileID: 840761123}
     - target: {fileID: 114140197012090060, guid: 6c90020080ac9404080de44acc95054c,
         type: 2}
       propertyPath: _canvasObject
@@ -623,7 +628,7 @@ Prefab:
     - target: {fileID: 224983615479292628, guid: d8d00eb534332a94282026aea2f31e5c,
         type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224983615479292628, guid: d8d00eb534332a94282026aea2f31e5c,
         type: 2}

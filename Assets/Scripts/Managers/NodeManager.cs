@@ -6,44 +6,33 @@ using NodeEditorFramework;
 public class NodeManager : Singleton<NodeManager> {
 
 	public GameManager gameManager;
+	public BaseConversationNode startNode {get { return nodeCanvas.startNode; } }
+	public BaseConversationNode currentNode {get { return nodeCanvas.currentNode; } }
 	
 	[SerializeField]
 	private GameObject UI_DialogueBoxPrefab;
-	private UI_DialogueBox _dialogueBox;
-
 	[SerializeField]
 	private RectTransform _canvasObject;
 
+	private UI_DialogueBox _dialogueBox;
 	private AMHQCanvas nodeCanvas = null;
 
 	public override void Initialize(MonoBehaviour parent) {
 		gameManager = parent as GameManager;
 		GetCanvasFromScene();
-	}
-
-	public void StartDialogue() {
 		nodeCanvas.GetSceneLoadedNode();
-
-		_dialogueBox = GameObject.Instantiate(UI_DialogueBoxPrefab).GetComponent<UI_DialogueBox>();
-		_dialogueBox.Construct(this, _canvasObject);
-		_dialogueBox.uiManager = gameManager.uiManager;
-		_dialogueBox.transform.SetParent(_canvasObject, false);
-		_dialogueBox.SetData(nodeCanvas.startNode);
 	}
 
 	public void StepForward() {
 		nodeCanvas.TraverseNodes((int)EnumDialogInputValue.Next);
-		_dialogueBox.SetData(nodeCanvas.currentNode);
 	}
 
 	public void StepBackward() {
 		nodeCanvas.TraverseNodes((int)EnumDialogInputValue.Back);
-		_dialogueBox.SetData(nodeCanvas.currentNode);
 	}
 
 	public void OptionSelected(int option) {
 		nodeCanvas.TraverseNodes(option);
-		_dialogueBox.SetData(nodeCanvas.currentNode);
 	}
 
 	public void GetCanvasFromScene() {

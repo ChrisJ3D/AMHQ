@@ -88,6 +88,7 @@ MonoBehaviour:
   nodeManager: {fileID: 0}
   playerManager: {fileID: 0}
   uiManager: {fileID: 0}
+  currentScene: 
 --- !u!114 &114082398875645414
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -116,7 +117,6 @@ MonoBehaviour:
   UI_DialogueBoxPrefab: {fileID: 1316641530803934, guid: d8d00eb534332a94282026aea2f31e5c,
     type: 2}
   _canvasObject: {fileID: 0}
-  nodeCanvas: {fileID: 0}
 --- !u!114 &114389325794560180
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -153,7 +153,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b2526d38c4ebd469110377c377035a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   UI_DialogueBoxPrefab: {fileID: 1316641530803934, guid: d8d00eb534332a94282026aea2f31e5c,
     type: 2}
+  UI_QuestionBoxPrefab: {fileID: 1215468434659374, guid: 5df6c7e07a6256143bb6c37c903ac227,
+    type: 2}
   _canvasObject: {fileID: 0}
-  gameManager: {fileID: 0}

@@ -7,92 +7,50 @@ using System;
 
 public class UI_DialogueBox : MonoBehaviour {
 
-	private NodeManager _nodeManager;
-	public CharacterManager characterManager;
-	public UIManager uiManager;
-
 	[SerializeField]
 	private GameObject _backButton;
 	[SerializeField]
 	private GameObject _okButton;
 	[SerializeField]
-	private UI_QuestionHolder _optionsHolder;
-	[SerializeField]
 	private GameObject _dialogueLineBox;
 
-	private RectTransform _canvasObject;
+	private UIManager _uiManager;
 
-	public void Construct(NodeManager nodeManager, RectTransform canvasObject) {
-		_nodeManager = nodeManager;
-		_canvasObject = canvasObject;
+	public void Construct(UIManager parent) {
+		_uiManager = parent;
 		_backButton.SetActive(false);
 	}
 
 	//	Signals from the button gameobject
 	public void okButton() {
-		_nodeManager.StepForward();
+		_uiManager.okButton();
 	}
 
 	public void backButton() {
-		_nodeManager.StepBackward();
+		_uiManager.backButton();
 	}
 
-	private void OptionSelected(int option) {
-		_nodeManager.OptionSelected(option);
-	}
-
-	//	Check the type of node being processed and call functions accordingly
-	public void SetData(BaseConversationNode node) {
-		ClearContents();
-
-		if(node == null) {
-			DialogueComplete();
-		} else if (node is SceneLoadedNode) {
-			okButton();
-		} else if (node is DialogueNode) {
-			SetAsDialogueNode((DialogueNode) node);
-		} else if (node is QuestionNode) {
-			SetAsQuestionNode((QuestionNode) node);
-		}
-	}
-
-	//	This is the golden function that grabs all the data from the node and inserts it into the UI
-	private void SetAsDialogueNode(DialogueNode node) {
-		Character speaker = uiManager.gameManager.characterManager.characterList[node.speakerIndex];
-
-		uiManager.gameManager.characterManager.ShowCharacter(node.speakerIndex);
+	public void SetAsDialogueNode(string dialogueLine, string speakerName, bool isBackAvailable, bool isNextAvailable) {
+		this.GetComponentsInChildren<Text>()[0].text = speakerName;
+		_dialogueLineBox.GetComponent<Text>().text = dialogueLine;
 		
-		this.GetComponentsInChildren<Text>()[0].text = speaker.firstName;
-		this._dialogueLineBox.GetComponent<Text>().text = node.DialogLine;
-		_okButton.SetActive(true);
+		_backButton.SetActive(isBackAvailable);
+		_okButton.SetActive(isNextAvailable);
 	}
 	
-	private void SetAsQuestionNode(QuestionNode node) {
-		_backButton.SetActive(node.IsBackAvailable());
+	public void SetAsQuestionNode(string dialogueLine, bool isBackAvailable) {
+		_dialogueLineBox.GetComponent<Text>().text = dialogueLine;
+
+		_backButton.SetActive(isBackAvailable);
 		_okButton.SetActive(false);
-		uiManager.gameManager.characterManager.HideCharacter();
-
-		this._dialogueLineBox.GetComponent<Text>().text = node.DialogLine;
-
-		UI_QuestionHolder questionHolder = Instantiate(_optionsHolder).GetComponent<UI_QuestionHolder>();
-		questionHolder.transform.SetParent(_canvasObject,false);
-		questionHolder.CreateOptions(node.GetAllOptions(), OptionSelected);
-		//GrowMessageBox(node.GetAllOptions().Count);
 	}
 
-	private void GrowMessageBox(int count) {
-		Vector2 size = GetComponent<RectTransform>().sizeDelta;
-		size.y += (count * _optionsHolder.CellHeight());
-		GetComponent<RectTransform>().sizeDelta = size;
-	}
-
-	private void ClearContents() {
+	public void ClearContents() {
 		this.GetComponentsInChildren<Text>()[0].text = "";
-		this._dialogueLineBox.GetComponent<Text>().text = "";
+		_dialogueLineBox.GetComponent<Text>().text = "";
 	}
 
-	private void DialogueComplete() {
+	public void DialogueComplete() {
 		DestroyObject(gameObject);
 	}
-	
 }
