@@ -25,7 +25,7 @@ public class NodeManager : Singleton<NodeManager> {
 		nodeCanvas.GetSceneLoadedNode();
 
 		_dialogueBox = GameObject.Instantiate(UI_DialogueBoxPrefab).GetComponent<UI_DialogueBox>();
-		_dialogueBox.Construct(this);
+		_dialogueBox.Construct(this, _canvasObject);
 		_dialogueBox.uiManager = gameManager.uiManager;
 		_dialogueBox.transform.SetParent(_canvasObject, false);
 		_dialogueBox.SetData(nodeCanvas.startNode);
@@ -58,7 +58,7 @@ public class NodeManager : Singleton<NodeManager> {
 			if (saveComponent) {
 			nodeCanvas = (AMHQCanvas)saveComponent.savedNodeCanvas;
 			} else {
-				Debug.Log("SceneSaveHolder was missing component, loading from file");
+				Debug.LogWarning("SceneSaveHolder was missing component, loading from file");
 				GetCanvasFromFile();
 			}
 		} else {
@@ -69,7 +69,7 @@ public class NodeManager : Singleton<NodeManager> {
 
 	public void GetCanvasFromFile() {
 		if(!gameManager) {
-			Debug.Log("GameManager not set!!");
+			Debug.LogWarning("GameManager not set!!");
 		}
 		nodeCanvas = Resources.Load("Saves/" + gameManager.currentScene + "/LevelGraph", typeof(AMHQCanvas)) as AMHQCanvas;
 	}

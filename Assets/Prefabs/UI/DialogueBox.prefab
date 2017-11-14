@@ -82,23 +82,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1500515555691640
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 224711265402192902}
-  - component: {fileID: 114023228019702316}
-  - component: {fileID: 114173575003158452}
-  m_Layer: 0
-  m_Name: QuestionHolder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1515235545459206
 GameObject:
   m_ObjectHideFlags: 1
@@ -150,29 +133,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114023228019702316
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1500515555691640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -2095666955, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 0
-  m_StartCorner: 0
-  m_StartAxis: 0
-  m_CellSize: {x: 100, y: 100}
-  m_Spacing: {x: 0, y: 0}
-  m_Constraint: 0
-  m_ConstraintCount: 2
 --- !u!114 &114035736819876832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -188,21 +148,9 @@ MonoBehaviour:
   uiManager: {fileID: 0}
   _backButton: {fileID: 1218594688329656}
   _okButton: {fileID: 1133737925645944}
-  _optionsHolder: {fileID: 114173575003158452}
-  _dialogueLineBox: {fileID: 1536523715297240}
---- !u!114 &114173575003158452
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1500515555691640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f16a1a7037fe3142b6b9d95fc95010c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _optionPrefab: {fileID: 1294377143213606, guid: 9cccad4ac626a3a4fb65ba1645799644,
+  _optionsHolder: {fileID: 114304098089603306, guid: 5df6c7e07a6256143bb6c37c903ac227,
     type: 2}
+  _dialogueLineBox: {fileID: 1536523715297240}
 --- !u!114 &114453527965744188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -395,7 +343,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 40
-    m_Alignment: 3
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -596,8 +544,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.013733, y: -26.424995}
-  m_SizeDelta: {x: 1071.5, y: 139.75}
+  m_AnchoredPosition: {x: -0.028443001, y: -26.424995}
+  m_SizeDelta: {x: 1039.4, y: 144.35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224619251132615308
 RectTransform:
@@ -634,24 +582,6 @@ RectTransform:
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!224 &224711265402192902
-RectTransform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1500515555691640}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 224983615479292628}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224782081534259184
 RectTransform:
@@ -704,12 +634,11 @@ RectTransform:
   - {fileID: 224081421426689988}
   - {fileID: 224948161996209176}
   - {fileID: 224010799344502360}
-  - {fileID: 224711265402192902}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0.25, y: 96.3}
-  m_SizeDelta: {x: 1071.5, y: 192.6}
+  m_AnchoredPosition: {x: 0.25, y: 98.6}
+  m_SizeDelta: {x: 1039.5, y: 197.2}
   m_Pivot: {x: 0.5, y: 0.5}

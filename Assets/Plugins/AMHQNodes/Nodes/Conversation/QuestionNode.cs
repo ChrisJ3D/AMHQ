@@ -157,7 +157,7 @@ public class QuestionNode : BaseConversationNode
 				//	return Outputs[_options[inputValue].dynamicConnectionPortsIndex].GetNodeAcrossConnection() as BaseDialogNode;
 			//I think we -2 for next and back, but not really sure yet
 			//TODO is this right?
-			Debug.Log("checking dynamic connection port " + inputValue);
+
 			if (IsAvailable (dynamicConnectionPorts [inputValue]))
 				return getTargetNode (dynamicConnectionPorts [inputValue]);
 			break;

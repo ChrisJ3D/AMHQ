@@ -52,6 +52,6 @@ public class Character : MonoBehaviour {
 	}
 
 	public void Hide() {
-		this.GetComponent<Image>().enabled = false;
+		_imageComponent.enabled = false;
 	}
 }

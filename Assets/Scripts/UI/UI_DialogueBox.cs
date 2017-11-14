@@ -20,8 +20,11 @@ public class UI_DialogueBox : MonoBehaviour {
 	[SerializeField]
 	private GameObject _dialogueLineBox;
 
-	public void Construct(NodeManager nodeManager) {
+	private RectTransform _canvasObject;
+
+	public void Construct(NodeManager nodeManager, RectTransform canvasObject) {
 		_nodeManager = nodeManager;
+		_canvasObject = canvasObject;
 		_backButton.SetActive(false);
 	}
 
@@ -48,6 +51,8 @@ public class UI_DialogueBox : MonoBehaviour {
 			SetAsStartNode((SceneLoadedNode) node);
 		} else if (node is DialogueNode) {
 			SetAsDialogueNode((DialogueNode) node);
+		} else if (node is QuestionNode) {
+			SetAsQuestionNode((QuestionNode) node);
 		}
 	}
 
@@ -68,12 +73,14 @@ public class UI_DialogueBox : MonoBehaviour {
 	private void SetAsQuestionNode(QuestionNode node) {
 		_backButton.SetActive(node.IsBackAvailable());
 		_okButton.SetActive(false);
-		characterManager.HideCharacter();
+		uiManager.gameManager.characterManager.HideCharacter();
 
 		this._dialogueLineBox.GetComponent<Text>().text = node.DialogLine;
 
-		_optionsHolder.CreateOptions(node.GetAllOptions(), OptionSelected);
-		GrowMessageBox(node.GetAllOptions().Count);
+		UI_QuestionHolder questionHolder = Instantiate(_optionsHolder).GetComponent<UI_QuestionHolder>();
+		questionHolder.transform.SetParent(_canvasObject,false);
+		questionHolder.CreateOptions(node.GetAllOptions(), OptionSelected);
+		//GrowMessageBox(node.GetAllOptions().Count);
 	}
 
 	private void GrowMessageBox(int count) {
