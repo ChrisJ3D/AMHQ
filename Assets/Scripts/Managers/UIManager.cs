@@ -3,90 +3,94 @@ using System.Collections.Generic;
 using UnityEngine;
 using NodeEditorFramework.Standard;
 
-public class UIManager : Singleton<UIManager> {
+namespace AMHQ {
+	public class UIManager : Singleton<UIManager> {
 
-	public GameManager gameManager;
-	public GameObject UI_DialogueBoxPrefab;
-	public GameObject UI_QuestionBoxPrefab;
+		public GameManager gameManager;
+		public GameObject UI_DialogueBoxPrefab;
+		public GameObject UI_QuestionBoxPrefab;
 
-	[SerializeField]
-	private RectTransform _canvasObject;
+		[SerializeField]
+		private RectTransform _canvasObject;
 
-	private UI_DialogueBox _dialogueBox;
-	private UI_QuestionBox _questionBox;
+		private UI_DialogueBox _dialogueBox;
+		private UI_QuestionBox _questionBox;
 
-	public override void Initialize(MonoBehaviour parent) {
-		gameManager = parent as GameManager;
-	}
-
-	public void SetDialogueBoxType(BaseConversationNode node) {
-		_dialogueBox.ClearContents();
-
-		if(node == null) {
-			DialogueComplete();
-		} else if (node is SceneLoadedNode) {
-			okButton();
-		} else if (node is DialogueNode) {
-			UpdateDialogueBox((DialogueNode) node);
-		} else if (node is QuestionNode) {
-			InitializeQuestionBox((QuestionNode) node);
-		}
-	}
-
-	public void InitializeDialogueBox(BaseConversationNode node) {
-		_dialogueBox = GameObject.Instantiate(UI_DialogueBoxPrefab).GetComponent<UI_DialogueBox>();
-		_dialogueBox.Construct(this);
-		_dialogueBox.transform.SetParent(_canvasObject, false);
-
-		SetDialogueBoxType(node);
-	}
-
-	public void UpdateDialogueBox(DialogueNode node) {
-		if (_dialogueBox == null) {
-			InitializeDialogueBox(node);
-			return;
+		public override void Initialize(MonoBehaviour parent) {
+			gameManager = parent as GameManager;
 		}
 
-		gameManager.ShowCharacter(node.speakerIndex);
-		string speakerName = gameManager.GetCharacter(node.speakerIndex).firstName;
-		string dialogueLine = node.DialogLine;
-		_dialogueBox.SetAsDialogueNode(dialogueLine, speakerName, node.IsBackAvailable(), node.IsNextAvailable());
-	}
+		public void SetDialogueBoxType(BaseConversationNode node) {
+			_dialogueBox.ClearContents();
 
-	public void InitializeQuestionBox(QuestionNode node) {
-		_questionBox = Instantiate(UI_QuestionBoxPrefab).GetComponent<UI_QuestionBox>();
-		_questionBox.transform.SetParent(_canvasObject, false);
+			if(node == null) {
+				DialogueComplete();
+			} else if (node is SceneLoadedNode) {
+				okButton();
+			} else if (node is DialogueNode) {
+				UpdateDialogueBox((DialogueNode) node);
+			} else if (node is QuestionNode) {
+				InitializeQuestionBox((QuestionNode) node);
+			}
+		}
 
-		_questionBox.CreateOptions(node.GetAllOptions(), optionSelected);
-		//GrowMessageBox(node.GetAllOptions().Count);
+		public void InitializeDialogueBox(BaseConversationNode node) {
+			_dialogueBox = GameObject.Instantiate(UI_DialogueBoxPrefab).GetComponent<UI_DialogueBox>();
+			_dialogueBox.Construct(this);
+			_dialogueBox.transform.SetParent(_canvasObject, false);
 
-		_dialogueBox.SetAsQuestionNode(node.DialogLine, node.IsBackAvailable());
+			SetDialogueBoxType(node);
+		}
 
-		gameManager.HideCharacters();
-	}
+		public void UpdateDialogueBox(DialogueNode node) {
+			if (_dialogueBox == null) {
+				InitializeDialogueBox(node);
+				return;
+			}
 
-	private void GrowQuestionBox(int count) {
-		Vector2 size = GetComponent<RectTransform>().sizeDelta;
-		size.y += (count * _questionBox.CellHeight());
-		GetComponent<RectTransform>().sizeDelta = size;
-	}
+			gameManager.SetCharacterPosition(node.speakerIndex, node.GetCharacterPosition());
+			gameManager.ShowCharacter(node.speakerIndex);
+			
+			string speakerName = gameManager.GetCharacter(node.speakerIndex).firstName;
+			string dialogueLine = node.DialogLine;
+			_dialogueBox.SetAsDialogueNode(dialogueLine, speakerName, node.IsBackAvailable(), node.IsNextAvailable());
+		}
 
-	public void okButton() {
-		gameManager.StepForward();
-		SetDialogueBoxType(gameManager.GetCurrentNode());
-	}
+		public void InitializeQuestionBox(QuestionNode node) {
+			_questionBox = Instantiate(UI_QuestionBoxPrefab).GetComponent<UI_QuestionBox>();
+			_questionBox.transform.SetParent(_canvasObject, false);
 
-	public void backButton() {
-		gameManager.StepBackward();
-		SetDialogueBoxType(gameManager.GetCurrentNode());
-	}
+			_questionBox.CreateOptions(node.GetAllOptions(), optionSelected);
+			//GrowMessageBox(node.GetAllOptions().Count);
 
-	public void optionSelected(int option) {
-		gameManager.SelectOption(option);
-		SetDialogueBoxType(gameManager.GetCurrentNode());
-	}
+			_dialogueBox.SetAsQuestionNode(node.DialogLine, node.IsBackAvailable());
 
-	public void DialogueComplete() {
-		DestroyObject(_dialogueBox);
+			gameManager.HideCharacters();
+		}
+
+		private void GrowQuestionBox(int count) {
+			Vector2 size = GetComponent<RectTransform>().sizeDelta;
+			size.y += (count * _questionBox.CellHeight());
+			GetComponent<RectTransform>().sizeDelta = size;
+		}
+
+		public void okButton() {
+			gameManager.StepForward();
+			SetDialogueBoxType(gameManager.GetCurrentNode());
+		}
+
+		public void backButton() {
+			gameManager.StepBackward();
+			SetDialogueBoxType(gameManager.GetCurrentNode());
+		}
+
+		public void optionSelected(int option) {
+			gameManager.SelectOption(option);
+			SetDialogueBoxType(gameManager.GetCurrentNode());
+		}
+
+		public void DialogueComplete() {
+			DestroyObject(_dialogueBox);
+		}
 	}
 }

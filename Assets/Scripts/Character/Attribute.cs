@@ -1,19 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using AMHQ;
 
 [CreateAssetMenuAttribute(menuName = "amhq/CharacterAttribute")]
 [System.Serializable]
 public class CharacterAttribute : ScriptableObject {
-
-	public enum CharacterAttributeType {
-		STRESS,
-		ORGANISATION,
-		CHARISMA,
-		KNOWLEDGE,
-		INNOVATION,
-		ELOQUENCE
-	};
 
 	public int value;
 	public CharacterAttributeType type;

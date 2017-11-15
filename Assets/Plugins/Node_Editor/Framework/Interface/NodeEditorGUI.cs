@@ -57,8 +57,8 @@ namespace NodeEditorFramework
 			GUIBoxSelection = ResourceManager.LoadTexture("Textures/BoxSelection.png");
 			GUIToolbar = ResourceManager.LoadTexture("Textures/NE_Toolbar.png");
 			GUIToolbarButton = ResourceManager.LoadTexture("Textures/NE_ToolbarButton.png");
-			font = ResourceManager.LoadResource<Font>("Assets/Plugins/AMHQNodes/Fonts/meiryo.ttc");
-			AMHQSkin = ResourceManager.LoadResource<GUISkin>("Assets/Plugins/AMHQNodes/AMHQNodesSkin.guiskin");
+			font = ResourceManager.LoadResource<Font>("Assets/Scripts/AMHQNodes/Fonts/meiryo.ttc");
+			AMHQSkin = ResourceManager.LoadResource<GUISkin>("Assets/Scripts/AMHQNodes/AMHQNodesSkin.guiskin");
 
 			if (!Background || !AALineTex || !GUIBox || !GUIButton || !GUIToolbar || !GUIToolbarButton)
 				return false;

@@ -15,7 +15,7 @@ namespace NodeEditorFramework.Standard
 		public override string Title { get { return "Display Node"; } }
 		public override Vector2 DefaultSize { get { return new Vector2 (130, 120); } }
 
-		private Number value = new Number();
+		private float value;
 
 		[ValueConnectionKnob("Value", Direction.In, "Number")]
 		public ValueConnectionKnob inputKnob;
@@ -31,10 +31,7 @@ namespace NodeEditorFramework.Standard
 			GUILayout.Space(-30);
 
 			GUILayout.BeginVertical();
-			GUILayout.Label("X: " + value.x.ToString());
-			GUILayout.Label("Y: " + value.y.ToString());
-			GUILayout.Label("Z: " + value.z.ToString());
-			GUILayout.Label("W: " + value.w.ToString());
+			GUILayout.Label("X: " + value.ToString());
 			GUILayout.EndVertical();
 			GUILayout.EndHorizontal();
 
@@ -44,7 +41,7 @@ namespace NodeEditorFramework.Standard
 		
 		public override bool Calculate () 
 		{
-			value = inputKnob.GetValue<Number> ();
+			value = inputKnob.GetValue<float> ();
 			return true;
 		}
 	}

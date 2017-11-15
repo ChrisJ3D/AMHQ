@@ -3,55 +3,85 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Character : MonoBehaviour {
+namespace AMHQ {
+	public class Character : MonoBehaviour {
 
-	[Header("Character")]
-	public string firstName;
-	public string lastName;
+		[Header("Character")]
+		public string firstName;
+		public string lastName;
 
-	[Header("Initial Stats")]
-	public AffectionLevel StartingAffection;
+		[Header("Initial Stats")]
+		public AffectionLevel StartingAffection;
 
-	public float currentAffection;
+		public float currentAffection;
 
-	[Header("Sprites")]
-	public Sprite[] characterSprites = null; 
-	public Sprite[] portraits = null;
-	public int activeSprite = 0;
+		[Header("Sprites")]
+		public Sprite[] characterSprites = null; 
+		public Sprite[] portraits = null;
+		public int activeSprite = 0;
 
-	[HideInInspector]
-	public int index;
-	[HideInInspector]
-	public int characterIndex;
-	[HideInInspector]
-	public CharacterManager characterManager;
+		[HideInInspector]
+		public int index;
+		[HideInInspector]
+		public int characterIndex;
+		[HideInInspector]
+		public CharacterManager characterManager;
 
-	private Image _imageComponent;
-	
-	public enum AffectionLevel {
-		Hostile, 
-		Disintrested,
-		Neutral,
-		Friendly,
-		Interested,
-		Affectionate
-		};
+		private Image _imageComponent;
 
-	void Awake() {
-		_imageComponent = this.GetComponent<Image>();
-	}
+		void Awake() {
+			_imageComponent = this.GetComponent<Image>();
+		}
 
-	public void Show () {
-		Show(activeSprite);
-	}
+		public void Show () {
+			Show(activeSprite);
+		}
 
-	public void Show(int pose) {
-		activeSprite = pose;
-		_imageComponent.sprite =  characterSprites[activeSprite];
-		_imageComponent.enabled = true;
-	}
+		public void Show(int pose) {
+			activeSprite = pose;
+			_imageComponent.sprite =  characterSprites[activeSprite];
+			_imageComponent.enabled = true;
+		}
 
-	public void Hide() {
-		_imageComponent.enabled = false;
+		public void SetPositionLeft() {
+			if (transform.localPosition.x == -250f) {
+				return;
+			} else 
+			if (transform.localPosition.x == 0f) {
+				transform.Translate(-250f, 0f, 0f);
+			} else 
+			if (transform.localPosition.x == 250f) {
+				transform.Translate(-500f, 0f, 0f);
+			}
+		}
+
+		public void SetPositionMiddle() {
+			
+			if (transform.localPosition.x == -250f) {
+				transform.Translate(250f, 0f, 0f);
+			} else 
+			if (transform.localPosition.x == 0f) {
+				return;
+			} else 
+			if (transform.localPosition.x == 250f) {
+				transform.Translate(-250f, 0f, 0f);
+			}
+		}
+
+		public void SetPositionRight() {
+			if (transform.localPosition.x == -250f) {
+				transform.Translate(500f, 0f, 0f);
+			} else 
+			if (transform.localPosition.x == 0f) {
+				transform.Translate(250f, 0f, 0f);
+			} else 
+			if (transform.localPosition.x == 250f) {
+				return;
+			}
+		}
+
+		public void Hide() {
+			_imageComponent.enabled = false;
+		}
 	}
 }

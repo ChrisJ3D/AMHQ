@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : Singleton<PlayerManager> {
+namespace AMHQ {
+	public class PlayerManager : Singleton<PlayerManager> {
 
-	public GameManager gameManager;
+		public GameManager gameManager;
 
-	public override void Initialize(MonoBehaviour parent) {
-		gameManager = parent as GameManager;
+		public override void Initialize(MonoBehaviour parent) {
+			gameManager = parent as GameManager;
+		}
 	}
 }
