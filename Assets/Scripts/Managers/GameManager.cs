@@ -80,5 +80,11 @@ namespace AMHQ {
 		public void SelectOption(int option) {
 			nodeManager.OptionSelected(option);
 		}
+
+	//	PlayerManager functions
+
+		public string GetPlayerName() {
+			return playerManager.playerName;
+		}
 	}
 }

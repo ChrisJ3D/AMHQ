@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NodeEditorFramework.Standard;
@@ -52,7 +53,7 @@ namespace AMHQ {
 			gameManager.ShowCharacter(node.speakerIndex);
 			
 			string speakerName = gameManager.GetCharacter(node.speakerIndex).firstName;
-			string dialogueLine = node.DialogLine;
+			string dialogueLine = ProcessString(node.DialogLine);
 			_dialogueBox.SetAsDialogueNode(dialogueLine, speakerName, node.IsBackAvailable(), node.IsNextAvailable());
 		}
 
@@ -72,6 +73,16 @@ namespace AMHQ {
 			Vector2 size = GetComponent<RectTransform>().sizeDelta;
 			size.y += (count * _questionBox.CellHeight());
 			GetComponent<RectTransform>().sizeDelta = size;
+		}
+
+		public string ProcessString(string line) {
+			string newLine = line;
+
+			if (line.Contains("{name}")) {
+				newLine = line.Replace("{name}", gameManager.GetPlayerName());
+			}
+
+			return newLine;
 		}
 
 		public void okButton() {

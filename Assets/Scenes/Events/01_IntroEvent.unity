@@ -185,6 +185,36 @@ Prefab:
       propertyPath: _canvasObject
       value: 
       objectReference: {fileID: 840761123}
+    - target: {fileID: 114389325794560180, guid: 6c90020080ac9404080de44acc95054c,
+        type: 2}
+      propertyPath: startingCharisma
+      value: 120.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 114389325794560180, guid: 6c90020080ac9404080de44acc95054c,
+        type: 2}
+      propertyPath: startingEloquence
+      value: 503.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114389325794560180, guid: 6c90020080ac9404080de44acc95054c,
+        type: 2}
+      propertyPath: startingInnovation
+      value: 211.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114389325794560180, guid: 6c90020080ac9404080de44acc95054c,
+        type: 2}
+      propertyPath: startingKnowledge
+      value: 6.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 114389325794560180, guid: 6c90020080ac9404080de44acc95054c,
+        type: 2}
+      propertyPath: startingOrganisation
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114389325794560180, guid: 6c90020080ac9404080de44acc95054c,
+        type: 2}
+      propertyPath: startingStress
+      value: 44444.11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c90020080ac9404080de44acc95054c, type: 2}
   m_IsPrefabParent: 0
