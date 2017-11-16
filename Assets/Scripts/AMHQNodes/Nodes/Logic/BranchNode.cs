@@ -5,43 +5,84 @@ using System.Linq;
 using NodeEditorFramework;
 using NodeEditorFramework.Utilities;
 
-namespace NodeEditorFramework.Standard
+[Node (false, "Logic/Branch")]
+public class BranchNode : BaseConversationNode 
 {
-	[Node (false, "Logic/Branch")]
-	public class BranchNode : Node 
+	public override string Title {get { return "Branch"; } }
+	public override Vector2 MinSize { get { return new Vector2(150, 60); } }
+	public override bool AutoLayout { get { return true; } }
+
+	private const string Id = "branchNode";
+	public override string GetID { get { return Id; } }
+	public override Type GetObjectType { get { return typeof(BranchNode); } }
+	public override string description { get { return "The Branch node reroutes the level flow based on the incoming condition. The condition should be in a boolean format (true/false)."; } }
+
+	[ValueConnectionKnob("In", Direction.In, "DialogForward", NodeSide.Left, 10)]
+	public ValueConnectionKnob flowIn;
+
+	[ValueConnectionKnob("Bool", Direction.In, "Number", NodeSide.Left, 20)]
+	public ValueConnectionKnob conditionKnob;
+
+	[ValueConnectionKnob("True", Direction.Out, "DialogueForward", NodeSide.Right, 10)]
+	public ValueConnectionKnob trueKnob;
+
+	[ValueConnectionKnob("False", Direction.Out, "DialogueForward", NodeSide.Right, 20)]
+	public ValueConnectionKnob falseKnob;		
+
+	public object speaker;
+	public string content = "";
+
+	[SerializeField]
+	public bool value = false;
+	
+	public override void NodeGUI () 
 	{
-		public const string ID = "BranchNode";
-		public override string GetID { get { return ID; } }
-		public override string Title { get { return "Branch"; } }
-		public override Vector2 DefaultSize { get { return new Vector2 (120, 70); } }
-		public override string description { get { return "The Branch node reroutes the level flow based on the incoming condition. The condition should be in a boolean format (true/false)."; } }
+		base.NodeGUI();
 
-		[ConnectionKnob("In", Direction.In, "Flow", NodeSide.Left, 10)]
-		public ConnectionKnob flowIn;
+		if (GUI.changed)
+			NodeEditor.curNodeCanvas.OnNodeChange(this);
+	}
 
-		[ConnectionKnob("Condition", Direction.In, "Number", NodeSide.Left, 20)]
-		public ConnectionKnob conditionKnob;
+	public override bool IsBackAvailable()
+	{
+		return IsAvailable(flowIn);
+	}
 
-		[ConnectionKnob("True", Direction.Out, "Flow", NodeSide.Right, 10)]
-		public ConnectionKnob trueKnob;
+	public override bool IsNextAvailable()
+	{
+		return IsAvailable (Evaluate());
+	}
 
-		[ConnectionKnob("False", Direction.Out, "Flow", NodeSide.Right, 20)]
-		public ConnectionKnob falseKnob;		
-
-		public object speaker;
-		public string content = "";
-		
-		public override void NodeGUI () 
-		{
-			base.NodeGUI();
-
-			if (GUI.changed)
-				NodeEditor.curNodeCanvas.OnNodeChange(this);
+	public ValueConnectionKnob Evaluate() {
+		if (conditionKnob.connected()) {
+			value = getTargetNode(conditionKnob).Calculate();
+			Debug.Log("BranchNode: " + conditionKnob.GetValue<Number>());
+			Debug.Log("BranchNode Body: " + getTargetNode(conditionKnob).GetID);
+			if (value == true) {
+				return trueKnob;
+			}
 		}
-		
-		public override bool Calculate () 
+		return falseKnob;
+	}
+
+	public override BaseConversationNode PassAhead(int inputValue)
+	{
+		return GetDownstreamNode(inputValue);
+	}
+
+	public override BaseConversationNode GetDownstreamNode(int inputValue)
+	{
+		switch (inputValue)
 		{
-			return true;
+		case (int)EDialogInputValue.Next:
+			if (IsNextAvailable ())
+				return getTargetNode (Evaluate());
+			break;
+		case (int)EDialogInputValue.Back:
+			if (IsBackAvailable ())
+				return getTargetNode (Evaluate());
+			break;
 		}
+		return null;
 	}
 }

@@ -10,7 +10,7 @@ using AMHQ;
 public class MergeNode : BaseConversationNode
 {
 	public override string Title { get { return "Merge"; } }
-	public override Vector2 MinSize { get { return new Vector2(150, 80); } }
+	public override Vector2 MinSize { get { return new Vector2(150, 60); } }
 	public override bool AutoLayout { get { return true; } }
 
 	private const string Id = "mergeNode";
@@ -18,18 +18,18 @@ public class MergeNode : BaseConversationNode
 	public override Type GetObjectType { get { return typeof(MergeNode); } }
 
 	//Previous Node Connections
-	[ValueConnectionKnob("From Previous", Direction.In, "DialogForward", NodeSide.Left, 30)]
+	[ValueConnectionKnob("", Direction.In, "DialogForward", NodeSide.Left, 10)]
 	public ValueConnectionKnob inputKnob1;
 
-	[ValueConnectionKnob("From Previous", Direction.In, "DialogForward", NodeSide.Left, 60)]
+	[ValueConnectionKnob("", Direction.In, "DialogForward", NodeSide.Left, 20)]
 	public ValueConnectionKnob inputKnob2;
 
-	[ValueConnectionKnob("To Next", Direction.Out, "DialogForward", NodeSide.Right, 30)]
+	[ValueConnectionKnob("", Direction.Out, "DialogForward", NodeSide.Right, 10)]
 	public ValueConnectionKnob outputKnob;
 
 	private ValueConnectionKnobAttribute dynaCreationAttribute 
 	= new ValueConnectionKnobAttribute(
-		"From Previous", Direction.In, "DialogForward", NodeSide.Left);
+		"", Direction.In, "DialogForward", NodeSide.Left);
 
 	private const int StartValue = 54;
 	private const int SizeValue = 24;
@@ -44,10 +44,10 @@ public class MergeNode : BaseConversationNode
 
 	public override void NodeGUI()
 	{
-		GUILayout.Space(5);
+		base.NodeGUI();
 
-		GUILayout.BeginHorizontal();
-		GUILayout.BeginVertical();
+		// GUILayout.BeginHorizontal();
+		// GUILayout.BeginVertical();
 
 		// GUILayout.Space(5);
 		// if (GUILayout.Button("Add Input"))
@@ -68,8 +68,8 @@ public class MergeNode : BaseConversationNode
 		// 	RemoveLastOption();
 		// }
 
-		GUILayout.EndVertical();
-		GUILayout.EndHorizontal();
+		// GUILayout.EndVertical();
+		// GUILayout.EndHorizontal();
 	}
 
 	private void RemoveLastOption()
@@ -94,7 +94,7 @@ public class MergeNode : BaseConversationNode
 		{
 		case (int)EDialogInputValue.Next:
 			if (IsNextAvailable ())
-				return getTargetNode (outputKnob);
+				return getTargetNode (outputKnob).PassAhead((int)EDialogInputValue.Next);
 			break;
 		case (int)EDialogInputValue.Back:
 			if (IsBackAvailable ())
