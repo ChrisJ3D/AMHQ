@@ -33,7 +33,7 @@ public abstract class BaseConversationNode : Node
 
 	public virtual BaseConversationNode PassAhead(int inputValue)
 	{
-		//	This method is required for nodes with multiple output paths
+		//	This method is required for non-dialogue nodes
 		return this;
 	}
 
