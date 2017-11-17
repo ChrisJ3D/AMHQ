@@ -4,6 +4,7 @@ using NodeEditorFramework;
 using NodeEditorFramework.Standard;
 using UnityEngine;
 using System.IO;
+using AMHQ;
 
 [NodeCanvasType("AMHQ Canvas")]
 public class AMHQCanvas : NodeCanvas
@@ -11,9 +12,14 @@ public class AMHQCanvas : NodeCanvas
 	public override string canvasName { get { return "AMHQ Node Canvas"; } }
 	public BaseConversationNode currentNode {get { return _currentNode; } }
 	public SceneLoadedNode startNode {get { return _startNode; } }
+	public GameManager gameManager;
 
 	private SceneLoadedNode _startNode = null;
 	private BaseConversationNode _currentNode = null;
+
+	public void Start() {
+		gameManager = GameObject.FindObjectOfType<GameManager>();
+	}
 
 	public void GetSceneLoadedNode() {
 		_startNode = (SceneLoadedNode)this.nodes.FirstOrDefault (x => x is SceneLoadedNode);
@@ -36,6 +42,10 @@ public class AMHQCanvas : NodeCanvas
 			_currentNode = null;
 			Debug.LogError("targetNode returned null, traversal might have gone too far");
 		}
+	}
+
+	public Dictionary<CharacterAttributeType, float> GetCharacterStats() {
+		return gameManager.playerManager.GetPlayerAttributes();
 	}
 
 	public List<string> GetItemsInAssetFolder() {

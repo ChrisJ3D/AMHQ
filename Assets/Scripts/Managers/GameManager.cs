@@ -86,5 +86,9 @@ namespace AMHQ {
 		public string GetPlayerName() {
 			return playerManager.playerName;
 		}
+
+		public Dictionary<CharacterAttributeType, Number> GetPlayerAttributes() {
+			return playerManager.attributes;
+		}
 	}
 }

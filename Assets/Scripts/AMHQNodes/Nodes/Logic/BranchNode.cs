@@ -56,8 +56,6 @@ public class BranchNode : BaseConversationNode
 	public ValueConnectionKnob Evaluate() {
 		if (conditionKnob.connected()) {
 			value = getTargetNode(conditionKnob).Calculate();
-			Debug.Log("BranchNode: " + conditionKnob.GetValue<Number>());
-			Debug.Log("BranchNode Body: " + getTargetNode(conditionKnob).GetID);
 			if (value == true) {
 				return trueKnob;
 			}

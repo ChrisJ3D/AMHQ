@@ -103,7 +103,6 @@ public class ConditionalNode : BaseConversationNode
 			}
 			break;
 		}
-		Debug.Log(outputKnob.GetValue<Number>());
 		return outputKnob.GetValue<Number>();
 	}
 
