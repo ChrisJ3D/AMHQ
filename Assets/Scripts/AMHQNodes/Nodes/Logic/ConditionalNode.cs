@@ -8,15 +8,15 @@ using NodeEditorFramework.Utilities;
 [Node (false, "Logic/Conditional")]
 public class ConditionalNode : BaseConversationNode 
 {
-	public enum ConditionType { AIsLessThanB, AIsLessThanOrEqualB, AEqualsB, AIsGreaterThanOrEqualB, AIsGreaterThanB}
-	public ConditionType method = ConditionType.AEqualsB;
+	enum ConditionType { AIsLessThanB, AIsLessThanOrEqualB, AEqualsB, AIsGreaterThanOrEqualB, AIsGreaterThanB}
+	ConditionType method = ConditionType.AEqualsB;
 
 	public const string ID = "ConditionalNode";
 	public override string GetID { get { return ID; } }
 
 	public override string Title { get { return "Conditional"; } }
-	public override Vector2 DefaultSize { get { return new Vector2 (250, 100); } }
-	public override Vector2 MinSize { get { return new Vector2(250, 100); } }
+	public override Vector2 DefaultSize { get { return new Vector2 (250, 75); } }
+	public override Vector2 MinSize { get { return new Vector2(250, 75); } }
 	public override bool AutoLayout { get { return true; } }
 	public override string description { get { return "The conditional node compares two inputs (A and B) according to the chosen method, and outputs a boolean value depending on the result. You can use this to compare attributes and other values."; } }
 
@@ -71,8 +71,10 @@ public class ConditionalNode : BaseConversationNode
 	public override bool Calculate () 
 	{
 		if (aKnob.connected())
+			getTargetNode(aKnob).Calculate();
 			Input1Val = aKnob.GetValue<Number> ();
 		if (bKnob.connected())
+			getTargetNode(bKnob).Calculate();
 			Input2Val = bKnob.GetValue<Number> ();
 
 		switch (method) 

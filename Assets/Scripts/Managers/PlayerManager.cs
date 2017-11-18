@@ -37,7 +37,11 @@ namespace AMHQ {
 		}
 
 		public void SetAttribute(CharacterAttributeType attribute, float value) {
-			_attributes.Add(attribute, value);
+			_attributes.Add(attribute, (Number)value);
+		}
+
+		public Dictionary<CharacterAttributeType, Number> GetAllAttributes() {
+			return _attributes;
 		}
 
 		public void AdjustAttribute(CharacterAttributeType attribute, Number value) {

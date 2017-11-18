@@ -9,7 +9,7 @@ using AMHQ;
 [Node (false, "Character/Get Attribute Value", new Type[] { typeof(AMHQCanvas) })]
 public class AttributesNode : BaseConversationNode 
 {
-	public override string Title {get { return "Get Attribute"; } }
+	public override string Title {get { return "Get Attribute Value"; } }
 	public override Vector2 MinSize { get { return new Vector2(150, 200); } }
 	public override bool AutoLayout { get { return true; } }
 
@@ -65,19 +65,32 @@ public class AttributesNode : BaseConversationNode
 	
 	public override bool Calculate () 
 	{
-		var currentCanvas = (AMHQCanvas)NodeEditor.curNodeCanvas;
-		Dictionary<CharacterAttributeType, Number> attributes = currentCanvas.gameManager.GetPlayerAttributes();
+		var gameManager = FindObjectOfType<GameManager>();
+		Dictionary<CharacterAttributeType, Number> attributes = gameManager.GetPlayerAttributes();
 
-		if (attributes.TryGetValue(CharacterAttributeType.CHARISMA, out stress)) {
-
+		if (attributes.TryGetValue(CharacterAttributeType.STRESS, out stress)) {
+			stressKnob.SetValue<Number>(stress);
 		}
-		stress = 0f;
-		stressKnob.SetValue<Number>(stress);
-		charismaKnob.SetValue<Number>(charisma);
-		innovationKnob.SetValue<Number>(innovation);
-		organisationKnob.SetValue<Number>(organisation);
-		knowledgeKnob.SetValue<Number>(knowledge);
-		eloquenceKnob.SetValue<Number>(eloquence);
+
+		if (attributes.TryGetValue(CharacterAttributeType.CHARISMA, out charisma)) {
+			charismaKnob.SetValue<Number>(charisma);
+		}
+
+		if (attributes.TryGetValue(CharacterAttributeType.INNOVATION, out innovation)) {
+			innovationKnob.SetValue<Number>(innovation);
+		}
+
+		if (attributes.TryGetValue(CharacterAttributeType.ORGANISATION, out organisation)) {
+			organisationKnob.SetValue<Number>(organisation);
+		}
+
+		if (attributes.TryGetValue(CharacterAttributeType.KNOWLEDGE, out knowledge)) {
+			knowledgeKnob.SetValue<Number>(knowledge);
+		}
+
+		if (attributes.TryGetValue(CharacterAttributeType.ELOQUENCE, out eloquence)) {
+			eloquenceKnob.SetValue<Number>(eloquence);
+		}
 
 		return true;
 	}
@@ -95,4 +108,18 @@ public class AttributesNode : BaseConversationNode
 		return lowestAttribute;
 	
 	}
+
+	public override BaseConversationNode GetDownstreamNode(int inputValue)
+	{
+		return null;
+	}
+
+	public override bool IsBackAvailable() {
+		return false;
+	}
+
+	public override bool IsNextAvailable() {
+		return false;
+	}
+
 }

@@ -90,5 +90,13 @@ namespace AMHQ {
 		public Dictionary<CharacterAttributeType, Number> GetPlayerAttributes() {
 			return playerManager.attributes;
 		}
+
+		public void SetPlayerAttribute(CharacterAttributeType attribute, Number value) {
+
+		}
+
+		public void AdjustPlayerAttribute(CharacterAttributeType attribute, Number value) {
+			
+		}
 	}
 }

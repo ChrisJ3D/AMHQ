@@ -44,8 +44,8 @@ public class AMHQCanvas : NodeCanvas
 		}
 	}
 
-	public Dictionary<CharacterAttributeType, float> GetCharacterStats() {
-		return gameManager.playerManager.GetPlayerAttributes();
+	public Dictionary<CharacterAttributeType, Number> GetCharacterStats() {
+		return gameManager.playerManager.GetAllAttributes();
 	}
 
 	public List<string> GetItemsInAssetFolder() {
