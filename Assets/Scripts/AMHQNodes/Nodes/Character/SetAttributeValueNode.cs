@@ -15,13 +15,14 @@ public class SetAttributeValueNode : BaseConversationNode
 	public override Vector2 MinSize { get { return new Vector2(120, 90); } }
 	public override bool AutoLayout { get { return true; } }
 	public override Vector2 DefaultSize { get { return new Vector2 (120, 90); } }
+
 	public override string description { get { return "The Branch node reroutes the level flow based on the incoming condition. The condition should be in a boolean format (true/false)."; } }
 	public override Type GetObjectType { get { return typeof(SetAttributeValueNode); } }
 
-	[ValueConnectionKnob("", Direction.In, "DialogForward", NodeSide.Left, 10)]
+	[ValueConnectionKnob("", Direction.In, "DialogueForward", NodeSide.Left, 10)]
 	public ValueConnectionKnob flowIn;
 
-	[ValueConnectionKnob("", Direction.Out, "DialogForward", NodeSide.Right, 10)]
+	[ValueConnectionKnob("", Direction.Out, "DialogueForward", NodeSide.Right, 10)]
 	public ValueConnectionKnob flowOut;
 
 	[ValueConnectionKnob("Attribute", Direction.In, "Number", NodeSide.Left, 20)]
@@ -83,12 +84,11 @@ public class SetAttributeValueNode : BaseConversationNode
 
 	public override BaseConversationNode GetDownstreamNode(int inputValue)
 	{
-		Calculate();
 		switch (inputValue)
 		{
 		case (int)EDialogInputValue.Next:
 			if (IsNextAvailable ())
-				return getTargetNode (flowOut);
+				return getTargetNode (flowOut).PassAhead((int)EDialogInputValue.Next);
 			break;
 		case (int)EDialogInputValue.Back:
 			if (IsBackAvailable ())

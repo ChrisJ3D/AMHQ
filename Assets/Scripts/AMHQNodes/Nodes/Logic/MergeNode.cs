@@ -18,18 +18,18 @@ public class MergeNode : BaseConversationNode
 	public override Type GetObjectType { get { return typeof(MergeNode); } }
 
 	//Previous Node Connections
-	[ValueConnectionKnob("", Direction.In, "DialogForward", NodeSide.Left, 10)]
+	[ValueConnectionKnob("", Direction.In, "DialogueForward", NodeSide.Left, 10)]
 	public ValueConnectionKnob inputKnob1;
 
-	[ValueConnectionKnob("", Direction.In, "DialogForward", NodeSide.Left, 20)]
+	[ValueConnectionKnob("", Direction.In, "DialogueForward", NodeSide.Left, 20)]
 	public ValueConnectionKnob inputKnob2;
 
-	[ValueConnectionKnob("", Direction.Out, "DialogForward", NodeSide.Right, 10)]
+	[ValueConnectionKnob("", Direction.Out, "DialogueForward", NodeSide.Right, 10)]
 	public ValueConnectionKnob outputKnob;
 
 	private ValueConnectionKnobAttribute dynaCreationAttribute 
 	= new ValueConnectionKnobAttribute(
-		"", Direction.In, "DialogForward", NodeSide.Left);
+		"", Direction.In, "DialogueForward", NodeSide.Left);
 
 	private const int StartValue = 54;
 	private const int SizeValue = 24;

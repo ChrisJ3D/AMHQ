@@ -1,53 +1,73 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using NodeEditorFramework;
 using NodeEditorFramework.Utilities;
+using AMHQ;
 
-namespace NodeEditorFramework.Standard
+[System.Serializable]
+[Node (false, "Constants/Float", new Type[] { typeof(AMHQCanvas) })]
+public class FloatNode : BaseConversationNode 
 {
-	[System.Serializable]
-	[Node (false, "Constants/Float")]
-	public class FloatNode : Node 
+	public const string ID = "FloatNode";
+	public override string GetID { get { return ID; } }
+
+	public override string Title { get { return "Float"; } }
+	public override Vector2 DefaultSize { get { return new Vector2 (130, 60); } }
+
+	public override Type GetObjectType { get { return typeof(FloatNode); } }
+
+	public override Vector2 MinSize { get { return new Vector2 (130, 60); } }
+	public override string description { get { return "The Float node outputs a floating-point number (meaning you can have decimals). Floating-point numbers have higher precision than integers, but require more memory."; } }
+
+	[ValueConnectionKnob("Float", Direction.Out, "Number")]
+	public ValueConnectionKnob outputKnob;		
+
+	[SerializeField]
+	public Number value = new Number();
+
+	public override void NodeGUI () 
 	{
-		public const string ID = "FloatNode";
-		public override string GetID { get { return ID; } }
+		GUILayout.BeginHorizontal();
+		GUILayout.Space(10);
+		GUILayout.BeginVertical();
 
-		public override string Title { get { return "Float"; } }
-		public override Vector2 DefaultSize { get { return new Vector2 (130, 60); } }
-		public override string description { get { return "The Float node outputs a floating-point number (meaning you can have decimals). Floating-point numbers have higher precision than integers, but require more memory."; } }
+		GUILayout.Space(5);
 
-		[ValueConnectionKnob("Float", Direction.Out, "Number")]
-		public ValueConnectionKnob outputKnob;		
+		value = RTEditorGUI.FloatField (value);
 
-		public Number value = new Number();
+		GUILayout.EndVertical();
 
-		public override void NodeGUI () 
-		{
-			GUILayout.BeginHorizontal();
-			GUILayout.Space(10);
-			GUILayout.BeginVertical();
-	
-			GUILayout.Space(5);
+		GUILayout.BeginVertical();
 
-			value = RTEditorGUI.FloatField (value);
+		outputKnob.DisplayLayout(new GUIContent(""));
 
-			GUILayout.EndVertical();
+		GUILayout.EndVertical();
+		GUILayout.EndHorizontal();
 
-			GUILayout.BeginVertical();
+		if (GUI.changed)
+			NodeEditor.curNodeCanvas.OnNodeChange(this);
 
-			outputKnob.DisplayLayout(new GUIContent(""));
+		Calculate();
+	}
 
-			GUILayout.EndVertical();
-			GUILayout.EndHorizontal();
+	public override bool Calculate () 
+	{	
+		outputKnob.SetValue<Number> (value);
+		return true;
+	}
 
-			if (GUI.changed)
-				NodeEditor.curNodeCanvas.OnNodeChange(this);
-		}
+	public override BaseConversationNode GetDownstreamNode(int inputValue) {
+		return (BaseConversationNode)outputKnob.connection(0).body;
+	}
 
-		public override bool Calculate () 
-		{	
-			outputKnob.SetValue<Number> (value);
-			return true;
-		}
+	public override bool IsBackAvailable()
+	{
+		return false;
+	}
+
+	public override bool IsNextAvailable()
+	{
+		return false;
 	}
 }

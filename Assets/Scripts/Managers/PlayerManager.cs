@@ -28,12 +28,12 @@ namespace AMHQ {
 		public override void Initialize(MonoBehaviour parent) {
 			gameManager = parent as GameManager;
 
-			_attributes.Add(CharacterAttributeType.CHARISMA, startingCharisma);
-			_attributes.Add(CharacterAttributeType.ELOQUENCE, startingEloquence);
-			_attributes.Add(CharacterAttributeType.INNOVATION, startingInnovation);
-			_attributes.Add(CharacterAttributeType.KNOWLEDGE, startingKnowledge);
-			_attributes.Add(CharacterAttributeType.ORGANISATION, startingOrganisation);
-			_attributes.Add(CharacterAttributeType.STRESS, startingStress);
+			_attributes.Add(CharacterAttributeType.Charisma, startingCharisma);
+			_attributes.Add(CharacterAttributeType.Eloquence, startingEloquence);
+			_attributes.Add(CharacterAttributeType.Innovation, startingInnovation);
+			_attributes.Add(CharacterAttributeType.Knowledge, startingKnowledge);
+			_attributes.Add(CharacterAttributeType.Organisation, startingOrganisation);
+			_attributes.Add(CharacterAttributeType.Stress, startingStress);
 		}
 
 		public void SetAttribute(CharacterAttributeType attribute, float value) {

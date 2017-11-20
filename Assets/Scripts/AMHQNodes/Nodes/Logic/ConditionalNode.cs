@@ -3,9 +3,10 @@ using UnityEngine;
 using System.Collections;
 using NodeEditorFramework;
 using NodeEditorFramework.Utilities;
+using AMHQ;
 
 [System.Serializable]
-[Node (false, "Logic/Conditional")]
+[Node (false, "Logic/Conditional", new Type[]{typeof(AMHQCanvas)})]
 public class ConditionalNode : BaseConversationNode 
 {
 	enum ConditionType { AIsLessThanB, AIsLessThanOrEqualB, AEqualsB, AIsGreaterThanOrEqualB, AIsGreaterThanB}

@@ -11,12 +11,12 @@ namespace AMHQ {
 	};
 
 	public enum CharacterAttributeType {
-		STRESS,
-		ORGANISATION,
-		CHARISMA,
-		KNOWLEDGE,
-		INNOVATION,
-		ELOQUENCE
+		Stress = 0,
+		Organisation = 1,
+		Charisma = 2,
+		Knowledge = 3,
+		Innovation = 4,
+		Eloquence = 5
 	};
 
 	public enum AffectionLevel {

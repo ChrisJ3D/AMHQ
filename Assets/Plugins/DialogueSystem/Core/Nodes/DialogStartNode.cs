@@ -19,7 +19,7 @@ public class DialogStartNode : BaseDialogNode
 
 	[ValueConnectionKnob("To Next", Direction.Out, "DialogForward", NodeSide.Right, 30)]
 	public ValueConnectionKnob toNextOUT;
-	[ConnectionKnob("From Next", Direction.In, "DialogBack", NodeSide.Right, 50)]
+	[ConnectionKnob("From Next", Direction.In, "DialogueBack", NodeSide.Right, 50)]
 	public ConnectionKnob fromNextIN;
 
 	private Vector2 scroll;

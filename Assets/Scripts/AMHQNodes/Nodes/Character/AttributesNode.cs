@@ -49,9 +49,8 @@ public class AttributesNode : BaseConversationNode
 	public Number knowledge = new Number();
 	public Number eloquence = new Number();
 	public Number highestAttribute = new Number();
-	public Number lowestAttribute = new Number();
 
-	public List<Number> attributes = new List<Number>();
+	Dictionary<CharacterAttributeType, Number> attributes = new Dictionary<CharacterAttributeType, Number>();
 
 	protected string label = "";
 	
@@ -66,47 +65,70 @@ public class AttributesNode : BaseConversationNode
 	public override bool Calculate () 
 	{
 		var gameManager = FindObjectOfType<GameManager>();
-		Dictionary<CharacterAttributeType, Number> attributes = gameManager.GetPlayerAttributes();
+		attributes = gameManager.GetPlayerAttributes();
 
-		if (attributes.TryGetValue(CharacterAttributeType.STRESS, out stress)) {
+		if (attributes.TryGetValue(CharacterAttributeType.Stress, out stress)) {
 			stressKnob.SetValue<Number>(stress);
 		}
 
-		if (attributes.TryGetValue(CharacterAttributeType.CHARISMA, out charisma)) {
+		if (attributes.TryGetValue(CharacterAttributeType.Charisma, out charisma)) {
 			charismaKnob.SetValue<Number>(charisma);
 		}
 
-		if (attributes.TryGetValue(CharacterAttributeType.INNOVATION, out innovation)) {
+		if (attributes.TryGetValue(CharacterAttributeType.Innovation, out innovation)) {
 			innovationKnob.SetValue<Number>(innovation);
 		}
 
-		if (attributes.TryGetValue(CharacterAttributeType.ORGANISATION, out organisation)) {
+		if (attributes.TryGetValue(CharacterAttributeType.Organisation, out organisation)) {
 			organisationKnob.SetValue<Number>(organisation);
 		}
 
-		if (attributes.TryGetValue(CharacterAttributeType.KNOWLEDGE, out knowledge)) {
+		if (attributes.TryGetValue(CharacterAttributeType.Knowledge, out knowledge)) {
 			knowledgeKnob.SetValue<Number>(knowledge);
 		}
 
-		if (attributes.TryGetValue(CharacterAttributeType.ELOQUENCE, out eloquence)) {
+		if (attributes.TryGetValue(CharacterAttributeType.Eloquence, out eloquence)) {
 			eloquenceKnob.SetValue<Number>(eloquence);
 		}
+
+		lowestAttributeKnob.SetValue<Number>(GetLowestAttribute());
+		highestAttributeKnob.SetValue<Number>(GetHighestAttribute());
 
 		return true;
 	}
 
 	protected Number GetLowestAttribute() {
+		if (attributes.Count <= 0) {
+			Calculate();
+			return null;
+		}
 
-		attributes.Clear();
-		attributes.Add(stress);
-		attributes.Add(charisma);
-		attributes.Add(innovation);
-		attributes.Add(organisation);
-		attributes.Add(knowledge);
-		attributes.Add(eloquence);
+		Number lowestAttribute = 9999;
+
+		foreach (Number attribute in attributes.Values) {
+			if (lowestAttribute > attribute) {
+				lowestAttribute = attribute;
+			}
+		}
 
 		return lowestAttribute;
-	
+	}
+
+	protected Number GetHighestAttribute() {
+		if (attributes.Count <= 0) {
+			Calculate();
+			return null;
+		}
+
+		Number highestAttribute = 0;
+
+		foreach (Number attribute in attributes.Values) {
+			if (highestAttribute < attribute) {
+				highestAttribute = attribute;
+			}
+		}
+
+		return highestAttribute;
 	}
 
 	public override BaseConversationNode GetDownstreamNode(int inputValue)

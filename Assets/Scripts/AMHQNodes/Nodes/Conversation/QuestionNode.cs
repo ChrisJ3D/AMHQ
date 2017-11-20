@@ -20,13 +20,13 @@ public class QuestionNode : BaseConversationNode
 	public override Type GetObjectType { get { return typeof(QuestionNode); } }
 
 	//previous node connections
-	[ValueConnectionKnob("From Previous", Direction.In, "DialogForward", NodeSide.Left, 30)]
+	[ValueConnectionKnob("From Previous", Direction.In, "DialogueForward", NodeSide.Left, 30)]
 	public ValueConnectionKnob frinPreviousIN;
-	[ConnectionKnob("To Previous", Direction.Out, "DialogBack", NodeSide.Left, 50)]
+	[ConnectionKnob("To Previous", Direction.Out, "DialogueBack", NodeSide.Left, 50)]
 	public ConnectionKnob toPreviousOUT;
 
 	///Next node 
-	[ConnectionKnob("From Next",Direction.In, "DialogBack", NodeSide.Right, 50)]
+	[ConnectionKnob("From Next",Direction.In, "DialogueBack", NodeSide.Right, 50)]
 	public ConnectionKnob fromNextIN;
 
 	[ValueConnectionKnob("Character", Direction.In, "Number", NodeSide.Left, 30)]
@@ -38,7 +38,7 @@ public class QuestionNode : BaseConversationNode
 
 	private ValueConnectionKnobAttribute dynaCreationAttribute 
 	    = new ValueConnectionKnobAttribute(
-		   "Next Node", Direction.Out, "DialogForward", NodeSide.Right);
+		   "Next Node", Direction.Out, "DialogueForward", NodeSide.Right);
 	
 
 	protected override void OnCreate ()

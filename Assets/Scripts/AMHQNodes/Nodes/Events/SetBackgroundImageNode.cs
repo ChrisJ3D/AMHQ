@@ -17,15 +17,15 @@ public class SetBackgroundImageNode : BaseDialogNode
 	public override Type GetObjectType { get { return typeof(SetBackgroundImageNode); } }
 
 	//Previous Node Connections
-	[ValueConnectionKnob("From Previous", Direction.In, "DialogForward", NodeSide.Left, 30)]
+	[ValueConnectionKnob("From Previous", Direction.In, "DialogueForward", NodeSide.Left, 30)]
 	public ValueConnectionKnob fromPreviousIN;
-	[ConnectionKnob("To Previous", Direction.Out, "DialogBack", NodeSide.Left, 50)]
+	[ConnectionKnob("To Previous", Direction.Out, "DialogueBack", NodeSide.Left, 50)]
 	public ConnectionKnob toPreviousOut;
 
 	//Next Node to go to
-	[ValueConnectionKnob("To Next", Direction.Out, "DialogForward", NodeSide.Right, 30)]
+	[ValueConnectionKnob("To Next", Direction.Out, "DialogueForward", NodeSide.Right, 30)]
 	public ValueConnectionKnob toNextOUT;
-	[ConnectionKnob("From Next",Direction.In, "DialogBack", NodeSide.Right, 50)]
+	[ConnectionKnob("From Next",Direction.In, "DialogueBack", NodeSide.Right, 50)]
 	public ConnectionKnob fromNextIN;
 
 	private Vector2 scroll;
