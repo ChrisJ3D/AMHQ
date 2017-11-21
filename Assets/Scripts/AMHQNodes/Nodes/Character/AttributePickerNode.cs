@@ -23,7 +23,10 @@ public class AttributePickerNode : BaseConversationNode
 	[ValueConnectionKnob("Output", Direction.Out, "Number")]
 	public ValueConnectionKnob outputKnob;
 
-	CharacterAttributeType attribute;
+	[SerializeField]
+	private CharacterAttributeType attribute = 0;
+
+	[SerializeField]
 	public Number output = new Number();
 
 	protected string label = "";
@@ -33,7 +36,7 @@ public class AttributePickerNode : BaseConversationNode
 		GUILayout.BeginHorizontal();
 		GUILayout.BeginVertical();
 
-		attribute = (CharacterAttributeType)RTEditorGUI.EnumPopup (attribute);
+		attribute = (CharacterAttributeType)RTEditorGUI.EnumPopup (new GUIContent(""), attribute);
 
 		GUILayout.EndVertical();
 		GUILayout.BeginVertical();
@@ -49,8 +52,8 @@ public class AttributePickerNode : BaseConversationNode
 	public override bool Calculate () 
 	{
 		output = (int)attribute;
-
 		outputKnob.SetValue<Number>(output);
+
 		return true;
 	}
 

@@ -5,6 +5,7 @@ using NodeEditorFramework;
 using NodeEditorFramework.Utilities;
 using System.Collections.Generic;
 using UnityEditor;
+using AMHQ;
 
 [System.Serializable]
 [Node (false, "Events/SceneLoaded")]

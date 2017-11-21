@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using NodeEditorFramework;
 using NodeEditorFramework.Utilities;
+using AMHQ;
 
 [Node (false, "Logic/Branch", new Type[]{typeof(AMHQCanvas)})]
 public class BranchNode : BaseConversationNode 

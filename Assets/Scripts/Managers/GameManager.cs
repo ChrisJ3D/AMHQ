@@ -92,7 +92,7 @@ namespace AMHQ {
 		}
 
 		public void SetPlayerAttribute(CharacterAttributeType attribute, Number value) {
-
+			playerManager.SetAttribute(attribute, value);
 		}
 
 		public void AdjustPlayerAttribute(CharacterAttributeType attribute, Number value) {

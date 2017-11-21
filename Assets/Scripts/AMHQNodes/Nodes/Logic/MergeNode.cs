@@ -90,18 +90,27 @@ public class MergeNode : BaseConversationNode
 
 	public override BaseConversationNode GetDownstreamNode(int inputValue)
 	{
-		switch (inputValue)
-		{
-		case (int)EDialogInputValue.Next:
-			if (IsNextAvailable ())
-				return getTargetNode (outputKnob).PassAhead((int)EDialogInputValue.Next);
-			break;
-		case (int)EDialogInputValue.Back:
-			if (IsBackAvailable ())
-				return getTargetNode (inputKnob1);
-			break;
+		if (IsNextAvailable()) {
+			return getTargetNode(outputKnob).PassAhead(inputValue);
 		}
 		return null;
+
+	// 	Debug.Log("GetDownstreamNode " + inputValue);
+	// 	switch (inputValue)
+	// 	{
+	// 	case (int)EDialogInputValue.Next:
+	// 		Debug.Log("Case NExt");
+	// 		if (IsNextAvailable ()) {
+	// 			Debug.Log("Next is available");
+	// 			return getTargetNode (outputKnob);
+	// 			}
+	// 		break;
+	// 	case (int)EDialogInputValue.Back:
+	// 		if (IsBackAvailable ())
+	// 			return getTargetNode (inputKnob1);
+	// 		break;
+	// 	}
+	// 	return null;
 	}
 
 	public override bool IsBackAvailable()

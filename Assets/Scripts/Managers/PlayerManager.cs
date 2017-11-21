@@ -23,6 +23,7 @@ namespace AMHQ {
 
 		public Dictionary<CharacterAttributeType, Number> attributes {get { return _attributes; } }
 
+		[SerializeField]
 		private Dictionary<CharacterAttributeType, Number> _attributes = new Dictionary<CharacterAttributeType, Number>();
 
 		public override void Initialize(MonoBehaviour parent) {
@@ -37,7 +38,8 @@ namespace AMHQ {
 		}
 
 		public void SetAttribute(CharacterAttributeType attribute, float value) {
-			_attributes.Add(attribute, (Number)value);
+			_attributes[attribute] = (Number)value;
+			Debug.Log(_attributes + " set to " + _attributes[attribute].value);
 		}
 
 		public Dictionary<CharacterAttributeType, Number> GetAllAttributes() {

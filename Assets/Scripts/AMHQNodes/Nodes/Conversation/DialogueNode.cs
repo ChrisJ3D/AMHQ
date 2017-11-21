@@ -73,11 +73,11 @@ using AMHQ;
 			{
 			case (int)EDialogInputValue.Next:
 				if (IsNextAvailable ())
-					return getTargetNode (toNextOUT);
+					return getTargetNode (toNextOUT).PassAhead(inputValue);
 				break;
 			case (int)EDialogInputValue.Back:
 				if (IsBackAvailable ())
-					return getTargetNode (fromPreviousIN);
+					return getTargetNode (fromPreviousIN).PassAhead(inputValue);
 				break;
 			}
 			return null;
@@ -99,6 +99,6 @@ using AMHQ;
 		}
 
 		public CharacterPosition GetCharacterPosition() {
-			return (CharacterPosition)characterPosition;
+			return characterPosition;
 		}
 	}

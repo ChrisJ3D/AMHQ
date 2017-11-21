@@ -44,7 +44,6 @@ public class SetAttributeValueNode : BaseConversationNode
 	
 	public override bool Calculate () 
 	{
-		Debug.Log("Calculating SetAttributeNode");
 		Number attribute = 0;
 		Number value = 0f;
 
@@ -58,11 +57,8 @@ public class SetAttributeValueNode : BaseConversationNode
 			value = valueKnob.GetValue<Number>();
 		}
 
-		Debug.Log("Attribute set to " + attribute.ToStringShort());
-		Debug.Log("Value set to " + value.ToStringShort());
-
-		var gameManager = FindObjectOfType<GameManager>();
-
+		GameManager gameManager = FindObjectOfType<GameManager>();
+		
 		gameManager.SetPlayerAttribute((CharacterAttributeType)attribute.ToInt32(), value);
 
 		return true;
@@ -79,22 +75,16 @@ public class SetAttributeValueNode : BaseConversationNode
 	public override BaseConversationNode PassAhead(int inputValue)
 	{
 		Calculate();
+		
 		return GetDownstreamNode(inputValue);
 	}
 
 	public override BaseConversationNode GetDownstreamNode(int inputValue)
 	{
-		switch (inputValue)
-		{
-		case (int)EDialogInputValue.Next:
-			if (IsNextAvailable ())
-				return getTargetNode (flowOut).PassAhead((int)EDialogInputValue.Next);
-			break;
-		case (int)EDialogInputValue.Back:
-			if (IsBackAvailable ())
-				return getTargetNode (flowIn);
-			break;
+		if (IsNextAvailable()) {
+			return getTargetNode (flowOut).PassAhead(inputValue);
 		}
+
 		return null;
 	}
 }
