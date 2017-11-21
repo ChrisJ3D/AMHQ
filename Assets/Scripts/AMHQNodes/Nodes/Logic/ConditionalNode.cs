@@ -71,12 +71,15 @@ public class ConditionalNode : BaseConversationNode
 
 	public override bool Calculate () 
 	{
-		if (aKnob.connected())
+		if (aKnob.connected()) {
 			getTargetNode(aKnob).Calculate();
 			Input1Val = aKnob.GetValue<Number> ();
-		if (bKnob.connected())
+		}
+
+		if (bKnob.connected()) {
 			getTargetNode(bKnob).Calculate();
 			Input2Val = bKnob.GetValue<Number> ();
+		}
 
 		switch (method) 
 		{

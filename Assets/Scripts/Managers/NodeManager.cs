@@ -20,6 +20,10 @@ namespace AMHQ {
 
 		public override void Initialize(MonoBehaviour parent) {
 			gameManager = parent as GameManager;
+		}
+
+		public void OnSceneLoad() {
+			_canvasObject = FindObjectOfType<Canvas>().transform as RectTransform;
 			GetCanvasFromScene();
 			nodeCanvas.GetSceneLoadedNode();
 		}

@@ -34,15 +34,26 @@ namespace AMHQ {
 			playerManager.Initialize(this);
 			timeManager.Initialize(this);
 			uiManager.Initialize(this);
+
+			OnSceneLoad();
 		}
 
 		void Start () {
 			//	Start reading from node graph
-			uiManager.InitializeDialogueBox(nodeManager.startNode);
+			
 		}
 
 		public void LoadScene(string sceneName) {
 			SceneManager.LoadScene(sceneName);
+			OnSceneLoad();
+		}
+
+		public void OnSceneLoad() {
+			Debug.Log("OnSceneLoad");
+			currentScene = SceneManager.GetActiveScene().name;
+			nodeManager.OnSceneLoad();
+			uiManager.OnSceneLoad();
+			uiManager.InitializeDialogueBox(nodeManager.startNode);
 		}
 
 	//	CharacterManager functions

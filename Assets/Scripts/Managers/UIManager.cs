@@ -21,6 +21,11 @@ namespace AMHQ {
 			gameManager = parent as GameManager;
 		}
 
+		public void OnSceneLoad() {
+			_canvasObject = FindObjectOfType<Canvas>().transform as RectTransform;
+
+		}
+
 		public void SetDialogueBoxType(BaseConversationNode node) {
 			_dialogueBox.ClearContents();
 
@@ -32,6 +37,8 @@ namespace AMHQ {
 				UpdateDialogueBox((DialogueNode) node);
 			} else if (node is QuestionNode) {
 				InitializeQuestionBox((QuestionNode) node);
+			} else if (node is LoadSceneNode) {
+				LoadScene((LoadSceneNode) node);
 			}
 		}
 
@@ -102,6 +109,10 @@ namespace AMHQ {
 
 		public void DialogueComplete() {
 			DestroyObject(_dialogueBox);
+		}
+
+		private void LoadScene(LoadSceneNode node) {
+			gameManager.LoadScene(node.sceneName);
 		}
 	}
 }

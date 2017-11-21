@@ -10,7 +10,7 @@ using AMHQ;
 public class MergeNode : BaseConversationNode
 {
 	public override string Title { get { return "Merge"; } }
-	public override Vector2 MinSize { get { return new Vector2(150, 60); } }
+	public override Vector2 MinSize { get { return new Vector2(150, 40); } }
 	public override bool AutoLayout { get { return true; } }
 
 	private const string Id = "mergeNode";
@@ -110,23 +110,6 @@ public class MergeNode : BaseConversationNode
 			return getTargetNode(outputKnob).PassAhead(inputValue);
 		}
 		return null;
-
-	// 	Debug.Log("GetDownstreamNode " + inputValue);
-	// 	switch (inputValue)
-	// 	{
-	// 	case (int)EDialogInputValue.Next:
-	// 		Debug.Log("Case NExt");
-	// 		if (IsNextAvailable ()) {
-	// 			Debug.Log("Next is available");
-	// 			return getTargetNode (outputKnob);
-	// 			}
-	// 		break;
-	// 	case (int)EDialogInputValue.Back:
-	// 		if (IsBackAvailable ())
-	// 			return getTargetNode (inputKnob1);
-	// 		break;
-	// 	}
-	// 	return null;
 	}
 
 	public override bool IsBackAvailable()

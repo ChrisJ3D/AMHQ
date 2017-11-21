@@ -28,10 +28,7 @@ public class BranchNode : BaseConversationNode
 	public ValueConnectionKnob trueKnob;
 
 	[ValueConnectionKnob("False", Direction.Out, "DialogueForward", NodeSide.Right, 20)]
-	public ValueConnectionKnob falseKnob;		
-
-	public object speaker;
-	public string content = "";
+	public ValueConnectionKnob falseKnob;
 
 	[SerializeField]
 	public bool value = false;
@@ -56,11 +53,14 @@ public class BranchNode : BaseConversationNode
 
 	public ValueConnectionKnob Evaluate() {
 		if (conditionKnob.connected()) {
-			value = getTargetNode(conditionKnob).Calculate();
+			getTargetNode(conditionKnob).Calculate();
+			value = conditionKnob.GetValue<Number>().ToBool();
+
 			if (value == true) {
 				return trueKnob;
 			}
 		}
+
 		return falseKnob;
 	}
 
@@ -73,13 +73,14 @@ public class BranchNode : BaseConversationNode
 	{
 		switch (inputValue)
 		{
-		case (int)EDialogInputValue.Next:
-			if (IsNextAvailable ())
-				return getTargetNode (Evaluate());
-			break;
 		case (int)EDialogInputValue.Back:
 			if (IsBackAvailable ())
-				return getTargetNode (Evaluate());
+				return getTargetNode (flowIn).PassAhead(inputValue);
+			break;
+		
+		default:
+			if (IsNextAvailable ())
+				return getTargetNode (Evaluate()).PassAhead(inputValue);
 			break;
 		}
 		return null;
