@@ -92,16 +92,6 @@ public class QuestionNode : BaseConversationNode
 	#endregion
 
 	}
-	
-	private void RemoveLastOption()
-	{
-		if(_options.Count > 1)
-		{
-			DataHolderForOption option = _options.Last();
-			_options.Remove(option);
-			DeleteConnectionPort(dynamicConnectionPorts.Count-1);
-		}
-	}
 
 	private void DrawOptions()
 	{
@@ -160,7 +150,7 @@ public class QuestionNode : BaseConversationNode
 			//TODO is this right?
 
 			if (IsAvailable (dynamicConnectionPorts [inputValue]))
-				return getTargetNode (dynamicConnectionPorts [inputValue]);
+				return getTargetNode (dynamicConnectionPorts [inputValue]).PassAhead(inputValue);
 			break;
 		}
 		return null;

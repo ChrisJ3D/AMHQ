@@ -31,6 +31,9 @@ public class MergeNode : BaseConversationNode
 	= new ValueConnectionKnobAttribute(
 		"", Direction.In, "DialogueForward", NodeSide.Left);
 
+	[SerializeField]
+	private int _dynamicPorts = 0;
+
 	private const int StartValue = 54;
 	private const int SizeValue = 24;
 
@@ -40,46 +43,59 @@ public class MergeNode : BaseConversationNode
 		CharacterName = "Character";
 		DialogLine = "Insert dialog text here";
 		CharacterPotrait = null;
+
 	}
 
 	public override void NodeGUI()
 	{
 		base.NodeGUI();
 
-		// GUILayout.BeginHorizontal();
-		// GUILayout.BeginVertical();
+		#region Options
+		GUILayout.ExpandWidth(false);
 
-		// GUILayout.Space(5);
-		// if (GUILayout.Button("Add Input"))
-		// {
-		// 	AddNewOption();
-		// 	IssueEditorCallBacks();
-		// }
+		GUILayout.BeginHorizontal();
+		if (GUILayout.Button("+", GUILayout.Width(20)))
+		{
+			AddNewOption();
+			IssueEditorCallBacks();
+		}
+		if (dynamicConnectionPorts.Count >= 1) {
+		if (GUILayout.Button("‒", GUILayout.Width(20)))
+			{
+				DeleteConnectionPort (dynamicConnectionPorts.Count-1);
+				_dynamicPorts--;
+			} 
+		}
 
-		// GUILayout.EndVertical();
-		// GUILayout.EndHorizontal();
+		GUILayout.EndHorizontal();
+		GUILayout.Space(5);
 
-		// GUILayout.BeginHorizontal();
-		// GUILayout.BeginVertical();
+		DrawOptions();
 
-		// GUILayout.Space(5);
-		// if (GUILayout.Button("Remove Last Input"))
-		// {
-		// 	RemoveLastOption();
-		// }
-
-		// GUILayout.EndVertical();
-		// GUILayout.EndHorizontal();
+		GUILayout.ExpandWidth(false);
+		#endregion
 	}
 
-	private void RemoveLastOption()
+	private void DrawOptions()
 	{
-		DeleteConnectionPort(dynamicConnectionPorts.Count-1);
+		EditorGUILayout.BeginVertical();
+		for (var i = 0; i < _dynamicPorts; i++)
+		{
+			GUILayout.BeginVertical();
+			GUILayout.BeginHorizontal();
+			((ValueConnectionKnob)dynamicConnectionPorts[i]).SetPosition();
+
+			GUILayout.EndHorizontal();
+			GUILayout.EndVertical();
+			GUILayout.Space(4);
+		}
+		GUILayout.EndVertical();
 	}
 
 	private void AddNewOption()
 	{
 		CreateValueConnectionKnob(dynaCreationAttribute);
+		_dynamicPorts++;
 	}
 
 	//For Resolving the Type Mismatch Issue
