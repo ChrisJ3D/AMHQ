@@ -66,5 +66,13 @@ namespace AMHQ {
 			}
 			nodeCanvas = Resources.Load("Saves/" + gameManager.currentScene + "/LevelGraph", typeof(AMHQCanvas)) as AMHQCanvas;
 		}
+
+		public void LoadCanvasByName(string canvasName) {
+			if(!gameManager) {
+				Debug.LogWarning("GameManager not set!!");
+				return;
+			}
+			nodeCanvas = Resources.Load("Saves/" + canvasName + "/LevelGraph", typeof(AMHQCanvas)) as AMHQCanvas;
+		}
 	}
 }

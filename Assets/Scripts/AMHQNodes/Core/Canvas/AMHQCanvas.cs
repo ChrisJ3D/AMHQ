@@ -22,6 +22,9 @@ public class AMHQCanvas : NodeCanvas
 	}
 
 	public void GetSceneLoadedNode() {
+		_startNode = null;
+		_currentNode = null;
+
 		_startNode = (SceneLoadedNode)this.nodes.FirstOrDefault (x => x is SceneLoadedNode);
 		if (_startNode == null) {
 			Debug.LogWarning("No SceneLoaded node found!!");
@@ -36,12 +39,15 @@ public class AMHQCanvas : NodeCanvas
 		}
 
 		targetNode = (BaseConversationNode)_currentNode.GetDownstreamNode(steps);
+	
 		if (targetNode) {
 			_currentNode = targetNode.PassAhead(steps);
 		} else {
 			_currentNode = null;
 			Debug.LogError("targetNode returned null, traversal might have gone too far");
 		}
+
+		targetNode = null;
 	}
 
 	public Dictionary<CharacterAttributeType, Number> GetCharacterStats() {

@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224948525001552376}
-  - component: {fileID: 114356976047240386}
   - component: {fileID: 222810129980580768}
   - component: {fileID: 114067033207704870}
   - component: {fileID: 114696084238717944}
@@ -57,23 +56,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114356976047240386
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1004661691837724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9db3f7756813d8c47ab08712a5511b3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stress: {fileID: 0}
-  organisation: {fileID: 0}
-  charisma: {fileID: 0}
-  knowledge: {fileID: 0}
-  innovation: {fileID: 0}
-  eloquence: {fileID: 0}
 --- !u!114 &114696084238717944
 MonoBehaviour:
   m_ObjectHideFlags: 1

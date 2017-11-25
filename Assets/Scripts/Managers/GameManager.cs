@@ -49,7 +49,6 @@ namespace AMHQ {
 		}
 
 		public void OnSceneLoad() {
-			Debug.Log("OnSceneLoad");
 			currentScene = SceneManager.GetActiveScene().name;
 			nodeManager.OnSceneLoad();
 			uiManager.OnSceneLoad();

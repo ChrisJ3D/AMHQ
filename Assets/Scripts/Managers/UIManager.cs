@@ -11,38 +11,46 @@ namespace AMHQ {
 		public GameObject UI_DialogueBoxPrefab;
 		public GameObject UI_QuestionBoxPrefab;
 
-		[SerializeField]
-		private RectTransform _canvasObject;
+		public RectTransform _canvasObject;
 
-		private UI_DialogueBox _dialogueBox;
-		private UI_QuestionBox _questionBox;
+		public UI_DialogueBox _dialogueBox;
+		public UI_QuestionBox _questionBox;
 
 		public override void Initialize(MonoBehaviour parent) {
 			gameManager = parent as GameManager;
 		}
 
 		public void OnSceneLoad() {
+			Debug.Log("UIManager: OnSceneLoad");
 			_canvasObject = FindObjectOfType<Canvas>().transform as RectTransform;
-
+			_dialogueBox = null;
+			_questionBox = null;
 		}
 
 		public void SetDialogueBoxType(BaseConversationNode node) {
+			Debug.Log("Setting Dialogue Box Type");
 			_dialogueBox.ClearContents();
 
 			if(node == null) {
+				Debug.Log("Setting to null");
 				DialogueComplete();
 			} else if (node is SceneLoadedNode) {
+				Debug.Log("Setting to SceneLoadedNode");
 				okButton();
 			} else if (node is DialogueNode) {
+				Debug.Log("Setting to DialogueNode");
 				UpdateDialogueBox((DialogueNode) node);
 			} else if (node is QuestionNode) {
+				Debug.Log("Setting to Question");
 				InitializeQuestionBox((QuestionNode) node);
 			} else if (node is LoadSceneNode) {
+				Debug.Log("Setting to LoadScene");
 				LoadScene((LoadSceneNode) node);
 			}
 		}
 
 		public void InitializeDialogueBox(BaseConversationNode node) {
+			Debug.Log("Initializing dialogue box");
 			_dialogueBox = GameObject.Instantiate(UI_DialogueBoxPrefab).GetComponent<UI_DialogueBox>();
 			_dialogueBox.Construct(this);
 			_dialogueBox.transform.SetParent(_canvasObject, false);
@@ -107,11 +115,13 @@ namespace AMHQ {
 			SetDialogueBoxType(gameManager.GetCurrentNode());
 		}
 
-		public void DialogueComplete() {
+		private void DialogueComplete() {
 			DestroyObject(_dialogueBox);
+			DestroyObject(_questionBox);
 		}
 
 		private void LoadScene(LoadSceneNode node) {
+			DialogueComplete();
 			gameManager.LoadScene(node.sceneName);
 		}
 	}
