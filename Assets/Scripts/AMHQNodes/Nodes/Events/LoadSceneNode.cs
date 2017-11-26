@@ -6,14 +6,13 @@ using NodeEditorFramework.Utilities;
 using System.Collections.Generic;
 using UnityEditor;
 using AMHQ;
-using UnityEngine.SceneManagement;
 
 [System.Serializable]
 [Node (false, "Events/LoadScene")]
 public class LoadSceneNode : BaseConversationNode 
 {
 	public override string Title {get { return "Load Scene"; } }
-	public override Vector2 MinSize { get { return new Vector2(200, 60); } }
+	public override Vector2 MinSize { get { return new Vector2(200, 45); } }
 	public override bool AutoLayout { get { return true; } }
 
 	private const string Id = "LoadSceneNode";
@@ -37,8 +36,33 @@ public class LoadSceneNode : BaseConversationNode
 
 	public override void NodeGUI()
 	{
-		base.NodeGUI();
-		sceneName = EditorGUILayout.TextArea(sceneName, GUILayout.MinWidth(80));
+		GUILayout.BeginHorizontal();
+		GUILayout.BeginVertical();
+		inputKnob.DisplayLayout(new GUIContent(""));
+
+		GUILayout.EndVertical();
+		
+		GUILayout.BeginVertical();
+		GUILayout.Space(5);
+		sceneName = EditorGUILayout.TextField(sceneName, GUILayout.Width(145), GUILayout.ExpandHeight(false));
+		GUILayout.EndVertical();
+		GUILayout.BeginVertical();
+		GUILayout.Space(5);
+		
+		#if UNITY_EDITOR
+		if(GUILayout.Button("...")) {
+			string path = UnityEditor.EditorUtility.OpenFilePanel("Choose Scene Graph", "/Resources/Graphs/", "asset");
+			if (path != null && path != "") {
+				sceneName = path.Substring(path.IndexOf("Graphs/") + 7);
+				sceneName = sceneName.Split(".".ToCharArray())[0];
+			}
+		}
+		#endif
+
+		GUILayout.EndVertical();
+
+		GUILayout.Space(5);
+		GUILayout.EndHorizontal();
 	}
 
 	// public override bool Calculate() {
