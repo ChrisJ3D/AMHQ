@@ -8,11 +8,11 @@ using UnityEditor;
 using AMHQ;
 
 [System.Serializable]
-[Node (false, "Events/SceneLoaded")]
+[Node (false, "Events/Start")]
 public class SceneLoadedNode : BaseConversationNode 
 {
-	public override string Title {get { return "Scene Loaded"; } }
-	public override Vector2 MinSize { get { return new Vector2(200, 60); } }
+	public override string Title {get { return "Start"; } }
+	public override Vector2 MinSize { get { return new Vector2(100, 40); } }
 	public override bool AutoLayout { get { return true; } }
 
 	private const string Id = "sceneLoadedNode";

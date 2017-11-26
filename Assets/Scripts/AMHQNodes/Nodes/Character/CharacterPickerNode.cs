@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using NodeEditorFramework;
 using NodeEditorFramework.Utilities;
 
@@ -34,8 +35,7 @@ namespace NodeEditorFramework.Standard
 			GUILayout.Space(5);
 			GUILayout.BeginVertical();
 			GUILayout.Space(5);
-
-			characterIndex = RTEditorGUI.Popup (characterIndex, characterAssets.ToArray());
+			characterIndex = EditorGUILayout.Popup(characterIndex, characterAssets.ToArray(), GUILayout.Width(105));
 
 			GUILayout.EndVertical();
 			GUILayout.BeginVertical();

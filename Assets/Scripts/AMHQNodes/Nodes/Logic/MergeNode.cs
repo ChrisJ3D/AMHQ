@@ -10,7 +10,8 @@ using AMHQ;
 public class MergeNode : BaseConversationNode
 {
 	public override string Title { get { return "Merge"; } }
-	public override Vector2 MinSize { get { return new Vector2(150, 40); } }
+	public override Vector2 DefaultSize { get { return new Vector2(150, 20); } }
+	public override Vector2 MinSize { get { return new Vector2(150, 20); } }
 	public override bool AutoLayout { get { return true; } }
 
 	private const string Id = "mergeNode";

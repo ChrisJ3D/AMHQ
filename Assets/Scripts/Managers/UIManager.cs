@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using NodeEditorFramework.Standard;
 
 namespace AMHQ {
@@ -15,6 +16,7 @@ namespace AMHQ {
 
 		public UI_DialogueBox _dialogueBox;
 		public UI_QuestionBox _questionBox;
+		public GameObject BG;
 
 		public override void Initialize(MonoBehaviour parent) {
 			gameManager = parent as GameManager;
@@ -111,6 +113,10 @@ namespace AMHQ {
 		private void LoadScene(LoadSceneNode node) {
 			DialogueComplete();
 			gameManager.LoadScene(node.sceneName);
+		}
+
+		public void SetBackgroundImage (Sprite image) {
+			BG.GetComponent<Image>().sprite = image;
 		}
 	}
 }

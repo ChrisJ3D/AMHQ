@@ -18,7 +18,7 @@ public class BranchNode : BaseConversationNode
 	public override Type GetObjectType { get { return typeof(BranchNode); } }
 	public override string description { get { return "The Branch node reroutes the level flow based on the incoming condition. The condition should be in a boolean format (true/false)."; } }
 
-	[ValueConnectionKnob("In", Direction.In, "DialogueForward", NodeSide.Left, 10)]
+	[ValueConnectionKnob("", Direction.In, "DialogueForward", NodeSide.Left, 10)]
 	public ValueConnectionKnob flowIn;
 
 	[ValueConnectionKnob("Bool", Direction.In, "Number", NodeSide.Left, 20)]

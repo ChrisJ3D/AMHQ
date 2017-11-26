@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using NodeEditorFramework;
 using NodeEditorFramework.Utilities;
 using AMHQ;
@@ -13,9 +14,9 @@ public class AttributePickerNode : BaseConversationNode
 	public override string GetID { get { return ID; } }
 
 	public override string Title { get { return "Attribute Picker"; } }
-	public override Vector2 DefaultSize { get { return new Vector2 (120, 50); } }
+	public override Vector2 DefaultSize { get { return new Vector2 (120, 40); } }
 
-	public override Vector2 MinSize { get { return new Vector2 (120, 50); } }
+	public override Vector2 MinSize { get { return new Vector2 (120, 40); } }
 	public override bool AutoLayout { get { return true; } }
 
 	public override Type GetObjectType { get { return typeof(AttributePickerNode); } }
@@ -34,9 +35,10 @@ public class AttributePickerNode : BaseConversationNode
 	public override void NodeGUI () 
 	{
 		GUILayout.BeginHorizontal();
+		GUILayout.Space(5);
 		GUILayout.BeginVertical();
-
-		attribute = (CharacterAttributeType)RTEditorGUI.EnumPopup (new GUIContent(""), attribute);
+		GUILayout.Space(5);
+		attribute = (CharacterAttributeType)EditorGUILayout.EnumPopup(new GUIContent(""), attribute, GUILayout.Width(105));
 
 		GUILayout.EndVertical();
 		GUILayout.BeginVertical();
@@ -47,6 +49,8 @@ public class AttributePickerNode : BaseConversationNode
 
 		if (GUI.changed)
 			NodeEditor.curNodeCanvas.OnNodeChange(this);
+
+	
 	}
 	
 	public override bool Calculate () 
@@ -69,6 +73,7 @@ public class AttributePickerNode : BaseConversationNode
 
 	public override BaseConversationNode GetDownstreamNode(int inputValue)
 	{
+		Calculate();
 		switch (inputValue)
 		{
 		case (int)EDialogInputValue.Next:

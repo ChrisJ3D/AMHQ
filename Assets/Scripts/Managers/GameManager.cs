@@ -16,6 +16,9 @@ namespace AMHQ {
 
 		public string startingScene;
 		public string currentScene;
+
+		public GameObject BGMPlayer;
+		public GameObject SFXPlayer;
 		
 		public override void Awake() {
 			base.Awake();
@@ -112,5 +115,31 @@ namespace AMHQ {
 			
 		}
 	#endregion
+	#region UIManager functions
+	
+		public void SetBackgroundImage(Sprite image) {
+			if (image == null){
+				return;
+			}
+
+			uiManager.SetBackgroundImage(image);
+
+		}
+
+	#endregion
+
+		public void SetBackgroundMusic(AudioClip clip, bool loop) {
+			AudioSource source = BGMPlayer.GetComponent<AudioSource>();
+			source.clip = clip;
+			source.loop = loop;
+			source.Play();
+		}
+
+		public void PlaySoundEffect(AudioClip clip, bool loop) {
+			AudioSource source = SFXPlayer.GetComponent<AudioSource>();
+			source.clip = clip;
+			source.loop = loop;
+			source.Play();
+		}
 	}
 }

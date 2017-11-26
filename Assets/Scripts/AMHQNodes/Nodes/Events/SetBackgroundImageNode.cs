@@ -1,96 +1,85 @@
-﻿using System;
-using NodeEditorFramework;
+﻿using UnityEngine;
 using UnityEditor;
-using UnityEngine;
-/// <summary>
-/// This node has one entry and one exit, it is just to display something, then move on
-/// </summary>
-[Node(false, "Events/SetBackgroundImage", new Type[] { typeof(AMHQCanvas) })]
-public class SetBackgroundImageNode : BaseDialogNode
-{
-	public override string Title {get { return "Set Background Image"; } }
-	public override Vector2 MinSize { get { return new Vector2(350, 60); } }
-	public override bool AutoLayout { get { return true; } }
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using NodeEditorFramework;
+using NodeEditorFramework.Utilities;
+using AMHQ;
 
-	private const string Id = "SetBackgroundImageNode";
-	public override string GetID { get { return Id; } }
+[Node (false, "Events/Set Background Image")]
+public class SetBackgroundImageNode : BaseConversationNode 
+{
+	public const string ID = "SetBackgroundImageNode";
+	public override string GetID { get { return ID; } }
+	public override string Title { get { return "Set Background Image"; } }
+	public override Vector2 MinSize { get { return new Vector2(180, 80); } }
+	public override bool AutoLayout { get { return true; } }
+	public override Vector2 DefaultSize { get { return new Vector2 (120, 90); } }
+
+	public override string description { get { return "The Branch node reroutes the level flow based on the incoming condition. The condition should be in a boolean format (true/false)."; } }
 	public override Type GetObjectType { get { return typeof(SetBackgroundImageNode); } }
 
-	//Previous Node Connections
-	[ValueConnectionKnob("From Previous", Direction.In, "DialogueForward", NodeSide.Left, 30)]
-	public ValueConnectionKnob fromPreviousIN;
-	[ConnectionKnob("To Previous", Direction.Out, "DialogueBack", NodeSide.Left, 50)]
-	public ConnectionKnob toPreviousOut;
+	[ValueConnectionKnob("", Direction.In, "DialogueForward", NodeSide.Left, 10)]
+	public ValueConnectionKnob flowIn;
 
-	//Next Node to go to
-	[ValueConnectionKnob("To Next", Direction.Out, "DialogueForward", NodeSide.Right, 30)]
-	public ValueConnectionKnob toNextOUT;
-	[ConnectionKnob("From Next",Direction.In, "DialogueBack", NodeSide.Right, 50)]
-	public ConnectionKnob fromNextIN;
+	[ValueConnectionKnob("", Direction.Out, "DialogueForward", NodeSide.Right, 10)]
+	public ValueConnectionKnob flowOut;
 
-	private Vector2 scroll;
-
-	protected override void OnCreate ()
+	public Sprite bg = null;
+	
+	public override void NodeGUI () 
 	{
-		CharacterName = "Character Name";
-		DialogLine = "Insert dialog text here";
-		CharacterPotrait = null;
-	}
-
-	public override void NodeGUI()
-	{
-		EditorGUILayout.BeginVertical("Box");
 		GUILayout.BeginHorizontal();
-		CharacterPotrait = (Sprite)EditorGUILayout.ObjectField(CharacterPotrait, typeof(Sprite), false, GUILayout.Width(65f), GUILayout.Height(65f));
-		CharacterName = EditorGUILayout.TextField("", CharacterName);
-		GUILayout.EndHorizontal();
+		GUILayout.BeginVertical();
+
+		flowIn.DisplayLayout(new GUIContent(""));
+
 		GUILayout.EndVertical();
 
-		GUILayout.Space(5);
+		bg = (Sprite)EditorGUILayout.ObjectField(new GUIContent(""), bg, typeof(Sprite), false, GUILayout.Width(75));
+		
+		GUILayout.BeginVertical();
 
-		GUILayout.BeginHorizontal();
+		flowOut.DisplayLayout(new GUIContent(""));
 
-		scroll = EditorGUILayout.BeginScrollView(scroll, GUILayout.Height(100));
-		EditorStyles.textField.wordWrap = true;
-		DialogLine = EditorGUILayout.TextArea(DialogLine, GUILayout.ExpandHeight(true));
-		EditorStyles.textField.wordWrap = false;
-		EditorGUILayout.EndScrollView();
+		GUILayout.EndVertical();
 		GUILayout.EndHorizontal();
 
-		GUILayout.BeginHorizontal();
-		EditorGUIUtility.labelWidth = 90;
-		SoundDialog = EditorGUILayout.ObjectField("Dialog Audio:", SoundDialog, typeof(AudioClip), false) as AudioClip;
-		if (GUILayout.Button("►", GUILayout.Width(20)))
-		{
-			if (SoundDialog)
-				AudioUtils.PlayClip(SoundDialog);
-		}
-		GUILayout.EndHorizontal();
+		if (GUI.changed)
+			NodeEditor.curNodeCanvas.OnNodeChange(this);
+	}
+	
+	public override bool Calculate () 
+	{
+		GameManager gameManager = FindObjectOfType<GameManager>();
+		
+		gameManager.SetBackgroundImage(bg);
+
+		return GetDownstreamNode(-2);
 	}
 
-	public override BaseDialogNode Input(int inputValue)
+	public override bool IsBackAvailable() {
+		return IsAvailable(flowIn);
+	}
+
+	public override bool IsNextAvailable() {
+		return IsAvailable(flowOut);
+	}
+
+	public override BaseConversationNode PassAhead(int inputValue)
 	{
-		switch (inputValue)
-		{
-		case (int)EDialogInputValue.Next:
-			if (IsNextAvailable ())
-				return getTargetNode (toNextOUT);
-			break;
-		case (int)EDialogInputValue.Back:
-			if (IsBackAvailable ())
-				return getTargetNode (fromPreviousIN);
-			break;
+		Calculate();
+		
+		return GetDownstreamNode(inputValue);
+	}
+
+	public override BaseConversationNode GetDownstreamNode(int inputValue)
+	{
+		if (IsNextAvailable()) {
+			return getTargetNode (flowOut).PassAhead(inputValue);
 		}
+
 		return null;
-	}
-
-	public override bool IsBackAvailable()
-	{
-		return IsAvailable (toPreviousOut);
-	}
-
-	public override bool IsNextAvailable()
-	{
-		return IsAvailable (toNextOUT);
 	}
 }

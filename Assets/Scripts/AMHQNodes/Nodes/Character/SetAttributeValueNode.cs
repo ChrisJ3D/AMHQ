@@ -47,19 +47,21 @@ public class SetAttributeValueNode : BaseConversationNode
 		Number attribute = 0;
 		Number value = 0f;
 
-		if (attributeKnob.connected()) {
-			getTargetNode(attributeKnob).Calculate();
-			attribute = attributeKnob.GetValue<Number>();
-		}
+		if (flowIn.connected()) {
+			if (attributeKnob.connected()) {
+				getTargetNode(attributeKnob).Calculate();
+				attribute = attributeKnob.GetValue<Number>();
+			}
 
-		if (valueKnob.connected()) {
-			getTargetNode(valueKnob).Calculate();
-			value = valueKnob.GetValue<Number>();
-		}
+			if (valueKnob.connected()) {
+				getTargetNode(valueKnob).Calculate();
+				value = valueKnob.GetValue<Number>();
+			}
 
-		GameManager gameManager = FindObjectOfType<GameManager>();
-		
-		gameManager.SetPlayerAttribute((CharacterAttributeType)attribute.ToInt32(), value);
+			GameManager gameManager = FindObjectOfType<GameManager>();
+			
+			gameManager.SetPlayerAttribute((CharacterAttributeType)attribute.ToInt32(), value);
+		}
 
 		return true;
 	}
