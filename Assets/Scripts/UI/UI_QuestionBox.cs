@@ -37,6 +37,6 @@ public class UI_QuestionBox : MonoBehaviour
             Destroy(button.gameObject);
         }
         _questionButtonList.Clear();
-        Destroy(gameObject);
+        this.gameObject.SetActive(false);
     }
 }

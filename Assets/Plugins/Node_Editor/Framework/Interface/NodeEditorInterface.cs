@@ -157,7 +157,7 @@ namespace NodeEditorFramework.Standard
 #if UNITY_EDITOR
 		private void LoadCanvas()
 		{
-			string path = UnityEditor.EditorUtility.OpenFilePanel("Load Node Canvas", "Resources/Saves/", "asset");
+			string path = UnityEditor.EditorUtility.OpenFilePanel("Load Node Canvas", "Resources/Graphs/", "asset");
 			if (!path.Contains(Application.dataPath))
 			{
 				if (!string.IsNullOrEmpty(path))

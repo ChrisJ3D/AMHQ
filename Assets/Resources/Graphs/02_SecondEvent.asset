@@ -14,7 +14,7 @@ MonoBehaviour:
   editorStates:
   - {fileID: 114426097733588222}
   saveName: 02_SecondEvent
-  savePath: Assets/Resources/Saves/02_SecondEvent.asset
+  savePath: Assets/Resources/Graphs/02_SecondEvent.asset
   livesInScene: 0
   nodes:
   - {fileID: 114390122715651862}

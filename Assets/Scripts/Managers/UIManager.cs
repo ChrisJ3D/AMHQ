@@ -21,9 +21,8 @@ namespace AMHQ {
 		}
 
 		public void OnSceneLoad() {
-			_canvasObject = FindObjectOfType<Canvas>().transform as RectTransform;
-			_dialogueBox = null;
-			_questionBox = null;
+			_dialogueBox.gameObject.SetActive(false);
+			_questionBox.gameObject.SetActive(false);
 		}
 
 		public void SetDialogueBoxType(BaseConversationNode node) {
@@ -43,9 +42,8 @@ namespace AMHQ {
 		}
 
 		public void InitializeDialogueBox(BaseConversationNode node) {
-			_dialogueBox = GameObject.Instantiate(UI_DialogueBoxPrefab).GetComponent<UI_DialogueBox>();
+			_dialogueBox.gameObject.SetActive(true);
 			_dialogueBox.Construct(this);
-			_dialogueBox.transform.SetParent(_canvasObject, false);
 
 			SetDialogueBoxType(node);
 		}
@@ -65,9 +63,7 @@ namespace AMHQ {
 		}
 
 		public void InitializeQuestionBox(QuestionNode node) {
-			_questionBox = Instantiate(UI_QuestionBoxPrefab).GetComponent<UI_QuestionBox>();
-			_questionBox.transform.SetParent(_canvasObject, false);
-
+			_questionBox.gameObject.SetActive(true);
 			_questionBox.CreateOptions(node.GetAllOptions(), optionSelected);
 			//GrowMessageBox(node.GetAllOptions().Count);
 
@@ -108,8 +104,8 @@ namespace AMHQ {
 		}
 
 		private void DialogueComplete() {
-			DestroyObject(_dialogueBox);
-			DestroyObject(_questionBox);
+			_dialogueBox.gameObject.SetActive(false);
+			_questionBox.gameObject.SetActive(false);
 		}
 
 		private void LoadScene(LoadSceneNode node) {
