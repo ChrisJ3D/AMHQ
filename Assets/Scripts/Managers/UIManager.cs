@@ -21,36 +21,28 @@ namespace AMHQ {
 		}
 
 		public void OnSceneLoad() {
-			Debug.Log("UIManager: OnSceneLoad");
 			_canvasObject = FindObjectOfType<Canvas>().transform as RectTransform;
 			_dialogueBox = null;
 			_questionBox = null;
 		}
 
 		public void SetDialogueBoxType(BaseConversationNode node) {
-			Debug.Log("Setting Dialogue Box Type");
 			_dialogueBox.ClearContents();
 
 			if(node == null) {
-				Debug.Log("Setting to null");
 				DialogueComplete();
 			} else if (node is SceneLoadedNode) {
-				Debug.Log("Setting to SceneLoadedNode");
 				okButton();
 			} else if (node is DialogueNode) {
-				Debug.Log("Setting to DialogueNode");
 				UpdateDialogueBox((DialogueNode) node);
 			} else if (node is QuestionNode) {
-				Debug.Log("Setting to Question");
 				InitializeQuestionBox((QuestionNode) node);
 			} else if (node is LoadSceneNode) {
-				Debug.Log("Setting to LoadScene");
 				LoadScene((LoadSceneNode) node);
 			}
 		}
 
 		public void InitializeDialogueBox(BaseConversationNode node) {
-			Debug.Log("Initializing dialogue box");
 			_dialogueBox = GameObject.Instantiate(UI_DialogueBoxPrefab).GetComponent<UI_DialogueBox>();
 			_dialogueBox.Construct(this);
 			_dialogueBox.transform.SetParent(_canvasObject, false);

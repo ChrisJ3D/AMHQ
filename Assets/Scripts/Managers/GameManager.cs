@@ -14,8 +14,9 @@ namespace AMHQ {
 		private TimeManager timeManager;
 		public UIManager uiManager;
 
+		public string startingScene;
 		public string currentScene;
-
+		
 		public override void Awake() {
 			base.Awake();
 
@@ -44,18 +45,18 @@ namespace AMHQ {
 		}
 
 		public void LoadScene(string sceneName) {
-			SceneManager.LoadScene(sceneName);
+			// SceneManager.LoadScene(sceneName);
+			currentScene = sceneName;
 			OnSceneLoad();
 		}
 
 		public void OnSceneLoad() {
-			currentScene = SceneManager.GetActiveScene().name;
-			nodeManager.OnSceneLoad();
+			nodeManager.OnSceneLoad(currentScene);
 			uiManager.OnSceneLoad();
 			uiManager.InitializeDialogueBox(nodeManager.startNode);
 		}
 
-	//	CharacterManager functions
+	#region	CharacterManager functions
 
 		public Character GetCharacter(int index) {
 			return characterManager.characterList[index];
@@ -73,7 +74,8 @@ namespace AMHQ {
 			characterManager.SetCharacterPosition(characterIndex, position);
 		}
 
-	//	NodeManager functions
+	#endregion
+	#region	NodeManager functions
 
 		public BaseConversationNode GetCurrentNode() {
 			return nodeManager.currentNode;
@@ -90,8 +92,9 @@ namespace AMHQ {
 		public void SelectOption(int option) {
 			nodeManager.OptionSelected(option);
 		}
-
-	//	PlayerManager functions
+		
+	#endregion
+	#region	PlayerManager functions
 
 		public string GetPlayerName() {
 			return playerManager.playerName;
@@ -108,5 +111,6 @@ namespace AMHQ {
 		public void AdjustPlayerAttribute(CharacterAttributeType attribute, Number value) {
 			
 		}
+	#endregion
 	}
 }

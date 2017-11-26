@@ -12,8 +12,6 @@ namespace AMHQ {
 		
 		[SerializeField]
 		private GameObject UI_DialogueBoxPrefab;
-		[SerializeField]
-		private RectTransform _canvasObject;
 
 		private UI_DialogueBox _dialogueBox;
 		private AMHQCanvas nodeCanvas = null;
@@ -22,9 +20,8 @@ namespace AMHQ {
 			gameManager = parent as GameManager;
 		}
 
-		public void OnSceneLoad() {
-			_canvasObject = FindObjectOfType<Canvas>().transform as RectTransform;
-			GetCanvasFromScene();
+		public void OnSceneLoad(string currentScene) {
+			LoadCanvasByName(currentScene);
 			nodeCanvas.GetSceneLoadedNode();
 		}
 
@@ -72,7 +69,8 @@ namespace AMHQ {
 				Debug.LogWarning("GameManager not set!!");
 				return;
 			}
-			nodeCanvas = Resources.Load("Saves/" + canvasName + "/LevelGraph", typeof(AMHQCanvas)) as AMHQCanvas;
+			Debug.Log("Attempting to load Saves/" + canvasName);
+			nodeCanvas = Resources.Load("Saves/" + canvasName, typeof(AMHQCanvas)) as AMHQCanvas;
 		}
 	}
 }

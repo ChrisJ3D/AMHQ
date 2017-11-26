@@ -215,6 +215,16 @@ Prefab:
       propertyPath: _canvasObject
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114140197012090060, guid: 6c90020080ac9404080de44acc95054c,
+        type: 2}
+      propertyPath: startingScene
+      value: 01_IntroEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 114067811245317696, guid: 6c90020080ac9404080de44acc95054c,
+        type: 2}
+      propertyPath: currentScene
+      value: 01_IntroEvent
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c90020080ac9404080de44acc95054c, type: 2}
   m_IsPrefabParent: 0
