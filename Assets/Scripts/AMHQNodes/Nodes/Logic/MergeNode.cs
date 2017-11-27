@@ -10,8 +10,8 @@ using AMHQ;
 public class MergeNode : BaseConversationNode
 {
 	public override string Title { get { return "Merge"; } }
-	public override Vector2 DefaultSize { get { return new Vector2(150, 20); } }
-	public override Vector2 MinSize { get { return new Vector2(150, 20); } }
+	public override Vector2 DefaultSize { get { return new Vector2(100, 90); } }
+	public override Vector2 MinSize { get { return new Vector2(100, 90); } }
 	public override bool AutoLayout { get { return true; } }
 
 	private const string Id = "mergeNode";
@@ -19,13 +19,13 @@ public class MergeNode : BaseConversationNode
 	public override Type GetObjectType { get { return typeof(MergeNode); } }
 
 	//Previous Node Connections
-	[ValueConnectionKnob("", Direction.In, "DialogueForward", NodeSide.Left, 10)]
+	[ValueConnectionKnob("", Direction.In, "DialogueForward", NodeSide.Left)]
 	public ValueConnectionKnob inputKnob1;
 
-	[ValueConnectionKnob("", Direction.In, "DialogueForward", NodeSide.Left, 20)]
+	[ValueConnectionKnob("", Direction.In, "DialogueForward", NodeSide.Left)]
 	public ValueConnectionKnob inputKnob2;
 
-	[ValueConnectionKnob("", Direction.Out, "DialogueForward", NodeSide.Right, 10)]
+	[ValueConnectionKnob("", Direction.Out, "DialogueForward", NodeSide.Right)]
 	public ValueConnectionKnob outputKnob;
 
 	private ValueConnectionKnobAttribute dynaCreationAttribute 
@@ -41,56 +41,56 @@ public class MergeNode : BaseConversationNode
 	protected override void OnCreate ()
 	{
 		base.OnCreate ();
-		CharacterName = "Character";
-		DialogLine = "Insert dialog text here";
-		CharacterPotrait = null;
-
 	}
 
 	public override void NodeGUI()
 	{
-		base.NodeGUI();
+		// base.NodeGUI();
+		GUILayout.BeginHorizontal();
+		GUILayout.BeginVertical();
 
-		#region Options
-		GUILayout.ExpandWidth(false);
+		inputKnob1.DisplayLayout();
+		inputKnob2.DisplayLayout();
+		DrawOptions();
+
+		GUILayout.EndVertical();
+		GUILayout.BeginVertical();
+
+		outputKnob.DisplayLayout();
+
+		GUILayout.EndVertical();
+		GUILayout.EndHorizontal();
 
 		GUILayout.BeginHorizontal();
-		if (GUILayout.Button("+", GUILayout.Width(20)))
-		{
+		GUILayout.Space(10);
+		GUILayout.BeginVertical();
+
+		if (GUILayout.Button("+", GUILayout.Width(20))) {
 			AddNewOption();
 			IssueEditorCallBacks();
 		}
+		GUILayout.EndVertical();
+		GUILayout.Space(20);
+		GUILayout.BeginVertical();
+
 		if (dynamicConnectionPorts.Count >= 1) {
-		if (GUILayout.Button("‒", GUILayout.Width(20)))
-			{
+			if (GUILayout.Button("‒", GUILayout.Width(20))) {
 				DeleteConnectionPort (dynamicConnectionPorts.Count-1);
 				_dynamicPorts--;
 			} 
 		}
-
+		GUILayout.EndVertical();
 		GUILayout.EndHorizontal();
-		GUILayout.Space(5);
-
-		DrawOptions();
-
-		GUILayout.ExpandWidth(false);
-		#endregion
 	}
 
 	private void DrawOptions()
 	{
-		EditorGUILayout.BeginVertical();
 		for (var i = 0; i < _dynamicPorts; i++)
 		{
-			GUILayout.BeginVertical();
-			GUILayout.BeginHorizontal();
+			GUILayout.Space(25);
 			((ValueConnectionKnob)dynamicConnectionPorts[i]).SetPosition();
-
-			GUILayout.EndHorizontal();
-			GUILayout.EndVertical();
-			GUILayout.Space(4);
+			
 		}
-		GUILayout.EndVertical();
 	}
 
 	private void AddNewOption()
