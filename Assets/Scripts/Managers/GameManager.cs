@@ -126,6 +126,10 @@ namespace AMHQ {
 
 		}
 
+		public void Fade(int mode, float duration) {
+			uiManager.Fade(mode, duration);
+		}
+
 	#endregion
 
 		public void SetBackgroundMusic(AudioClip clip, bool loop) {

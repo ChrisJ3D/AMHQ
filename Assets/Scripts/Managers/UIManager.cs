@@ -17,6 +17,7 @@ namespace AMHQ {
 		public UI_DialogueBox _dialogueBox;
 		public UI_QuestionBox _questionBox;
 		public GameObject BG;
+		public GameObject fadeScreen;
 
 		public override void Initialize(MonoBehaviour parent) {
 			gameManager = parent as GameManager;
@@ -118,5 +119,33 @@ namespace AMHQ {
 		public void SetBackgroundImage (Sprite image) {
 			BG.GetComponent<Image>().sprite = image;
 		}
+
+		public void Fade(int mode, float duration) {
+			switch (mode) {
+				case 0:
+					Debug.Log("Fading in");
+					StartCoroutine(Fade(fadeScreen.GetComponent<Image>(),Color.black, Color.clear, duration));
+					break;
+				
+				case 1:
+				Debug.Log("Fading out");
+					StartCoroutine(Fade(fadeScreen.GetComponent<Image>(),Color.clear, Color.black, duration));
+					break;
+			}
+			
+		}
+
+		IEnumerator Fade(Image image, Color start, Color end, float duration) {
+
+			for (float t = 0f; t < duration; t += Time.deltaTime) {
+				float normalizedTime = t/duration;
+				
+				image.color = Color.Lerp(start, end, normalizedTime);
+				yield return null;
+				}
+
+				image.color = end; //without this, the value will end at something like 0.9992367
+			}
+
 	}
 }
