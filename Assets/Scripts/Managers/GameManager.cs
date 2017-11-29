@@ -59,6 +59,18 @@ namespace AMHQ {
 			uiManager.InitializeDialogueBox(nodeManager.startNode);
 		}
 
+		public void LoadHub(int index) {
+			switch (index) {
+				case 0:
+				uiManager.ShowHub("home");
+				break;
+
+				case 1:
+				uiManager.ShowHub("work");
+				break;
+			}
+		}
+
 	#region	CharacterManager functions
 
 		public Character GetCharacter(int index) {

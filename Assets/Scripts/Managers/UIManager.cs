@@ -18,6 +18,9 @@ namespace AMHQ {
 		public UI_QuestionBox _questionBox;
 		public GameObject BG;
 		public GameObject fadeScreen;
+		
+		public GameObject homeHub;
+		public GameObject workHub;
 
 		public override void Initialize(MonoBehaviour parent) {
 			gameManager = parent as GameManager;
@@ -41,6 +44,8 @@ namespace AMHQ {
 				InitializeQuestionBox((QuestionNode) node);
 			} else if (node is LoadSceneNode) {
 				LoadScene((LoadSceneNode) node);
+			} else if (node is LoadHubNode) {
+				LoadHub((LoadHubNode) node);
 			}
 		}
 
@@ -114,6 +119,15 @@ namespace AMHQ {
 		private void LoadScene(LoadSceneNode node) {
 			DialogueComplete();
 			gameManager.LoadScene(node.sceneName);
+		}
+
+		private void LoadHub(LoadHubNode node) {
+			DialogueComplete();
+			gameManager.LoadHub(node.selection);
+		}
+
+		public void ShowHub(string hub) {
+
 		}
 
 		public void SetBackgroundImage (Sprite image) {
