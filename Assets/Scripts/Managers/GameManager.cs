@@ -23,8 +23,6 @@ namespace AMHQ {
 		public override void Awake() {
 			base.Awake();
 
-			currentScene = SceneManager.GetActiveScene().name;
-
 			characterManager = (CharacterManager)GetComponent("CharacterManager");
 			inventoryManager = (InventoryManager)GetComponent("InventoryManager");
 			nodeManager = (NodeManager)GetComponent("NodeManager");
@@ -38,13 +36,11 @@ namespace AMHQ {
 			playerManager.Initialize(this);
 			timeManager.Initialize(this);
 			uiManager.Initialize(this);
-
-			OnSceneLoad();
 		}
 
 		void Start () {
-			//	Start reading from node graph
-			
+			currentScene = startingScene;
+			OnSceneLoad();
 		}
 
 		public void LoadScene(string sceneName) {

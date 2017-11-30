@@ -261,6 +261,11 @@ Prefab:
       propertyPath: fadeScreen
       value: 
       objectReference: {fileID: 621222847}
+    - target: {fileID: 114067811245317696, guid: 6c90020080ac9404080de44acc95054c,
+        type: 2}
+      propertyPath: startingScene
+      value: 01_IntroEvent
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c90020080ac9404080de44acc95054c, type: 2}
   m_IsPrefabParent: 0
@@ -547,7 +552,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &828175496
 RectTransform:
   m_ObjectHideFlags: 0
@@ -807,12 +812,12 @@ Prefab:
     - target: {fileID: 224983615479292628, guid: d8d00eb534332a94282026aea2f31e5c,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224983615479292628, guid: d8d00eb534332a94282026aea2f31e5c,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 98.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224983615479292628, guid: d8d00eb534332a94282026aea2f31e5c,
         type: 2}
@@ -852,12 +857,7 @@ Prefab:
     - target: {fileID: 224983615479292628, guid: d8d00eb534332a94282026aea2f31e5c,
         type: 2}
       propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114035736819876832, guid: d8d00eb534332a94282026aea2f31e5c,
-        type: 2}
-      propertyPath: _optionsHolder
-      value: 
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1316641530803934, guid: d8d00eb534332a94282026aea2f31e5c, type: 2}
       propertyPath: m_IsActive
