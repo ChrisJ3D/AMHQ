@@ -115,12 +115,17 @@ namespace AMHQ {
 			return playerManager.attributes;
 		}
 
+		public Number GetAttribute(CharacterAttributeType attribute) {
+			return playerManager.GetAttribute(attribute);
+		}
+
+
 		public void SetPlayerAttribute(CharacterAttributeType attribute, Number value) {
 			playerManager.SetAttribute(attribute, value);
 		}
 
 		public void AdjustPlayerAttribute(CharacterAttributeType attribute, Number value) {
-			
+			playerManager.AdjustAttribute(attribute, value);
 		}
 	#endregion
 	#region UIManager functions

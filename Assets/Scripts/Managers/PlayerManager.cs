@@ -46,25 +46,51 @@ namespace AMHQ {
 			return _attributes;
 		}
 
+		/// <summary>
+		/// Adjusts a given player value incrementally. If you want to set an attribute to a specific value, use SetAttribute()
+		/// </summary>
+		/// <param name="attribute">The attribute to adjust</param>
+		/// <param name="value">The adjustment to be made. Use positive numbers to add, and negative numbers to subtract</param>
 		public void AdjustAttribute(CharacterAttributeType attribute, Number value) {
 			Number oldValue;
 			if (_attributes.TryGetValue(attribute, out oldValue)) {
-				_attributes.Add(attribute, oldValue + value);
+				_attributes[attribute] = oldValue + value;
+				//_attributes.Add(attribute, oldValue + value);
 			} else {
 				Debug.Log("Unable to adjust value??");
 			}
 		}
 
 		public float GetAttribute(CharacterAttributeType attribute) {
-			return 0f;
+			return _attributes[attribute];
+		}
+		
+		/// <summary>
+		/// Returns the currently lowest player attribute value
+		/// </summary>
+		/// <returns></returns>
+		public float GetLowestAttributeValue() {
+			float lowest = 9999;
+			foreach (KeyValuePair<CharacterAttributeType, Number> attribute in attributes) {
+				if (lowest > attribute.Value) {
+					lowest = attribute.Value;
+				}
+			}
+			return lowest;
 		}
 
-		public float GetLowestAttribute() {
-			return 0f;
-		}
-
-		public float GetHighestAttribute() {
-			return 0f;
+		/// <summary>
+		/// Returns the currently highest player attribute value
+		/// </summary>
+		/// <returns></returns>
+		public float GetHighestAttributeValue() {
+			float highest = 0;
+			foreach (KeyValuePair<CharacterAttributeType, Number> attribute in attributes) {
+				if (highest < attribute.Value) {
+					highest = attribute.Value;
+				}
+			}
+			return highest;
 		}
 	}
 }

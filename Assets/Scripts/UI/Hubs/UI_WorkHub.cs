@@ -11,13 +11,12 @@ public class UI_WorkHub : UI_Hub {
 	}
 
 	public void WorkOnProjectButton() {
-		CheckActions();
+
 	}
 
 	public void CorrespondWithClientsButton() {
-		CheckActions();
-		gameManager.SetPlayerAttribute(CharacterAttributeType.Charisma, 20);
-
+		gameManager.AdjustPlayerAttribute(CharacterAttributeType.Charisma, 20);
+		attributesPanel.GetComponent<UI_AttributesPanel>().Refresh();
 	}
 
 	public void DoResearchButton() {
