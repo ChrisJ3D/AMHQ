@@ -12,20 +12,20 @@ MonoBehaviour:
   m_Name: Calculation Canvas
   m_EditorClassIdentifier: 
   editorStates:
-  - {fileID: 114823056558934306}
-  saveName: Calculation Canvas
-  savePath: Assets/Plugins/Node_Editor/Resources/Saves/Calculation Canvas.asset
+  - {fileID: 11482305}
+  saveName: Assets\Plugins\Node_Editor\Resources\Saves\Calculation Canvas
+  savePath: Assets\Plugins\Node_Editor\Resources\Saves\Calculation Canvas.asset
   livesInScene: 0
   nodes:
-  - {fileID: 114969634015446444}
-  - {fileID: 114338816826535410}
-  - {fileID: 114621459629462806}
-  - {fileID: 114179892776421984}
-  - {fileID: 114624215235555288}
-  - {fileID: 114114215092059524}
-  - {fileID: 114032663330740434}
+  - {fileID: 11496963}
+  - {fileID: 11433881}
+  - {fileID: 11462145}
+  - {fileID: 11417989}
+  - {fileID: 11462421}
+  - {fileID: 11411421}
+  - {fileID: 11403266}
   groups: []
---- !u!114 &114031747568681056
+--- !u!114 &11403174
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -36,17 +36,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: Output
   m_EditorClassIdentifier: 
-  body: {fileID: 114621459629462806}
+  body: {fileID: 11462145}
   direction: 2
   maxConnectionCount: 1
   styleID: Float
   _connections:
-  - {fileID: 114391001434538984}
-  - {fileID: 114198720116102168}
+  - {fileID: 11439100}
+  - {fileID: 11419872}
   side: 2
   sidePosition: 28
   sideOffset: 0
---- !u!114 &114032663330740434
+--- !u!114 &11403266
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -60,9 +60,9 @@ MonoBehaviour:
   position: {x: -50, y: 50}
   dynamicConnectionPorts: []
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-  outputKnob: {fileID: 114117720801931582}
+  outputKnob: {fileID: 11411772}
   value: 5
---- !u!114 &114069807724388282
+--- !u!114 &11406980
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -73,16 +73,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: Value
   m_EditorClassIdentifier: 
-  body: {fileID: 114969634015446444}
+  body: {fileID: 11496963}
   direction: 2
   maxConnectionCount: 1
   styleID: Float
   _connections:
-  - {fileID: 114954652997668696}
+  - {fileID: 11495465}
   side: 2
   sidePosition: 28
   sideOffset: 0
---- !u!114 &114084676537818940
+--- !u!114 &11408467
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -93,16 +93,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: Output
   m_EditorClassIdentifier: 
-  body: {fileID: 114624215235555288}
+  body: {fileID: 11462421}
   direction: 2
   maxConnectionCount: 1
   styleID: Float
   _connections:
-  - {fileID: 114195451148122272}
+  - {fileID: 11419545}
   side: 2
   sidePosition: 28
   sideOffset: 0
---- !u!114 &114092144038896494
+--- !u!114 &11409214
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -113,16 +113,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: Input 2
   m_EditorClassIdentifier: 
-  body: {fileID: 114624215235555288}
+  body: {fileID: 11462421}
   direction: 1
   maxConnectionCount: 0
   styleID: Float
   _connections:
-  - {fileID: 114117720801931582}
+  - {fileID: 11411772}
   side: 4
   sidePosition: 46
   sideOffset: 0
---- !u!114 &114114215092059524
+--- !u!114 &11411421
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -136,8 +136,8 @@ MonoBehaviour:
   position: {x: 550, y: -50}
   dynamicConnectionPorts: []
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-  inputKnob: {fileID: 114195451148122272}
---- !u!114 &114117720801931582
+  inputKnob: {fileID: 11419545}
+--- !u!114 &11411772
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -148,16 +148,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: Value
   m_EditorClassIdentifier: 
-  body: {fileID: 114032663330740434}
+  body: {fileID: 11403266}
   direction: 2
   maxConnectionCount: 1
   styleID: Float
   _connections:
-  - {fileID: 114092144038896494}
+  - {fileID: 11409214}
   side: 2
   sidePosition: 28
   sideOffset: 0
---- !u!114 &114119148308090392
+--- !u!114 &11411914
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -168,16 +168,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: Value
   m_EditorClassIdentifier: 
-  body: {fileID: 114338816826535410}
+  body: {fileID: 11433881}
   direction: 2
   maxConnectionCount: 1
   styleID: Float
   _connections:
-  - {fileID: 114705503879115268}
+  - {fileID: 11470550}
   side: 2
   sidePosition: 28
   sideOffset: 0
---- !u!114 &114179892776421984
+--- !u!114 &11417989
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -191,8 +191,8 @@ MonoBehaviour:
   position: {x: 250, y: -150}
   dynamicConnectionPorts: []
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-  inputKnob: {fileID: 114391001434538984}
---- !u!114 &114195451148122272
+  inputKnob: {fileID: 11439100}
+--- !u!114 &11419545
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -203,16 +203,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: Value
   m_EditorClassIdentifier: 
-  body: {fileID: 114114215092059524}
+  body: {fileID: 11411421}
   direction: 1
   maxConnectionCount: 0
-  styleID: Number
+  styleID: Float
   _connections:
-  - {fileID: 114084676537818940}
+  - {fileID: 11408467}
   side: 4
   sidePosition: 28
   sideOffset: 0
---- !u!114 &114198720116102168
+--- !u!114 &11419872
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -223,16 +223,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: Input 1
   m_EditorClassIdentifier: 
-  body: {fileID: 114624215235555288}
+  body: {fileID: 11462421}
   direction: 1
   maxConnectionCount: 0
   styleID: Float
   _connections:
-  - {fileID: 114031747568681056}
+  - {fileID: 11403174}
   side: 4
   sidePosition: 28
   sideOffset: 0
---- !u!114 &114338816826535410
+--- !u!114 &11433881
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -246,9 +246,9 @@ MonoBehaviour:
   position: {x: -350, y: -50}
   dynamicConnectionPorts: []
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-  outputKnob: {fileID: 114119148308090392}
+  outputKnob: {fileID: 11411914}
   value: 3
---- !u!114 &114391001434538984
+--- !u!114 &11439100
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -259,16 +259,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: Value
   m_EditorClassIdentifier: 
-  body: {fileID: 114179892776421984}
+  body: {fileID: 11417989}
   direction: 1
   maxConnectionCount: 0
-  styleID: Number
+  styleID: Float
   _connections:
-  - {fileID: 114031747568681056}
+  - {fileID: 11403174}
   side: 4
   sidePosition: 28
   sideOffset: 0
---- !u!114 &114621459629462806
+--- !u!114 &11462145
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -283,12 +283,12 @@ MonoBehaviour:
   dynamicConnectionPorts: []
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   type: 3
-  input1Knob: {fileID: 114954652997668696}
-  input2Knob: {fileID: 114705503879115268}
-  outputKnob: {fileID: 114031747568681056}
+  input1Knob: {fileID: 11495465}
+  input2Knob: {fileID: 11470550}
+  outputKnob: {fileID: 11403174}
   Input1Val: 73
   Input2Val: 3
---- !u!114 &114624215235555288
+--- !u!114 &11462421
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -303,12 +303,12 @@ MonoBehaviour:
   dynamicConnectionPorts: []
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   type: 2
-  input1Knob: {fileID: 114198720116102168}
-  input2Knob: {fileID: 114092144038896494}
-  outputKnob: {fileID: 114084676537818940}
+  input1Knob: {fileID: 11419872}
+  input2Knob: {fileID: 11409214}
+  outputKnob: {fileID: 11408467}
   Input1Val: 24.333334
   Input2Val: 5
---- !u!114 &114705503879115268
+--- !u!114 &11470550
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -319,16 +319,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: Input 2
   m_EditorClassIdentifier: 
-  body: {fileID: 114621459629462806}
+  body: {fileID: 11462145}
   direction: 1
   maxConnectionCount: 0
   styleID: Float
   _connections:
-  - {fileID: 114119148308090392}
+  - {fileID: 11411914}
   side: 4
   sidePosition: 46
   sideOffset: 0
---- !u!114 &114823056558934306
+--- !u!114 &11482305
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -344,7 +344,7 @@ MonoBehaviour:
   selectedNode: {fileID: 0}
   panOffset: {x: -146, y: 6}
   zoom: 1
---- !u!114 &114954652997668696
+--- !u!114 &11495465
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -355,16 +355,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: Input 1
   m_EditorClassIdentifier: 
-  body: {fileID: 114621459629462806}
+  body: {fileID: 11462145}
   direction: 1
   maxConnectionCount: 0
   styleID: Float
   _connections:
-  - {fileID: 114069807724388282}
+  - {fileID: 11406980}
   side: 4
   sidePosition: 28
   sideOffset: 0
---- !u!114 &114969634015446444
+--- !u!114 &11496963
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -378,5 +378,5 @@ MonoBehaviour:
   position: {x: -350, y: -150}
   dynamicConnectionPorts: []
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-  outputKnob: {fileID: 114069807724388282}
+  outputKnob: {fileID: 11406980}
   value: 73

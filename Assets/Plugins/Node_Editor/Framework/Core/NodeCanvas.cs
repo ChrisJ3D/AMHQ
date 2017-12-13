@@ -12,6 +12,8 @@ namespace NodeEditorFramework
 	{
 		public virtual string canvasName { get { return "DEFAULT"; } }
 
+		public virtual bool allowSceneSaveOnly { get { return false; } }
+
 		public NodeCanvasTraversal Traversal;
 
 		public NodeEditorState[] editorStates = new NodeEditorState[0];
@@ -179,7 +181,7 @@ namespace NodeEditorFramework
 				int nameStart = path.LastIndexOf ('/')+1;
 				newName = path.Substring (nameStart, path.Length-nameStart-6);
 			}
-			if (newName.ToLower () != "lastsession")
+			if (!newName.ToLower ().Contains ("lastsession"))
 			{
 				savePath = path;
 				saveName = newName;

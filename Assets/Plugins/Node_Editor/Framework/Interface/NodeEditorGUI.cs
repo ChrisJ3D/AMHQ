@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using NodeEditorFramework;
 using NodeEditorFramework.Utilities;
 
 namespace NodeEditorFramework 
@@ -54,7 +52,7 @@ namespace NodeEditorFramework
 			AALineTex = ResourceManager.LoadTexture ("Textures/AALine.png");
 			GUIBox = ResourceManager.LoadTexture ("Textures/NE_Box.png");
 			GUIButton = ResourceManager.LoadTexture ("Textures/NE_Button.png");
-			GUIBoxSelection = ResourceManager.LoadTexture("Textures/BoxSelection.png");
+			//GUIBoxSelection = ResourceManager.LoadTexture("Textures/BoxSelection.png");
 			GUIToolbar = ResourceManager.LoadTexture("Textures/NE_Toolbar.png");
 			GUIToolbarButton = ResourceManager.LoadTexture("Textures/NE_ToolbarButton.png");
 			font = ResourceManager.LoadResource<Font>("Assets/Scripts/AMHQNodes/Fonts/meiryo.ttc");
@@ -64,8 +62,8 @@ namespace NodeEditorFramework
 				return false;
 
 			// Skin & Styles
-			// nodeSkin = Object.Instantiate (GUI.skin);
 			nodeSkin = AMHQSkin;
+			//nodeSkin = Object.Instantiate (GUI.skin);
 			GUI.skin = nodeSkin;
 
 			foreach (GUIStyle style in GUI.skin)
@@ -73,10 +71,11 @@ namespace NodeEditorFramework
 				style.fontSize = 12;
 				style.font = font;
 				style.padding = new RectOffset(5,5,2,2);
+				//style.fontSize = 11;
 				//style.normal.textColor = style.active.textColor = style.focused.textColor = style.hover.textColor = NE_TextColor;
 			}
 
-			// // Label
+			// Label
 			nodeSkin.label.normal.textColor = NE_TextColor;
 			nodeLabel = nodeSkin.label;
 			nodeLabelBold = new GUIStyle (nodeLabel) { fontStyle = FontStyle.Bold };
@@ -233,5 +232,48 @@ namespace NodeEditorFramework
 		}
 
 		#endregion
+
+		/// <summary>
+		/// Unified method to generate a random HSV color value across versions
+		/// </summary>
+		public static Color RandomColorHSV(int seed, float hueMin, float hueMax, float saturationMin, float saturationMax, float valueMin, float valueMax)
+		{
+			// Set seed
+#if UNITY_5_4_OR_NEWER
+			UnityEngine.Random.InitState (seed);
+#else
+			UnityEngine.Random.seed = seed;
+#endif
+			// Consistent random H,S,V values
+			float hue = UnityEngine.Random.Range(hueMin, hueMax);
+			float saturation = UnityEngine.Random.Range(saturationMin, saturationMax);
+			float value = UnityEngine.Random.Range(valueMin, valueMax);
+
+			// Convert HSV to RGB
+#if UNITY_5_3_OR_NEWER
+			return UnityEngine.Color.HSVToRGB (hue, saturation, value, false);
+#else
+			int hi = Mathf.FloorToInt(hue / 60) % 6;
+			float frac = hue / 60 - Mathf.Floor(hue / 60);
+
+			float v = value;
+			float p = value * (1 - saturation);
+			float q = value * (1 - frac * saturation);
+			float t = value * (1 - (1 - frac) * saturation);
+
+			if (hi == 0)
+				return new Color(v, t, p);
+			else if (hi == 1)
+				return new Color(q, v, p);
+			else if (hi == 2)
+				return new Color(p, v, t);
+			else if (hi == 3)
+				return new Color(p, q, v);
+			else if (hi == 4)
+				return new Color(t, p, v);
+			else
+				return new Color(v, p, q);
+#endif
+		}
 	}
 }

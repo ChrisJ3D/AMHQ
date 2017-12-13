@@ -9,7 +9,6 @@ namespace NodeEditorFramework.Standard
 	{
 		public static GUIStyle titleStyle;
 		public static GUIStyle boldLabelStyle;
-		public static GUIStyle descriptionStyle;
 		public Node node;
 
 		public void OnEnable()
@@ -35,10 +34,6 @@ namespace NodeEditorFramework.Standard
 				boldLabelStyle = new GUIStyle(GUI.skin.label);
 				boldLabelStyle.fontStyle = FontStyle.Bold;
 			}
-			if (descriptionStyle == null) {
-				descriptionStyle = new GUIStyle(GUI.skin.label);
-				descriptionStyle.wordWrap = true;
-			}
 
 			OverlayGUI.StartOverlayGUI("NodeInspector");
 
@@ -50,7 +45,8 @@ namespace NodeEditorFramework.Standard
 
 			GUILayout.Space(10);
 
-			GUILayout.Label(node.description, descriptionStyle);
+			GUILayout.Label("Rect: " + node.rect.ToString());
+			node.backgroundColor = EditorGUILayout.ColorField("Color", node.backgroundColor);
 
 			GUILayout.Space(10);
 
@@ -66,10 +62,6 @@ namespace NodeEditorFramework.Standard
 
 			GUILayout.Label("Property Editor", boldLabelStyle);
 			node.DrawNodePropertyEditor();
-
-			GUILayout.Space(10);
-
-			node.backgroundColor = EditorGUILayout.ColorField("Color", node.backgroundColor);
 
 			if (EditorGUI.EndChangeCheck())
 				NodeEditor.RepaintClients();

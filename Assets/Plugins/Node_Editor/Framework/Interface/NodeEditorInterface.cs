@@ -1,8 +1,6 @@
 ﻿using System;
-
 using UnityEngine;
 
-using NodeEditorFramework;
 using NodeEditorFramework.IO;
 
 using GenericMenu = NodeEditorFramework.Utilities.GenericMenu;
@@ -59,14 +57,29 @@ namespace NodeEditorFramework.Standard
 				menu.AddItem(new GUIContent("Load Canvas"), false, LoadCanvas);
 				menu.AddItem(new GUIContent("Reload Canvas"), false, ReloadCanvas);
 				menu.AddSeparator("");
-				menu.AddItem(new GUIContent("Save Canvas"), false, SaveCanvas);
-				menu.AddItem(new GUIContent("Save Canvas As"), false, SaveCanvasAs);
+				if (canvasCache.nodeCanvas.allowSceneSaveOnly)
+				{
+					menu.AddDisabledItem(new GUIContent("Save Canvas"));
+					menu.AddDisabledItem(new GUIContent("Save Canvas As"));
+				}
+				else
+				{
+					menu.AddItem(new GUIContent("Save Canvas"), false, SaveCanvas);
+					menu.AddItem(new GUIContent("Save Canvas As"), false, SaveCanvasAs);
+				}
 				menu.AddSeparator("");
 #endif
 
 				// Import / Export filled with import/export types
 				ImportExportManager.FillImportFormatMenu(ref menu, ImportCanvasCallback, "Import/");
-				ImportExportManager.FillExportFormatMenu(ref menu, ExportCanvasCallback, "Export/");
+				if (canvasCache.nodeCanvas.allowSceneSaveOnly)
+				{
+					menu.AddDisabledItem(new GUIContent("Export"));
+				}
+				else
+				{
+					ImportExportManager.FillExportFormatMenu(ref menu, ExportCanvasCallback, "Export/");
+				}
 				menu.AddSeparator("");
 
 				// Scene Saving
@@ -157,7 +170,7 @@ namespace NodeEditorFramework.Standard
 #if UNITY_EDITOR
 		private void LoadCanvas()
 		{
-			string path = UnityEditor.EditorUtility.OpenFilePanel("Load Node Canvas", "Resources/Graphs/", "asset");
+			string path = UnityEditor.EditorUtility.OpenFilePanel("Load Node Canvas", NodeEditor.editorPath + "Resources/Saves/", "asset");
 			if (!path.Contains(Application.dataPath))
 			{
 				if (!string.IsNullOrEmpty(path))
