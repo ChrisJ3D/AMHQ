@@ -45,7 +45,7 @@ public class NE_NodeWorkView : NE_ViewBase {
 			//	Left mouse button
 			if (e.button == 0) {
 
-				if (e.type == EventType.mouseDrag) {
+				if (e.type == EventType.MouseDrag) {
 						//	TODO: Add code for creating a marquee here
 				}
 			}
@@ -54,7 +54,7 @@ public class NE_NodeWorkView : NE_ViewBase {
 			if (e.button == 1) {
 				bool isOverNode = false;
 				bool isOverConnector = false;
-				if (e.type == EventType.mouseDown) {
+				if (e.type == EventType.MouseDown) {
 					mousePosition = e.mousePosition;
 
 					if (currentGraph) {
