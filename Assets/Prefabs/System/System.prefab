@@ -88,7 +88,10 @@ MonoBehaviour:
   nodeManager: {fileID: 0}
   playerManager: {fileID: 0}
   uiManager: {fileID: 0}
-  currentScene: 
+  startingScene: 01_IntroEvent
+  currentScene: 01_IntroEvent
+  BGMPlayer: {fileID: 0}
+  SFXPlayer: {fileID: 0}
 --- !u!114 &114082398875645414
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -114,9 +117,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  UI_DialogueBoxPrefab: {fileID: 1316641530803934, guid: d8d00eb534332a94282026aea2f31e5c,
-    type: 2}
-  _canvasObject: {fileID: 0}
 --- !u!114 &114389325794560180
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,6 +129,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  playerName: PlayerName
+  bloodType: 
+  zodiac: 
+  favoriteFood: 
+  favoriteSeason: 
+  birthDay: 
+  startingCharisma: 120.86
+  startingEloquence: 503.9
+  startingInnovation: 211.1
+  startingKnowledge: 6.53
+  startingOrganisation: 0.2
+  startingStress: 44444.11
 --- !u!114 &114740112343259992
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -159,3 +171,9 @@ MonoBehaviour:
   UI_QuestionBoxPrefab: {fileID: 1215468434659374, guid: 5df6c7e07a6256143bb6c37c903ac227,
     type: 2}
   _canvasObject: {fileID: 0}
+  _dialogueBox: {fileID: 0}
+  _questionBox: {fileID: 0}
+  BG: {fileID: 0}
+  fadeScreen: {fileID: 0}
+  homeHub: {fileID: 0}
+  workHub: {fileID: 0}

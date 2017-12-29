@@ -127,7 +127,15 @@ namespace AMHQ {
 		}
 
 		public void ShowHub(string hub) {
+			Debug.Log("Showing hub " + hub);
+			switch (hub) {
+				case "work":
+				workHub.SetActive(true);
+				break;
 
+				case "home":
+				break;
+			}
 		}
 
 		public void SetBackgroundImage (Sprite image) {

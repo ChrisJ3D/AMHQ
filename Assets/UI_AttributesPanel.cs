@@ -13,17 +13,16 @@ public class UI_AttributesPanel : MonoBehaviour {
 	public GameObject knowledgeLabel;
 	public GameObject organizationLabel;
 
-	GameManager gameManager;
-
-	// Use this for initialization
-	void Start () {
-		gameManager = FindObjectOfType<GameManager>();
-	}
+	public GameManager gameManager;
 
 	/// <summary>
 	/// Fetches all the current attribute values from the player and updates the UI
 	/// </summary>
 	public void Refresh() {
+		if (gameManager == null) {
+			gameManager = FindObjectOfType<GameManager>();
+		}
+
 		stressLabel.GetComponent<Text>().text = "Stress: " + gameManager.GetAttribute(CharacterAttributeType.Stress).ToStringShort();
 
 		charismaLabel.GetComponent<Text>().text = "Charisma: " + gameManager.GetAttribute(CharacterAttributeType.Charisma).ToStringShort();
