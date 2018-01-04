@@ -42,7 +42,7 @@ namespace AMHQ {
 		}
 
 		protected virtual void DayComplete() {
-
+			
 		}
 	}
 }

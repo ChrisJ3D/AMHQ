@@ -130,10 +130,13 @@ namespace AMHQ {
 			Debug.Log("Showing hub " + hub);
 			switch (hub) {
 				case "work":
+				homeHub.SetActive(false);
 				workHub.SetActive(true);
 				break;
 
 				case "home":
+				workHub.SetActive(false);
+				homeHub.SetActive(true);
 				break;
 			}
 		}

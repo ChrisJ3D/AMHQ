@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using NodeEditorFramework;
+using System;
 
 namespace AMHQ {
 	public class GameManager : Singleton<GameManager> {
@@ -67,6 +68,13 @@ namespace AMHQ {
 			}
 		}
 
+		internal void CheckAfterWorkEvents()
+        {
+            //	foreach flag in workFlags
+			//	flag.launchEvent
+			uiManager.ShowHub("home");
+        }
+
 	#region	CharacterManager functions
 
 		public Character GetCharacter(int index) {
@@ -77,7 +85,7 @@ namespace AMHQ {
 			characterManager.ShowCharacter(index);
 		}
 
-		public void HideCharacters() {
+        public void HideCharacters() {
 			characterManager.HideCharacter();
 		}
 
