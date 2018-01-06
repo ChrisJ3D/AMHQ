@@ -12,6 +12,7 @@ public class UI_AttributesPanel : MonoBehaviour {
 	public GameObject eloquenceLabel;
 	public GameObject knowledgeLabel;
 	public GameObject organizationLabel;
+	public GameObject remainingActionsLabel;
 
 	public GameManager gameManager;
 
@@ -34,5 +35,15 @@ public class UI_AttributesPanel : MonoBehaviour {
 		knowledgeLabel.GetComponent<Text>().text = "Knowledge: " + gameManager.GetAttribute(CharacterAttributeType.Knowledge).ToStringShort();
 
 		organizationLabel.GetComponent<Text>().text = "Organization: " + gameManager.GetAttribute(CharacterAttributeType.Organisation).ToStringShort();
+
+		remainingActionsLabel.GetComponent<Text>().text = "Remaining Actions: " + GetComponentInParent<UI_WorkHub>().actionsPerDay;
+	}
+
+	private int RemaingActions() {
+		int actions;
+		if (GetComponentInParent<UI_WorkHub>() == null) {
+			actions = GetComponentInParent<UI_Home>
+		}
+		return actions;
 	}
 }

@@ -18,7 +18,7 @@ namespace AMHQ {
 		public GameObject fundsPanel;
 		public GameObject DatePanel;
 
-		public int actionsPerDay = 3;
+		public int actionsPerDay;
 
 		protected virtual void Start () {
 			uiManager = FindObjectOfType<UIManager>();
@@ -34,10 +34,9 @@ namespace AMHQ {
 		}
 
 		protected virtual void CheckActions() {
+			actionsPerDay--;
 			if (actionsPerDay <= 0) {
 				DayComplete();
-			} else {
-				actionsPerDay--;
 			}
 		}
 

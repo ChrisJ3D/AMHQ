@@ -56,7 +56,7 @@ namespace AMHQ {
 			uiManager.InitializeDialogueBox(nodeManager.startNode);
 		}
 
-		public void LoadHub(int index) {
+        public void LoadHub(int index) {
 			switch (index) {
 				case 0:
 				uiManager.ShowHub("home");
@@ -144,12 +144,16 @@ namespace AMHQ {
 			}
 
 			uiManager.SetBackgroundImage(image);
-
 		}
 
 		public void Fade(int mode, float duration) {
 			uiManager.Fade(mode, duration);
 		}
+
+		public int GetRemaingActions()
+        {
+            return uiManager.workHub.GetComponent<UI_WorkHub>().actionsPerDay;
+        }
 
 	#endregion
 
@@ -166,5 +170,7 @@ namespace AMHQ {
 			source.loop = loop;
 			source.Play();
 		}
+
+
 	}
 }

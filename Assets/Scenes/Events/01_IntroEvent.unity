@@ -1708,20 +1708,6 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 100.72
       objectReference: {fileID: 0}
-    - target: {fileID: 114209085419083826, guid: da52d122421de2a4e84a60769b648cfb,
-        type: 2}
-      propertyPath: m_Text
-      value: Go Shopping
-      objectReference: {fileID: 0}
-    - target: {fileID: 114004329441962894, guid: da52d122421de2a4e84a60769b648cfb,
-        type: 2}
-      propertyPath: m_Text
-      value: Make a call
-      objectReference: {fileID: 0}
-    - target: {fileID: 1747172495642978, guid: da52d122421de2a4e84a60769b648cfb, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: da52d122421de2a4e84a60769b648cfb, type: 2}
   m_IsPrefabParent: 0
