@@ -40,9 +40,9 @@ public class UI_AttributesPanel : MonoBehaviour {
 	}
 
 	private int RemaingActions() {
-		int actions;
+		int actions = 0;
 		if (GetComponentInParent<UI_WorkHub>() == null) {
-			actions = GetComponentInParent<UI_Home>
+			actions = GetComponentInParent<UI_HomeHub>().actionsPerDay;
 		}
 		return actions;
 	}
