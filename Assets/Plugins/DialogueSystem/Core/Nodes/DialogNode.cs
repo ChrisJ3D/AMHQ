@@ -1,7 +1,11 @@
 ﻿using System;
 using NodeEditorFramework;
-using UnityEditor;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 /// <summary>
 /// This node has one entry and one exit, it is just to display something, then move on
 /// </summary>

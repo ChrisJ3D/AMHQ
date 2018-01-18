@@ -30,7 +30,7 @@ namespace AMHQ {
 		}
 
 		public void SetAsDialogueNode(string dialogueLine, string speakerName, bool isBackAvailable, bool isNextAvailable) {
-			this.GetComponentsInChildren<Text>()[0].text = speakerName;
+			//this.GetComponentsInChildren<Text>()[0].text = speakerName;
 			_dialogueLineBox.GetComponent<Text>().text = dialogueLine;
 			
 			_backButton.SetActive(isBackAvailable);
@@ -45,7 +45,7 @@ namespace AMHQ {
 		}
 
 		public void ClearContents() {
-			this.GetComponentsInChildren<Text>()[0].text = "";
+			//this.GetComponentsInChildren<Text>()[0].text = "";
 			_dialogueLineBox.GetComponent<Text>().text = "";
 		}
 	}
