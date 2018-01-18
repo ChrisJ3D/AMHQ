@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 222919016644399434}
   - component: {fileID: 114192143311738176}
   m_Layer: 0
-  m_Name: Kyle
+  m_Name: Aldric
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,8 +67,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea39aba33eb76fa4bb8fc34fa5d3ce4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstName: Kyle
-  lastName: Kylesson
+  firstName: 
+  lastName: 
   StartingAffection: 0
   currentAffection: 0
   characterSprites:

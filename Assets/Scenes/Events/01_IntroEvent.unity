@@ -231,6 +231,11 @@ Prefab:
       propertyPath: homeHub
       value: 
       objectReference: {fileID: 1862992100}
+    - target: {fileID: 114067811245317696, guid: 6c90020080ac9404080de44acc95054c,
+        type: 2}
+      propertyPath: startingScene
+      value: 02_SecondEvent
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c90020080ac9404080de44acc95054c, type: 2}
   m_IsPrefabParent: 0
@@ -1707,6 +1712,10 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.y
       value: 100.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747172495642978, guid: da52d122421de2a4e84a60769b648cfb, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: da52d122421de2a4e84a60769b648cfb, type: 2}
