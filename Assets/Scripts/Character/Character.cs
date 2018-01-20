@@ -38,9 +38,15 @@ namespace AMHQ {
 		}
 
 		public void Show(int pose) {
+			bool enable = true;
 			activeSprite = pose;
-			_imageComponent.sprite =  characterSprites[activeSprite];
-			_imageComponent.enabled = true;
+			try {
+				_imageComponent.sprite =  characterSprites[activeSprite];
+			}
+			catch {
+				enable = false;
+			}
+			_imageComponent.enabled = enable;
 		}
 
 		public void SetPositionLeft() {

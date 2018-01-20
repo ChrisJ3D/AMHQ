@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using NodeEditorFramework;
-using UnityEditor;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 /// <summary>
 /// One entry and multiple exits, one for each possible answer

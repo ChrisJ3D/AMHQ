@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using NodeEditorFramework;
-using UnityEditor;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [Node(false, "Dialog/MultiPath Node", new Type[] { typeof(DialogNodeCanvas) })]
 public class MultiPathSelectorNode : BaseDialogNode
