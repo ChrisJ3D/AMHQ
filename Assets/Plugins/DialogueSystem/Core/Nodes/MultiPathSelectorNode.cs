@@ -49,6 +49,7 @@ public class MultiPathSelectorNode : BaseDialogNode
 
 	public override void NodeGUI()
 	{
+		#if UNITY_EDITOR
 		GUILayout.BeginHorizontal();
 		ValueToTest =
 			(DialogBlackboard.EDialogMultiChoiceVariables) EditorGUILayout.EnumPopup("Value to Test", ValueToTest);
@@ -81,6 +82,7 @@ public class MultiPathSelectorNode : BaseDialogNode
 
 		GUILayout.EndVertical();
 		GUILayout.EndHorizontal();
+		#endif
 	}
 
 	private void RemoveLastOption()

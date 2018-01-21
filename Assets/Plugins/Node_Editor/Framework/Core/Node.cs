@@ -126,7 +126,9 @@ namespace NodeEditorFramework
 				ignoreGUIKnobPlacement = true;
 				NodeEditorGUI.StartNodeGUI(false);
 				GUILayout.BeginVertical(GUI.skin.box);
+				#if UNITY_EDITOR
 				NodeGUI();
+				#endif
 				GUILayout.EndVertical();
 				NodeEditorGUI.EndNodeGUI();
 			}

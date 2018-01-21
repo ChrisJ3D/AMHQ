@@ -3,7 +3,9 @@ using System.Collections;
 using NodeEditorFramework;
 using NodeEditorFramework.Utilities;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 namespace NodeEditorFramework.Standard
 {

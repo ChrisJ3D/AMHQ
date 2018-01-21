@@ -62,11 +62,9 @@ public class ConditionalNode : BaseConversationNode
 		if (GUI.changed)
 			NodeEditor.curNodeCanvas.OnNodeChange(this);
 
-#if UNITY_EDITOR
+		#if UNITY_EDITOR
 		method = (ConditionType)UnityEditor.EditorGUILayout.EnumPopup (new GUIContent ("Method", "The type of calculation performed on Input 1 and Input 2"), method);
-#else
-		GUILayout.Label (new GUIContent ("Method: " + type.ToString (), "The type of calculation performed on Input 1 and Input 2"));
-#endif
+		#endif
 	}
 
 	public override bool Calculate () 

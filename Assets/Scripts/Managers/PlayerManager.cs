@@ -7,7 +7,7 @@ namespace AMHQ {
 
 		public GameManager gameManager;
 
-		public string playerName = "PlayerName";
+		public string firstName = "PlayerName";
 		public string bloodType;
 		public string zodiac;
 		public string favoriteFood;

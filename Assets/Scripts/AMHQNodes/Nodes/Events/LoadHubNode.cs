@@ -4,7 +4,9 @@ using System.Collections;
 using NodeEditorFramework;
 using NodeEditorFramework.Utilities;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using AMHQ;
 
 [System.Serializable]
@@ -37,6 +39,7 @@ public class LoadHubNode : BaseConversationNode
 
 	public override void NodeGUI()
 	{
+		#if UNITY_EDITOR
 		GUILayout.BeginHorizontal();
 
 		inputKnob.DisplayLayout();
@@ -46,7 +49,7 @@ public class LoadHubNode : BaseConversationNode
 		GUILayout.Space(15);
 		
 		GUILayout.EndHorizontal();
-		
+		#endif
 	}
 
 	public override BaseConversationNode GetDownstreamNode(int inputValue)

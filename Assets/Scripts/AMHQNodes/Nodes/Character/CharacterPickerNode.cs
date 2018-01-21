@@ -2,9 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using NodeEditorFramework;
 using NodeEditorFramework.Utilities;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace NodeEditorFramework.Standard
 {
@@ -31,6 +34,7 @@ namespace NodeEditorFramework.Standard
 		
 		public override void NodeGUI () 
 		{
+			#if UNITY_EDITOR
 			GUILayout.BeginHorizontal();
 			GUILayout.Space(5);
 			GUILayout.BeginVertical();
@@ -49,6 +53,7 @@ namespace NodeEditorFramework.Standard
 				NodeEditor.curNodeCanvas.OnNodeChange(this);
 
 			Calculate();
+			#endif
 		}
 		
 		public override bool Calculate () 

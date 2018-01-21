@@ -4,7 +4,9 @@ using System.Collections;
 using NodeEditorFramework;
 using NodeEditorFramework.Utilities;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using AMHQ;
 
 [System.Serializable]
@@ -36,6 +38,7 @@ public class LoadSceneNode : BaseConversationNode
 
 	public override void NodeGUI()
 	{
+		#if UNITY_EDITOR
 		GUILayout.BeginHorizontal();
 		GUILayout.BeginVertical();
 		inputKnob.DisplayLayout(new GUIContent(""));
@@ -49,7 +52,6 @@ public class LoadSceneNode : BaseConversationNode
 		GUILayout.BeginVertical();
 		GUILayout.Space(5);
 		
-		#if UNITY_EDITOR
 		if(GUILayout.Button("...")) {
 			string path = UnityEditor.EditorUtility.OpenFilePanel("Choose Scene Graph", "/Resources/Graphs/", "asset");
 			if (path != null && path != "") {
@@ -57,12 +59,13 @@ public class LoadSceneNode : BaseConversationNode
 				sceneName = sceneName.Split(".".ToCharArray())[0];
 			}
 		}
-		#endif
+		
 
 		GUILayout.EndVertical();
 
 		GUILayout.Space(5);
 		GUILayout.EndHorizontal();
+		#endif
 	}
 
 	// public override bool Calculate() {

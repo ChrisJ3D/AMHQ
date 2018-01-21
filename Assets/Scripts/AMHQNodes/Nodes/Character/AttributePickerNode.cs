@@ -2,10 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using NodeEditorFramework;
 using NodeEditorFramework.Utilities;
 using AMHQ;
+#if UNITY_EDITOR
+	using UnityEditor;
+#endif
 
 [Node (false, "Character/Attribute Picker", new Type[]{typeof(AMHQCanvas)})]
 public class AttributePickerNode : BaseConversationNode 
@@ -34,6 +36,7 @@ public class AttributePickerNode : BaseConversationNode
 	
 	public override void NodeGUI () 
 	{
+		#if UNITY_EDITOR
 		GUILayout.BeginHorizontal();
 		GUILayout.Space(5);
 		GUILayout.BeginVertical();
@@ -50,7 +53,7 @@ public class AttributePickerNode : BaseConversationNode
 		if (GUI.changed)
 			NodeEditor.curNodeCanvas.OnNodeChange(this);
 
-	
+		#endif
 	}
 	
 	public override bool Calculate () 

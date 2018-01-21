@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +49,8 @@ public class FadeNode : BaseConversationNode
 	
 	public override void NodeGUI () 
 	{
-				options[0] = "In";
+		#if UNITY_EDITOR
+		options[0] = "In";
 		options[1] = "Out";
 		values[0] = 0;
 		values[1] = 1;
@@ -82,6 +85,8 @@ public class FadeNode : BaseConversationNode
 
 		if (GUI.changed)
 			NodeEditor.curNodeCanvas.OnNodeChange(this);
+		
+		#endif
 	}
 	
 	public override bool Calculate () 

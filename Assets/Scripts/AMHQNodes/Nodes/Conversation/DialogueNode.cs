@@ -1,6 +1,8 @@
 ﻿using System;
 using NodeEditorFramework;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 using NodeEditorFramework.Utilities;
 using AMHQ;
@@ -46,6 +48,7 @@ using AMHQ;
 
 		public override void NodeGUI()
 		{
+			#if UNITY_EDITOR
 			GUILayout.BeginHorizontal();
 
 			scroll = EditorGUILayout.BeginScrollView(scroll, GUILayout.Height(100));
@@ -64,6 +67,7 @@ using AMHQ;
 
 			GUILayout.EndHorizontal();
 			GetSpeaker();
+			#endif
 		}
 
 		//	This method helps figuring out the which the next and previous nodes are. The inputValue acts as a "number of steps" to see how far ahead/back to look.

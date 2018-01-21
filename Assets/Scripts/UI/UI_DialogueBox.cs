@@ -13,6 +13,8 @@ namespace AMHQ {
 		[SerializeField]
 		private GameObject _dialogueLineBox;
 
+		public GameObject nameField;
+
 		private UIManager _uiManager;
 
 		public void Construct(UIManager parent) {
@@ -30,7 +32,7 @@ namespace AMHQ {
 		}
 
 		public void SetAsDialogueNode(string dialogueLine, string speakerName, bool isBackAvailable, bool isNextAvailable) {
-			//this.GetComponentsInChildren<Text>()[0].text = speakerName;
+			nameField.GetComponent<Text>().text = speakerName;
 			_dialogueLineBox.GetComponent<Text>().text = dialogueLine;
 			
 			_backButton.SetActive(isBackAvailable);
@@ -45,7 +47,7 @@ namespace AMHQ {
 		}
 
 		public void ClearContents() {
-			//this.GetComponentsInChildren<Text>()[0].text = "";
+			nameField.GetComponent<Text>().text = "";
 			_dialogueLineBox.GetComponent<Text>().text = "";
 		}
 	}

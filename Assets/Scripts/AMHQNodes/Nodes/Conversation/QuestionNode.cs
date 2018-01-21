@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using NodeEditorFramework;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
+
 using UnityEngine;
 using AMHQ;
 
@@ -55,6 +58,7 @@ public class QuestionNode : BaseConversationNode
 
 	public override void NodeGUI()
 	{
+		#if UNITY_EDITOR
 		GUILayout.Space(5);
 
 		EditorStyles.textField.wordWrap = true;
@@ -70,7 +74,6 @@ public class QuestionNode : BaseConversationNode
 
 		GUILayout.Space(5);
 
-		#region Options
 		GUILayout.BeginVertical("box");
 		GUILayout.ExpandWidth(false);
 
@@ -89,12 +92,13 @@ public class QuestionNode : BaseConversationNode
 
 		GUILayout.ExpandWidth(false);
 		GUILayout.EndVertical();
-	#endregion
+	#endif
 
 	}
 
 	private void DrawOptions()
 	{
+		#if UNITY_EDITOR
 		EditorGUILayout.BeginVertical();
 		for (var i = 0; i < _options.Count; i++)
 		{
@@ -116,6 +120,7 @@ public class QuestionNode : BaseConversationNode
 			GUILayout.Space(4);
 		}
 		GUILayout.EndVertical();
+		#endif
 	}
 
 	private void AddNewOption()

@@ -38,7 +38,6 @@ namespace AMHQ {
 				Debug.LogWarning("GameManager not set!!");
 				return;
 			}
-			Debug.Log("Attempting to load Graphs/" + canvasName);
 			nodeCanvas = Resources.Load("Graphs/" + canvasName, typeof(AMHQCanvas)) as AMHQCanvas;
 		}
 	}

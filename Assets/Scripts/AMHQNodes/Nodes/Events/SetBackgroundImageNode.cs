@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +32,7 @@ public class SetBackgroundImageNode : BaseConversationNode
 	
 	public override void NodeGUI () 
 	{
+		#if UNITY_EDITOR
 		GUILayout.BeginHorizontal();
 		GUILayout.BeginVertical();
 
@@ -48,6 +51,8 @@ public class SetBackgroundImageNode : BaseConversationNode
 
 		if (GUI.changed)
 			NodeEditor.curNodeCanvas.OnNodeChange(this);
+
+		#endif
 	}
 	
 	public override bool Calculate () 

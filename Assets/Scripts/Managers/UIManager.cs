@@ -66,6 +66,7 @@ namespace AMHQ {
 			gameManager.ShowCharacter(node.speakerIndex);
 			
 			string speakerName = gameManager.GetCharacter(node.speakerIndex).firstName;
+			Debug.Log("SpeakerName: " +  speakerName);
 			string dialogueLine = ProcessString(node.DialogLine);
 			_dialogueBox.SetAsDialogueNode(dialogueLine, speakerName, node.IsBackAvailable(), node.IsNextAvailable());
 		}
@@ -127,7 +128,6 @@ namespace AMHQ {
 		}
 
 		public void ShowHub(string hub) {
-			Debug.Log("Showing hub " + hub);
 			switch (hub) {
 				case "work":
 				homeHub.SetActive(false);

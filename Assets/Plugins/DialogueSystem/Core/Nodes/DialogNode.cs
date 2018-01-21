@@ -43,6 +43,7 @@ public class DialogNode : BaseDialogNode
 
 	public override void NodeGUI()
 	{
+		#if UNITY_EDITOR
 		EditorGUILayout.BeginVertical("Box");
 		GUILayout.BeginHorizontal();
 		// CharacterPotrait = (Sprite)EditorGUILayout.ObjectField(CharacterPotrait, typeof(Sprite), false, GUILayout.Width(65f), GUILayout.Height(65f));
@@ -70,6 +71,7 @@ public class DialogNode : BaseDialogNode
 				AudioUtils.PlayClip(SoundDialog);
 		}
 		GUILayout.EndHorizontal();
+		#endif
 	}
 
 	public override BaseDialogNode Input(int inputValue)

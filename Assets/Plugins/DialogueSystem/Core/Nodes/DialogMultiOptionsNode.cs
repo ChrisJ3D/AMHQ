@@ -57,6 +57,7 @@ public class DialogMultiOptionsNode : BaseDialogNode
 
 	public override void NodeGUI()
 	{
+		#if UNITY_EDITOR
 		EditorGUILayout.BeginVertical("Box");
 		GUILayout.BeginHorizontal();
 		CharacterPotrait = (Sprite)EditorGUILayout.ObjectField(CharacterPotrait, typeof(Sprite), false, GUILayout.Width(65f), GUILayout.Height(65f));
@@ -109,6 +110,7 @@ public class DialogMultiOptionsNode : BaseDialogNode
 		GUILayout.ExpandWidth(false);
 		GUILayout.EndVertical();
 	#endregion
+	#endif
 
 	}
 	
@@ -124,6 +126,7 @@ public class DialogMultiOptionsNode : BaseDialogNode
 
 	private void DrawOptions()
 	{
+		#if UNITY_EDITOR
 		EditorGUILayout.BeginVertical();
 		for (var i = 0; i < _options.Count; i++)
 		{
@@ -145,6 +148,7 @@ public class DialogMultiOptionsNode : BaseDialogNode
 			GUILayout.Space(4);
 		}
 		GUILayout.EndVertical();
+		#endif
 	}
 
 	private void AddNewOption()
