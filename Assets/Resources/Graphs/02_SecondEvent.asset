@@ -9,7 +9,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12a282a711455e147999adf40e6006fb, type: 3}
-<<<<<<< HEAD:Assets/Resources/Graphs/02_SecondEvent.asset
   m_Name: 02_SecondEvent
   m_EditorClassIdentifier: 
   editorStates:
@@ -38,22 +37,6 @@ MonoBehaviour:
   groups: []
   gameManager: {fileID: 0}
 --- !u!114 &114000271392994756
-=======
-  m_Name: Dialog1
-  m_EditorClassIdentifier: 
-  editorStates:
-  - {fileID: 114029482763763852}
-  saveName: Dialog1
-  savePath: Assets/Resources/Saves/Dialog1.asset
-  livesInScene: 0
-  nodes:
-  - {fileID: 114392403272980754}
-  - {fileID: 114173323363413446}
-  - {fileID: 114455079695925362}
-  groups: []
-  Name: AMHQ
---- !u!114 &114029482763763852
->>>>>>> origin/master:Assets/Resources/Saves/Dialog1.asset
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -61,7 +44,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD:Assets/Resources/Graphs/02_SecondEvent.asset
   m_Script: {fileID: 11500000, guid: f3d338988a4691f43b8c0764bd85cf70, type: 3}
   m_Name: Value
   m_EditorClassIdentifier: 
@@ -2627,17 +2609,6 @@ MonoBehaviour:
   sidePosition: 29.5
   sideOffset: 0
 --- !u!114 &114828645699320262
-=======
-  m_Script: {fileID: 11500000, guid: f6ab6487237ff124ea4c2aa5de9ce3fb, type: 3}
-  m_Name: MainEditorState
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 11400000}
-  parentEditor: {fileID: 0}
-  selectedNode: {fileID: 114455079695925362}
-  panOffset: {x: 0, y: 0}
-  zoom: 1
---- !u!114 &114063090304087642
->>>>>>> origin/master:Assets/Resources/Saves/Dialog1.asset
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2648,25 +2619,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6ab6487237ff124ea4c2aa5de9ce3fb, type: 3}
   m_Name: MainEditorState
   m_EditorClassIdentifier: 
-<<<<<<< HEAD:Assets/Resources/Graphs/02_SecondEvent.asset
   canvas: {fileID: 0}
   parentEditor: {fileID: 0}
   selectedNode: {fileID: 0}
   panOffset: {x: -1165.9998, y: -184.19998}
   zoom: 1.8
 --- !u!114 &114829866371756180
-=======
-  body: {fileID: 114392403272980754}
-  direction: 1
-  maxConnectionCount: 0
-  styleID: DialogueForward
-  _connections:
-  - {fileID: 114759439705571242}
-  side: 4
-  sidePosition: 30
-  sideOffset: 0
---- !u!114 &114068693883010156
->>>>>>> origin/master:Assets/Resources/Saves/Dialog1.asset
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2674,7 +2632,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD:Assets/Resources/Graphs/02_SecondEvent.asset
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2728,20 +2685,6 @@ MonoBehaviour:
   sidePosition: 20
   sideOffset: 0
 --- !u!114 &114851029584444104
-=======
-  m_Script: {fileID: 11500000, guid: f3d338988a4691f43b8c0764bd85cf70, type: 3}
-  m_Name: From Next
-  m_EditorClassIdentifier: 
-  body: {fileID: 114392403272980754}
-  direction: 1
-  maxConnectionCount: 0
-  styleID: DialogueBack
-  _connections: []
-  side: 2
-  sidePosition: 50
-  sideOffset: 0
---- !u!114 &114173323363413446
->>>>>>> origin/master:Assets/Resources/Saves/Dialog1.asset
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2749,7 +2692,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD:Assets/Resources/Graphs/02_SecondEvent.asset
   m_Script: {fileID: 11500000, guid: 03a5767d430904845806290caf81b2d8, type: 3}
   m_Name: Attribute Picker
   m_EditorClassIdentifier: 
@@ -2763,23 +2705,12 @@ MonoBehaviour:
   speakerIndex: 0
   outputKnob: {fileID: 114237547620709026}
   attribute: 3
-=======
-  m_Script: {fileID: 11500000, guid: fee1ae074944572429ecf26044b6e433, type: 3}
-  m_Name: Character Picker
-  m_EditorClassIdentifier: 
-  position: {x: -260.5, y: 2.5}
-  dynamicConnectionPorts: []
-  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-  outputKnob: {fileID: 114326107033565810}
-  characterIndex: 0
->>>>>>> origin/master:Assets/Resources/Saves/Dialog1.asset
   output:
     _value:
     - 0
     - 0
     - 0
     - 0
-<<<<<<< HEAD:Assets/Resources/Graphs/02_SecondEvent.asset
 --- !u!114 &114863381601073688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2801,9 +2732,6 @@ MonoBehaviour:
   sidePosition: 30
   sideOffset: 0
 --- !u!114 &114877734553770896
-=======
---- !u!114 &114326107033565810
->>>>>>> origin/master:Assets/Resources/Saves/Dialog1.asset
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2811,7 +2739,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD:Assets/Resources/Graphs/02_SecondEvent.asset
   m_Script: {fileID: 11500000, guid: f3d338988a4691f43b8c0764bd85cf70, type: 3}
   m_Name: To Previous
   m_EditorClassIdentifier: 
@@ -2824,21 +2751,6 @@ MonoBehaviour:
   sidePosition: 50
   sideOffset: 0
 --- !u!114 &114884061561551200
-=======
-  m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
-  m_Name: Output
-  m_EditorClassIdentifier: 
-  body: {fileID: 114173323363413446}
-  direction: 2
-  maxConnectionCount: 1
-  styleID: Number
-  _connections:
-  - {fileID: 114488685579236272}
-  side: 2
-  sidePosition: 33.5
-  sideOffset: 0
---- !u!114 &114392403272980754
->>>>>>> origin/master:Assets/Resources/Saves/Dialog1.asset
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2846,7 +2758,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD:Assets/Resources/Graphs/02_SecondEvent.asset
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: Output
   m_EditorClassIdentifier: 
@@ -2920,25 +2831,6 @@ MonoBehaviour:
   sidePosition: 31
   sideOffset: 0
 --- !u!114 &114899904264211860
-=======
-  m_Script: {fileID: 11500000, guid: 6a0defd08fa5f644f8e620f3335323ea, type: 3}
-  m_Name: Dialogue
-  m_EditorClassIdentifier: 
-  position: {x: -13.5, y: -98.5}
-  dynamicConnectionPorts: []
-  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-  CharacterName: Character Name
-  CharacterPotrait: {fileID: 0}
-  DialogLine: Insert dialogue text here
-  SoundDialog: {fileID: 0}
-  fromPreviousIN: {fileID: 114063090304087642}
-  toPreviousOut: {fileID: 114922429166965328}
-  toNextOUT: {fileID: 114760435960951514}
-  fromNextIN: {fileID: 114068693883010156}
-  characterKnob: {fileID: 114488685579236272}
-  characterPosition: 0
---- !u!114 &114455079695925362
->>>>>>> origin/master:Assets/Resources/Saves/Dialog1.asset
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2946,7 +2838,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD:Assets/Resources/Graphs/02_SecondEvent.asset
   m_Script: {fileID: 11500000, guid: fee1ae074944572429ecf26044b6e433, type: 3}
   m_Name: Character Picker
   m_EditorClassIdentifier: 
@@ -3001,21 +2892,6 @@ MonoBehaviour:
   sidePosition: 30
   sideOffset: 0
 --- !u!114 &114953165689438822
-=======
-  m_Script: {fileID: 11500000, guid: 95f62d03b75a753469391452fa0724dd, type: 3}
-  m_Name: Scene Loaded
-  m_EditorClassIdentifier: 
-  position: {x: -327.5, y: -98.5}
-  dynamicConnectionPorts: []
-  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-  CharacterName: Character name
-  CharacterPotrait: {fileID: 0}
-  DialogLine: Insert dialog text here
-  SoundDialog: {fileID: 0}
-  toNextOUT: {fileID: 114759439705571242}
-  nodeIndex: 1
---- !u!114 &114488685579236272
->>>>>>> origin/master:Assets/Resources/Saves/Dialog1.asset
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -3024,7 +2900,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
-<<<<<<< HEAD:Assets/Resources/Graphs/02_SecondEvent.asset
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 0}
@@ -3037,20 +2912,6 @@ MonoBehaviour:
   sidePosition: 10
   sideOffset: 0
 --- !u!114 &114954576516487842
-=======
-  m_Name: Character
-  m_EditorClassIdentifier: 
-  body: {fileID: 114392403272980754}
-  direction: 1
-  maxConnectionCount: 0
-  styleID: Number
-  _connections:
-  - {fileID: 114326107033565810}
-  side: 4
-  sidePosition: 30
-  sideOffset: 0
---- !u!114 &114759439705571242
->>>>>>> origin/master:Assets/Resources/Saves/Dialog1.asset
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -3061,24 +2922,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d338988a4691f43b8c0764bd85cf70, type: 3}
   m_Name: Out
   m_EditorClassIdentifier: 
-<<<<<<< HEAD:Assets/Resources/Graphs/02_SecondEvent.asset
   body: {fileID: 0}
   direction: 2
   maxConnectionCount: 1
   styleID: Flow
   _connections: []
-=======
-  body: {fileID: 114455079695925362}
-  direction: 2
-  maxConnectionCount: 1
-  styleID: DialogueForward
-  _connections:
-  - {fileID: 114063090304087642}
->>>>>>> origin/master:Assets/Resources/Saves/Dialog1.asset
   side: 2
   sidePosition: 10
   sideOffset: 0
-<<<<<<< HEAD:Assets/Resources/Graphs/02_SecondEvent.asset
 --- !u!114 &114962889701822490
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3102,9 +2953,6 @@ MonoBehaviour:
   nodeIndex: 0
   sceneName: 01_IntroEvent
 --- !u!114 &114964411956516828
-=======
---- !u!114 &114760435960951514
->>>>>>> origin/master:Assets/Resources/Saves/Dialog1.asset
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -3113,7 +2961,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
-<<<<<<< HEAD:Assets/Resources/Graphs/02_SecondEvent.asset
   m_Name: From Previous
   m_EditorClassIdentifier: 
   body: {fileID: 114375423354182812}
@@ -3158,16 +3005,10 @@ MonoBehaviour:
   m_Name: Next Node
   m_EditorClassIdentifier: 
   body: {fileID: 114375423354182812}
-=======
-  m_Name: To Next
-  m_EditorClassIdentifier: 
-  body: {fileID: 114392403272980754}
->>>>>>> origin/master:Assets/Resources/Saves/Dialog1.asset
   direction: 2
   maxConnectionCount: 1
   styleID: DialogueForward
   _connections: []
-<<<<<<< HEAD:Assets/Resources/Graphs/02_SecondEvent.asset
   side: 2
   sidePosition: 220
   sideOffset: 0
@@ -3188,12 +3029,9 @@ MonoBehaviour:
   styleID: Number
   _connections:
   - {fileID: 114735204772498666}
-=======
->>>>>>> origin/master:Assets/Resources/Saves/Dialog1.asset
   side: 2
   sidePosition: 35
   sideOffset: 0
-<<<<<<< HEAD:Assets/Resources/Graphs/02_SecondEvent.asset
 --- !u!114 &114975789149655922
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3215,9 +3053,6 @@ MonoBehaviour:
   sidePosition: 30
   sideOffset: 0
 --- !u!114 &114991536915135414
-=======
---- !u!114 &114922429166965328
->>>>>>> origin/master:Assets/Resources/Saves/Dialog1.asset
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -3225,7 +3060,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD:Assets/Resources/Graphs/02_SecondEvent.asset
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -3236,16 +3070,4 @@ MonoBehaviour:
   _connections: []
   side: 2
   sidePosition: 10
-=======
-  m_Script: {fileID: 11500000, guid: f3d338988a4691f43b8c0764bd85cf70, type: 3}
-  m_Name: To Previous
-  m_EditorClassIdentifier: 
-  body: {fileID: 114392403272980754}
-  direction: 2
-  maxConnectionCount: 1
-  styleID: DialogueBack
-  _connections: []
-  side: 4
-  sidePosition: 50
->>>>>>> origin/master:Assets/Resources/Saves/Dialog1.asset
   sideOffset: 0

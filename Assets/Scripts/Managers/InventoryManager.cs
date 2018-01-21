@@ -10,15 +10,7 @@ using System.IO;
 namespace AMHQ {
 	public class InventoryManager : Singleton<InventoryManager> {
 
-<<<<<<< HEAD
 		public GameManager gameManager;
-=======
-	public GameManager gameManager;
-
-	public const int numItemSlots = 6;
-	public Image[] itemImages = new Image[numItemSlots];
-	public Item[] items = new Item[numItemSlots];
->>>>>>> origin/master
 
 		public const int numItemSlots = 6;
 		public Image[] itemImages = new Image[numItemSlots];

@@ -6,12 +6,7 @@ using System.IO;
 namespace AMHQ {
 	public class CharacterManager : Singleton<CharacterManager> {
 
-<<<<<<< HEAD
 		public GameManager gameManager;
-=======
-	public GameManager gameManager;
-	public List<Character> characterList;
->>>>>>> origin/master
 
 		public List<Character> characterList;
 

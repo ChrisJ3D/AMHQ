@@ -8,45 +8,21 @@ using System;
 namespace AMHQ {
 	public class GameManager : Singleton<GameManager> {
 
-<<<<<<< HEAD
 		public CharacterManager characterManager;
 		private InventoryManager inventoryManager;
 		public NodeManager nodeManager;
 		public PlayerManager playerManager;
 		private TimeManager timeManager;
 		public UIManager uiManager;
-=======
-	private CharacterManager _characterManager;
-	private TimeManager _timeManager;
-	public UIManager _UIManager;
-	private NodeManager _nodeManager;
-	private InventoryManager _inventoryManager;
-	private PlayerManager _playerManager;
->>>>>>> origin/master
 
 		public string startingScene;
 		public string currentScene;
 
-<<<<<<< HEAD
 		public GameObject BGMPlayer;
 		public GameObject SFXPlayer;
 		
 		public override void Awake() {
 			base.Awake();
-=======
-		_inventoryManager = (InventoryManager)GetComponent("InventoryManager");
-		_nodeManager = (NodeManager)GetComponent("NodeManager");
-		_characterManager = (CharacterManager)GetComponent("CharacterManager");
-		_playerManager = (PlayerManager)GetComponent("PlayerManager");
-		_UIManager = (UIManager)GetComponent("UIManager");
-
-		_inventoryManager.gameManager = this;
-		_nodeManager.gameManager = this;
-		_characterManager.gameManager = this;
-		_playerManager.gameManager = this;
-		_UIManager.gameManager = this;
-	}
->>>>>>> origin/master
 
 			characterManager = (CharacterManager)GetComponent("CharacterManager");
 			inventoryManager = (InventoryManager)GetComponent("InventoryManager");
@@ -196,12 +172,6 @@ namespace AMHQ {
 			source.Play();
 		}
 
-<<<<<<< HEAD
 
-=======
-	public void LoadScene(string sceneName) {
-		var currentScene = SceneManager.GetActiveScene();
-		SceneManager.LoadScene(sceneName);
->>>>>>> origin/master
 	}
 }
