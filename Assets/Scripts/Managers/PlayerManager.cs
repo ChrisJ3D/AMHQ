@@ -5,6 +5,7 @@ using UnityEngine;
 namespace AMHQ {
 	public class PlayerManager : Singleton<PlayerManager> {
 
+<<<<<<< HEAD
 		public GameManager gameManager;
 
 		public string firstName = "PlayerName";
@@ -64,6 +65,17 @@ namespace AMHQ {
 		public float GetAttribute(CharacterAttributeType attribute) {
 			return _attributes[attribute];
 		}
+=======
+	public GameManager gameManager;
+
+	// Use this for initialization
+	void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+>>>>>>> origin/master
 		
 		/// <summary>
 		/// Returns the currently lowest player attribute value

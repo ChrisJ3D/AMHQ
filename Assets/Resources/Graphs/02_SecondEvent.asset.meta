@@ -1,9 +1,17 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Resources/Graphs/02_SecondEvent.asset.meta
 guid: 92b48337fb44bbc4cb049f5264ac300e
 timeCreated: 1511665493
 licenseType: Free
 NativeFormatImporter:
   mainObjectFileID: 0
+=======
+guid: 907bad445d097794fa15df164731ef93
+timeCreated: 1510327744
+licenseType: Free
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+>>>>>>> origin/master:Assets/Resources/Saves/Dialog1.asset.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 
