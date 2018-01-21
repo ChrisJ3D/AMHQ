@@ -196,7 +196,7 @@ public class NE_NodeBase : ScriptableObject, ISerializationCallbackReceiver {
 	void ProcessEvents(Event e) {
 		if(isSelected) {
 
-			if(e.type == EventType.mouseDrag) {
+			if(e.type == EventType.MouseDrag) {
 
 				if (nodeRect.Contains(e.mousePosition)) {
 					nodeRect.x += e.delta.x;

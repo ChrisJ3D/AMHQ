@@ -3,8 +3,6 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
-using NodeEditorFramework.Utilities;
-
 namespace NodeEditorFramework
 {
 	public abstract partial class Node : ScriptableObject
@@ -24,7 +22,7 @@ namespace NodeEditorFramework
 		[NonSerialized] public List<ConnectionPort> outputPorts = new List<ConnectionPort> ();
 		[NonSerialized] public List<ConnectionKnob> connectionKnobs = new List<ConnectionKnob> ();
 		[NonSerialized] public List<ConnectionKnob> inputKnobs = new List<ConnectionKnob> ();
-		[NonSerialized] public List<ConnectionKnob> outputKnobs = new List<ConnectionKnob> (); 
+		[NonSerialized] public List<ConnectionKnob> outputKnobs = new List<ConnectionKnob> ();
 
 		// Calculation graph
 		[HideInInspector] [NonSerialized]
@@ -37,7 +35,7 @@ namespace NodeEditorFramework
 
 		// Style
 		public Color backgroundColor = Color.white;
-
+		
 		public virtual string description { get { return "No description written for this node yet, shame on you chris!!"; } }
 
 		#region Properties and Settings
@@ -128,7 +126,9 @@ namespace NodeEditorFramework
 				ignoreGUIKnobPlacement = true;
 				NodeEditorGUI.StartNodeGUI(false);
 				GUILayout.BeginVertical(GUI.skin.box);
+				#if UNITY_EDITOR
 				NodeGUI();
+				#endif
 				GUILayout.EndVertical();
 				NodeEditorGUI.EndNodeGUI();
 			}

@@ -1,7 +1,10 @@
 ﻿using System;
 using NodeEditorFramework;
-using UnityEditor;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 /// <summary>
 /// A node to start a dialog, note that the ID must be entered and be unique
@@ -19,7 +22,7 @@ public class DialogStartNode : BaseDialogNode
 
 	[ValueConnectionKnob("To Next", Direction.Out, "DialogForward", NodeSide.Right, 30)]
 	public ValueConnectionKnob toNextOUT;
-	[ConnectionKnob("From Next", Direction.In, "DialogBack", NodeSide.Right, 50)]
+	[ConnectionKnob("From Next", Direction.In, "DialogueBack", NodeSide.Right, 50)]
 	public ConnectionKnob fromNextIN;
 
 	private Vector2 scroll;
@@ -35,9 +38,10 @@ public class DialogStartNode : BaseDialogNode
 
 	public override void NodeGUI()
 	{
+		#if UNITY_EDITOR
 		EditorGUILayout.BeginVertical("Box");
 		GUILayout.BeginHorizontal();
-		CharacterPotrait = (Sprite)EditorGUILayout.ObjectField(CharacterPotrait, typeof(Sprite), false, GUILayout.Width(65f), GUILayout.Height(65f));
+		// CharacterPotrait = (Sprite)EditorGUILayout.ObjectField(CharacterPotrait, typeof(Sprite), false, GUILayout.Width(65f), GUILayout.Height(65f));
 		CharacterName = EditorGUILayout.TextField("", CharacterName);
 		GUILayout.EndHorizontal();
 
@@ -64,6 +68,7 @@ public class DialogStartNode : BaseDialogNode
 				AudioUtils.PlayClip(SoundDialog);
 		}
 		GUILayout.EndHorizontal();
+		#endif
 	}
 
 	public override BaseDialogNode Input(int inputValue)

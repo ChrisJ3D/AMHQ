@@ -1,7 +1,11 @@
 ﻿using System;
 using NodeEditorFramework;
-using UnityEditor;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 /// <summary>
 /// This node has one entry and one exit, it is just to display something, then move on
 /// </summary>
@@ -39,9 +43,10 @@ public class DialogNode : BaseDialogNode
 
 	public override void NodeGUI()
 	{
+		#if UNITY_EDITOR
 		EditorGUILayout.BeginVertical("Box");
 		GUILayout.BeginHorizontal();
-		CharacterPotrait = (Sprite)EditorGUILayout.ObjectField(CharacterPotrait, typeof(Sprite), false, GUILayout.Width(65f), GUILayout.Height(65f));
+		// CharacterPotrait = (Sprite)EditorGUILayout.ObjectField(CharacterPotrait, typeof(Sprite), false, GUILayout.Width(65f), GUILayout.Height(65f));
 		CharacterName = EditorGUILayout.TextField("", CharacterName);
 		GUILayout.EndHorizontal();
 		GUILayout.EndVertical();
@@ -66,6 +71,7 @@ public class DialogNode : BaseDialogNode
 				AudioUtils.PlayClip(SoundDialog);
 		}
 		GUILayout.EndHorizontal();
+		#endif
 	}
 
 	public override BaseDialogNode Input(int inputValue)

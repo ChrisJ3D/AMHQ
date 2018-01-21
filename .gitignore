@@ -32,3 +32,4 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+Assets/Plugins/Node_Editor/Editor/LastSession.asset

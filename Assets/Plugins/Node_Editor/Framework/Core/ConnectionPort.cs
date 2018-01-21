@@ -71,10 +71,7 @@ namespace NodeEditorFramework
 			{
 				_connectionStyle = ConnectionPortStyles.GetPortStyle (styleID, styleBaseClass);
 				if (_connectionStyle == null || !_connectionStyle.isValid())
-				{ // Generate consistent color for a type - using string because it delivers greater variety of colors than type hashcode
-					UnityEngine.Random.InitState(styleID.GetHashCode());
-					color = UnityEngine.Random.ColorHSV(0, 1, 0.6f, 0.8f, 0.8f, 1.4f);
-				}
+					color = NodeEditorGUI.RandomColorHSV(styleID.GetHashCode(), 0, 1, 0.6f, 0.8f, 0.8f, 1.4f);
 				else
 					color = _connectionStyle.Color;
 			}
@@ -183,14 +180,14 @@ namespace NodeEditorFramework
 
 			if (maxConnectionCount == ConnectionCount.Single && connections.Count > 0)
 			{ // Respect maximum connection count on this port
-				connections[0].connections.Remove (this);
+				RemoveConnection(connections[0], silent);
 				connections.Clear ();
 			}
 			connections.Add(port);
 
 			if (port.maxConnectionCount == ConnectionCount.Single && port.connections.Count > 0)
 			{ // Respect maximum connection count on the other port
-				port.connections[0].connections.Remove (port);
+				port.RemoveConnection(port.connections[0], silent);
 				port.connections.Clear ();
 			}
 			port.connections.Add (this);
@@ -332,11 +329,8 @@ namespace NodeEditorFramework
 		}
 
 		public void GenerateColor ()
-		{
-			// Generate consistent color for a type - using string because it delivers greater variety of colors than type hashcode
-			int srcInt = (int)(Identifier.GetHashCode());
-			UnityEngine.Random.InitState (srcInt);
-			color = UnityEngine.Random.ColorHSV (0, 1, 0.6f, 0.8f, 0.8f, 1.4f);
+		{ // Generate consistent color for a type - using string because it delivers greater variety of colors than type hashcode
+			color = NodeEditorGUI.RandomColorHSV(Identifier.GetHashCode(), 0, 1, 0.6f, 0.8f, 0.8f, 1.4f);
 		}
 
 		public virtual bool isValid () 

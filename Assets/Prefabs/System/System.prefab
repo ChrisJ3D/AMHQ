@@ -24,7 +24,8 @@ GameObject:
   - component: {fileID: 114389325794560180}
   - component: {fileID: 114140197012090060}
   - component: {fileID: 114082398875645414}
-  - component: {fileID: 114247131384056240}
+  - component: {fileID: 114740112343259992}
+  - component: {fileID: 114760832401948446}
   m_Layer: 0
   m_Name: System
   m_TagString: Untagged
@@ -83,7 +84,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6460f5ec1959e1c4e8db87bd5aa24770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _UIManager: {fileID: 0}
+  characterManager: {fileID: 0}
+  nodeManager: {fileID: 0}
+  playerManager: {fileID: 0}
+  uiManager: {fileID: 0}
+  startingScene: 01_IntroEvent
+  currentScene: 01_IntroEvent
+  BGMPlayer: {fileID: 0}
+  SFXPlayer: {fileID: 0}
 --- !u!114 &114082398875645414
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,11 +117,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  UI_DialogueBoxPrefab: {fileID: 1316641530803934, guid: d8d00eb534332a94282026aea2f31e5c,
-    type: 2}
-  _canvasObject: {fileID: 0}
-  nodeCanvas: {fileID: 0}
---- !u!114 &114247131384056240
+--- !u!114 &114389325794560180
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1978374735342152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef601711ca872d409b4ec9ec96e2dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  playerName: PlayerName
+  bloodType: 
+  zodiac: 
+  favoriteFood: 
+  favoriteSeason: 
+  birthDay: 
+  startingCharisma: 120.86
+  startingEloquence: 503.9
+  startingInnovation: 211.1
+  startingKnowledge: 6.53
+  startingOrganisation: 0.2
+  startingStress: 44444.11
+--- !u!114 &114740112343259992
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1978374735342152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf67610d3ba57144b8143173f31d3e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  actionsPerDay: 3
+--- !u!114 &114760832401948446
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -127,16 +168,12 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   UI_DialogueBoxPrefab: {fileID: 1316641530803934, guid: d8d00eb534332a94282026aea2f31e5c,
     type: 2}
+  UI_QuestionBoxPrefab: {fileID: 1215468434659374, guid: 5df6c7e07a6256143bb6c37c903ac227,
+    type: 2}
   _canvasObject: {fileID: 0}
---- !u!114 &114389325794560180
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1978374735342152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ef601711ca872d409b4ec9ec96e2dd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
+  _dialogueBox: {fileID: 0}
+  _questionBox: {fileID: 0}
+  BG: {fileID: 0}
+  fadeScreen: {fileID: 0}
+  homeHub: {fileID: 0}
+  workHub: {fileID: 0}

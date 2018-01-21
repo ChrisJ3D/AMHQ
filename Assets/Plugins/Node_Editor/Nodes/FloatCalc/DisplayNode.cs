@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
-
-using NodeEditorFramework;
+﻿using UnityEngine;
 
 namespace NodeEditorFramework.Standard
 {
@@ -13,38 +9,21 @@ namespace NodeEditorFramework.Standard
 		public override string GetID { get { return ID; } }
 
 		public override string Title { get { return "Display Node"; } }
-		public override Vector2 DefaultSize { get { return new Vector2 (130, 120); } }
+		public override Vector2 DefaultSize { get { return new Vector2 (150, 50); } }
 
-		private Number value = new Number();
+		private float value = 0;
 
-		[ValueConnectionKnob("Value", Direction.In, "Number")]
+		[ValueConnectionKnob("Value", Direction.In, "Float")]
 		public ValueConnectionKnob inputKnob;
 		
 		public override void NodeGUI () 
 		{
-			GUILayout.Space(5);
-			GUILayout.BeginHorizontal();
-			GUILayout.BeginVertical();
-			inputKnob.DisplayLayout (new GUIContent(""));
-			GUILayout.EndVertical();
-
-			GUILayout.Space(-30);
-
-			GUILayout.BeginVertical();
-			GUILayout.Label("X: " + value.x.ToString());
-			GUILayout.Label("Y: " + value.y.ToString());
-			GUILayout.Label("Z: " + value.z.ToString());
-			GUILayout.Label("W: " + value.w.ToString());
-			GUILayout.EndVertical();
-			GUILayout.EndHorizontal();
-
-			if (GUI.changed)
-				NodeEditor.curNodeCanvas.OnNodeChange(this);
+			inputKnob.DisplayLayout (new GUIContent ("Value : " + value.ToString (), "The input value to display"));
 		}
 		
 		public override bool Calculate () 
 		{
-			value = inputKnob.GetValue<Number> ();
+			value = inputKnob.GetValue<float> ();
 			return true;
 		}
 	}

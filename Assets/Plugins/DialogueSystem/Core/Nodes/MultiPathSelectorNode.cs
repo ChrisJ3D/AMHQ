@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using NodeEditorFramework;
-using UnityEditor;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [Node(false, "Dialog/MultiPath Node", new Type[] { typeof(DialogNodeCanvas) })]
 public class MultiPathSelectorNode : BaseDialogNode
@@ -46,6 +49,7 @@ public class MultiPathSelectorNode : BaseDialogNode
 
 	public override void NodeGUI()
 	{
+		#if UNITY_EDITOR
 		GUILayout.BeginHorizontal();
 		ValueToTest =
 			(DialogBlackboard.EDialogMultiChoiceVariables) EditorGUILayout.EnumPopup("Value to Test", ValueToTest);
@@ -78,6 +82,7 @@ public class MultiPathSelectorNode : BaseDialogNode
 
 		GUILayout.EndVertical();
 		GUILayout.EndHorizontal();
+		#endif
 	}
 
 	private void RemoveLastOption()

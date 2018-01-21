@@ -241,18 +241,31 @@ namespace NodeEditorFramework.Utilities
 		#region Extra
 
 		/// <summary>
-		/// Text Field with label for ingame purposes. Behaves like UnityEditor.EditorGUILayout.TextField
+		/// Text Field with label for ingame purposes with copy-paste functionality. Should behave like UnityEditor.EditorGUILayout.TextField
+		/// </summary>
+		public static string TextField(string text, params GUILayoutOption[] options)
+		{
+			return TextField(GUIContent.none, text, null, options);
+		}
+
+		/// <summary>
+		/// Text Field with label for ingame purposes with copy-paste functionality. Should behave like UnityEditor.EditorGUILayout.TextField
 		/// </summary>
 		public static string TextField (GUIContent label, string text, GUIStyle style = null, params GUILayoutOption[] options)
 		{
-			#if UNITY_EDITOR
+			/*#if UNITY_EDITOR
 			if (!Application.isPlaying)
-				return UnityEditor.EditorGUILayout.TextField (label, text);
-			#endif
+				return UnityEditor.EditorGUILayout.TextField (label, text, options);
+			#endif*/
+
 			if (style == null) style = GUI.skin.textField;
 			if (text == null) text = "";
+
 			Rect totalPos = GetFieldRect (label, style, options);
 			Rect fieldPos = PrefixLabel (totalPos, 0.5f, label, GUI.skin.label);
+
+			// Handle custom copy-paste
+			text = HandleCopyPaste(GUIUtility.GetControlID("TextField".GetHashCode(), FocusType.Keyboard, fieldPos) + 1) ?? text;
 			text = GUI.TextField (fieldPos, text);
 			return text;
 		}
@@ -456,6 +469,9 @@ namespace NodeEditorFramework.Utilities
 			// Get stored string for the text field if this one is recorded
 			string str = recorded? activeFloatFieldString : value.ToString ();
 
+			// Handle custom copy-paste
+			str = HandleCopyPaste(floatFieldID) ?? str;
+
 			string strValue = GUI.TextField (pos, str);
 			if (recorded)
 				activeFloatFieldString = strValue;
@@ -528,6 +544,46 @@ namespace NodeEditorFramework.Utilities
 				Debug.LogError ("Could not parse " + str);
 			return value;
 		}
+
+		/// <summary>
+		/// Add copy-paste functionality to any text field
+		/// Returns changed text or NULL.
+		/// Usage: text = HandleCopyPaste (controlID) ?? text;
+		/// </summary>
+		public static string HandleCopyPaste(int controlID)
+		{
+			if (controlID == GUIUtility.keyboardControl)
+			{
+				if (Event.current.type == EventType.KeyUp && (Event.current.modifiers == EventModifiers.Control || Event.current.modifiers == EventModifiers.Command))
+				{
+					if (Event.current.keyCode == KeyCode.C)
+					{
+						Event.current.Use();
+						TextEditor editor = (TextEditor)GUIUtility.GetStateObject(typeof(TextEditor), GUIUtility.keyboardControl);
+						editor.Copy();
+					}
+					else if (Event.current.keyCode == KeyCode.V)
+					{
+						Event.current.Use();
+						TextEditor editor = (TextEditor)GUIUtility.GetStateObject(typeof(TextEditor), GUIUtility.keyboardControl);
+						editor.Paste();
+#if UNITY_5_3_OR_NEWER || UNITY_5_3
+						return editor.text;
+#else
+						return editor.content.text;
+#endif
+					}
+					else if (Event.current.keyCode == KeyCode.A)
+					{
+						Event.current.Use();
+						TextEditor editor = (TextEditor)GUIUtility.GetStateObject(typeof(TextEditor), GUIUtility.keyboardControl);
+						editor.SelectAll();
+					}
+				}
+			}
+			return null;
+		}
+
 
 		#endregion
 
@@ -644,35 +700,6 @@ namespace NodeEditorFramework.Utilities
 
 		#endregion
 
-		#region Extended GUI Texture Drawing
-
-		private static Material texVizMat;
-
-		public static void DrawTexture (Texture texture, int texSize, GUIStyle style, params GUILayoutOption[] options) 
-		{
-			DrawTexture (texture, texSize, style, 1, 2, 3, 4, options);
-		}
-
-		public static void DrawTexture (Texture texture, int texSize, GUIStyle style, int shuffleRed, int shuffleGreen, int shuffleBlue, int shuffleAlpha, params GUILayoutOption[] options) 
-		{
-			if (texVizMat == null)
-				texVizMat = new Material (Shader.Find ("Hidden/GUITextureClip_ChannelControl"));
-			texVizMat.SetInt ("shuffleRed", shuffleRed);
-			texVizMat.SetInt ("shuffleGreen", shuffleGreen);
-			texVizMat.SetInt ("shuffleBlue", shuffleBlue);
-			texVizMat.SetInt ("shuffleAlpha", shuffleAlpha);
-
-			if (options == null || options.Length == 0)
-				options = new GUILayoutOption[] { GUILayout.ExpandWidth (false) };
-			Rect rect = style == null? GUILayoutUtility.GetRect (texSize, texSize, options) : GUILayoutUtility.GetRect (texSize, texSize, style, options);
-			if (Event.current.type == EventType.Repaint)
-				Graphics.DrawTexture (rect, texture, texVizMat);
-		}
-
-		#endregion
-
-
-
 		#region Low-Level Drawing
 
 		private static Material lineMaterial;
@@ -681,9 +708,14 @@ namespace NodeEditorFramework.Utilities
 		private static void SetupLineMat (Texture tex, Color col) 
 		{
 			if (lineMaterial == null)
-				lineMaterial = new Material (Shader.Find ("Hidden/LineShader"));
+			{
+				Shader lineShader = Shader.Find("Hidden/LineShader");
+				if (lineShader == null)
+					throw new NotImplementedException("Missing line shader implementation!");
+				lineMaterial = new Material(lineShader);
+			}
 			if (tex == null)
-				tex = lineTexture != null? lineTexture : lineTexture = NodeEditorFramework.Utilities.ResourceManager.LoadTexture ("Textures/AALine.png");
+				tex = lineTexture != null? lineTexture : lineTexture = ResourceManager.LoadTexture ("Textures/AALine.png");
 			lineMaterial.SetTexture ("_LineTexture", tex);
 			lineMaterial.SetColor ("_LineColor", col);
 			lineMaterial.SetPass (0);
