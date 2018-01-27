@@ -231,6 +231,11 @@ Prefab:
       propertyPath: SFXPlayer
       value: 
       objectReference: {fileID: 1730475520}
+    - target: {fileID: 114389325794560180, guid: 6c90020080ac9404080de44acc95054c,
+        type: 2}
+      propertyPath: firstName
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c90020080ac9404080de44acc95054c, type: 2}
   m_IsPrefabParent: 0
@@ -1359,8 +1364,7 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114356976047240386, guid: cdf9b21ee98f3b441bb193879e16aaae, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cdf9b21ee98f3b441bb193879e16aaae, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1589035177

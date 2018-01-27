@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System;
 
 namespace AMHQ {
 	public class CharacterManager : Singleton<CharacterManager> {
@@ -17,7 +18,7 @@ namespace AMHQ {
 			GenerateCharacterObjects();
 		}
 
-		public void ShowCharacter(int index, int pose) {
+        public void ShowCharacter(int index, int pose) {
 			characterList[index].Show(pose);
 		}
 
@@ -88,6 +89,10 @@ namespace AMHQ {
 				Character currentCharacterComponent = (Character)currentCharacterObject.GetComponent("Character");
 
 				currentCharacterComponent.index = i;
+
+				if (currentCharacterObject.name == "Player") {
+					currentCharacterComponent.firstName = gameManager.GetPlayerName();
+				} 
 
 				characterList.Add(currentCharacterComponent);
 			}

@@ -78,7 +78,6 @@ namespace AMHQ {
 	#region	CharacterManager functions
 
 		public Character GetCharacter(int index) {
-			Debug.Log(characterManager.characterList[index]);
 			return characterManager.characterList[index];
 		}
 
