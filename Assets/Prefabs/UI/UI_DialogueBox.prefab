@@ -147,6 +147,7 @@ MonoBehaviour:
   _backButton: {fileID: 1218594688329656}
   _okButton: {fileID: 1133737925645944}
   _dialogueLineBox: {fileID: 1536523715297240}
+  nameField: {fileID: 1957659385853142}
 --- !u!114 &114453527965744188
 MonoBehaviour:
   m_ObjectHideFlags: 1

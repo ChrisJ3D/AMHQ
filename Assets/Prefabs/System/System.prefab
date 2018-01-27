@@ -88,7 +88,7 @@ MonoBehaviour:
   nodeManager: {fileID: 0}
   playerManager: {fileID: 0}
   uiManager: {fileID: 0}
-  startingScene: 01_IntroEvent
+  startingScene: 02_SecondEvent
   currentScene: 01_IntroEvent
   BGMPlayer: {fileID: 0}
   SFXPlayer: {fileID: 0}
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  playerName: PlayerName
+  firstName: PlayerName
   bloodType: 
   zodiac: 
   favoriteFood: 
